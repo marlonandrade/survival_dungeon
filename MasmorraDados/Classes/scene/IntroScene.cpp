@@ -7,6 +7,7 @@
 //
 
 #include "IntroScene.h"
+#include "MainMenuScene.h"
 
 USING_NS_CC;
 
@@ -16,6 +17,12 @@ Scene* Intro::createScene()
     auto layer = Intro::create();
     scene->addChild(layer);
     return scene;
+}
+
+void Intro::transitionToMainMenu(float deltaTime)
+{
+    Scene *mainMenuScene = MainMenu::createScene();
+    Director::getInstance()->replaceScene(mainMenuScene);
 }
 
 bool Intro::init()
@@ -37,6 +44,8 @@ bool Intro::init()
     introImage->setPosition(center);
     
     this->addChild(introImage, 0);
+    
+    this->schedule(schedule_selector(Intro::transitionToMainMenu), 3);
     
     return true;
 }

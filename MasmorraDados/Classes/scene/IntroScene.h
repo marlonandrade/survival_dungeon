@@ -18,6 +18,8 @@ public:
     virtual bool init();
     
     CREATE_FUNC(Intro);
+private:
+    virtual void transitionToMainMenu(float deltaTime);
 };
 
 #endif /* defined(__MasmorraDados__IntroScene__) */

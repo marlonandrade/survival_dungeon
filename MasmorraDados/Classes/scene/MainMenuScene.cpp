@@ -12,7 +12,10 @@ USING_NS_CC;
 
 Scene* MainMenu::createScene()
 {
-    return NULL;
+    auto scene = Scene::create();
+    auto layer = MainMenu::create();
+    scene->addChild(layer);
+    return scene;
 }
 
 bool MainMenu::init()
@@ -20,6 +23,17 @@ bool MainMenu::init()
     if (!Layer::init()) {
         return false;
     }
+    
+    Director *director = Director::getInstance();
+    
+    Size visibleSize = director->getVisibleSize();
+    Vec2 visibleOrigin = director->getVisibleOrigin();
+    
+    Label *label = Label::createWithTTF("Main Menu", "fonts/Marker Felt.ttf", 24);
+    label->setPosition(Vec2(visibleOrigin.x + visibleSize.width / 2,
+                            visibleOrigin.y + visibleSize.height - 50));
+    
+    this->addChild(label);
     
     return true;
 }
