@@ -49,7 +49,6 @@ out/
 *.gtgz
 
 # Project files
-proj.*
 cocos2d
 CMakeLists.txt
 
