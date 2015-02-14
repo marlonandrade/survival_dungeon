@@ -52,3 +52,6 @@ out/
 proj.*
 cocos2d
 CMakeLists.txt
+
+# Vim
+*.swp
