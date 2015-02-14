@@ -18,6 +18,8 @@ public:
     virtual bool init();
     
     CREATE_FUNC(MainMenu);
+private:
+    virtual cocos2d::Menu* createMenu();
 };
 
 #endif /* defined(__MasmorraDados__MainMenuScene__) */
