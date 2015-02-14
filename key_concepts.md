@@ -17,6 +17,9 @@ Analogia com um diretor de um filme.
 ### Cena (Scene)
 
 Responsável por separar partes do jogo.  
+É um container para `Sprites`, `Labels`, `Nodes` e outros objetos que o jogo precisa.  
+Responsável por executar a lógica do jogo e renderizar o conteúdo em cada frame.  
+É preciso pelo menos uma Cena para iniciar o jogo.  
 Exemplos: cena de menu inicial, cena de jogo, cena de fim de jogo, cena de placar.
 
 ### Grafo de cenas (Scene Graph)
@@ -119,6 +122,9 @@ Responsável por renderizar uma Scene Graph na tela.
 Responsável por permitir transformações de nós das cenas em um dado intervalo de tempo.  
 Pode ser utilizado para mover um sprite de um ponto a outro, rotacionar um sprite, modificar o tamanho, etc.  
 Estrutura fundamental para dar dinâmica a todos os jogos.  
+
+Existem dois tipos para cada `Action`, um `By` e um `To`.  
+Uma action `By` é relativa ao estado atual do nó, já uma action `To` é absoluta, ou seja, não considera o estado atual do nó.
 
 ### Sequencias (Sequence)
 
