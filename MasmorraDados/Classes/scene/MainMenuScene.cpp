@@ -7,7 +7,6 @@
 //
 
 #include "MainMenuScene.h"
-#include <CCMenuItem.h>
 
 USING_NS_CC;
 
