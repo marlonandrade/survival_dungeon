@@ -49,7 +49,7 @@ bool Intro::init()
     
     this->addChild(introImage, 0);
     
-    this->schedule(schedule_selector(Intro::transitionToMainMenu), 3);
+    this->schedule(schedule_selector(Intro::transitionToMainMenu), 0.5);
     
     return true;
 }

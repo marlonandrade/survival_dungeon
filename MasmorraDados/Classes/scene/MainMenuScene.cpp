@@ -51,31 +51,40 @@ Menu* MainMenu::createMenu()
 {
     Vector<MenuItem*> menuItems;
     
-    float margin = 80;
+    TTFConfig labelConfig;
+    labelConfig.fontFilePath = "fonts/farcry.ttf";
+    labelConfig.fontSize = 40;
     
-    auto iniciarMenuItem = MenuItemFont::create("Iniciar", [](Ref* sender) {
+    auto iniciarLabel = Label::createWithTTF(labelConfig, "INICIAR");
+    auto iniciarMenuItem = MenuItemLabel::create(iniciarLabel, [](Ref* sender) {
         log("Iniciar touched");
     });
-    iniciarMenuItem->setPositionY(-margin/2 - margin);
     menuItems.pushBack(iniciarMenuItem);
     
-    auto rulesMenuItem = MenuItemFont::create("Regras", [](Ref* sender) {
+    auto rulesLabel = Label::createWithTTF(labelConfig, "REGRAS");
+    auto rulesMenuItem = MenuItemLabel::create(rulesLabel, [](Ref* sender) {
         log("Regras touched");
     });
-    rulesMenuItem->setPositionY(-margin/2);
     menuItems.pushBack(rulesMenuItem);
     
-    auto optionsMenuItem = MenuItemFont::create("Opções", [](Ref* sender) {
+    auto optionsLabel = Label::createWithTTF(labelConfig, "OPCOES");
+    auto optionsMenuItem = MenuItemLabel::create(optionsLabel, [](Ref* sender) {
         log("Opções touched");
     });
-    optionsMenuItem->setPositionY(margin/2);
     menuItems.pushBack(optionsMenuItem);
     
-    auto creditsMenuItem = MenuItemFont::create("Créditos", [](Ref* sender) {
+    auto creditsLabel = Label::createWithTTF(labelConfig, "CREDITOS");
+    auto creditsMenuItem = MenuItemLabel::create(creditsLabel, [](Ref* sender) {
         log("Créditos touched");
     });
-    creditsMenuItem->setPositionY(margin/2 + margin);
     menuItems.pushBack(creditsMenuItem);
+    
+    float margin = 100;
+    int size = menuItems.size();
+    for (int i = 0; i < size; i++) {
+        auto menuItem = menuItems.at(i);
+        menuItem->setPositionY(margin/2 + ((size - i - 3) * margin));
+    }
     
     return Menu::createWithArray(menuItems);
 }

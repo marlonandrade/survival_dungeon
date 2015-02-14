@@ -47,6 +47,8 @@
 		BF5B4B3D1A8F7B4F007636DE /* MainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B3A1A8F7B4F007636DE /* MainMenuScene.cpp */; };
 		BF5B4B421A8F803F007636DE /* osx_assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF5B4B3E1A8F7E3C007636DE /* osx_assets.xcassets */; };
 		BF5B4B431A8F8042007636DE /* ios_assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF5B4B401A8F7E6D007636DE /* ios_assets.xcassets */; };
+		BF5B4B451A8FD080007636DE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF5B4B441A8FD080007636DE /* Info.plist */; };
+		BF5B4B461A8FD080007636DE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF5B4B441A8FD080007636DE /* Info.plist */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
@@ -96,7 +98,6 @@
 		46880B7719C43A67006E1F66 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
 		46880B8419C43A87006E1F66 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
 		46880B8519C43A87006E1F66 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		503AE0F717EB97AB00D1A890 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503AE0FA17EB989F00D1A890 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = ios/AppController.h; sourceTree = SOURCE_ROOT; };
 		503AE0FB17EB989F00D1A890 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppController.mm; path = ios/AppController.mm; sourceTree = SOURCE_ROOT; };
 		503AE0FC17EB989F00D1A890 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ios/main.m; sourceTree = SOURCE_ROOT; };
@@ -108,7 +109,7 @@
 		503AE11117EB99EE00D1A890 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
 		503AE11A17EB9C5A00D1A890 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		5087E76F17EB910900C73F5D /* MasmorraDados Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MasmorraDados Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5087E77C17EB970100C73F5D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5087E77C17EB970100C73F5D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; name = Info.plist; path = ios/Info.plist; sourceTree = "<group>"; };
 		5087E78817EB974C00C73F5D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		5087E78A17EB975400C73F5D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 		BF5B4B3B1A8F7B4F007636DE /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		BF5B4B3E1A8F7E3C007636DE /* osx_assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = osx_assets.xcassets; path = mac/osx_assets.xcassets; sourceTree = SOURCE_ROOT; };
 		BF5B4B401A8F7E6D007636DE /* ios_assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ios_assets.xcassets; path = ios/ios_assets.xcassets; sourceTree = SOURCE_ROOT; };
+		BF5B4B441A8FD080007636DE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = mac/Info.plist; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -172,7 +174,7 @@
 		080E96DDFE201D6D7F000001 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				5087E77117EB970100C73F5D /* Icons */,
+				5087E77C17EB970100C73F5D /* Info.plist */,
 				503AE0FA17EB989F00D1A890 /* AppController.h */,
 				503AE0FB17EB989F00D1A890 /* AppController.mm */,
 				503AE0FC17EB989F00D1A890 /* main.m */,
@@ -266,33 +268,15 @@
 			path = ../Classes;
 			sourceTree = "<group>";
 		};
-		503AE0F517EB97AB00D1A890 /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				503AE0F717EB97AB00D1A890 /* Info.plist */,
-			);
-			name = Icons;
-			path = mac;
-			sourceTree = SOURCE_ROOT;
-		};
 		503AE10617EB990700D1A890 /* mac */ = {
 			isa = PBXGroup;
 			children = (
-				503AE0F517EB97AB00D1A890 /* Icons */,
+				BF5B4B441A8FD080007636DE /* Info.plist */,
 				503AE10317EB98FF00D1A890 /* main.cpp */,
 				503AE10417EB98FF00D1A890 /* Prefix.pch */,
 			);
 			name = mac;
 			sourceTree = "<group>";
-		};
-		5087E77117EB970100C73F5D /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				5087E77C17EB970100C73F5D /* Info.plist */,
-			);
-			name = Icons;
-			path = ios;
-			sourceTree = SOURCE_ROOT;
 		};
 		BF5B4B311A8F75FA007636DE /* model */ = {
 			isa = PBXGroup;
@@ -418,6 +402,7 @@
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				BF5B4B381A8F78EA007636DE /* images in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
+				BF5B4B451A8FD080007636DE /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +416,7 @@
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
+				BF5B4B461A8FD080007636DE /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
