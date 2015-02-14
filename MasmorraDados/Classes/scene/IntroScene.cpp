@@ -40,8 +40,12 @@ bool Intro::init()
                        visibleSize.height / 2 + visibleOrigin.y);
     
     Sprite *introImage = Sprite::create("images/intro.jpg");
-    introImage->setContentSize(visibleSize);
+    
+    float scaleX = visibleSize.width / introImage->getContentSize().width;
+    float scaleY = visibleSize.height / introImage->getContentSize().height;
+    
     introImage->setPosition(center);
+    introImage->setScale(scaleX, scaleY);
     
     this->addChild(introImage, 0);
     
