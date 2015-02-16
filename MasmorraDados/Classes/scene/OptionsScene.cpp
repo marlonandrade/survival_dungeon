@@ -7,7 +7,6 @@
 //
 
 #include "OptionsScene.h"
-#include "BackMenu.h"
 
 USING_NS_CC;
 
@@ -21,11 +20,9 @@ Scene* Options::createScene()
 
 bool Options::init()
 {
-    if (!BaseMenu::init("Opcoes")) {
+    if (!InnerMenu::init("Opcoes")) {
         return false;
     }
-    
-    this->addChild(BackMenu::createMenu());
     
     return true;
 }

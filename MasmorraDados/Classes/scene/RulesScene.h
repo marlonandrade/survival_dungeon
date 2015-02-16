@@ -10,9 +10,9 @@
 #define __MasmorraDados__RulesScene__
 
 #include "cocos2d.h"
-#include "BaseMenuLayer.h"
+#include "InnerMenuLayer.h"
 
-class Rules : public BaseMenu
+class Rules : public InnerMenu
 {
 public:
     static cocos2d::Scene *createScene();

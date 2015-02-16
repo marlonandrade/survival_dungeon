@@ -7,7 +7,6 @@
 //
 
 #include "CreditsScene.h"
-#include "BackMenu.h"
 
 USING_NS_CC;
 
@@ -21,11 +20,9 @@ Scene* Credits::createScene()
 
 bool Credits::init()
 {
-    if (!BaseMenu::init("Creditos")) {
+    if (!InnerMenu::init("Creditos")) {
         return false;
     }
-    
-    this->addChild(BackMenu::createMenu());
     
     return true;
 }

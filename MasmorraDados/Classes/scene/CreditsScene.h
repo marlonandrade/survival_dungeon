@@ -10,9 +10,9 @@
 #define __MasmorraDados__CreditsScene__
 
 #include "cocos2d.h"
-#include "BaseMenuLayer.h"
+#include "InnerMenuLayer.h"
 
-class Credits : public BaseMenu
+class Credits : public InnerMenu
 {
 public:
     static cocos2d::Scene *createScene();

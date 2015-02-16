@@ -69,6 +69,8 @@
 		BF5B4BA81A9220CD007636DE /* BackLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BA51A9220CD007636DE /* BackLabel.cpp */; };
 		BF5B4BAB1A9221E2007636DE /* BackMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BA91A9221E2007636DE /* BackMenu.cpp */; };
 		BF5B4BAC1A9221E2007636DE /* BackMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BA91A9221E2007636DE /* BackMenu.cpp */; };
+		BF5B4BAF1A92240C007636DE /* InnerMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BAD1A92240B007636DE /* InnerMenuLayer.cpp */; };
+		BF5B4BB01A92240C007636DE /* InnerMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BAD1A92240B007636DE /* InnerMenuLayer.cpp */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
@@ -166,6 +168,8 @@
 		BF5B4BA61A9220CD007636DE /* BackLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackLabel.h; sourceTree = "<group>"; };
 		BF5B4BA91A9221E2007636DE /* BackMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackMenu.cpp; sourceTree = "<group>"; };
 		BF5B4BAA1A9221E2007636DE /* BackMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackMenu.h; sourceTree = "<group>"; };
+		BF5B4BAD1A92240B007636DE /* InnerMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InnerMenuLayer.cpp; sourceTree = "<group>"; };
+		BF5B4BAE1A92240C007636DE /* InnerMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerMenuLayer.h; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -343,6 +347,8 @@
 				BF5B4B961A9214EC007636DE /* GameplayScene.h */,
 				BF5B4B991A921523007636DE /* GameOptionsScene.cpp */,
 				BF5B4B9A1A921523007636DE /* GameOptionsScene.h */,
+				BF5B4BAD1A92240B007636DE /* InnerMenuLayer.cpp */,
+				BF5B4BAE1A92240C007636DE /* InnerMenuLayer.h */,
 				BF5B4B331A8F7616007636DE /* IntroScene.cpp */,
 				BF5B4B341A8F7616007636DE /* IntroScene.h */,
 				BF5B4B3A1A8F7B4F007636DE /* MainMenuScene.cpp */,
@@ -508,6 +514,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				BF5B4B3C1A8F7B4F007636DE /* MainMenuScene.cpp in Sources */,
 				BF5B4BA71A9220CD007636DE /* BackLabel.cpp in Sources */,
+				BF5B4BAF1A92240C007636DE /* InnerMenuLayer.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				BF5B4B8B1A9214B8007636DE /* CreditsScene.cpp in Sources */,
 				BF5B4B831A90ED7A007636DE /* GameOptions.cpp in Sources */,
@@ -521,6 +528,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				BF5B4BB01A92240C007636DE /* InnerMenuLayer.cpp in Sources */,
 				BF5B4B361A8F7616007636DE /* IntroScene.cpp in Sources */,
 				BF5B4B841A90ED7A007636DE /* GameOptions.cpp in Sources */,
 				BF5B4BAC1A9221E2007636DE /* BackMenu.cpp in Sources */,

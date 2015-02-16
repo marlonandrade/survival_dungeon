@@ -7,7 +7,6 @@
 //
 
 #include "RulesScene.h"
-#include "BackMenu.h"
 
 USING_NS_CC;
 
@@ -21,11 +20,9 @@ Scene* Rules::createScene()
 
 bool Rules::init()
 {
-    if (!BaseMenu::init("Regras")) {
+    if (!InnerMenu::init("Regras")) {
         return false;
     }
-    
-    this->addChild(BackMenu::createMenu());
     
     return true;
 }

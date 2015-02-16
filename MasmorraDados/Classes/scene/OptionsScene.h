@@ -10,9 +10,9 @@
 #define __MasmorraDados__OptionsScene__
 
 #include "cocos2d.h"
-#include "BaseMenuLayer.h"
+#include "InnerMenuLayer.h"
 
-class Options : public BaseMenu
+class Options : public InnerMenu
 {
 public:
     static cocos2d::Scene *createScene();
