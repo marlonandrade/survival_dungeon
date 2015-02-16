@@ -16,10 +16,7 @@ class InnerMenu : public BaseMenu
 {
 public:
     virtual bool init(std::string title);
-    
-    virtual void onEnter();
-    virtual void onExit();
-    virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event);
+    virtual void leave();
 };
 
 

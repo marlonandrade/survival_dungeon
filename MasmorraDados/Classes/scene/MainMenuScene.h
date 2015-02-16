@@ -18,9 +18,12 @@ public:
     static cocos2d::Scene* createScene();
     virtual bool init();
     
+    virtual void leave();
     CREATE_FUNC(MainMenu);
 private:
     virtual cocos2d::Menu* createMenu();
+    cocos2d::LayerColor* getConfirmQuitLayer();
+    cocos2d::LayerColor* _confirmQuitLayer;
 };
 
 #endif /* defined(__MasmorraDados__MainMenuScene__) */

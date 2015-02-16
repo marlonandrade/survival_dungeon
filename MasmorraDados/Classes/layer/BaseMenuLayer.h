@@ -10,11 +10,13 @@
 #define __MasmorraDados__BaseMenuLayer__
 
 #include "cocos2d.h"
+#include "ExitLayer.h"
 
-class BaseMenu : public cocos2d::Layer
+class BaseMenu : public Exit
 {
 public:
     virtual bool init(std::string title);
+    virtual void leave();
 };
 
 #endif /* defined(__MasmorraDados__BaseMenuLayer__) */

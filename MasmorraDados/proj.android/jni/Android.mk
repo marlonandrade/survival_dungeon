@@ -12,11 +12,12 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
-		   ../../Classes/scene/BaseMenuLayer.cpp \
+		   ../../Classes/layer/BaseMenuLayer.cpp \
+		   ../../Classes/layer/ExitLayer.cpp \
+		   ../../Classes/layer/InnerMenuLayer.cpp \
 		   ../../Classes/scene/CreditsScene.cpp \
 		   ../../Classes/scene/GameplayScene.cpp \
 		   ../../Classes/scene/GameOptionsScene.cpp \
-		   ../../Classes/scene/InnerMenuLayer.cpp \
 		   ../../Classes/scene/IntroScene.cpp \
 		   ../../Classes/scene/MainMenuScene.cpp \
 		   ../../Classes/scene/OptionsScene.cpp \
@@ -27,6 +28,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/ui/BackMenu.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
+		    $(LOCAL_PATH)/../../Classes/layer \
 		    $(LOCAL_PATH)/../../Classes/model \
   		    $(LOCAL_PATH)/../../Classes/scene \
 		    $(LOCAL_PATH)/../../Classes/ui

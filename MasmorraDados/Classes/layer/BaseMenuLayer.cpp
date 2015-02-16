@@ -13,7 +13,7 @@ USING_NS_CC;
 
 bool BaseMenu::init(std::string title)
 {
-    if (!Layer::init()) {
+    if (!Exit::init()) {
         return false;
     }
     
@@ -35,4 +35,13 @@ bool BaseMenu::init(std::string title)
     this->addChild(label);
     
     return true;
+}
+
+#pragma mark - Exit Layer Methods
+
+void BaseMenu::leave()
+{
+    // Perguntar se deseja realmente sair
+    
+    Director::getInstance()->end();
 }

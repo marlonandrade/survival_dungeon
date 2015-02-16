@@ -17,36 +17,7 @@
 
 USING_NS_CC;
 
-Scene* MainMenu::createScene()
-{
-    auto scene = Scene::create();
-    auto layer = MainMenu::create();
-    scene->addChild(layer);
-    return scene;
-}
-
-bool MainMenu::init()
-{
-    if (!BaseMenu::init("Menu Inicial")) {
-        return false;
-    }
-    
-    Director *director = Director::getInstance();
-    
-    Size visibleSize = director->getVisibleSize();
-    Vec2 visibleOrigin = director->getVisibleOrigin();
-    
-    float centerX = visibleOrigin.x + visibleSize.width / 2;
-    float centerY = visibleOrigin.y + visibleSize.height / 2;
-    
-    auto menu = this->createMenu();
-    menu->setPosition(Vec2(centerX,
-                           centerY));
-    
-    this->addChild(menu);
-    
-    return true;
-}
+#pragma mark - Private Interface
 
 Menu* MainMenu::createMenu()
 {
@@ -103,4 +74,92 @@ Menu* MainMenu::createMenu()
     }
     
     return Menu::createWithArray(menuItems);
+}
+
+LayerColor* MainMenu::getConfirmQuitLayer() {
+    if (!_confirmQuitLayer) {
+        _confirmQuitLayer = LayerColor::create(Color4B(0, 0, 0, 200));
+        
+        Size visibleSize = Director::getInstance()->getVisibleSize();
+        Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
+        
+        float scaleFactor = visibleSize.width / FONT_SCALE_RATIO;
+        float centerX = visibleSize.width / 2 + visibleOrigin.x;
+        float centerY = visibleSize.height / 2 + visibleOrigin.y;
+        
+        TTFConfig labelConfig;
+        labelConfig.fontFilePath = "fonts/farcry.ttf";
+        labelConfig.fontSize = 45 * scaleFactor;
+        
+        auto questionLabel = Label::createWithTTF(labelConfig, "DESEJA REALMENTE SAIR?");
+        
+        labelConfig.fontSize = 38 * scaleFactor;
+        
+        Vector<MenuItem*> menuItems;
+        auto yesLabel = Label::createWithTTF(labelConfig, "SIM");
+        auto yesMenuItem = MenuItemLabel::create(yesLabel, [](Ref* sender) {
+            Director::getInstance()->end();
+        });
+        yesMenuItem->setPosition(Vec2(-80 * scaleFactor, 0));
+        
+        auto noLabel = Label::createWithTTF(labelConfig, "NAO");
+        auto noMenuItem = MenuItemLabel::create(noLabel, [&](Ref *sender) {
+            _confirmQuitLayer->removeFromParent();
+            _confirmQuitLayer = nullptr;
+        });
+        noMenuItem->setPosition(Vec2(80 * scaleFactor, 0));
+        
+        menuItems.pushBack(yesMenuItem);
+        menuItems.pushBack(noMenuItem);
+        
+        auto menu = Menu::createWithArray(menuItems);
+        
+        questionLabel->setPosition(Vec2(centerX, centerY + 50 * scaleFactor));
+        menu->setPosition(Vec2(centerX, centerY - 50 * scaleFactor));
+        
+        _confirmQuitLayer->addChild(questionLabel);
+        _confirmQuitLayer->addChild(menu);
+    }
+    
+    return _confirmQuitLayer;
+}
+
+#pragma mark - Public Interface
+
+Scene* MainMenu::createScene()
+{
+    auto scene = Scene::create();
+    auto layer = MainMenu::create();
+    scene->addChild(layer);
+    return scene;
+}
+
+bool MainMenu::init()
+{
+    if (!BaseMenu::init("Menu Inicial")) {
+        return false;
+    }
+    
+    Director *director = Director::getInstance();
+    
+    Size visibleSize = director->getVisibleSize();
+    Vec2 visibleOrigin = director->getVisibleOrigin();
+    
+    float centerX = visibleOrigin.x + visibleSize.width / 2;
+    float centerY = visibleOrigin.y + visibleSize.height / 2;
+    
+    auto menu = this->createMenu();
+    menu->setPosition(Vec2(centerX,
+                           centerY));
+    
+    this->addChild(menu);
+    
+    return true;
+}
+
+void MainMenu::leave()
+{
+    if (!getConfirmQuitLayer()->getParent()) {
+        this->addChild(getConfirmQuitLayer());
+    }
 }
