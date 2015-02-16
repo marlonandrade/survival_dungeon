@@ -7,6 +7,9 @@
 //
 
 #include "MainMenuScene.h"
+#include "Definitions.h"
+#include "Game.h"
+#include "GameOptions.h"
 
 USING_NS_CC;
 
@@ -50,30 +53,42 @@ Menu* MainMenu::createMenu()
 {
     Vector<MenuItem*> menuItems;
     
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    float scaleFactor = visibleSize.width / FONT_SCALE_RATIO;
+    
     TTFConfig labelConfig;
     labelConfig.fontFilePath = "fonts/farcry.ttf";
-    labelConfig.fontSize = 40;
+    labelConfig.fontSize = 32 * scaleFactor;
     
     auto iniciarLabel = Label::createWithTTF(labelConfig, "INICIAR");
-    auto iniciarMenuItem = MenuItemLabel::create(iniciarLabel, [](Ref* sender) {
+    auto iniciarMenuItem = MenuItemLabel::create(iniciarLabel, [&](Ref* sender) {
+        auto game = new Game();
+        auto options = game->getOptions();
+        
+        log("%d", options.requiredXpToWin);
+        
+        options.requiredXpToWin = 21;
+        
+        log("%d", options.requiredXpToWin);
+    
         log("Iniciar touched");
     });
     menuItems.pushBack(iniciarMenuItem);
     
     auto rulesLabel = Label::createWithTTF(labelConfig, "REGRAS");
-    auto rulesMenuItem = MenuItemLabel::create(rulesLabel, [](Ref* sender) {
+    auto rulesMenuItem = MenuItemLabel::create(rulesLabel, [&](Ref* sender) {
         log("Regras touched");
     });
     menuItems.pushBack(rulesMenuItem);
     
     auto optionsLabel = Label::createWithTTF(labelConfig, "OPCOES");
-    auto optionsMenuItem = MenuItemLabel::create(optionsLabel, [](Ref* sender) {
+    auto optionsMenuItem = MenuItemLabel::create(optionsLabel, [&](Ref* sender) {
         log("Opções touched");
     });
     menuItems.pushBack(optionsMenuItem);
     
     auto creditsLabel = Label::createWithTTF(labelConfig, "CREDITOS");
-    auto creditsMenuItem = MenuItemLabel::create(creditsLabel, [](Ref* sender) {
+    auto creditsMenuItem = MenuItemLabel::create(creditsLabel, [&](Ref* sender) {
         log("Créditos touched");
     });
     menuItems.pushBack(creditsMenuItem);
