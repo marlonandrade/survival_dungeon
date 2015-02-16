@@ -95,7 +95,7 @@ Menu* MainMenu::createMenu()
     });
     menuItems.pushBack(creditsMenuItem);
     
-    float margin = 100;
+    float margin = visibleSize.height / 8;
     int size = menuItems.size();
     for (int i = 0; i < size; i++) {
         auto menuItem = menuItems.at(i);
