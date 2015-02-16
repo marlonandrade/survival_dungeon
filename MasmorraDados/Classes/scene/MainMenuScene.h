@@ -10,8 +10,9 @@
 #define __MasmorraDados__MainMenuScene__
 
 #include "cocos2d.h"
+#include "BaseMenuLayer.h"
 
-class MainMenu : public cocos2d::Layer
+class MainMenu : public BaseMenu
 {
 public:
     static cocos2d::Scene* createScene();

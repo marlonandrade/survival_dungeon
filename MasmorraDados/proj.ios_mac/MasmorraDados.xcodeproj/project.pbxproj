@@ -53,6 +53,22 @@
 		BF5B4B801A90E77A007636DE /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B7D1A90E77A007636DE /* Game.cpp */; };
 		BF5B4B831A90ED7A007636DE /* GameOptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B811A90ED7A007636DE /* GameOptions.cpp */; };
 		BF5B4B841A90ED7A007636DE /* GameOptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B811A90ED7A007636DE /* GameOptions.cpp */; };
+		BF5B4B8B1A9214B8007636DE /* CreditsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B891A9214B8007636DE /* CreditsScene.cpp */; };
+		BF5B4B8C1A9214B8007636DE /* CreditsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B891A9214B8007636DE /* CreditsScene.cpp */; };
+		BF5B4B8F1A9214C2007636DE /* OptionsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B8D1A9214C2007636DE /* OptionsScene.cpp */; };
+		BF5B4B901A9214C2007636DE /* OptionsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B8D1A9214C2007636DE /* OptionsScene.cpp */; };
+		BF5B4B931A9214CB007636DE /* RulesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B911A9214CB007636DE /* RulesScene.cpp */; };
+		BF5B4B941A9214CB007636DE /* RulesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B911A9214CB007636DE /* RulesScene.cpp */; };
+		BF5B4B971A9214EC007636DE /* GameplayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B951A9214EC007636DE /* GameplayScene.cpp */; };
+		BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B951A9214EC007636DE /* GameplayScene.cpp */; };
+		BF5B4B9B1A921523007636DE /* GameOptionsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B991A921523007636DE /* GameOptionsScene.cpp */; };
+		BF5B4B9C1A921523007636DE /* GameOptionsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B991A921523007636DE /* GameOptionsScene.cpp */; };
+		BF5B4B9F1A92168D007636DE /* BaseMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B9D1A92168D007636DE /* BaseMenuLayer.cpp */; };
+		BF5B4BA01A92168D007636DE /* BaseMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B9D1A92168D007636DE /* BaseMenuLayer.cpp */; };
+		BF5B4BA71A9220CD007636DE /* BackLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BA51A9220CD007636DE /* BackLabel.cpp */; };
+		BF5B4BA81A9220CD007636DE /* BackLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BA51A9220CD007636DE /* BackLabel.cpp */; };
+		BF5B4BAB1A9221E2007636DE /* BackMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BA91A9221E2007636DE /* BackMenu.cpp */; };
+		BF5B4BAC1A9221E2007636DE /* BackMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BA91A9221E2007636DE /* BackMenu.cpp */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
@@ -134,6 +150,22 @@
 		BF5B4B811A90ED7A007636DE /* GameOptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOptions.cpp; sourceTree = "<group>"; };
 		BF5B4B821A90ED7A007636DE /* GameOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOptions.h; sourceTree = "<group>"; };
 		BF5B4B861A920D96007636DE /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
+		BF5B4B891A9214B8007636DE /* CreditsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CreditsScene.cpp; sourceTree = "<group>"; };
+		BF5B4B8A1A9214B8007636DE /* CreditsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsScene.h; sourceTree = "<group>"; };
+		BF5B4B8D1A9214C2007636DE /* OptionsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OptionsScene.cpp; sourceTree = "<group>"; };
+		BF5B4B8E1A9214C2007636DE /* OptionsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsScene.h; sourceTree = "<group>"; };
+		BF5B4B911A9214CB007636DE /* RulesScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RulesScene.cpp; sourceTree = "<group>"; };
+		BF5B4B921A9214CB007636DE /* RulesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesScene.h; sourceTree = "<group>"; };
+		BF5B4B951A9214EC007636DE /* GameplayScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameplayScene.cpp; sourceTree = "<group>"; };
+		BF5B4B961A9214EC007636DE /* GameplayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayScene.h; sourceTree = "<group>"; };
+		BF5B4B991A921523007636DE /* GameOptionsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOptionsScene.cpp; sourceTree = "<group>"; };
+		BF5B4B9A1A921523007636DE /* GameOptionsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOptionsScene.h; sourceTree = "<group>"; };
+		BF5B4B9D1A92168D007636DE /* BaseMenuLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseMenuLayer.cpp; sourceTree = "<group>"; };
+		BF5B4B9E1A92168D007636DE /* BaseMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMenuLayer.h; sourceTree = "<group>"; };
+		BF5B4BA51A9220CD007636DE /* BackLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackLabel.cpp; sourceTree = "<group>"; };
+		BF5B4BA61A9220CD007636DE /* BackLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackLabel.h; sourceTree = "<group>"; };
+		BF5B4BA91A9221E2007636DE /* BackMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackMenu.cpp; sourceTree = "<group>"; };
+		BF5B4BAA1A9221E2007636DE /* BackMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackMenu.h; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -270,6 +302,7 @@
 			children = (
 				BF5B4B311A8F75FA007636DE /* model */,
 				BF5B4B321A8F75FA007636DE /* scene */,
+				BF5B4BA41A9220BD007636DE /* ui */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				BF5B4B861A920D96007636DE /* Definitions.h */,
@@ -302,12 +335,35 @@
 		BF5B4B321A8F75FA007636DE /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				BF5B4B9D1A92168D007636DE /* BaseMenuLayer.cpp */,
+				BF5B4B9E1A92168D007636DE /* BaseMenuLayer.h */,
+				BF5B4B891A9214B8007636DE /* CreditsScene.cpp */,
+				BF5B4B8A1A9214B8007636DE /* CreditsScene.h */,
+				BF5B4B951A9214EC007636DE /* GameplayScene.cpp */,
+				BF5B4B961A9214EC007636DE /* GameplayScene.h */,
+				BF5B4B991A921523007636DE /* GameOptionsScene.cpp */,
+				BF5B4B9A1A921523007636DE /* GameOptionsScene.h */,
 				BF5B4B331A8F7616007636DE /* IntroScene.cpp */,
 				BF5B4B341A8F7616007636DE /* IntroScene.h */,
 				BF5B4B3A1A8F7B4F007636DE /* MainMenuScene.cpp */,
 				BF5B4B3B1A8F7B4F007636DE /* MainMenuScene.h */,
+				BF5B4B8D1A9214C2007636DE /* OptionsScene.cpp */,
+				BF5B4B8E1A9214C2007636DE /* OptionsScene.h */,
+				BF5B4B911A9214CB007636DE /* RulesScene.cpp */,
+				BF5B4B921A9214CB007636DE /* RulesScene.h */,
 			);
 			path = scene;
+			sourceTree = "<group>";
+		};
+		BF5B4BA41A9220BD007636DE /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				BF5B4BA51A9220CD007636DE /* BackLabel.cpp */,
+				BF5B4BA61A9220CD007636DE /* BackLabel.h */,
+				BF5B4BA91A9221E2007636DE /* BackMenu.cpp */,
+				BF5B4BAA1A9221E2007636DE /* BackMenu.h */,
+			);
+			path = ui;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,14 +497,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF5B4B9F1A92168D007636DE /* BaseMenuLayer.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				BF5B4B9B1A921523007636DE /* GameOptionsScene.cpp in Sources */,
+				BF5B4BAB1A9221E2007636DE /* BackMenu.cpp in Sources */,
+				BF5B4B931A9214CB007636DE /* RulesScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				BF5B4B351A8F7616007636DE /* IntroScene.cpp in Sources */,
+				BF5B4B971A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				BF5B4B3C1A8F7B4F007636DE /* MainMenuScene.cpp in Sources */,
+				BF5B4BA71A9220CD007636DE /* BackLabel.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				BF5B4B8B1A9214B8007636DE /* CreditsScene.cpp in Sources */,
 				BF5B4B831A90ED7A007636DE /* GameOptions.cpp in Sources */,
 				BF5B4B7F1A90E77A007636DE /* Game.cpp in Sources */,
+				BF5B4B8F1A9214C2007636DE /* OptionsScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,8 +523,16 @@
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				BF5B4B361A8F7616007636DE /* IntroScene.cpp in Sources */,
 				BF5B4B841A90ED7A007636DE /* GameOptions.cpp in Sources */,
+				BF5B4BAC1A9221E2007636DE /* BackMenu.cpp in Sources */,
+				BF5B4B901A9214C2007636DE /* OptionsScene.cpp in Sources */,
+				BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */,
+				BF5B4B9C1A921523007636DE /* GameOptionsScene.cpp in Sources */,
 				BF5B4B3D1A8F7B4F007636DE /* MainMenuScene.cpp in Sources */,
+				BF5B4B8C1A9214B8007636DE /* CreditsScene.cpp in Sources */,
+				BF5B4BA81A9220CD007636DE /* BackLabel.cpp in Sources */,
+				BF5B4BA01A92168D007636DE /* BaseMenuLayer.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				BF5B4B941A9214CB007636DE /* RulesScene.cpp in Sources */,
 				BF5B4B801A90E77A007636DE /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

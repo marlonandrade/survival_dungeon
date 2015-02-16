@@ -7,9 +7,13 @@
 //
 
 #include "MainMenuScene.h"
+
+#include "CreditsScene.h"
 #include "Definitions.h"
 #include "Game.h"
 #include "GameOptions.h"
+#include "OptionsScene.h"
+#include "RulesScene.h"
 
 USING_NS_CC;
 
@@ -23,7 +27,7 @@ Scene* MainMenu::createScene()
 
 bool MainMenu::init()
 {
-    if (!Layer::init()) {
+    if (!BaseMenu::init("Menu Inicial")) {
         return false;
     }
     
@@ -35,16 +39,11 @@ bool MainMenu::init()
     float centerX = visibleOrigin.x + visibleSize.width / 2;
     float centerY = visibleOrigin.y + visibleSize.height / 2;
     
-    Label *label = Label::createWithTTF("Main Menu", "fonts/Marker Felt.ttf", 24);
-    label->setPosition(Vec2(centerX,
-                            visibleOrigin.y + visibleSize.height - 50));
-    
     auto menu = this->createMenu();
     menu->setPosition(Vec2(centerX,
                            centerY));
     
     this->addChild(menu);
-    this->addChild(label);
     
     return true;
 }
@@ -77,19 +76,22 @@ Menu* MainMenu::createMenu()
     
     auto rulesLabel = Label::createWithTTF(labelConfig, "REGRAS");
     auto rulesMenuItem = MenuItemLabel::create(rulesLabel, [&](Ref* sender) {
-        log("Regras touched");
+        auto rulesScene = Rules::createScene();
+        Director::getInstance()->pushScene(rulesScene);
     });
     menuItems.pushBack(rulesMenuItem);
     
     auto optionsLabel = Label::createWithTTF(labelConfig, "OPCOES");
     auto optionsMenuItem = MenuItemLabel::create(optionsLabel, [&](Ref* sender) {
-        log("Opções touched");
+        auto optionsScene = Options::createScene();
+        Director::getInstance()->pushScene(optionsScene);
     });
     menuItems.pushBack(optionsMenuItem);
     
     auto creditsLabel = Label::createWithTTF(labelConfig, "CREDITOS");
     auto creditsMenuItem = MenuItemLabel::create(creditsLabel, [&](Ref* sender) {
-        log("Créditos touched");
+        auto creditsScene = Credits::createScene();
+        Director::getInstance()->pushScene(creditsScene);
     });
     menuItems.pushBack(creditsMenuItem);
     

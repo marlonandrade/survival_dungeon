@@ -12,14 +12,23 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
+		   ../../Classes/scene/BaseMenuLayer.cpp \
+		   ../../Classes/scene/CreditsScene.cpp \
+		   ../../Classes/scene/GameplayScene.cpp \
+		   ../../Classes/scene/GameOptionsScene.cpp \
 		   ../../Classes/scene/IntroScene.cpp \
 		   ../../Classes/scene/MainMenuScene.cpp \
+		   ../../Classes/scene/OptionsScene.cpp \
+		   ../../Classes/scene/RulesScene.cpp \
 		   ../../Classes/model/Game.cpp \
-		   ../../Classes/model/GameOptions.cpp
+		   ../../Classes/model/GameOptions.cpp \
+		   ../../Classes/ui/BackLabel.cpp \
+		   ../../Classes/ui/BackMenu.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
+		    $(LOCAL_PATH)/../../Classes/model \
   		    $(LOCAL_PATH)/../../Classes/scene \
-		    $(LOCAL_PATH)/../../Classes/model
+		    $(LOCAL_PATH)/../../Classes/ui
 
 # _COCOS_HEADER_ANDROID_BEGIN
 # _COCOS_HEADER_ANDROID_END
