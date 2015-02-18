@@ -67,7 +67,7 @@ Menu* MainMenu::createMenu()
     menuItems.pushBack(creditsMenuItem);
     
     float margin = visibleSize.height / 8;
-    int size = menuItems.size();
+    ssize_t size = menuItems.size();
     for (int i = 0; i < size; i++) {
         auto menuItem = menuItems.at(i);
         menuItem->setPositionY(margin/2 + ((size - i - 3) * margin));
@@ -79,6 +79,7 @@ Menu* MainMenu::createMenu()
 LayerColor* MainMenu::getConfirmQuitLayer() {
     if (!_confirmQuitLayer) {
         _confirmQuitLayer = LayerColor::create(Color4B(0, 0, 0, 200));
+        CC_SAFE_RETAIN(_confirmQuitLayer);
         
         Size visibleSize = Director::getInstance()->getVisibleSize();
         Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
@@ -105,7 +106,6 @@ LayerColor* MainMenu::getConfirmQuitLayer() {
         auto noLabel = Label::createWithTTF(labelConfig, "NAO");
         auto noMenuItem = MenuItemLabel::create(noLabel, [&](Ref *sender) {
             _confirmQuitLayer->removeFromParent();
-            _confirmQuitLayer = nullptr;
         });
         noMenuItem->setPosition(Vec2(80 * scaleFactor, 0));
         
