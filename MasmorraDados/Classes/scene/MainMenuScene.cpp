@@ -8,8 +8,11 @@
 
 #include "MainMenuScene.h"
 
+#include "ActionDice.h"
 #include "CreditsScene.h"
 #include "Definitions.h"
+#include "Dice.h"
+#include "DiceFace.h"
 #include "Game.h"
 #include "GameOptions.h"
 #include "OptionsScene.h"
@@ -76,7 +79,8 @@ Menu* MainMenu::createMenu()
     return Menu::createWithArray(menuItems);
 }
 
-LayerColor* MainMenu::getConfirmQuitLayer() {
+LayerColor* MainMenu::getConfirmQuitLayer()
+{
     if (!_confirmQuitLayer) {
         _confirmQuitLayer = LayerColor::create(Color4B(0, 0, 0, 200));
         CC_SAFE_RETAIN(_confirmQuitLayer);
@@ -153,6 +157,8 @@ bool MainMenu::init()
                            centerY));
     
     this->addChild(menu);
+    
+    auto* actionDice = ActionDice::create();
     
     return true;
 }
