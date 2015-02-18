@@ -10,7 +10,8 @@
 
 bool MajorMonsterDice::init()
 {
-    if (!Dice::createWithPlist("res/dice/major_monster_dice.plist")) {
+    if (!Dice::createWithPlist("res/dice/major_monster_dice.plist",
+                               nullptr)) {
         return false;
     }
     

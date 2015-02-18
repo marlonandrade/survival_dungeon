@@ -5,38 +5,38 @@
 	<dict>
 		<key>image</key>
 		<string>dice/action/sword.png</string>
-		<key>name</key>
-		<string>Sword</string>
+		<key>kind</key>
+		<string>sword</string>
 	</dict>
 	<dict>
 		<key>image</key>
 		<string>dice/action/shield.png</string>
-		<key>name</key>
-		<string>Shield</string>
+		<key>kind</key>
+		<string>shield</string>
 	</dict>
 	<dict>
 		<key>image</key>
 		<string>dice/action/spell.png</string>
-		<key>name</key>
-		<string>Spell</string>
+		<key>kind</key>
+		<string>spell</string>
 	</dict>
 	<dict>
 		<key>image</key>
 		<string>dice/action/bow.png</string>
-		<key>name</key>
-		<string>Bow</string>
+		<key>kind</key>
+		<string>bow</string>
 	</dict>
 	<dict>
 		<key>image</key>
 		<string>dice/action/heal.png</string>
-		<key>name</key>
-		<string>Heal</string>
+		<key>kind</key>
+		<string>heal</string>
 	</dict>
 	<dict>
 		<key>image</key>
 		<string>dice/action/boot.png</string>
-		<key>name</key>
-		<string>Boot</string>
+		<key>kind</key>
+		<string>boot</string>
 	</dict>
 </array>
 </plist>

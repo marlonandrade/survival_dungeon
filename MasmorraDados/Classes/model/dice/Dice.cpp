@@ -7,32 +7,37 @@
 //
 
 #include "Dice.h"
+#include "DiceFace.h"
+#include "DiceFaceBuilder.h"
 
 USING_NS_CC;
 
-Dice* Dice::createWithPlist(const char* fileName)
+Dice* Dice::createWithPlist(const char* fileName, DiceFaceBuilder *builder)
 {
     Dice *dice = new (std::nothrow) Dice();
-    dice->initWithPlist(fileName);
+    dice->initWithPlist(fileName, builder);
     dice->autorelease();
     return dice;
 }
 
-bool Dice::initWithPlist(const char* fileName)
+bool Dice::initWithPlist(const char* fileName, DiceFaceBuilder *builder)
 {
     auto facesData = FileUtils::getInstance()->getValueVectorFromFile(fileName);
     
+    Vector<DiceFace*> faces;
+    
     for(auto it = facesData.begin(); it != facesData.end(); ++it) {
         auto faceData = it->asValueMap();
-        log("%s", faceData.at("image").asString().c_str());
-        log("%s", faceData.at("name").asString().c_str());
+        auto face = builder->diceFace(faceData);
+        faces.pushBack(face);
     }
+    
+    _faces = faces;
     
     return true;
 }
 
 DiceFace* Dice::roll()
 {
-    assert("roll must be overriden");
-    return nullptr;
+    return _faces.getRandomObject();
 }

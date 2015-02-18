@@ -10,18 +10,20 @@
 #define __MasmorraDados__Dice__
 
 #include "GameObject.h"
+#include "Dice.h"
+#include "DiceFace.h"
 
-class DiceFace;
+class DiceFaceBuilder;
 
 class Dice : public GameObject
 {
 public:
-    static Dice* createWithPlist(const char* fileName);
-    bool initWithPlist(const char* fileName);
+    static Dice* createWithPlist(const char* fileName, DiceFaceBuilder* builder);
+    bool initWithPlist(const char* fileName, DiceFaceBuilder* builder);
     
     virtual DiceFace* roll();
 protected:
-    std::vector<DiceFace*> _faces;
+    cocos2d::Vector<DiceFace*> _faces;
 };
 
 #endif /* defined(__MasmorraDados__Dice__) */

@@ -10,7 +10,8 @@
 
 bool MinorMonsterDice::init()
 {
-    if (!Dice::createWithPlist("res/dice/minor_monster.plist")) {
+    if (!Dice::createWithPlist("res/dice/minor_monster.plist",
+                               nullptr)) {
         return false;
     }
     
