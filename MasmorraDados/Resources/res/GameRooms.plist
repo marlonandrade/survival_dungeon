@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>initial</key>
+	<dict>
+		<key>image</key>
+		<string>room_initial.png</string>
+		<key>description</key>
+		<string>initial room</string>
+		<key>explorable</key>
+		<true/>
+		<key>floor</key>
+		<array>
+			<integer>1</integer>
+		</array>
+		<key>effect</key>
+		<dict/>
+	</dict>
+	<key>rune</key>
+	<dict>
+		<key>image</key>
+		<string>room_rune.png</string>
+		<key>description</key>
+		<string>rune room</string>
+		<key>explorable</key>
+		<true/>
+		<key>floor</key>
+		<array>
+			<integer>1</integer>
+		</array>
+		<key>effect</key>
+		<dict/>
+	</dict>
+	<key>trap</key>
+	<dict>
+		<key>image</key>
+		<string>room_trap.png</string>
+		<key>description</key>
+		<string>trap room</string>
+		<key>explorable</key>
+		<false/>
+		<key>floor</key>
+		<array>
+			<integer>1</integer>
+		</array>
+		<key>effect</key>
+		<dict>
+			<key>type</key>
+			<string>damage_adjacent</string>
+			<key>kind</key>
+			<string>pre_action</string>
+			<key>description</key>
+			<string>damage adjacent tiles</string>
+			<key>cost</key>
+			<array>
+				<string>shield</string>
+				<string>heal</string>
+			</array>
+		</dict>
+	</dict>
+	<key>portal</key>
+	<dict>
+		<key>image</key>
+		<string>room_portal.png</string>
+		<key>description</key>
+		<string>portal room</string>
+		<key>explorable</key>
+		<true/>
+		<key>floor</key>
+		<array>
+			<integer>1</integer>
+		</array>
+		<key>effect</key>
+		<dict>
+			<key>type</key>
+			<string>teleport</string>
+			<key>kind</key>
+			<string>optional</string>
+			<key>description</key>
+			<string>teleport to any revealed tile</string>
+			<key>cost</key>
+			<array>
+				<string>spell</string>
+			</array>
+		</dict>
+	</dict>
+	<key>monster_1</key>
+	<dict>
+		<key>image</key>
+		<string>room_monster_1.png</string>
+		<key>description</key>
+		<string>monster lvl 1 room</string>
+		<key>explorable</key>
+		<true/>
+		<key>floor</key>
+		<array>
+			<integer>1</integer>
+		</array>
+		<key>effect</key>
+		<dict>
+			<key>type</key>
+			<string>monster_lvl1</string>
+			<key>kind</key>
+			<string>pre_action</string>
+			<key>description</key>
+			<string>summon a lvl 1 monster</string>
+			<key>cost</key>
+			<array/>
+		</dict>
+	</dict>
+	<key>monster_2</key>
+	<dict>
+		<key>image</key>
+		<string>room_monster_2.png</string>
+		<key>description</key>
+		<string>monster lvl 2 room</string>
+		<key>explorable</key>
+		<true/>
+		<key>floor</key>
+		<array>
+			<integer>2</integer>
+		</array>
+		<key>effect</key>
+		<dict>
+			<key>type</key>
+			<string>monster_lvl2</string>
+			<key>kind</key>
+			<string>pre_action</string>
+			<key>description</key>
+			<string>summon a lvl 2 monster</string>
+			<key>cost</key>
+			<array/>
+		</dict>
+	</dict>
+	<key>treasure</key>
+	<dict>
+		<key>image</key>
+		<string>room_treasure.png</string>
+		<key>description</key>
+		<string>treasure room</string>
+		<key>explorable</key>
+		<true/>
+		<key>floor</key>
+		<array>
+			<integer>1</integer>
+		</array>
+		<key>effect</key>
+		<dict>
+			<key>type</key>
+			<string>treasure_1_coin</string>
+			<key>kind</key>
+			<string>optional</string>
+			<key>description</key>
+			<string>a coin for a dice</string>
+			<key>cost</key>
+			<array>
+				<string>sword</string>
+			</array>
+		</dict>
+	</dict>
+	<key>stairs_down</key>
+	<dict>
+		<key>image</key>
+		<string>room_stairs_down.png</string>
+		<key>description</key>
+		<string>down stairs</string>
+		<key>explorable</key>
+		<true/>
+		<key>floor</key>
+		<array>
+			<integer>1</integer>
+		</array>
+		<key>effect</key>
+		<dict>
+			<key>type</key>
+			<string>down_floor</string>
+			<key>kind</key>
+			<string>optional</string>
+			<key>description</key>
+			<string>go one floor down on the dungeon</string>
+			<key>cost</key>
+			<array/>
+		</dict>
+	</dict>
+	<key>stairs_up</key>
+	<dict>
+		<key>image</key>
+		<string>room_stairs_up.png</string>
+		<key>description</key>
+		<string>up stairs</string>
+		<key>explorable</key>
+		<true/>
+		<key>floor</key>
+		<array>
+			<integer>2</integer>
+		</array>
+		<key>effect</key>
+		<dict>
+			<key>type</key>
+			<string>up_floor</string>
+			<key>kind</key>
+			<string>optional</string>
+			<key>description</key>
+			<string>go one floor up on the dungeon</string>
+			<key>cost</key>
+			<array/>
+		</dict>
+	</dict>
+</dict>
+</plist>

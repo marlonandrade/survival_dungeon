@@ -87,6 +87,8 @@
 		BF5B4BD91A94BACC007636DE /* DungeonRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BD61A94BACC007636DE /* DungeonRoom.cpp */; };
 		BF5B4BDC1A94BC6B007636DE /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BDA1A94BC6B007636DE /* GameObject.cpp */; };
 		BF5B4BDD1A94BC6B007636DE /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BDA1A94BC6B007636DE /* GameObject.cpp */; };
+		BF5B4BE21A94C8D2007636DE /* GameRooms.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF5B4BE11A94C8D2007636DE /* GameRooms.plist */; };
+		BF5B4BE31A94C8D2007636DE /* GameRooms.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF5B4BE11A94C8D2007636DE /* GameRooms.plist */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
@@ -202,6 +204,7 @@
 		BF5B4BD71A94BACC007636DE /* DungeonRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DungeonRoom.h; sourceTree = "<group>"; };
 		BF5B4BDA1A94BC6B007636DE /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		BF5B4BDB1A94BC6B007636DE /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		BF5B4BE11A94C8D2007636DE /* GameRooms.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = GameRooms.plist; path = ../Resources/res/GameRooms.plist; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -284,6 +287,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				BF5B4BE11A94C8D2007636DE /* GameRooms.plist */,
 				46880B8319C43A87006E1F66 /* Classes */,
 				46880B7519C43A67006E1F66 /* Resources */,
 				1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */,
@@ -531,6 +535,7 @@
 				BF5B4B431A8F8042007636DE /* ios_assets.xcassets in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
+				BF5B4BE21A94C8D2007636DE /* GameRooms.plist in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				BF5B4B381A8F78EA007636DE /* images in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
@@ -545,6 +550,7 @@
 				BF5B4B421A8F803F007636DE /* osx_assets.xcassets in Resources */,
 				BF5B4B391A8F78EA007636DE /* images in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
+				BF5B4BE31A94C8D2007636DE /* GameRooms.plist in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				46880B7E19C43A67006E1F66 /* CloseSelected.png in Resources */,
