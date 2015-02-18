@@ -9,7 +9,13 @@
 #include "GameOptions.h"
 #include "Definitions.h"
 
-GameOptions::GameOptions()
+bool GameOptions::init()
 {
-    requiredXpToWin = XP_TO_WIN_MIN;
+    if (!GameObject::init()) {
+        return false;
+    }
+    
+    this->requiredXpToWin = XP_TO_WIN_MIN;
+    
+    return true;
 }

@@ -73,6 +73,20 @@
 		BF5B4BB91A92336D007636DE /* InnerMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BB41A92336D007636DE /* InnerMenuLayer.cpp */; };
 		BF5B4BBC1A923391007636DE /* ExitLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BBA1A923391007636DE /* ExitLayer.cpp */; };
 		BF5B4BBD1A923391007636DE /* ExitLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BBA1A923391007636DE /* ExitLayer.cpp */; };
+		BF5B4BC01A94BA2C007636DE /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BBE1A94BA2C007636DE /* Player.cpp */; };
+		BF5B4BC11A94BA2C007636DE /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BBE1A94BA2C007636DE /* Player.cpp */; };
+		BF5B4BC41A94BA35007636DE /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BC21A94BA35007636DE /* Character.cpp */; };
+		BF5B4BC51A94BA35007636DE /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BC21A94BA35007636DE /* Character.cpp */; };
+		BF5B4BC81A94BA51007636DE /* Skill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BC61A94BA51007636DE /* Skill.cpp */; };
+		BF5B4BC91A94BA51007636DE /* Skill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BC61A94BA51007636DE /* Skill.cpp */; };
+		BF5B4BCC1A94BA91007636DE /* Dungeon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BCA1A94BA91007636DE /* Dungeon.cpp */; };
+		BF5B4BCD1A94BA91007636DE /* Dungeon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BCA1A94BA91007636DE /* Dungeon.cpp */; };
+		BF5B4BD41A94BABF007636DE /* DungeonFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BD21A94BABF007636DE /* DungeonFloor.cpp */; };
+		BF5B4BD51A94BABF007636DE /* DungeonFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BD21A94BABF007636DE /* DungeonFloor.cpp */; };
+		BF5B4BD81A94BACC007636DE /* DungeonRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BD61A94BACC007636DE /* DungeonRoom.cpp */; };
+		BF5B4BD91A94BACC007636DE /* DungeonRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BD61A94BACC007636DE /* DungeonRoom.cpp */; };
+		BF5B4BDC1A94BC6B007636DE /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BDA1A94BC6B007636DE /* GameObject.cpp */; };
+		BF5B4BDD1A94BC6B007636DE /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BDA1A94BC6B007636DE /* GameObject.cpp */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
@@ -174,6 +188,20 @@
 		BF5B4BB51A92336D007636DE /* InnerMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerMenuLayer.h; sourceTree = "<group>"; };
 		BF5B4BBA1A923391007636DE /* ExitLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExitLayer.cpp; sourceTree = "<group>"; };
 		BF5B4BBB1A923391007636DE /* ExitLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExitLayer.h; sourceTree = "<group>"; };
+		BF5B4BBE1A94BA2C007636DE /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		BF5B4BBF1A94BA2C007636DE /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		BF5B4BC21A94BA35007636DE /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
+		BF5B4BC31A94BA35007636DE /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
+		BF5B4BC61A94BA51007636DE /* Skill.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Skill.cpp; sourceTree = "<group>"; };
+		BF5B4BC71A94BA51007636DE /* Skill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skill.h; sourceTree = "<group>"; };
+		BF5B4BCA1A94BA91007636DE /* Dungeon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dungeon.cpp; sourceTree = "<group>"; };
+		BF5B4BCB1A94BA91007636DE /* Dungeon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dungeon.h; sourceTree = "<group>"; };
+		BF5B4BD21A94BABF007636DE /* DungeonFloor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DungeonFloor.cpp; sourceTree = "<group>"; };
+		BF5B4BD31A94BABF007636DE /* DungeonFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DungeonFloor.h; sourceTree = "<group>"; };
+		BF5B4BD61A94BACC007636DE /* DungeonRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DungeonRoom.cpp; sourceTree = "<group>"; };
+		BF5B4BD71A94BACC007636DE /* DungeonRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DungeonRoom.h; sourceTree = "<group>"; };
+		BF5B4BDA1A94BC6B007636DE /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
+		BF5B4BDB1A94BC6B007636DE /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -333,10 +361,24 @@
 		BF5B4B311A8F75FA007636DE /* model */ = {
 			isa = PBXGroup;
 			children = (
+				BF5B4BC21A94BA35007636DE /* Character.cpp */,
+				BF5B4BC31A94BA35007636DE /* Character.h */,
+				BF5B4BCA1A94BA91007636DE /* Dungeon.cpp */,
+				BF5B4BCB1A94BA91007636DE /* Dungeon.h */,
+				BF5B4BD21A94BABF007636DE /* DungeonFloor.cpp */,
+				BF5B4BD31A94BABF007636DE /* DungeonFloor.h */,
+				BF5B4BD61A94BACC007636DE /* DungeonRoom.cpp */,
+				BF5B4BD71A94BACC007636DE /* DungeonRoom.h */,
 				BF5B4B7D1A90E77A007636DE /* Game.cpp */,
 				BF5B4B7E1A90E77A007636DE /* Game.h */,
+				BF5B4BDA1A94BC6B007636DE /* GameObject.cpp */,
+				BF5B4BDB1A94BC6B007636DE /* GameObject.h */,
 				BF5B4B811A90ED7A007636DE /* GameOptions.cpp */,
 				BF5B4B821A90ED7A007636DE /* GameOptions.h */,
+				BF5B4BBE1A94BA2C007636DE /* Player.cpp */,
+				BF5B4BBF1A94BA2C007636DE /* Player.h */,
+				BF5B4BC61A94BA51007636DE /* Skill.cpp */,
+				BF5B4BC71A94BA51007636DE /* Skill.h */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -520,6 +562,9 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				BF5B4BBC1A923391007636DE /* ExitLayer.cpp in Sources */,
 				BF5B4B9B1A921523007636DE /* GameOptionsScene.cpp in Sources */,
+				BF5B4BC41A94BA35007636DE /* Character.cpp in Sources */,
+				BF5B4BD41A94BABF007636DE /* DungeonFloor.cpp in Sources */,
+				BF5B4BD81A94BACC007636DE /* DungeonRoom.cpp in Sources */,
 				BF5B4BAB1A9221E2007636DE /* BackMenu.cpp in Sources */,
 				BF5B4B931A9214CB007636DE /* RulesScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -530,11 +575,15 @@
 				BF5B4BA71A9220CD007636DE /* BackLabel.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				BF5B4BB81A92336D007636DE /* InnerMenuLayer.cpp in Sources */,
+				BF5B4BC81A94BA51007636DE /* Skill.cpp in Sources */,
 				BF5B4B8B1A9214B8007636DE /* CreditsScene.cpp in Sources */,
 				BF5B4B831A90ED7A007636DE /* GameOptions.cpp in Sources */,
 				BF5B4B7F1A90E77A007636DE /* Game.cpp in Sources */,
+				BF5B4BC01A94BA2C007636DE /* Player.cpp in Sources */,
 				BF5B4B8F1A9214C2007636DE /* OptionsScene.cpp in Sources */,
+				BF5B4BCC1A94BA91007636DE /* Dungeon.cpp in Sources */,
 				BF5B4BB61A92336D007636DE /* BaseMenuLayer.cpp in Sources */,
+				BF5B4BDC1A94BC6B007636DE /* GameObject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,8 +592,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				BF5B4BD51A94BABF007636DE /* DungeonFloor.cpp in Sources */,
 				BF5B4BB91A92336D007636DE /* InnerMenuLayer.cpp in Sources */,
 				BF5B4B361A8F7616007636DE /* IntroScene.cpp in Sources */,
+				BF5B4BC51A94BA35007636DE /* Character.cpp in Sources */,
+				BF5B4BC11A94BA2C007636DE /* Player.cpp in Sources */,
 				BF5B4B841A90ED7A007636DE /* GameOptions.cpp in Sources */,
 				BF5B4BAC1A9221E2007636DE /* BackMenu.cpp in Sources */,
 				BF5B4BBD1A923391007636DE /* ExitLayer.cpp in Sources */,
@@ -552,10 +604,14 @@
 				BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				BF5B4B9C1A921523007636DE /* GameOptionsScene.cpp in Sources */,
 				BF5B4B3D1A8F7B4F007636DE /* MainMenuScene.cpp in Sources */,
+				BF5B4BD91A94BACC007636DE /* DungeonRoom.cpp in Sources */,
+				BF5B4BCD1A94BA91007636DE /* Dungeon.cpp in Sources */,
 				BF5B4B8C1A9214B8007636DE /* CreditsScene.cpp in Sources */,
 				BF5B4BA81A9220CD007636DE /* BackLabel.cpp in Sources */,
+				BF5B4BC91A94BA51007636DE /* Skill.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				BF5B4B941A9214CB007636DE /* RulesScene.cpp in Sources */,
+				BF5B4BDD1A94BC6B007636DE /* GameObject.cpp in Sources */,
 				BF5B4B801A90E77A007636DE /* Game.cpp in Sources */,
 				BF5B4BB71A92336D007636DE /* BaseMenuLayer.cpp in Sources */,
 			);

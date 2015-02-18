@@ -22,8 +22,15 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/scene/MainMenuScene.cpp \
 		   ../../Classes/scene/OptionsScene.cpp \
 		   ../../Classes/scene/RulesScene.cpp \
+		   ../../Classes/model/Character.cpp \
+		   ../../Classes/model/Dungeon.cpp \
+		   ../../Classes/model/DungeonFloor.cpp \
+		   ../../Classes/model/DungeonRoom.cpp \
 		   ../../Classes/model/Game.cpp \
+		   ../../Classes/model/GameObject.cpp \
 		   ../../Classes/model/GameOptions.cpp \
+		   ../../Classes/model/Player.cpp \
+		   ../../Classes/model/Skill.cpp \
 		   ../../Classes/ui/BackLabel.cpp \
 		   ../../Classes/ui/BackMenu.cpp
 

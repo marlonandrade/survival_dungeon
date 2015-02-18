@@ -7,14 +7,15 @@
 //
 
 #include "Game.h"
-#include "GameOptions.h"
 
-GameOptions& Game::getOptions()
+bool Game::init()
 {
-    return *_options;
-}
-
-Game::Game()
-{
-    _options = new GameOptions();
+    if (!GameObject::init()) {
+        return false;
+    }
+    
+    this->setOptions(GameOptions::create());
+    this->setDungeon(Dungeon::create());
+    
+    return true;
 }

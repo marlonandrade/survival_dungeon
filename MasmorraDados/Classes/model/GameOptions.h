@@ -9,10 +9,15 @@
 #ifndef __MasmorraDados__GameOptions__
 #define __MasmorraDados__GameOptions__
 
-struct GameOptions
+#include "GameObject.h"
+
+class GameOptions : public GameObject
 {
+public:
+    virtual bool init();
+    CREATE_FUNC(GameOptions);
+    
     int requiredXpToWin;
-    GameOptions();
 };
 
 #endif /* defined(__MasmorraDados__GameOptions__) */

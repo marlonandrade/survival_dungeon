@@ -32,14 +32,14 @@ Menu* MainMenu::createMenu()
     
     auto iniciarLabel = Label::createWithTTF(labelConfig, "INICIAR");
     auto iniciarMenuItem = MenuItemLabel::create(iniciarLabel, [&](Ref* sender) {
-        auto game = new Game();
+        Game* game = Game::create();
         auto options = game->getOptions();
         
-        log("%d", options.requiredXpToWin);
+        log("%d", options->requiredXpToWin);
         
-        options.requiredXpToWin = 21;
+        options->requiredXpToWin = 21;
         
-        log("%d", options.requiredXpToWin);
+        log("%d", options->requiredXpToWin);
     
         log("Iniciar touched");
     });

@@ -9,15 +9,20 @@
 #ifndef __MasmorraDados__Game__
 #define __MasmorraDados__Game__
 
-class GameOptions;
+#include "cocos2d.h"
 
-class Game
+#include "Dungeon.h"
+#include "GameObject.h"
+#include "GameOptions.h"
+
+class Game : public GameObject
 {
-private:
-    GameOptions *_options;
 public:
-    Game();
-    GameOptions& getOptions();
+    virtual bool init();
+    CREATE_FUNC(Game);
+    
+    CC_SYNTHESIZE_RETAIN(GameOptions*, _options, Options);
+    CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
 };
 
 #endif /* defined(__MasmorraDados__Game__) */
