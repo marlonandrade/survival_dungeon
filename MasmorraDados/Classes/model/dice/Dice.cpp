@@ -16,7 +16,7 @@ Dice* Dice::createWithPlist(const char* fileName, DiceFaceBuilder *builder)
 {
     Dice *dice = new (std::nothrow) Dice();
     dice->initWithPlist(fileName, builder);
-    dice->autorelease();
+    //dice->autorelease();
     return dice;
 }
 
@@ -26,18 +26,18 @@ bool Dice::initWithPlist(const char* fileName, DiceFaceBuilder *builder)
     
     Vector<DiceFace*> faces;
     
-    for(auto it = facesData.begin(); it != facesData.end(); ++it) {
+    for (auto it = facesData.begin(); it != facesData.end(); ++it) {
         auto faceData = it->asValueMap();
         auto face = builder->diceFace(faceData);
         faces.pushBack(face);
     }
     
-    _faces = faces;
+    this->setFaces(faces);
     
     return true;
 }
 
 DiceFace* Dice::roll()
 {
-    return _faces.getRandomObject();
+    return this->getFaces().getRandomObject();
 }

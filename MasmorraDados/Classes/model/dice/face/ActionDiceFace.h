@@ -16,10 +16,7 @@ class ActionDiceFace : public DiceFace
 public:
     CREATE_FUNC(ActionDiceFace);
     
-    virtual std::string getKind() const;
-    virtual void setKind(std::string kind);
-private:
-    std::string _kind;
+    CC_SYNTHESIZE(std::string, kind, Kind);
 };
 
 #endif /* defined(__MasmorraDados__ActionDiceFace__) */

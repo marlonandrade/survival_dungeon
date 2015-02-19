@@ -22,8 +22,7 @@ public:
     bool initWithPlist(const char* fileName, DiceFaceBuilder* builder);
     
     virtual DiceFace* roll();
-protected:
-    cocos2d::Vector<DiceFace*> _faces;
+    CC_SYNTHESIZE(cocos2d::Vector<DiceFace*>, faces, Faces);
 };
 
 #endif /* defined(__MasmorraDados__Dice__) */

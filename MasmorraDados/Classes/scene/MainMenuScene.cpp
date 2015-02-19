@@ -8,7 +8,6 @@
 
 #include "MainMenuScene.h"
 
-#include "ActionDice.h"
 #include "CreditsScene.h"
 #include "Definitions.h"
 #include "Dice.h"
@@ -17,6 +16,10 @@
 #include "GameOptions.h"
 #include "OptionsScene.h"
 #include "RulesScene.h"
+
+#include "ActionDice.h"
+#include "MajorMonsterDice.h"
+#include "MinorMonsterDice.h"
 
 USING_NS_CC;
 
@@ -38,11 +41,11 @@ Menu* MainMenu::createMenu()
         Game* game = Game::create();
         auto options = game->getOptions();
         
-        log("%d", options->requiredXpToWin);
+        log("%d", options->getRequiredXpToWin());
         
-        options->requiredXpToWin = 21;
+        options->setRequiredXpToWin(XP_TO_WIN_MID);
         
-        log("%d", options->requiredXpToWin);
+        log("%d", options->getRequiredXpToWin());
     
         log("Iniciar touched");
     });
@@ -158,7 +161,9 @@ bool MainMenu::init()
     
     this->addChild(menu);
     
-    auto* actionDice = ActionDice::create();
+    auto actionDice = ActionDice::create();
+    auto minorMonsterDice = MinorMonsterDice::create();
+    auto majorMonsterDice = MajorMonsterDice::create();
     
     return true;
 }

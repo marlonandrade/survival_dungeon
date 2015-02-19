@@ -8,10 +8,12 @@
 
 #include "MinorMonsterDice.h"
 
+#include "MonsterDiceFaceBuilder.h"
+
 bool MinorMonsterDice::init()
 {
-    if (!Dice::createWithPlist("res/dice/minor_monster.plist",
-                               nullptr)) {
+    if (!Dice::createWithPlist("res/dice/minor_monster_dice.plist",
+                               MonsterDiceFaceBuilder::create())) {
         return false;
     }
     

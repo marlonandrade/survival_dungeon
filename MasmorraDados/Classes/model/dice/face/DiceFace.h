@@ -16,10 +16,7 @@ class DiceFace : public GameObject
 public:
     CREATE_FUNC(DiceFace);
     
-    virtual std::string getImageName() const;
-    virtual void setImageName(std::string imageName);
-private:
-    std::string _imageName;
+    CC_SYNTHESIZE(std::string, imageName, ImageName);
 };
 
 #endif /* defined(__MasmorraDados__DiceFace__) */

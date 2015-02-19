@@ -17,7 +17,7 @@ public:
     virtual bool init();
     CREATE_FUNC(GameOptions);
     
-    int requiredXpToWin;
+    CC_SYNTHESIZE(int, requireXpToWin, RequiredXpToWin);
 };
 
 #endif /* defined(__MasmorraDados__GameOptions__) */

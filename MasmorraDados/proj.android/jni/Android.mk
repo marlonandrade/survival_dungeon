@@ -29,6 +29,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/Game.cpp \
 		   ../../Classes/model/GameObject.cpp \
 		   ../../Classes/model/GameOptions.cpp \
+		   ../../Classes/model/Monster.cpp \
 		   ../../Classes/model/Player.cpp \
 		   ../../Classes/model/Skill.cpp \
 		   ../../Classes/model/dice/ActionDice.cpp \
@@ -37,8 +38,10 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/dice/MinorMonsterDice.cpp \
 		   ../../Classes/model/dice/builder/ActionDiceFaceBuilder.cpp \
 		   ../../Classes/model/dice/builder/DiceFaceBuilder.cpp \
+		   ../../Classes/model/dice/builder/MonsterDiceFaceBuilder.cpp \
 		   ../../Classes/model/dice/face/ActionDiceFace.cpp \
 		   ../../Classes/model/dice/face/DiceFace.cpp \
+		   ../../Classes/model/dice/face/MonsterDiceFace.cpp \
 		   ../../Classes/ui/BackLabel.cpp \
 		   ../../Classes/ui/BackMenu.cpp
 

@@ -15,7 +15,7 @@ bool GameOptions::init()
         return false;
     }
     
-    this->requiredXpToWin = XP_TO_WIN_MIN;
+    this->setRequiredXpToWin(XP_TO_WIN_MIN);
     
     return true;
 }
