@@ -18,9 +18,9 @@ class Dice : public GameObject
 {
 public:
     static Dice* createWithPlist(const char* fileName, DiceFaceBuilder* builder);
-    bool initWithPlist(const char* fileName, DiceFaceBuilder* builder);
+    virtual bool initWithPlist(const char* fileName, DiceFaceBuilder* builder);
     
-    const virtual DiceFace* roll();
+    virtual DiceFace* roll();
     CC_SYNTHESIZE(cocos2d::Vector<DiceFace*>, faces, Faces);
 };
 

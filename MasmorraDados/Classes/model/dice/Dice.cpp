@@ -29,7 +29,8 @@ Dice* Dice::createWithPlist(const char* fileName, DiceFaceBuilder *builder)
 
 bool Dice::initWithPlist(const char* fileName, DiceFaceBuilder *builder)
 {
-    if (!GameObject::init()) {
+    if (!GameObject::init())
+    {
         return false;
     }
     
@@ -37,8 +38,9 @@ bool Dice::initWithPlist(const char* fileName, DiceFaceBuilder *builder)
     
     Vector<DiceFace*> faces;
     
-    for (auto it = facesData.begin(); it != facesData.end(); ++it) {
-        auto faceData = it->asValueMap();
+    for (auto data : facesData)
+    {
+        auto faceData = data.asValueMap();
         auto face = builder->diceFace(faceData);
         faces.pushBack(face);
     }
@@ -48,7 +50,7 @@ bool Dice::initWithPlist(const char* fileName, DiceFaceBuilder *builder)
     return true;
 }
 
-const DiceFace* Dice::roll()
+DiceFace* Dice::roll()
 {
     return this->getFaces().getRandomObject();
 }
