@@ -12,8 +12,8 @@
 
 bool MinorMonsterDice::init()
 {
-    if (!Dice::createWithPlist("res/dice/minor_monster_dice.plist",
-                               MonsterDiceFaceBuilder::create())) {
+    if (!Dice::initWithPlist("res/dice/minor_monster_dice.plist",
+                             MonsterDiceFaceBuilder::create())) {
         return false;
     }
     

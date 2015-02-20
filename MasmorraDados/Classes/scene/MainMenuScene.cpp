@@ -162,8 +162,11 @@ bool MainMenu::init()
     this->addChild(menu);
     
     auto actionDice = ActionDice::create();
+    log("%zd", actionDice->getFaces().size());
     auto minorMonsterDice = MinorMonsterDice::create();
+    log("%zd", minorMonsterDice->getFaces().size());
     auto majorMonsterDice = MajorMonsterDice::create();
+    log("%zd", majorMonsterDice->getFaces().size());
     
     return true;
 }

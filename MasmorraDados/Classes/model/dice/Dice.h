@@ -10,7 +10,6 @@
 #define __MasmorraDados__Dice__
 
 #include "GameObject.h"
-#include "Dice.h"
 #include "DiceFace.h"
 
 class DiceFaceBuilder;
@@ -21,7 +20,7 @@ public:
     static Dice* createWithPlist(const char* fileName, DiceFaceBuilder* builder);
     bool initWithPlist(const char* fileName, DiceFaceBuilder* builder);
     
-    virtual DiceFace* roll();
+    const virtual DiceFace* roll();
     CC_SYNTHESIZE(cocos2d::Vector<DiceFace*>, faces, Faces);
 };
 

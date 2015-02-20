@@ -12,8 +12,8 @@
 
 bool MajorMonsterDice::init()
 {
-    if (!Dice::createWithPlist("res/dice/major_monster_dice.plist",
-                               MonsterDiceFaceBuilder::create())) {
+    if (!Dice::initWithPlist("res/dice/major_monster_dice.plist",
+                             MonsterDiceFaceBuilder::create())) {
         return false;
     }
     

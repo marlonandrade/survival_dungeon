@@ -14,14 +14,25 @@ USING_NS_CC;
 
 Dice* Dice::createWithPlist(const char* fileName, DiceFaceBuilder *builder)
 {
-    Dice *dice = new (std::nothrow) Dice();
-    dice->initWithPlist(fileName, builder);
-    //dice->autorelease();
+    auto dice = new (std::nothrow) Dice();
+    if (dice && dice->initWithPlist(fileName, builder))
+    {
+        dice->autorelease();
+    }
+    else
+    {
+        CC_SAFE_DELETE(dice);
+    }
+    
     return dice;
 }
 
 bool Dice::initWithPlist(const char* fileName, DiceFaceBuilder *builder)
 {
+    if (!GameObject::init()) {
+        return false;
+    }
+    
     auto facesData = FileUtils::getInstance()->getValueVectorFromFile(fileName);
     
     Vector<DiceFace*> faces;
@@ -37,7 +48,7 @@ bool Dice::initWithPlist(const char* fileName, DiceFaceBuilder *builder)
     return true;
 }
 
-DiceFace* Dice::roll()
+const DiceFace* Dice::roll()
 {
     return this->getFaces().getRandomObject();
 }
