@@ -42,6 +42,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/dice/face/ActionDiceFace.cpp \
 		   ../../Classes/model/dice/face/DiceFace.cpp \
 		   ../../Classes/model/dice/face/MonsterDiceFace.cpp \
+		   ../../Classes/model/dice/roller/ActionDiceRoller.cpp \
+		   ../../Classes/model/dice/roller/DiceRoller.cpp \
 		   ../../Classes/ui/BackLabel.cpp \
 		   ../../Classes/ui/BackMenu.cpp
 
@@ -51,6 +53,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/model/dice \
 		    $(LOCAL_PATH)/../../Classes/model/dice/builder \
 		    $(LOCAL_PATH)/../../Classes/model/dice/face \
+		    $(LOCAL_PATH)/../../Classes/model/dice/roller \
   		    $(LOCAL_PATH)/../../Classes/scene \
 		    $(LOCAL_PATH)/../../Classes/ui
 
