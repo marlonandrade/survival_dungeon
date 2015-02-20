@@ -21,7 +21,10 @@ public:
     virtual bool initWithDices(const cocos2d::Vector<Dice*> dices);
     
     virtual cocos2d::Vector<DiceFace*> roll();
+    virtual cocos2d::Vector<DiceFace*> reroll(cocos2d::Vector<DiceFace*> dices);
+    
     CC_SYNTHESIZE(cocos2d::Vector<Dice*>, dices, Dices);
+    CC_SYNTHESIZE(int, rerolls, Rerolls);
 };
 
 

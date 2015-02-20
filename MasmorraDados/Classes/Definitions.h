@@ -12,6 +12,7 @@
 #define XP_TO_WIN_MIN 16
 #define XP_TO_WIN_MID 21
 #define XP_TO_WIN_MAX 26
+#define ACTION_REROLLS 2
 
 #define FONT_SCALE_RATIO 950
 

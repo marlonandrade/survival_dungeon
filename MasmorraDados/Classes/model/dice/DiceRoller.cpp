@@ -42,11 +42,27 @@ bool DiceRoller::initWithDices(const cocos2d::Vector<Dice *> dices)
 
 Vector<DiceFace*> DiceRoller::roll()
 {
+    this->setRerolls(0);
+    
     Vector<DiceFace*> faces;
     
     for (Dice* dice : this->getDices())
     {
         faces.pushBack(dice->roll());
+    }
+    
+    return faces;
+}
+
+Vector<DiceFace*> DiceRoller::reroll(cocos2d::Vector<DiceFace *> rolledFaces)
+{
+    this->setRerolls(this->getRerolls() + 1);
+    
+    Vector<DiceFace*> faces;
+    
+    for(DiceFace* rolledFace : rolledFaces)
+    {
+        faces.pushBack(rolledFace->getDice()->roll());
     }
     
     return faces;

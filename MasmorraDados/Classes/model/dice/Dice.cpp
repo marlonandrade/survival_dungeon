@@ -42,6 +42,7 @@ bool Dice::initWithPlist(const char* fileName, DiceFaceBuilder *builder)
     {
         auto faceData = data.asValueMap();
         auto face = builder->diceFace(faceData);
+        face->setDice(this);
         faces.pushBack(face);
     }
     

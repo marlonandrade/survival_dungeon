@@ -11,11 +11,14 @@
 
 #include "GameObject.h"
 
+class Dice;
+
 class DiceFace : public GameObject
 {
 public:
     CREATE_FUNC(DiceFace);
     
+    CC_SYNTHESIZE(Dice*, dice, Dice);
     CC_SYNTHESIZE(std::string, imageName, ImageName);
 };
 
