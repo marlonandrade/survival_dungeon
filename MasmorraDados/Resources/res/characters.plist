@@ -2,68 +2,71 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>rufus</key>
+	<key>base</key>
 	<dict>
-		<key>name</key>
-		<string>Rufus Belfort</string>
-		<key>image</key>
-		<string>rufus.png</string>
-		<key>class</key>
-		<string>cleric</string>
-		<key>initialSkill</key>
+		<key>alda</key>
 		<dict>
-			<key>cost</key>
-			<string>any dice</string>
-			<key>effect</key>
-			<string>heal</string>
+			<key>name</key>
+			<string>Alda Keyflower</string>
+			<key>image</key>
+			<string>images/character/base/alda.png</string>
+			<key>class</key>
+			<string>thief</string>
+			<key>initialSkill</key>
+			<dict>
+				<key>cost</key>
+				<string>any dice</string>
+				<key>effect</key>
+				<string>heal</string>
+			</dict>
 		</dict>
-	</dict>
-	<key>alda</key>
-	<dict>
-		<key>name</key>
-		<string>Alda Keyflower</string>
-		<key>image</key>
-		<string>alda.png</string>
-		<key>class</key>
-		<string>thief</string>
-		<key>initialSkill</key>
+		<key>algus</key>
 		<dict>
-			<key>cost</key>
-			<string>any dice</string>
-			<key>effect</key>
-			<string>heal</string>
+			<key>name</key>
+			<string>Algus Seasons</string>
+			<key>image</key>
+			<string>images/character/base/algus.png</string>
+			<key>class</key>
+			<string>wizard</string>
+			<key>initialSkill</key>
+			<dict>
+				<key>cost</key>
+				<string>any dice</string>
+				<key>effect</key>
+				<string>heal</string>
+			</dict>
 		</dict>
-	</dict>
-	<key>algus</key>
-	<dict>
-		<key>name</key>
-		<string>Algus Seasons</string>
-		<key>image</key>
-		<string>algus.png</string>
-		<key>class</key>
-		<string>wizard</string>
-		<key>initialSkill</key>
+		<key>katan</key>
 		<dict>
-			<key>cost</key>
-			<string>any dice</string>
-			<key>effect</key>
-			<string>heal</string>
+			<key>name</key>
+			<string>Katan, o Bravo</string>
+			<key>image</key>
+			<string>images/character/base/katan.png</string>
+			<key>class</key>
+			<string>warrior</string>
+			<key>initialSkill</key>
+			<dict>
+				<key>cost</key>
+				<string>any dice</string>
+				<key>effect</key>
+				<string>shield</string>
+			</dict>
 		</dict>
-	</dict>
-	<key>katan</key>
-	<dict>
-		<key>name</key>
-		<string>Katan, o Bravo</string>
-		<key>image</key>
-		<string>katan.png</string>
-		<key>class</key>
-		<string>warrior</string>
-		<key>initialSkill</key>
+		<key>rufus</key>
 		<dict>
-			<key>cost</key>
-			<string>any dice</string>
-			<key>effect</key>
-			<string>shield</string>
+			<key>name</key>
+			<string>Rufus Belfort</string>
+			<key>image</key>
+			<string>images/character/base/rufus.png</string>
+			<key>class</key>
+			<string>cleric</string>
+			<key>initialSkill</key>
+			<dict>
+				<key>cost</key>
+				<string>any dice</string>
+				<key>effect</key>
+				<string>heal</string>
+			</dict>
 		</dict>
 	</dict>
 </dict>
