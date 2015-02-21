@@ -12,13 +12,12 @@
 #include "cocos2d.h"
 #include "InnerMenuLayer.h"
 
-class Credits : public InnerMenu
-{
+class CreditsScene : public InnerMenu {
 public:
-    static cocos2d::Scene *createScene();
-    virtual bool init();
-    
-    CREATE_FUNC(Credits);
+  static cocos2d::Scene *createScene();
+  virtual bool init();
+  
+  CREATE_FUNC(CreditsScene);
 };
 
 #endif /* defined(__MasmorraDados__CreditsScene__) */

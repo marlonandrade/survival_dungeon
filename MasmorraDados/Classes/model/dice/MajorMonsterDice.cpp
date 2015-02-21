@@ -10,12 +10,11 @@
 
 #include "MonsterDiceFaceBuilder.h"
 
-bool MajorMonsterDice::init()
-{
-    if (!Dice::initWithPlist("res/dice/major_monster_dice.plist",
-                             MonsterDiceFaceBuilder::create())) {
-        return false;
-    }
-    
-    return true;
+bool MajorMonsterDice::init() {
+  if (!Dice::initWithPlist("res/dice/major_monster_dice.plist",
+                           MonsterDiceFaceBuilder::create())) {
+    return false;
+  }
+  
+  return true;
 }

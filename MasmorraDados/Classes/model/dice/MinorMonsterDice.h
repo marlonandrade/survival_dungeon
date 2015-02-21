@@ -11,11 +11,10 @@
 
 #include "Dice.h"
 
-class MinorMonsterDice : public Dice
-{
+class MinorMonsterDice : public Dice {
 public:
-    virtual bool init();
-    CREATE_FUNC(MinorMonsterDice);
+  virtual bool init();
+  CREATE_FUNC(MinorMonsterDice);
 };
 
 #endif /* defined(__MasmorraDados__MinorMonsterDice__) */

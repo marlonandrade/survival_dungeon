@@ -15,14 +15,13 @@
 #include "GameObject.h"
 #include "GameOptions.h"
 
-class Game : public GameObject
-{
+class Game : public GameObject {
 public:
-    virtual bool init();
-    CREATE_FUNC(Game);
-    
-    CC_SYNTHESIZE_RETAIN(GameOptions*, _options, Options);
-    CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
+  virtual bool init();
+  CREATE_FUNC(Game);
+  
+  CC_SYNTHESIZE_RETAIN(GameOptions*, _options, Options);
+  CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
 };
 
 #endif /* defined(__MasmorraDados__Game__) */

@@ -12,11 +12,10 @@
 #include "cocos2d.h"
 #include "ExitLayer.h"
 
-class BaseMenu : public Exit
-{
+class BaseMenu : public Exit {
 public:
-    virtual bool init(std::string title);
-    virtual void leave();
+  virtual bool init(std::string title);
+  virtual void leave();
 };
 
 #endif /* defined(__MasmorraDados__BaseMenuLayer__) */

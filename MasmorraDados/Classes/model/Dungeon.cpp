@@ -8,12 +8,10 @@
 
 #include "Dungeon.h"
 
-bool Dungeon::init()
-{
-    if (!GameObject::init())
-    {
-        return false;
-    }
-    
-    return true;
+bool Dungeon::init() {
+  if (!GameObject::init()) {
+    return false;
+  }
+  
+  return true;
 }

@@ -13,13 +13,12 @@
 
 class Monster;
 
-class MonsterDiceFaceBuilder : public DiceFaceBuilder
-{
+class MonsterDiceFaceBuilder : public DiceFaceBuilder {
 public:
-    CREATE_FUNC(MonsterDiceFaceBuilder);
-    virtual DiceFace* diceFace(cocos2d::ValueMap &map);
+  CREATE_FUNC(MonsterDiceFaceBuilder);
+  virtual DiceFace* diceFace(cocos2d::ValueMap &map);
 private:
-    Monster* monsterFrom(cocos2d::ValueMap &map);
+  Monster* monsterFrom(cocos2d::ValueMap &map);
 };
 
 #endif /* defined(__MasmorraDados__MonsterDiceFaceBuilder__) */

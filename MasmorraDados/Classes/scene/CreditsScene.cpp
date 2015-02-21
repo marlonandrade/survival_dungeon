@@ -10,19 +10,17 @@
 
 USING_NS_CC;
 
-Scene* Credits::createScene()
-{
-    auto scene = Scene::create();
-    auto layer = Credits::create();
-    scene->addChild(layer);
-    return scene;
+Scene* CreditsScene::createScene() {
+  auto scene = Scene::create();
+  auto layer = CreditsScene::create();
+  scene->addChild(layer);
+  return scene;
 }
 
-bool Credits::init()
-{
-    if (!InnerMenu::init("Creditos")) {
-        return false;
-    }
-    
-    return true;
+bool CreditsScene::init() {
+  if (!InnerMenu::init("Creditos")) {
+    return false;
+  }
+  
+  return true;
 }

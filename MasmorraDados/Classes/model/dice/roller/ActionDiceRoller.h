@@ -11,13 +11,14 @@
 
 #include "DiceRoller.h"
 
-class ActionDiceRoller : public DiceRoller
-{
+class ActionDiceRoller : public DiceRoller {
 public:
-    CREATE_FUNC(ActionDiceRoller);
-    virtual bool init();
-    
-    virtual cocos2d::Vector<DiceFace *> reroll(cocos2d::Vector<DiceFace *> rolledFaces);
+  CREATE_FUNC(ActionDiceRoller);
+  virtual bool init();
+  
+  virtual cocos2d::Vector<DiceFace *> reroll(cocos2d::Vector<DiceFace *> rolledFaces);
+private:
+  static cocos2d::Vector<Dice *> initialDices();
 };
 
 #endif /* defined(__MasmorraDados__ActionDiceRoller__) */

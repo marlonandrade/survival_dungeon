@@ -11,15 +11,14 @@
 
 #include "cocos2d.h"
 
-class Intro : public cocos2d::Layer
-{
+class IntroScene : public cocos2d::Layer {
 public:
-    static cocos2d::Scene* createScene();
-    virtual bool init();
-    
-    CREATE_FUNC(Intro);
+  static cocos2d::Scene* createScene();
+  virtual bool init();
+  
+  CREATE_FUNC(IntroScene);
 private:
-    virtual void transitionToMainMenu(float deltaTime);
+  virtual void transitionToMainMenu(float deltaTime);
 };
 
 #endif /* defined(__MasmorraDados__IntroScene__) */

@@ -9,13 +9,12 @@
 #include "GameOptions.h"
 #include "Definitions.h"
 
-bool GameOptions::init()
-{
-    if (!GameObject::init()) {
-        return false;
-    }
-    
-    this->setRequiredXpToWin(XP_TO_WIN_MIN);
-    
-    return true;
+bool GameOptions::init() {
+  if (!GameObject::init()) {
+    return false;
+  }
+  
+  this->setRequiredXpToWin(XP_TO_WIN_MIN);
+  
+  return true;
 }

@@ -57,8 +57,8 @@
 		BF5B4B941A9214CB007636DE /* RulesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B911A9214CB007636DE /* RulesScene.cpp */; };
 		BF5B4B971A9214EC007636DE /* GameplayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B951A9214EC007636DE /* GameplayScene.cpp */; };
 		BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B951A9214EC007636DE /* GameplayScene.cpp */; };
-		BF5B4B9B1A921523007636DE /* GameOptionsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B991A921523007636DE /* GameOptionsScene.cpp */; };
-		BF5B4B9C1A921523007636DE /* GameOptionsScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B991A921523007636DE /* GameOptionsScene.cpp */; };
+		BF5B4B9B1A921523007636DE /* NewGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B991A921523007636DE /* NewGameScene.cpp */; };
+		BF5B4B9C1A921523007636DE /* NewGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4B991A921523007636DE /* NewGameScene.cpp */; };
 		BF5B4BA71A9220CD007636DE /* BackLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BA51A9220CD007636DE /* BackLabel.cpp */; };
 		BF5B4BA81A9220CD007636DE /* BackLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BA51A9220CD007636DE /* BackLabel.cpp */; };
 		BF5B4BAB1A9221E2007636DE /* BackMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BA91A9221E2007636DE /* BackMenu.cpp */; };
@@ -196,8 +196,8 @@
 		BF5B4B921A9214CB007636DE /* RulesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RulesScene.h; sourceTree = "<group>"; };
 		BF5B4B951A9214EC007636DE /* GameplayScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameplayScene.cpp; sourceTree = "<group>"; };
 		BF5B4B961A9214EC007636DE /* GameplayScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayScene.h; sourceTree = "<group>"; };
-		BF5B4B991A921523007636DE /* GameOptionsScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOptionsScene.cpp; sourceTree = "<group>"; };
-		BF5B4B9A1A921523007636DE /* GameOptionsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOptionsScene.h; sourceTree = "<group>"; };
+		BF5B4B991A921523007636DE /* NewGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NewGameScene.cpp; sourceTree = "<group>"; };
+		BF5B4B9A1A921523007636DE /* NewGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameScene.h; sourceTree = "<group>"; };
 		BF5B4BA51A9220CD007636DE /* BackLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackLabel.cpp; sourceTree = "<group>"; };
 		BF5B4BA61A9220CD007636DE /* BackLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackLabel.h; sourceTree = "<group>"; };
 		BF5B4BA91A9221E2007636DE /* BackMenu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackMenu.cpp; sourceTree = "<group>"; };
@@ -437,12 +437,12 @@
 				BF5B4B8A1A9214B8007636DE /* CreditsScene.h */,
 				BF5B4B951A9214EC007636DE /* GameplayScene.cpp */,
 				BF5B4B961A9214EC007636DE /* GameplayScene.h */,
-				BF5B4B991A921523007636DE /* GameOptionsScene.cpp */,
-				BF5B4B9A1A921523007636DE /* GameOptionsScene.h */,
 				BF5B4B331A8F7616007636DE /* IntroScene.cpp */,
 				BF5B4B341A8F7616007636DE /* IntroScene.h */,
 				BF5B4B3A1A8F7B4F007636DE /* MainMenuScene.cpp */,
 				BF5B4B3B1A8F7B4F007636DE /* MainMenuScene.h */,
+				BF5B4B991A921523007636DE /* NewGameScene.cpp */,
+				BF5B4B9A1A921523007636DE /* NewGameScene.h */,
 				BF5B4B8D1A9214C2007636DE /* OptionsScene.cpp */,
 				BF5B4B8E1A9214C2007636DE /* OptionsScene.h */,
 				BF5B4B911A9214CB007636DE /* RulesScene.cpp */,
@@ -663,7 +663,7 @@
 				BF5B4C221A955EA7007636DE /* MonsterDiceFace.cpp in Sources */,
 				BF5B4BBC1A923391007636DE /* ExitLayer.cpp in Sources */,
 				BF5B4C001A953981007636DE /* ActionDice.cpp in Sources */,
-				BF5B4B9B1A921523007636DE /* GameOptionsScene.cpp in Sources */,
+				BF5B4B9B1A921523007636DE /* NewGameScene.cpp in Sources */,
 				BF5B4BC41A94BA35007636DE /* Character.cpp in Sources */,
 				BF5B4BD41A94BABF007636DE /* DungeonFloor.cpp in Sources */,
 				BF5B4C1A1A954F19007636DE /* ActionDiceFace.cpp in Sources */,
@@ -717,7 +717,7 @@
 				BF5B4B901A9214C2007636DE /* OptionsScene.cpp in Sources */,
 				BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				BF5B4C051A9539FD007636DE /* MinorMonsterDice.cpp in Sources */,
-				BF5B4B9C1A921523007636DE /* GameOptionsScene.cpp in Sources */,
+				BF5B4B9C1A921523007636DE /* NewGameScene.cpp in Sources */,
 				BF5B4B3D1A8F7B4F007636DE /* MainMenuScene.cpp in Sources */,
 				BF5B4C231A955EA7007636DE /* MonsterDiceFace.cpp in Sources */,
 				BF5B4BD91A94BACC007636DE /* DungeonRoom.cpp in Sources */,

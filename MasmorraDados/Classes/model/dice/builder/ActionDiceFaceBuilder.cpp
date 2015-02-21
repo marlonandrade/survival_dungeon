@@ -10,10 +10,9 @@
 
 #include "ActionDiceFace.h"
 
-DiceFace* ActionDiceFaceBuilder::diceFace(cocos2d::ValueMap &map)
-{
-    auto face = ActionDiceFace::create();
-    face->setImageName(map.at("image").asString());
-    face->setKind(map.at("kind").asString());
-    return face;
+DiceFace* ActionDiceFaceBuilder::diceFace(cocos2d::ValueMap &map) {
+  auto face = ActionDiceFace::create();
+  face->setImageName(map.at("image").asString());
+  face->setKind(map.at("kind").asString());
+  return face;
 }

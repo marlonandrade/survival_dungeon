@@ -12,13 +12,12 @@
 #include "cocos2d.h"
 #include "InnerMenuLayer.h"
 
-class Options : public InnerMenu
-{
+class OptionsScene : public InnerMenu {
 public:
-    static cocos2d::Scene *createScene();
-    virtual bool init();
-    
-    CREATE_FUNC(Options);
+  static cocos2d::Scene *createScene();
+  virtual bool init();
+  
+  CREATE_FUNC(OptionsScene);
 };
 
 #endif /* defined(__MasmorraDados__OptionsScene__) */

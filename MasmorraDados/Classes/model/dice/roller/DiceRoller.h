@@ -14,17 +14,16 @@
 class Dice;
 class DiceFace;
 
-class DiceRoller : public GameObject
-{
+class DiceRoller : public GameObject {
 public:
-    static DiceRoller* createWithDices(const cocos2d::Vector<Dice*> dices);
-    virtual bool initWithDices(const cocos2d::Vector<Dice*> dices);
-    
-    virtual cocos2d::Vector<DiceFace*> roll();
-    virtual cocos2d::Vector<DiceFace*> reroll(cocos2d::Vector<DiceFace*> rolledFaces);
-    
-    CC_SYNTHESIZE(cocos2d::Vector<Dice*>, dices, Dices);
-    CC_SYNTHESIZE(int, rerolls, Rerolls);
+  static DiceRoller* createWithDices(const cocos2d::Vector<Dice*> dices);
+  virtual bool initWithDices(const cocos2d::Vector<Dice*> dices);
+  
+  virtual cocos2d::Vector<DiceFace*> roll();
+  virtual cocos2d::Vector<DiceFace*> reroll(cocos2d::Vector<DiceFace*> rolledFaces);
+  
+  CC_SYNTHESIZE(cocos2d::Vector<Dice*>, dices, Dices);
+  CC_SYNTHESIZE(int, rerolls, Rerolls);
 };
 
 

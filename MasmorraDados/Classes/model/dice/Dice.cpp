@@ -12,46 +12,39 @@
 
 USING_NS_CC;
 
-Dice* Dice::createWithPlist(const char* fileName, DiceFaceBuilder *builder)
-{
-    auto dice = new (std::nothrow) Dice();
-    if (dice && dice->initWithPlist(fileName, builder))
-    {
-        dice->autorelease();
-    }
-    else
-    {
-        CC_SAFE_DELETE(dice);
-    }
-    
-    return dice;
+Dice* Dice::createWithPlist(const char* fileName, DiceFaceBuilder *builder) {
+  auto dice = new (std::nothrow) Dice();
+  
+  if (dice && dice->initWithPlist(fileName, builder)) {
+    dice->autorelease();
+  } else {
+    CC_SAFE_DELETE(dice);
+  }
+  
+  return dice;
 }
 
-bool Dice::initWithPlist(const char* fileName, DiceFaceBuilder *builder)
-{
-    if (!GameObject::init())
-    {
-        return false;
-    }
-    
-    auto facesData = FileUtils::getInstance()->getValueVectorFromFile(fileName);
-    
-    Vector<DiceFace*> faces;
-    
-    for (auto data : facesData)
-    {
-        auto faceData = data.asValueMap();
-        auto face = builder->diceFace(faceData);
-        face->setDice(this);
-        faces.pushBack(face);
-    }
-    
-    this->setFaces(faces);
-    
-    return true;
+bool Dice::initWithPlist(const char* fileName, DiceFaceBuilder *builder) {
+  if (!GameObject::init()) {
+    return false;
+  }
+  
+  auto facesData = FileUtils::getInstance()->getValueVectorFromFile(fileName);
+  
+  Vector<DiceFace*> faces;
+  
+  for (auto data : facesData) {
+    auto faceData = data.asValueMap();
+    auto face = builder->diceFace(faceData);
+    face->setDice(this);
+    faces.pushBack(face);
+  }
+  
+  this->setFaces(faces);
+  
+  return true;
 }
 
-DiceFace* Dice::roll()
-{
-    return this->getFaces().getRandomObject();
+DiceFace* Dice::roll() {
+  return this->getFaces().getRandomObject();
 }

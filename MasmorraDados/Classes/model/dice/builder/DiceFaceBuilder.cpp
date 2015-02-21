@@ -10,9 +10,8 @@
 
 #include "DiceFace.h"
 
-DiceFace* DiceFaceBuilder::diceFace(cocos2d::ValueMap &map)
-{
-    auto face = DiceFace::create();
-    face->setImageName(map.at("image").asString());
-    return face;
+DiceFace* DiceFaceBuilder::diceFace(cocos2d::ValueMap &map) {
+  auto face = DiceFace::create();
+  face->setImageName(map.at("image").asString());
+  return face;
 }

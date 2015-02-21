@@ -13,11 +13,10 @@
 
 class DiceFace;
 
-class DiceFaceBuilder : public GameObject
-{
+class DiceFaceBuilder : public GameObject {
 public:
-    CREATE_FUNC(DiceFaceBuilder);
-    virtual DiceFace* diceFace(cocos2d::ValueMap &map);
+  CREATE_FUNC(DiceFaceBuilder);
+  virtual DiceFace* diceFace(cocos2d::ValueMap &map);
 };
 
 #endif /* defined(__MasmorraDados__DiceFaceBuilder__) */

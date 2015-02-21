@@ -8,14 +8,13 @@
 
 #include "Game.h"
 
-bool Game::init()
-{
-    if (!GameObject::init()) {
-        return false;
-    }
-    
-    this->setOptions(GameOptions::create());
-    this->setDungeon(Dungeon::create());
-    
-    return true;
+bool Game::init() {
+  if (!GameObject::init()) {
+    return false;
+  }
+  
+  this->setOptions(GameOptions::create());
+  this->setDungeon(Dungeon::create());
+  
+  return true;
 }

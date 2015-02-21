@@ -8,7 +8,6 @@
 
 #include "GameObject.h"
 
-bool GameObject::init()
-{
-    return true;
+bool GameObject::init() {
+  return true;
 }

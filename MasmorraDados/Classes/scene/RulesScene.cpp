@@ -10,19 +10,17 @@
 
 USING_NS_CC;
 
-Scene* Rules::createScene()
-{
-    auto scene = Scene::create();
-    auto layer = Rules::create();
-    scene->addChild(layer);
-    return scene;
+Scene* RulesScene::createScene() {
+  auto scene = Scene::create();
+  auto layer = RulesScene::create();
+  scene->addChild(layer);
+  return scene;
 }
 
-bool Rules::init()
-{
-    if (!InnerMenu::init("Regras")) {
-        return false;
-    }
-    
-    return true;
+bool RulesScene::init() {
+  if (!InnerMenu::init("Regras")) {
+  return false;
+  }
+  
+  return true;
 }

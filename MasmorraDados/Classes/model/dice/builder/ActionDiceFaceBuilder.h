@@ -11,11 +11,10 @@
 
 #include "DiceFaceBuilder.h"
 
-class ActionDiceFaceBuilder : public DiceFaceBuilder
-{
+class ActionDiceFaceBuilder : public DiceFaceBuilder {
 public:
-    CREATE_FUNC(ActionDiceFaceBuilder);
-    virtual DiceFace* diceFace(cocos2d::ValueMap &map);
+  CREATE_FUNC(ActionDiceFaceBuilder);
+  virtual DiceFace* diceFace(cocos2d::ValueMap &map);
 };
 
 #endif /* defined(__MasmorraDados__ActionDiceFaceBuilder__) */

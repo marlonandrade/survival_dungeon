@@ -11,12 +11,11 @@
 
 #include "DiceFace.h"
 
-class ActionDiceFace : public DiceFace
-{
+class ActionDiceFace : public DiceFace {
 public:
-    CREATE_FUNC(ActionDiceFace);
-    
-    CC_SYNTHESIZE(std::string, kind, Kind);
+  CREATE_FUNC(ActionDiceFace);
+  
+  CC_SYNTHESIZE(std::string, kind, Kind);
 };
 
 #endif /* defined(__MasmorraDados__ActionDiceFace__) */

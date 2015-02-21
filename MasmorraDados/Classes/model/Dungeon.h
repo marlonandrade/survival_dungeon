@@ -11,11 +11,10 @@
 
 #include "GameObject.h"
 
-class Dungeon : public GameObject
-{
+class Dungeon : public GameObject {
 public:
-    virtual bool init();
-    CREATE_FUNC(Dungeon);
+  virtual bool init();
+  CREATE_FUNC(Dungeon);
 };
 
 #endif /* defined(__MasmorraDados__Dungeon__) */

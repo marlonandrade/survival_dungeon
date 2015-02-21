@@ -11,10 +11,9 @@
 
 #include "cocos2d.h"
 
-class BackLabel
-{
+class BackLabel {
 public:
-    static cocos2d::Label *create();
+  static cocos2d::Label *create();
 };
 
 #endif /* defined(__MasmorraDados__BackLabel__) */

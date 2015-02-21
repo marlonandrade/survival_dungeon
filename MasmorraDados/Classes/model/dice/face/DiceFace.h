@@ -13,13 +13,12 @@
 
 class Dice;
 
-class DiceFace : public GameObject
-{
+class DiceFace : public GameObject {
 public:
-    CREATE_FUNC(DiceFace);
-    
-    CC_SYNTHESIZE(Dice*, dice, Dice);
-    CC_SYNTHESIZE(std::string, imageName, ImageName);
+  CREATE_FUNC(DiceFace);
+  
+  CC_SYNTHESIZE(Dice*, dice, Dice);
+  CC_SYNTHESIZE(std::string, imageName, ImageName);
 };
 
 #endif /* defined(__MasmorraDados__DiceFace__) */

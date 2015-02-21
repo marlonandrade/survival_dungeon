@@ -11,8 +11,7 @@
 
 #include "GameObject.h"
 
-class Skill : public GameObject
-{
+class Skill : public GameObject {
 };
 
 #endif /* defined(__MasmorraDados__Skill__) */

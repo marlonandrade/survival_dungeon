@@ -11,11 +11,10 @@
 
 #include "cocos2d.h"
 
-class GameObject : public cocos2d::Ref
-{
+class GameObject : public cocos2d::Ref {
 public:
-    virtual bool init();
-    CREATE_FUNC(GameObject);
+  virtual bool init();
+  CREATE_FUNC(GameObject);
 };
 
 #endif /* defined(__MasmorraDados__GameObject__) */

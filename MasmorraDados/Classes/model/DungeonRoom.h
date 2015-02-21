@@ -11,8 +11,7 @@
 
 #include "GameObject.h"
 
-class DungeonRoom : public GameObject
-{
+class DungeonRoom : public GameObject {
 };
 
 #endif /* defined(__MasmorraDados__DungeonRoom__) */

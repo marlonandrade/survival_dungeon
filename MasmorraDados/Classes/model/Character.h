@@ -11,8 +11,7 @@
 
 #include "GameObject.h"
 
-class Character : public GameObject
-{
+class Character : public GameObject {
 };
 
 #endif /* defined(__MasmorraDados__Character__) */

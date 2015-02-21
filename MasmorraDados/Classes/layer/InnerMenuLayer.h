@@ -12,12 +12,10 @@
 #include "cocos2d.h"
 #include "BaseMenuLayer.h"
 
-class InnerMenu : public BaseMenu
-{
+class InnerMenu : public BaseMenu {
 public:
-    virtual bool init(std::string title);
-    virtual void leave();
+  virtual bool init(std::string title);
+  virtual void leave();
 };
-
 
 #endif /* defined(__MasmorraDados__InnerMenuLayer__) */

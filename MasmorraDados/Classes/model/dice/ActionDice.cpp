@@ -10,12 +10,11 @@
 
 #include "ActionDiceFaceBuilder.h"
 
-bool ActionDice::init()
-{
-    if (!Dice::initWithPlist("res/dice/action_dice.plist",
-                             ActionDiceFaceBuilder::create())) {
-        return false;
-    }
-    
-    return true;
+bool ActionDice::init() {
+  if (!Dice::initWithPlist("res/dice/action_dice.plist",
+                           ActionDiceFaceBuilder::create())) {
+    return false;
+  }
+  
+  return true;
 }

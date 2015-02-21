@@ -11,10 +11,9 @@
 
 #include "cocos2d.h"
 
-class BackMenu
-{
+class BackMenu {
 public:
-    static cocos2d::Menu *createMenu();
+  static cocos2d::Menu *createMenu();
 };
 
 #endif /* defined(__MasmorraDados__BackMenu__) */

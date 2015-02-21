@@ -11,16 +11,15 @@
 
 #include "cocos2d.h"
 
-class Exit : public cocos2d::Layer
-{
+class Exit : public cocos2d::Layer {
 public:
-    virtual bool init();
-    virtual void leave();
-    
-    virtual void onEnter();
-    virtual void onExit();
-    virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode,
-                               cocos2d::Event *event);
+  virtual bool init();
+  virtual void leave();
+  
+  virtual void onEnter();
+  virtual void onExit();
+  virtual void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode,
+                             cocos2d::Event *event);
 };
 
 #endif /* defined(__MasmorraDados__ExitLayer__) */

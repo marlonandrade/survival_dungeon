@@ -14,14 +14,13 @@
 
 class DiceFaceBuilder;
 
-class Dice : public GameObject
-{
+class Dice : public GameObject {
 public:
-    static Dice* createWithPlist(const char* fileName, DiceFaceBuilder* builder);
-    virtual bool initWithPlist(const char* fileName, DiceFaceBuilder* builder);
-    
-    virtual DiceFace* roll();
-    CC_SYNTHESIZE(cocos2d::Vector<DiceFace*>, faces, Faces);
+  static Dice* createWithPlist(const char* fileName, DiceFaceBuilder* builder);
+  virtual bool initWithPlist(const char* fileName, DiceFaceBuilder* builder);
+  
+  virtual DiceFace* roll();
+  CC_SYNTHESIZE(cocos2d::Vector<DiceFace*>, faces, Faces);
 };
 
 #endif /* defined(__MasmorraDados__Dice__) */

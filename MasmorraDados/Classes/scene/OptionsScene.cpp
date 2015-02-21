@@ -10,19 +10,17 @@
 
 USING_NS_CC;
 
-Scene* Options::createScene()
-{
-    auto scene = Scene::create();
-    auto layer = Options::create();
-    scene->addChild(layer);
-    return scene;
+Scene* OptionsScene::createScene() {
+  auto scene = Scene::create();
+  auto layer = OptionsScene::create();
+  scene->addChild(layer);
+  return scene;
 }
 
-bool Options::init()
-{
-    if (!InnerMenu::init("Opcoes")) {
-        return false;
-    }
-    
-    return true;
+bool OptionsScene::init() {
+  if (!InnerMenu::init("Opcoes")) {
+    return false;
+  }
+  
+  return true;
 }

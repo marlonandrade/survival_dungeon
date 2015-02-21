@@ -12,18 +12,17 @@
 #include "cocos2d.h"
 #include "BaseMenuLayer.h"
 
-class MainMenu : public BaseMenu
-{
+class MainMenuScene : public BaseMenu {
 public:
-    static cocos2d::Scene* createScene();
-    virtual bool init();
-    
-    virtual void leave();
-    CREATE_FUNC(MainMenu);
+  static cocos2d::Scene* createScene();
+  virtual bool init();
+  
+  virtual void leave();
+  CREATE_FUNC(MainMenuScene);
 private:
-    virtual cocos2d::Menu* createMenu();
-    cocos2d::LayerColor* getConfirmQuitLayer();
-    cocos2d::LayerColor* _confirmQuitLayer;
+  virtual cocos2d::Menu* createMenu();
+  cocos2d::LayerColor* getConfirmQuitLayer();
+  cocos2d::LayerColor* _confirmQuitLayer;
 };
 
 #endif /* defined(__MasmorraDados__MainMenuScene__) */
