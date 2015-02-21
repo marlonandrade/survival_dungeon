@@ -18,7 +18,7 @@ public:
   
   CREATE_FUNC(IntroScene);
 private:
-  virtual void transitionToMainMenu(float deltaTime);
+  void loadResources(float deltaTime);
 };
 
 #endif /* defined(__MasmorraDados__IntroScene__) */

@@ -17,9 +17,9 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/layer/InnerMenuLayer.cpp \
 		   ../../Classes/scene/CreditsScene.cpp \
 		   ../../Classes/scene/GameplayScene.cpp \
-		   ../../Classes/scene/GameOptionsScene.cpp \
 		   ../../Classes/scene/IntroScene.cpp \
 		   ../../Classes/scene/MainMenuScene.cpp \
+		   ../../Classes/scene/NewGameScene.cpp \
 		   ../../Classes/scene/OptionsScene.cpp \
 		   ../../Classes/scene/RulesScene.cpp \
 		   ../../Classes/model/Character.cpp \
@@ -29,6 +29,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/Game.cpp \
 		   ../../Classes/model/GameObject.cpp \
 		   ../../Classes/model/GameOptions.cpp \
+		   ../../Classes/model/GameResources.cpp \
 		   ../../Classes/model/Monster.cpp \
 		   ../../Classes/model/Player.cpp \
 		   ../../Classes/model/Skill.cpp \

@@ -7,6 +7,8 @@
 //
 
 #include "IntroScene.h"
+
+#include "GameResources.h"
 #include "MainMenuScene.h"
 
 USING_NS_CC;
@@ -16,11 +18,6 @@ Scene* IntroScene::createScene() {
   auto layer = IntroScene::create();
   scene->addChild(layer);
   return scene;
-}
-
-void IntroScene::transitionToMainMenu(float deltaTime) {
-  auto mainMenuScene = MainMenuScene::createScene();
-  Director::getInstance()->replaceScene(mainMenuScene);
 }
 
 bool IntroScene::init() {
@@ -46,7 +43,14 @@ bool IntroScene::init() {
   
   this->addChild(introImage, 0);
   
-  this->schedule(schedule_selector(IntroScene::transitionToMainMenu), 0.5);
+  this->schedule(schedule_selector(IntroScene::loadResources));
   
   return true;
+}
+
+void IntroScene::loadResources(float deltaTime) {
+  GameResources::getInstance().loadResources();
+  
+  auto mainMenuScene = MainMenuScene::createScene();
+  Director::getInstance()->replaceScene(mainMenuScene);
 }

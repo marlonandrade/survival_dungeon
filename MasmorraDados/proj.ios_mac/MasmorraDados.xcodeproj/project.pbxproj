@@ -109,6 +109,8 @@
 		BF6E6F131A97EA4900CD1834 /* DiceRoller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F101A97EA4900CD1834 /* DiceRoller.cpp */; };
 		BF6E6F161A97EA7E00CD1834 /* ActionDiceRoller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F141A97EA7E00CD1834 /* ActionDiceRoller.cpp */; };
 		BF6E6F171A97EA7E00CD1834 /* ActionDiceRoller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F141A97EA7E00CD1834 /* ActionDiceRoller.cpp */; };
+		BF6E6F1E1A98C6A700CD1834 /* GameResources.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F1C1A98C6A700CD1834 /* GameResources.cpp */; };
+		BF6E6F1F1A98C6A700CD1834 /* GameResources.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F1C1A98C6A700CD1834 /* GameResources.cpp */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
@@ -248,6 +250,8 @@
 		BF6E6F111A97EA4900CD1834 /* DiceRoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRoller.h; sourceTree = "<group>"; };
 		BF6E6F141A97EA7E00CD1834 /* ActionDiceRoller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceRoller.cpp; sourceTree = "<group>"; };
 		BF6E6F151A97EA7E00CD1834 /* ActionDiceRoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceRoller.h; sourceTree = "<group>"; };
+		BF6E6F1C1A98C6A700CD1834 /* GameResources.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameResources.cpp; sourceTree = "<group>"; };
+		BF6E6F1D1A98C6A700CD1834 /* GameResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResources.h; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -420,6 +424,8 @@
 				BF5B4BDB1A94BC6B007636DE /* GameObject.h */,
 				BF5B4B811A90ED7A007636DE /* GameOptions.cpp */,
 				BF5B4B821A90ED7A007636DE /* GameOptions.h */,
+				BF6E6F1C1A98C6A700CD1834 /* GameResources.cpp */,
+				BF6E6F1D1A98C6A700CD1834 /* GameResources.h */,
 				BF5B4C1C1A955DA4007636DE /* Monster.cpp */,
 				BF5B4C1D1A955DA4007636DE /* Monster.h */,
 				BF5B4BBE1A94BA2C007636DE /* Player.cpp */,
@@ -660,6 +666,7 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				BF5B4C161A954F0A007636DE /* DiceFace.cpp in Sources */,
 				BF5B4C081A953A3E007636DE /* MajorMonsterDice.cpp in Sources */,
+				BF6E6F1E1A98C6A700CD1834 /* GameResources.cpp in Sources */,
 				BF5B4C221A955EA7007636DE /* MonsterDiceFace.cpp in Sources */,
 				BF5B4BBC1A923391007636DE /* ExitLayer.cpp in Sources */,
 				BF5B4C001A953981007636DE /* ActionDice.cpp in Sources */,
@@ -726,6 +733,7 @@
 				BF5B4BCD1A94BA91007636DE /* Dungeon.cpp in Sources */,
 				BF5B4C091A953A3E007636DE /* MajorMonsterDice.cpp in Sources */,
 				BF5B4B8C1A9214B8007636DE /* CreditsScene.cpp in Sources */,
+				BF6E6F1F1A98C6A700CD1834 /* GameResources.cpp in Sources */,
 				BF5B4C1B1A954F19007636DE /* ActionDiceFace.cpp in Sources */,
 				BF5B4BA81A9220CD007636DE /* BackLabel.cpp in Sources */,
 				BF5B4C0E1A954CBD007636DE /* DiceFaceBuilder.cpp in Sources */,

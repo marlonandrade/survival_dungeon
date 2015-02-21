@@ -14,10 +14,10 @@
 class NewGameScene : public InnerMenu
 {
 public:
-    static cocos2d::Scene* createScene();
-    virtual bool init();
-    
-    CREATE_FUNC(NewGameScene);
+  static cocos2d::Scene* createScene();
+  virtual bool init();
+  
+  CREATE_FUNC(NewGameScene);
 };
 
 #endif /* defined(__MasmorraDados__NewGameScene__) */
