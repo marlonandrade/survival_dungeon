@@ -18,7 +18,7 @@ Scene* RulesScene::createScene() {
 }
 
 bool RulesScene::init() {
-  if (!InnerMenu::init("Regras")) {
+  if (!InnerMenuLayer::init("Regras")) {
   return false;
   }
   

@@ -18,7 +18,7 @@ Scene* CreditsScene::createScene() {
 }
 
 bool CreditsScene::init() {
-  if (!InnerMenu::init("Creditos")) {
+  if (!InnerMenuLayer::init("Creditos")) {
     return false;
   }
   

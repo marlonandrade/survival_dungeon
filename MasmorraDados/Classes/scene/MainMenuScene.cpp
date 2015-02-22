@@ -133,7 +133,7 @@ Scene* MainMenuScene::createScene() {
 }
 
 bool MainMenuScene::init() {
-  if (!BaseMenu::init("Menu Inicial")) {
+  if (!BaseMenuLayer::init("Menu Inicial")) {
     return false;
   }
   

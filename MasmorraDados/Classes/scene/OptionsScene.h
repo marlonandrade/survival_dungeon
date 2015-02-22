@@ -12,7 +12,7 @@
 #include "cocos2d.h"
 #include "InnerMenuLayer.h"
 
-class OptionsScene : public InnerMenu {
+class OptionsScene : public InnerMenuLayer {
 public:
   static cocos2d::Scene *createScene();
   virtual bool init();

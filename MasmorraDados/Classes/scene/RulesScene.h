@@ -12,7 +12,7 @@
 #include "cocos2d.h"
 #include "InnerMenuLayer.h"
 
-class RulesScene : public InnerMenu {
+class RulesScene : public InnerMenuLayer {
 public:
   static cocos2d::Scene *createScene();
   virtual bool init();

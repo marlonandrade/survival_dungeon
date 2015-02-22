@@ -18,7 +18,7 @@ Scene* OptionsScene::createScene() {
 }
 
 bool OptionsScene::init() {
-  if (!InnerMenu::init("Opcoes")) {
+  if (!InnerMenuLayer::init("Opcoes")) {
     return false;
   }
   

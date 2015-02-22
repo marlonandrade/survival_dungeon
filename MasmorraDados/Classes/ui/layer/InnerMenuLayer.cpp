@@ -12,8 +12,8 @@
 
 USING_NS_CC;
 
-bool InnerMenu::init(std::string title) {
-  if (!BaseMenu::init(title)) {
+bool InnerMenuLayer::init(std::string title) {
+  if (!BaseMenuLayer::init(title)) {
     return false;
   }
   
@@ -24,6 +24,6 @@ bool InnerMenu::init(std::string title) {
 
 #pragma mark - Exit Layer Methods
 
-void InnerMenu::leave() {
+void InnerMenuLayer::leave() {
   Director::getInstance()->popScene();
 }

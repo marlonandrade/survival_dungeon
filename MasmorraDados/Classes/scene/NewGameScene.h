@@ -11,7 +11,7 @@
 
 #include "InnerMenuLayer.h"
 
-class NewGameScene : public InnerMenu
+class NewGameScene : public InnerMenuLayer
 {
 public:
   static cocos2d::Scene* createScene();

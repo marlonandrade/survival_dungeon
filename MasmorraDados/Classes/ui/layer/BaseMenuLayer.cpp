@@ -11,8 +11,8 @@
 
 USING_NS_CC;
 
-bool BaseMenu::init(std::string title) {
-  if (!Exit::init()) {
+bool BaseMenuLayer::init(std::string title) {
+  if (!ExitLayer::init()) {
     return false;
   }
   
@@ -38,6 +38,6 @@ bool BaseMenu::init(std::string title) {
 
 #pragma mark - Exit Layer Methods
 
-void BaseMenu::leave() {
+void BaseMenuLayer::leave() {
   Director::getInstance()->end();
 }

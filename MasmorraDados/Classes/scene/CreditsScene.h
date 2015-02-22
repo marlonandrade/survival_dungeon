@@ -12,7 +12,7 @@
 #include "cocos2d.h"
 #include "InnerMenuLayer.h"
 
-class CreditsScene : public InnerMenu {
+class CreditsScene : public InnerMenuLayer {
 public:
   static cocos2d::Scene *createScene();
   virtual bool init();

@@ -11,7 +11,7 @@
 
 #include "cocos2d.h"
 
-class Exit : public cocos2d::Layer {
+class ExitLayer : public cocos2d::Layer {
 public:
   virtual bool init();
   virtual void leave();

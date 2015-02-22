@@ -12,7 +12,7 @@
 #include "cocos2d.h"
 #include "ExitLayer.h"
 
-class BaseMenu : public Exit {
+class BaseMenuLayer : public ExitLayer {
 public:
   virtual bool init(std::string title);
   virtual void leave();

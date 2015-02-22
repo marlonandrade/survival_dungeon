@@ -12,7 +12,7 @@
 #include "cocos2d.h"
 #include "BaseMenuLayer.h"
 
-class MainMenuScene : public BaseMenu {
+class MainMenuScene : public BaseMenuLayer {
 public:
   static cocos2d::Scene* createScene();
   virtual bool init();

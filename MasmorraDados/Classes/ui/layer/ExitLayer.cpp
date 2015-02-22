@@ -10,7 +10,7 @@
 
 USING_NS_CC;
 
-bool Exit::init() {
+bool ExitLayer::init() {
   if (!Layer::init()) {
     return false;
   }
@@ -20,20 +20,20 @@ bool Exit::init() {
 
 #pragma mark - Public Interface
 
-void Exit::leave() {
+void ExitLayer::leave() {
 }
 
 #pragma mark - Entering/Exiting 'stage'
 
-void Exit::onEnter() {
+void ExitLayer::onEnter() {
   Layer::onEnter();
   
   auto keyboardListener = EventListenerKeyboard::create();
-  keyboardListener->onKeyReleased = CC_CALLBACK_2(Exit::onKeyReleased, this);
+  keyboardListener->onKeyReleased = CC_CALLBACK_2(ExitLayer::onKeyReleased, this);
   _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
 }
 
-void Exit::onExit() {
+void ExitLayer::onExit() {
   _eventDispatcher->removeEventListenersForTarget(this);
   
   Layer::onExit();
@@ -41,7 +41,7 @@ void Exit::onExit() {
 
 #pragma mark - Keyboard Callback
 
-void Exit::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode,
+void ExitLayer::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode,
                          cocos2d::Event *event) {
   if (keyCode == EventKeyboard::KeyCode::KEY_ESCAPE ||
       keyCode == EventKeyboard::KeyCode::KEY_BACKSPACE) {

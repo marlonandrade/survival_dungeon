@@ -18,7 +18,7 @@ Scene* NewGameScene::createScene() {
 }
 
 bool NewGameScene::init() {
-  if (!InnerMenu::init("NOVO JOGO")) {
+  if (!InnerMenuLayer::init("NOVO JOGO")) {
     return false;
   }
   

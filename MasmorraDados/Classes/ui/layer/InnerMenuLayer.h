@@ -12,7 +12,7 @@
 #include "cocos2d.h"
 #include "BaseMenuLayer.h"
 
-class InnerMenu : public BaseMenu {
+class InnerMenuLayer : public BaseMenuLayer {
 public:
   virtual bool init(std::string title);
   virtual void leave();
