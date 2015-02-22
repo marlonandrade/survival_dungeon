@@ -10,6 +10,7 @@
 
 #include "Character.h"
 #include "Definitions.h"
+#include "GameplayScene.h"
 #include "GameResources.h"
 
 USING_NS_CC;
@@ -27,6 +28,7 @@ bool NewGameScene::init() {
  }
   
   this->addChild(this->characterSelectLayer());
+  this->addChild(this->iniciarMenu());
   
   return true;
 }
@@ -95,4 +97,33 @@ Layer* NewGameScene::characterSelectLayer() {
   menu->setPosition(Vec2(centerX, centerY));
   
   return menu;
+}
+
+
+Menu* NewGameScene::iniciarMenu() {
+  Size visibleSize = Director::getInstance()->getVisibleSize();
+  Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
+  
+  float scaleFactor = visibleSize.width / FONT_SCALE_RATIO;
+  
+  TTFConfig labelConfig;
+  labelConfig.fontFilePath = "fonts/farcry.ttf";
+  labelConfig.fontSize = 30 * scaleFactor;
+  
+  auto jogarLabel = Label::createWithTTF(labelConfig, "JOGAR");
+  auto menuItem = MenuItemLabel::create(jogarLabel, [&](Ref *sender) {
+    auto gameScene = GameplayScene::createScene();
+    Director::getInstance()->replaceScene(gameScene);
+  });
+  auto backMenu = Menu::createWithItem(menuItem);
+  
+  float marginX = visibleSize.width / 10;
+  float marginY = visibleSize.height / 10;
+  
+  float x = visibleSize.width - jogarLabel->getContentSize().width / 2 - marginX;
+  float y = visibleOrigin.y + marginY;
+  
+  backMenu->setPosition(Vec2(x, y));
+  
+  return backMenu;
 }

@@ -20,6 +20,7 @@ public:
   CREATE_FUNC(NewGameScene);
 private:
   cocos2d::Layer* characterSelectLayer();
+  cocos2d::Menu *iniciarMenu();
 };
 
 #endif /* defined(__MasmorraDados__NewGameScene__) */

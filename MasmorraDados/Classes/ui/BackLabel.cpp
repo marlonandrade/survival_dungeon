@@ -13,7 +13,6 @@ USING_NS_CC;
 
 cocos2d::Label* BackLabel::create() {
   Size visibleSize = Director::getInstance()->getVisibleSize();
-  Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
   
   float scaleFactor = visibleSize.width / FONT_SCALE_RATIO;
   

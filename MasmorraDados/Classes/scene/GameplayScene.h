@@ -9,6 +9,14 @@
 #ifndef __MasmorraDados__GameplayScene__
 #define __MasmorraDados__GameplayScene__
 
-#include <stdio.h>
+#include "cocos2d.h"
+
+class GameplayScene : public cocos2d::Layer {
+public:
+  static cocos2d::Scene *createScene();
+  virtual bool init();
+  
+  CREATE_FUNC(GameplayScene);
+};
 
 #endif /* defined(__MasmorraDados__GameplayScene__) */
