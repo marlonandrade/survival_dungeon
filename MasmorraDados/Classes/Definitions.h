@@ -19,4 +19,7 @@
 #define NO_ERROR                       0
 #define NO_REROLL_AVAILABLE            0x9000
 
+#define CHARACTER_CARD_WIDTH  415
+#define CHARACTER_CARD_HEIGHT 295
+
 #endif /* defined(__MasmorraDados__Definitions__) */

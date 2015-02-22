@@ -18,6 +18,8 @@ public:
   virtual bool init();
   
   CREATE_FUNC(NewGameScene);
+private:
+  cocos2d::Layer* characterSelectLayer();
 };
 
 #endif /* defined(__MasmorraDados__NewGameScene__) */

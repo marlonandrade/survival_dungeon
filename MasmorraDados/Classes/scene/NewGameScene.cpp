@@ -8,6 +8,10 @@
 
 #include "NewGameScene.h"
 
+#include "Character.h"
+#include "Definitions.h"
+#include "GameResources.h"
+
 USING_NS_CC;
 
 Scene* NewGameScene::createScene() {
@@ -20,31 +24,75 @@ Scene* NewGameScene::createScene() {
 bool NewGameScene::init() {
   if (!InnerMenuLayer::init("NOVO JOGO")) {
     return false;
-  }
+ }
   
-  auto director = Director::getInstance();
-  
-  Size visibleSize = director->getVisibleSize();
-  Vec2 visibleOrigin = director->getVisibleOrigin();
-  
-  float x = 200;
-  float y = visibleOrigin.y + visibleSize.height / 2;
-  
-  auto chars = FileUtils::getInstance()->getValueMapFromFile("res/characters.plist");
-  
-  auto baseChars = chars.at("base").asValueMap();
-  for (auto baseChar : baseChars) {
-    auto key = std::get<0>(baseChar);
-    auto properties = std::get<1>(baseChar).asValueMap();
-    
-    log("%s", key.c_str());
-    auto sprite = Sprite::create(properties.at("image").asString());
-    sprite->setPosition(Vec2(x, y));
-    
-    this->addChild(sprite);
-    
-    x += sprite->getContentSize().width + 100;
-  }
+  this->addChild(this->characterSelectLayer());
   
   return true;
+}
+
+#define FIRST_CHAR_TAG  0300
+#define SECOND_CHAR_TAG 0301
+
+Layer* NewGameScene::characterSelectLayer() {
+  Vector<MenuItem*> items;
+  
+  auto characterSelectPath = "images/character_select.png";
+  
+  auto firstChar = MenuItemImage::create(characterSelectPath, characterSelectPath, [&](Ref* sender) {
+    MenuItemImage *firstSender = (MenuItemImage*) sender;
+    
+    auto firstChildren = firstSender->getChildByTag(FIRST_CHAR_TAG);
+    if (!firstChildren) {
+      float centerX = firstSender->getContentSize().width / 2;
+      float centerY = firstSender->getContentSize().height / 2;
+      
+      auto alda = GameResources::getInstance().getCharacters().at("alda");
+      
+      auto aldaSprite = Sprite::create(alda->getImagePath());
+      aldaSprite->setTag(FIRST_CHAR_TAG);
+      aldaSprite->setPosition(Vec2(centerX, centerY));
+      
+      firstSender->addChild(aldaSprite);
+    }
+  });
+  auto secondChar = MenuItemImage::create(characterSelectPath, characterSelectPath, [&](Ref* sender) {
+    MenuItemImage *secondSender = (MenuItemImage*) sender;
+    
+    auto secondChildren = secondSender->getChildByTag(SECOND_CHAR_TAG);
+    if (!secondChildren) {
+      float centerX = secondSender->getContentSize().width / 2;
+      float centerY = secondSender->getContentSize().height / 2;
+      
+      auto rufus = GameResources::getInstance().getCharacters().at("rufus");
+      
+      auto rufusSprite = Sprite::create(rufus->getImagePath());
+      rufusSprite->setTag(SECOND_CHAR_TAG);
+      rufusSprite->setPosition(Vec2(centerX, centerY));
+      
+      secondSender->addChild(rufusSprite);
+    }
+  });
+  
+  items.pushBack(firstChar);
+  items.pushBack(secondChar);
+  
+  int spaceBetweenCards = 30;
+  int halfCharacterCard = CHARACTER_CARD_WIDTH / 2;
+  int position = halfCharacterCard + spaceBetweenCards / 2;
+  
+  firstChar->setPositionX(-position);
+  secondChar->setPositionX(position);
+  
+  auto menu = Menu::createWithArray(items);
+  
+  Size visibleSize = Director::getInstance()->getVisibleSize();
+  Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
+  
+  float centerX = visibleSize.width / 2 + visibleOrigin.x;
+  float centerY = visibleSize.height / 2 + visibleOrigin.y;
+  
+  menu->setPosition(Vec2(centerX, centerY));
+  
+  return menu;
 }

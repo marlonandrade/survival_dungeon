@@ -21,10 +21,11 @@ Menu* BackMenu::createMenu() {
   });
   auto backMenu = Menu::createWithItem(menuItem);
   
-  float margin = visibleSize.width / 10;
+  float marginX = visibleSize.width / 10;
+  float marginY = visibleSize.height / 10;
   
-  float x = visibleSize.width - backLabel->getContentSize().width / 2 -  margin;
-  float y = visibleOrigin.y + margin;
+  float x = visibleOrigin.x + marginX;
+  float y = visibleOrigin.y + marginY;
   
   backMenu->setPosition(Vec2(x, y));
   

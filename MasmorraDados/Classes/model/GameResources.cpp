@@ -39,7 +39,10 @@ void GameResources::loadCharacters() {
       auto characterKey = std::get<0>(characterMap);
       auto properties = std::get<1>(characterMap).asValueMap();
       
-      characters[characterKey] = Character::createWithValueMap(properties);
+      auto character = Character::createWithValueMap(properties);
+      character->retain();
+      
+      characters[characterKey] = character;
     }
   }
   
