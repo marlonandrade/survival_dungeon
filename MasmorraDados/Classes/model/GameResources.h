@@ -28,7 +28,6 @@ private:
   
   void loadAudio();
   void loadCharacters();
-  void loadDices();
   void loadDungeonRooms();
   void loadMonsters();
   

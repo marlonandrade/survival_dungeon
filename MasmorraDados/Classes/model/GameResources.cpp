@@ -17,7 +17,6 @@ USING_NS_CC;
 void GameResources::loadResources() {
   this->loadAudio();
   this->loadCharacters();
-  this->loadDices();
   this->loadDungeonRooms();
   this->loadMonsters();
 }
@@ -45,9 +44,6 @@ void GameResources::loadCharacters() {
   }
   
   this->setCharacters(characters);
-}
-
-void GameResources::loadDices() {
 }
 
 void GameResources::loadDungeonRooms() {
