@@ -8,10 +8,4 @@
 
 #include "Dungeon.h"
 
-bool Dungeon::init() {
-  if (!GameObject::init()) {
-    return false;
-  }
-  
-  return true;
-}
+USING_NS_CC;

@@ -11,7 +11,13 @@
 
 #include "GameObject.h"
 
+#include "DungeonRoom.h"
+
 class DungeonFloor : public GameObject {
+  CC_SYNTHESIZE(cocos2d::Vector<DungeonRoom*>, _rooms, Rooms);
+  
+public:
+  CREATE_FUNC(DungeonFloor);
 };
 
 #endif /* defined(__MasmorraDados__DungeonFloor__) */

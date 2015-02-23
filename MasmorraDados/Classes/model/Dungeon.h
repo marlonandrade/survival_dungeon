@@ -11,9 +11,13 @@
 
 #include "GameObject.h"
 
+#include "DungeonFloor.h"
+
 class Dungeon : public GameObject {
+  CC_SYNTHESIZE_RETAIN(DungeonFloor*, _firstFloor, FirstFloor);
+  CC_SYNTHESIZE_RETAIN(DungeonFloor*, _secondFloor, SecondFloor);
+  
 public:
-  virtual bool init();
   CREATE_FUNC(Dungeon);
 };
 

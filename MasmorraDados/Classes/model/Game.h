@@ -16,12 +16,12 @@
 #include "GameOptions.h"
 
 class Game : public GameObject {
+  CC_SYNTHESIZE_RETAIN(GameOptions*, _options, Options);
+  CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
+  
 public:
   virtual bool init();
   CREATE_FUNC(Game);
-  
-  CC_SYNTHESIZE_RETAIN(GameOptions*, _options, Options);
-  CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
 };
 
 #endif /* defined(__MasmorraDados__Game__) */

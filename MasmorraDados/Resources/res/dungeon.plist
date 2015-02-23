@@ -7,7 +7,7 @@
 		<key>2 players</key>
 		<array>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>portal</string>
 				<key>cost</key>
 				<array>
@@ -15,7 +15,7 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>treasure</string>
 				<key>cost</key>
 				<array>
@@ -23,19 +23,19 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>stairs_down</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>monster_1</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>treasure</string>
 				<key>cost</key>
 				<array>
@@ -43,7 +43,7 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>trap</string>
 				<key>cost</key>
 				<array>
@@ -52,19 +52,19 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>rune</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>monster_1</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>trap</string>
 				<key>cost</key>
 				<array>
@@ -73,13 +73,13 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>monster_1</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>rune</string>
 				<key>cost</key>
 				<array/>
@@ -88,7 +88,7 @@
 		<key>3 players</key>
 		<array>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>treasure</string>
 				<key>cost</key>
 				<array>
@@ -96,13 +96,13 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>monster_1</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>trap</string>
 				<key>cost</key>
 				<array>
@@ -114,7 +114,7 @@
 		<key>4 players</key>
 		<array>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>trap</string>
 				<key>cost</key>
 				<array>
@@ -123,7 +123,7 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>portal</string>
 				<key>cost</key>
 				<array>
@@ -131,7 +131,7 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>monster_1</string>
 				<key>cost</key>
 				<array/>
@@ -140,13 +140,13 @@
 		<key>5 players</key>
 		<array>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>monster_1</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>treasure</string>
 				<key>cost</key>
 				<array>
@@ -154,7 +154,7 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>portal</string>
 				<key>cost</key>
 				<array>
@@ -165,31 +165,31 @@
 		<key>expansion</key>
 		<array>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>poison_gas</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>spider_web</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>treasure_2</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>curse_1</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>youth_fountain</string>
 				<key>cost</key>
 				<array>
@@ -197,7 +197,7 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>curse_2</string>
 				<key>cost</key>
 				<array/>
@@ -209,19 +209,19 @@
 		<key>2 players</key>
 		<array>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>monster_2</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>rune</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>trap</string>
 				<key>cost</key>
 				<array>
@@ -230,13 +230,13 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>monster_2</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>treasure</string>
 				<key>cost</key>
 				<array>
@@ -244,7 +244,7 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>treasure</string>
 				<key>cost</key>
 				<array>
@@ -252,7 +252,7 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>trap</string>
 				<key>cost</key>
 				<array>
@@ -264,13 +264,13 @@
 		<key>3 players</key>
 		<array>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>monster_1</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>trap</string>
 				<key>cost</key>
 				<array>
@@ -279,7 +279,7 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>treasure</string>
 				<key>cost</key>
 				<array>
@@ -287,7 +287,7 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>monster_2</string>
 				<key>cost</key>
 				<array/>
@@ -296,19 +296,19 @@
 		<key>4 players</key>
 		<array>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>rune</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>monster_2</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>treasure</string>
 				<key>cost</key>
 				<array>
@@ -319,7 +319,7 @@
 		<key>5 players</key>
 		<array>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>trap</string>
 				<key>cost</key>
 				<array>
@@ -328,7 +328,7 @@
 				</array>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>treasure</string>
 				<key>cost</key>
 				<array>
@@ -339,19 +339,19 @@
 		<key>expansion</key>
 		<array>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>stairs_down</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>pit</string>
 				<key>cost</key>
 				<array/>
 			</dict>
 			<dict>
-				<key>kind</key>
+				<key>type</key>
 				<string>monster_1_2</string>
 				<key>cost</key>
 				<array/>

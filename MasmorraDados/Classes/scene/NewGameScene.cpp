@@ -10,6 +10,7 @@
 
 #include "Character.h"
 #include "Definitions.h"
+#include "Game.h"
 #include "GameplayScene.h"
 #include "GameResources.h"
 
@@ -26,6 +27,10 @@ bool NewGameScene::init() {
   if (!InnerMenuLayer::init("NOVO JOGO")) {
     return false;
  }
+  
+  auto game = Game::create();
+  game->retain();
+  this->setGame(game);
   
   this->addChild(this->characterSelectLayer());
   this->addChild(this->iniciarMenu());
@@ -99,7 +104,6 @@ Layer* NewGameScene::characterSelectLayer() {
   return menu;
 }
 
-
 Menu* NewGameScene::iniciarMenu() {
   Size visibleSize = Director::getInstance()->getVisibleSize();
   Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
@@ -115,7 +119,10 @@ Menu* NewGameScene::iniciarMenu() {
     auto gameScene = GameplayScene::createScene();
     Director::getInstance()->replaceScene(gameScene);
   });
-  auto backMenu = Menu::createWithItem(menuItem);
+  menuItem->setEnabled(false);
+  this->setJogarMenuItem(menuItem);
+  
+  auto jogarMenu = Menu::createWithItem(menuItem);
   
   float marginX = visibleSize.width / 10;
   float marginY = visibleSize.height / 10;
@@ -123,7 +130,7 @@ Menu* NewGameScene::iniciarMenu() {
   float x = visibleSize.width - jogarLabel->getContentSize().width / 2 - marginX;
   float y = visibleOrigin.y + marginY;
   
-  backMenu->setPosition(Vec2(x, y));
+  jogarMenu->setPosition(Vec2(x, y));
   
-  return backMenu;
+  return jogarMenu;
 }

@@ -14,10 +14,10 @@
 class Monster;
 
 class MonsterDiceFace : public DiceFace {
+  CC_SYNTHESIZE(Monster*, _monster, Monster);
+  
 public:
   CREATE_FUNC(MonsterDiceFace);
-  
-  CC_SYNTHESIZE(Monster*, monster, Monster);
 };
 
 #endif /* defined(__MasmorraDados__MonsterDiceFace__) */

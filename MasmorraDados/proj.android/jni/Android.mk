@@ -35,6 +35,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/Dungeon.cpp \
 		   ../../Classes/model/DungeonFloor.cpp \
 		   ../../Classes/model/DungeonRoom.cpp \
+		   ../../Classes/model/DungeonRoomEffect.cpp \
+		   ../../Classes/model/DungeonRoomType.cpp \
 		   ../../Classes/model/Game.cpp \
 		   ../../Classes/model/GameObject.cpp \
 		   ../../Classes/model/GameOptions.cpp \
@@ -42,6 +44,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/Monster.cpp \
 		   ../../Classes/model/Player.cpp \
 		   ../../Classes/model/Skill.cpp \
+		   ../../Classes/model/SoloGame.cpp \
 		   ../../Classes/ui/layer/BackgroundLayer.cpp \
 		   ../../Classes/ui/layer/BaseMenuLayer.cpp \
 		   ../../Classes/ui/layer/ExitLayer.cpp \

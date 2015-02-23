@@ -14,14 +14,14 @@
 class Skill;
 
 class Character : public GameObject {
+  CC_SYNTHESIZE(std::string, _name, Name);
+  CC_SYNTHESIZE(std::string, _imagePath, ImagePath);
+  CC_SYNTHESIZE(std::string, _classType, ClassType);
+  CC_SYNTHESIZE(Skill*, _initialSkill, InitialSkill);
+  
 public:
   static Character* createWithValueMap(cocos2d::ValueMap map);
-  bool initWithValueMap(cocos2d::ValueMap map);
-  
-  CC_SYNTHESIZE(std::string, name, Name);
-  CC_SYNTHESIZE(std::string, imagePath, ImagePath);
-  CC_SYNTHESIZE(std::string, classType, ClassType);
-  CC_SYNTHESIZE(Skill*, initialSkill, InitialSkill);
+  virtual bool initWithValueMap(cocos2d::ValueMap map);
 };
 
 #endif /* defined(__MasmorraDados__Character__) */

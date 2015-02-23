@@ -15,12 +15,13 @@
 class DiceFaceBuilder;
 
 class Dice : public GameObject {
+  CC_SYNTHESIZE(cocos2d::Vector<DiceFace*>, _faces, Faces);
+  
 public:
   static Dice* createWithPlist(const char* fileName, DiceFaceBuilder* builder);
   virtual bool initWithPlist(const char* fileName, DiceFaceBuilder* builder);
   
   virtual DiceFace* roll();
-  CC_SYNTHESIZE(cocos2d::Vector<DiceFace*>, faces, Faces);
 };
 
 #endif /* defined(__MasmorraDados__Dice__) */

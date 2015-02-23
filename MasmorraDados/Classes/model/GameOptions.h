@@ -12,11 +12,11 @@
 #include "GameObject.h"
 
 class GameOptions : public GameObject {
+  CC_SYNTHESIZE(int, _requireXpToWin, RequiredXpToWin);
+  
 public:
   virtual bool init();
   CREATE_FUNC(GameOptions);
-  
-  CC_SYNTHESIZE(int, requireXpToWin, RequiredXpToWin);
 };
 
 #endif /* defined(__MasmorraDados__GameOptions__) */
