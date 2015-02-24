@@ -8,6 +8,8 @@
 
 #include "GameplayScene.h"
 
+#include "BackgroundLayer.h"
+
 USING_NS_CC;
 
 bool GameplayScene::init() {
@@ -15,5 +17,11 @@ bool GameplayScene::init() {
     return false;
   }
   
+  this->adjustInitialLayers();
+  
   return true;
+}
+
+void GameplayScene::adjustInitialLayers() {
+  this->addChild(BackgroundLayer::create());
 }

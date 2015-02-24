@@ -19,6 +19,8 @@ class GameplayScene : public cocos2d::Scene {
 public:
   virtual bool init();
   CREATE_FUNC(GameplayScene);
+  
+  void adjustInitialLayers();
 };
 
 #endif /* defined(__MasmorraDados__GameplayScene__) */
