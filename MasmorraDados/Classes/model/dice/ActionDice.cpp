@@ -8,13 +8,14 @@
 
 #include "ActionDice.h"
 
-#include "ActionDiceFaceBuilder.h"
-
 bool ActionDice::init() {
-  if (!Dice::initWithPlist("res/dice/action_dice.plist",
-                           ActionDiceFaceBuilder::create())) {
+  if (!Dice::init()) {
     return false;
   }
   
   return true;
+}
+
+DiceFace* ActionDice::roll() {
+  return nullptr;
 }

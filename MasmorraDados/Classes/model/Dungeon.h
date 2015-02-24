@@ -11,10 +11,10 @@
 
 #include "GameObject.h"
 
-#include "DungeonFloor.h"
+#include "DungeonRoom.h"
 
 class Dungeon : public GameObject {
-  CC_SYNTHESIZE_RETAIN(DungeonFloor*, _firstFloor, FirstFloor);
+  CC_SYNTHESIZE(cocos2d::Vector<DungeonRoom*>, _rooms, Rooms);
   
 public:
   CREATE_FUNC(Dungeon);

@@ -13,10 +13,8 @@
 
 #include "Dungeon.h"
 #include "GameObject.h"
-#include "GameOptions.h"
 
 class Game : public GameObject {
-  CC_SYNTHESIZE_RETAIN(GameOptions*, _options, Options);
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
   
 public:

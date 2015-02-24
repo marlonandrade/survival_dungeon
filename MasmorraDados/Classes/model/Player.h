@@ -11,7 +11,10 @@
 
 #include "GameObject.h"
 
+class Character;
+
 class Player : public GameObject {
+  CC_SYNTHESIZE(Character*, _character, Character);
 };
 
 #endif /* defined(__MasmorraDados__Player__) */

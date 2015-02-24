@@ -13,7 +13,6 @@ bool Game::init() {
     return false;
   }
   
-  this->setOptions(GameOptions::create());
   this->setDungeon(Dungeon::create());
   
   return true;

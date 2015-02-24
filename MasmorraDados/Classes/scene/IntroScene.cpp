@@ -8,22 +8,17 @@
 
 #include "IntroScene.h"
 
-#include "GameResources.h"
-#include "MainMenuScene.h"
+#include "Game.h"
+#include "GameplayScene.h"
 
 USING_NS_CC;
 
-Scene* IntroScene::createScene() {
-  auto scene = Scene::create();
-  auto layer = IntroScene::create();
-  scene->addChild(layer);
-  return scene;
-}
-
 bool IntroScene::init() {
-  if (!Layer::init()) {
+  if (!Scene::init()) {
     return false;
   }
+  
+  auto layer = Layer::create();
   
   auto director = Director::getInstance();
   
@@ -41,7 +36,9 @@ bool IntroScene::init() {
   introImage->setPosition(center);
   introImage->setScale(scaleX, scaleY);
   
-  this->addChild(introImage, 0);
+  layer->addChild(introImage);
+  
+  this->addChild(layer, 0);
   
   this->schedule(schedule_selector(IntroScene::loadResources));
   
@@ -49,8 +46,9 @@ bool IntroScene::init() {
 }
 
 void IntroScene::loadResources(float deltaTime) {
-  GameResources::getInstance().loadResources();
+  auto game = Game::create();
   
-  auto mainMenuScene = MainMenuScene::createScene();
-  Director::getInstance()->replaceScene(mainMenuScene);
+  auto gameplayScene = GameplayScene::create();
+  gameplayScene->setGame(game);
+  Director::getInstance()->replaceScene(gameplayScene);
 }

@@ -11,11 +11,13 @@
 
 #include "cocos2d.h"
 
-class GameplayScene : public cocos2d::Layer {
-public:
-  static cocos2d::Scene *createScene();
-  virtual bool init();
+#include "Game.h"
+
+class GameplayScene : public cocos2d::Scene {
+  CC_SYNTHESIZE_RETAIN(Game*, _game, Game);
   
+public:
+  virtual bool init();
   CREATE_FUNC(GameplayScene);
 };
 
