@@ -21,8 +21,15 @@ public:
   CREATE_FUNC(GameplayScene);
   
 private:
-  cocos2d::Layer* getDungeonLayer();
   void adjustInitialLayers();
+  
+  cocos2d::Layer* _createDungeonLayer();
+  cocos2d::Layer* _createGameObjectsLayer();
+  cocos2d::Layer* _createControlsLayer();
+  
+  cocos2d::Layer* getDungeonLayer();
+  cocos2d::Layer* getGameObjectsLayer();
+  cocos2d::Layer* getControlsLayer();
 };
 
 #endif /* defined(__MasmorraDados__GameplayScene__) */

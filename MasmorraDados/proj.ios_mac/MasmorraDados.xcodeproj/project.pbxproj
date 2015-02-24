@@ -313,6 +313,7 @@
 				BF0840921A9CD506003F0D76 /* layer */,
 				BF5B4B311A8F75FA007636DE /* model */,
 				BF5B4B321A8F75FA007636DE /* scene */,
+				BF0840971A9CD541003F0D76 /* sprite */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				BF5B4B861A920D96007636DE /* Definitions.h */,
@@ -338,6 +339,13 @@
 				BF0840941A9CD506003F0D76 /* BackgroundLayer.h */,
 			);
 			path = layer;
+			sourceTree = "<group>";
+		};
+		BF0840971A9CD541003F0D76 /* sprite */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = sprite;
 			sourceTree = "<group>";
 		};
 		BF5B4B311A8F75FA007636DE /* model */ = {
