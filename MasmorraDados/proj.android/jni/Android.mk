@@ -27,7 +27,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/Monster.cpp \
 		   ../../Classes/model/Player.cpp \
 		   ../../Classes/model/Skill.cpp \
-		   ../../Classes/ui/layer/BackgroundLayer.cpp
+		   ../../Classes/layer/BackgroundLayer.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/layer \
@@ -37,9 +37,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/model/dice/face \
 		    $(LOCAL_PATH)/../../Classes/model/dice/roller \
 		    $(LOCAL_PATH)/../../Classes/model/room \
-  		    $(LOCAL_PATH)/../../Classes/scene \
-		    $(LOCAL_PATH)/../../Classes/ui \
-		    $(LOCAL_PATH)/../../Classes/ui/layer \
+  		    $(LOCAL_PATH)/../../Classes/scene
 
 # _COCOS_HEADER_ANDROID_BEGIN
 # _COCOS_HEADER_ANDROID_END
