@@ -15,8 +15,8 @@ USING_NS_CC;
 
 #pragma mark - Public Interface
 
-void Game::setPlayerPosition(Vec2 position) {
-  _playerPosition = position;
+void Game::setCharacterPosition(Vec2 position) {
+  _characterPosition = position;
   
   this->getDungeon()->placeTilesAdjacentTo(position);
 }

@@ -31,7 +31,7 @@ private:
   cocos2d::Layer* getGameObjectsLayer();
   cocos2d::Layer* getControlsLayer();
   
-  void _adjustCharacterPosition();
+  void _adjustCharacterSpritePosition();
   
   cocos2d::Vec2 _centerOfScene();
 };

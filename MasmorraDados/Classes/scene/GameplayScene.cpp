@@ -40,8 +40,8 @@ void GameplayScene::adjustInitialLayers() {
   this->addChild(this->_createGameObjectsLayer(), 0);
   this->addChild(this->_createControlsLayer(), 1);
   
-  this->getGame()->setPlayerPosition(INITIAL_POSITION);
-  this->_adjustCharacterPosition();
+  this->getGame()->setCharacterPosition(INITIAL_POSITION);
+  this->_adjustCharacterSpritePosition();
 }
 
 Layer* GameplayScene::_createDungeonLayer() {
@@ -89,13 +89,13 @@ Layer* GameplayScene::getControlsLayer() {
   return (Layer*) this->getChildByTag(CONTROLS_LAYER_TAG);
 }
 
-void GameplayScene::_adjustCharacterPosition() {
+void GameplayScene::_adjustCharacterSpritePosition() {
   auto sprite = this->getGameObjectsLayer()->getChildByTag(CHARACTER_SPRITE_TAG);
   
-  auto playerPosition = this->getGame()->getPlayerPosition();
+  auto characterPosition = this->getGame()->getCharacterPosition();
   
-  int xOffset = playerPosition.x - (DUNGEON_SIZE / 2);
-  int yOffset = playerPosition.y - (DUNGEON_SIZE / 2);
+  int xOffset = characterPosition.x - (DUNGEON_SIZE / 2);
+  int yOffset = characterPosition.y - (DUNGEON_SIZE / 2);
   
   auto center = this->_centerOfScene();
   auto position = Vec2(center.x + (xOffset * TILE_DIMENSION),

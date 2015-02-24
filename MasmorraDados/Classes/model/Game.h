@@ -19,10 +19,10 @@ class Game : public GameObject {
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
   CC_SYNTHESIZE(cocos2d::Vector<DungeonRoom*>, _availableRooms, AvailableRooms);
 protected:
-  cocos2d::Vec2 _playerPosition;
+  cocos2d::Vec2 _characterPosition;
 public:
-  virtual cocos2d::Vec2 getPlayerPosition(void) const { return _playerPosition; }
-  virtual void setPlayerPosition(cocos2d::Vec2 position);
+  virtual cocos2d::Vec2 getCharacterPosition(void) const { return _characterPosition; }
+  virtual void setCharacterPosition(cocos2d::Vec2 position);
   
 public:
   virtual bool init();
