@@ -30,6 +30,10 @@ private:
   cocos2d::Layer* getDungeonLayer();
   cocos2d::Layer* getGameObjectsLayer();
   cocos2d::Layer* getControlsLayer();
+  
+  void _adjustPlayerPosition();
+  
+  cocos2d::Vec2 _centerOfScene();
 };
 
 #endif /* defined(__MasmorraDados__GameplayScene__) */

@@ -9,12 +9,15 @@
 #include "GameplayScene.h"
 
 #include "BackgroundLayer.h"
+#include "CharacterSprite.h"
 
 USING_NS_CC;
 
 #define DUNGEON_LAYER_TAG     1000
 #define GAMEOBJECTS_LAYER_TAG 1001
 #define CONTROLS_LAYER_TAG    1002
+
+#define CHARACTER_SPRITE_TAG  2000
 
 #pragma mark - Public Interface
 
@@ -36,6 +39,8 @@ void GameplayScene::adjustInitialLayers() {
   this->addChild(this->_createDungeonLayer(), -1);
   this->addChild(this->_createGameObjectsLayer(), 0);
   this->addChild(this->_createControlsLayer(), 1);
+  
+  this->_adjustPlayerPosition();
 }
 
 Layer* GameplayScene::_createDungeonLayer() {
@@ -45,14 +50,8 @@ Layer* GameplayScene::_createDungeonLayer() {
   auto dungeon = this->getGame()->getDungeon();
   auto initialRoom = dungeon->getInitialRoom();
   auto initialSprite = Sprite::create(initialRoom->getImagePath());
-  
-  Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
-  Size visibleSize = Director::getInstance()->getVisibleSize();
-  
-  Vec2 center = Vec2(visibleSize.width / 2 + visibleOrigin.x,
-                     visibleSize.height / 2 + visibleOrigin.y);
-  
-  initialSprite->setPosition(center);
+  initialSprite->setAnchorPoint(Vec2(0.5, 0.5));
+  initialSprite->setPosition(this->_centerOfScene());
   
   dungeonLayer->addChild(initialSprite);
   
@@ -62,6 +61,10 @@ Layer* GameplayScene::_createDungeonLayer() {
 Layer* GameplayScene::_createGameObjectsLayer() {
   auto gameObjectsLayer = Layer::create();
   gameObjectsLayer->setTag(GAMEOBJECTS_LAYER_TAG);
+  
+  auto characterSprite = CharacterSprite::create();
+  characterSprite->setTag(CHARACTER_SPRITE_TAG);
+  gameObjectsLayer->addChild(characterSprite);
   
   return gameObjectsLayer;
 }
@@ -83,4 +86,27 @@ Layer* GameplayScene::getGameObjectsLayer() {
 
 Layer* GameplayScene::getControlsLayer() {
   return (Layer*) this->getChildByTag(CONTROLS_LAYER_TAG);
+}
+
+void GameplayScene::_adjustPlayerPosition() {
+  auto sprite = this->getGameObjectsLayer()->getChildByTag(CHARACTER_SPRITE_TAG);
+  
+  auto playerPosition = this->getGame()->getPlayerPosition();
+  
+  int xOffset = playerPosition.x - (DUNGEON_SIZE / 2);
+  int yOffset = playerPosition.y - (DUNGEON_SIZE / 2);
+  
+  auto center = this->_centerOfScene();
+  auto position = Vec2(center.x + (xOffset * TILE_DIMENSION),
+                       center.y + (yOffset * TILE_DIMENSION));
+  
+  sprite->setPosition(position);
+}
+
+Vec2 GameplayScene::_centerOfScene() {
+  Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
+  Size visibleSize = Director::getInstance()->getVisibleSize();
+  
+  return Vec2(visibleSize.width / 2 + visibleOrigin.x,
+              visibleSize.height / 2 + visibleOrigin.y);
 }
