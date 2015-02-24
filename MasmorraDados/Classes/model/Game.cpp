@@ -13,30 +13,39 @@
 
 USING_NS_CC;
 
-#pragma mark - Private Interface
+#pragma mark - Public Interface
+
+void Game::setPlayerPosition(Vec2 position) {
+  _playerPosition = position;
+  
+  this->getDungeon()->placeTilesAdjacentTo(position);
+}
 
 bool Game::init() {
   if (!GameObject::init()) {
     return false;
   }
   
-  this->setupInitialPosition();
+  this->_setupAvaiableRooms();
+  this->_setupInitialPosition();
   
   return true;
 }
 
-void Game::setupInitialPosition() {
-  Vec2 playerPosition = INITIAL_POSITION;
-  
-  this->setPlayerPosition(playerPosition);
-  
+#pragma mark - Private Interface
+
+void Game::_setupInitialPosition() {
   auto dungeon = Dungeon::create();
   auto initialRoom = InitialRoom::create();
-  dungeon->setRoomForPosition(initialRoom, playerPosition);
+  dungeon->setRoomForPosition(initialRoom, INITIAL_POSITION);
   
   this->setDungeon(dungeon);
 }
 
-DungeonRoom* Game::pickRandomRoom() {
+void Game::_setupAvaiableRooms() {
+  
+}
+
+DungeonRoom* Game::_pickRandomRoom() {
   return this->getAvailableRooms().getRandomObject();
 }

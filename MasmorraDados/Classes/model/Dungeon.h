@@ -19,7 +19,6 @@ typedef cocos2d::Map<int, DungeonRoom*> DungeonGrid;
 class Dungeon : public GameObject {
 private:
   DungeonGrid _rooms;
-  //cocos2d::Map<int, DungeonRoom*> _rooms;
   
 public:
   virtual bool init();
@@ -27,8 +26,9 @@ public:
   
   void setRoomForPosition(DungeonRoom* room, cocos2d::Vec2 position);
   DungeonRoom* getRoomForPosition(cocos2d::Vec2 position);
-  
   DungeonRoom* getInitialRoom();
+  
+  void placeTilesAdjacentTo(cocos2d::Vec2 position);
 private:
   int indexForPosition(cocos2d::Vec2 position);
 };

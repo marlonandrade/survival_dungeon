@@ -40,7 +40,8 @@ void GameplayScene::adjustInitialLayers() {
   this->addChild(this->_createGameObjectsLayer(), 0);
   this->addChild(this->_createControlsLayer(), 1);
   
-  this->_adjustPlayerPosition();
+  this->getGame()->setPlayerPosition(INITIAL_POSITION);
+  this->_adjustCharacterPosition();
 }
 
 Layer* GameplayScene::_createDungeonLayer() {
@@ -88,7 +89,7 @@ Layer* GameplayScene::getControlsLayer() {
   return (Layer*) this->getChildByTag(CONTROLS_LAYER_TAG);
 }
 
-void GameplayScene::_adjustPlayerPosition() {
+void GameplayScene::_adjustCharacterPosition() {
   auto sprite = this->getGameObjectsLayer()->getChildByTag(CHARACTER_SPRITE_TAG);
   
   auto playerPosition = this->getGame()->getPlayerPosition();

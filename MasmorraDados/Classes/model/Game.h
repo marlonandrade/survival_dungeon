@@ -18,14 +18,23 @@
 class Game : public GameObject {
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
   CC_SYNTHESIZE(cocos2d::Vector<DungeonRoom*>, _availableRooms, AvailableRooms);
-  CC_SYNTHESIZE(cocos2d::Vec2, _playerPosition, PlayerPosition);
+protected:
+  cocos2d::Vec2 _playerPosition;
+public:
+  virtual cocos2d::Vec2 getPlayerPosition(void) const { return _playerPosition; }
+  virtual void setPlayerPosition(cocos2d::Vec2 position);
   
 public:
   virtual bool init();
   CREATE_FUNC(Game);
   
-  void setupInitialPosition();
-  DungeonRoom* pickRandomRoom();
+  
+private:
+  void _setupInitialPosition();
+  void _setupAvaiableRooms();
+  
+  DungeonRoom* _pickRandomRoom();
+  void _placeAdjacentTiles();
 };
 
 #endif /* defined(__MasmorraDados__Game__) */
