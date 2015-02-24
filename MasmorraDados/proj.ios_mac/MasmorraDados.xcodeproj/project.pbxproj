@@ -73,8 +73,6 @@
 		BF5B4BCD1A94BA91007636DE /* Dungeon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BCA1A94BA91007636DE /* Dungeon.cpp */; };
 		BF5B4BD41A94BABF007636DE /* DungeonFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BD21A94BABF007636DE /* DungeonFloor.cpp */; };
 		BF5B4BD51A94BABF007636DE /* DungeonFloor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BD21A94BABF007636DE /* DungeonFloor.cpp */; };
-		BF5B4BD81A94BACC007636DE /* DungeonRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BD61A94BACC007636DE /* DungeonRoom.cpp */; };
-		BF5B4BD91A94BACC007636DE /* DungeonRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BD61A94BACC007636DE /* DungeonRoom.cpp */; };
 		BF5B4BDC1A94BC6B007636DE /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BDA1A94BC6B007636DE /* GameObject.cpp */; };
 		BF5B4BDD1A94BC6B007636DE /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BDA1A94BC6B007636DE /* GameObject.cpp */; };
 		BF5B4BEB1A952E8D007636DE /* Dice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BE91A952E8D007636DE /* Dice.cpp */; };
@@ -115,10 +113,7 @@
 		BF6E6F341A99FF3500CD1834 /* InnerMenuLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F2B1A99FF3500CD1834 /* InnerMenuLayer.cpp */; };
 		BF6E6F371A9A1AAF00CD1834 /* SoloGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F351A9A1AAF00CD1834 /* SoloGame.cpp */; };
 		BF6E6F381A9A1AAF00CD1834 /* SoloGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F351A9A1AAF00CD1834 /* SoloGame.cpp */; };
-		BF6E6F3B1A9A75DA00CD1834 /* DungeonRoomType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F391A9A75DA00CD1834 /* DungeonRoomType.cpp */; };
-		BF6E6F3C1A9A75DA00CD1834 /* DungeonRoomType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F391A9A75DA00CD1834 /* DungeonRoomType.cpp */; };
-		BF6E6F3F1A9A782200CD1834 /* DungeonRoomEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F3D1A9A782200CD1834 /* DungeonRoomEffect.cpp */; };
-		BF6E6F401A9A782200CD1834 /* DungeonRoomEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6F3D1A9A782200CD1834 /* DungeonRoomEffect.cpp */; };
+		BFC373951A9BFDDA00520751 /* DungeonRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC373931A9BFDDA00520751 /* DungeonRoom.cpp */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
@@ -222,8 +217,6 @@
 		BF5B4BCB1A94BA91007636DE /* Dungeon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dungeon.h; sourceTree = "<group>"; };
 		BF5B4BD21A94BABF007636DE /* DungeonFloor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DungeonFloor.cpp; sourceTree = "<group>"; };
 		BF5B4BD31A94BABF007636DE /* DungeonFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DungeonFloor.h; sourceTree = "<group>"; };
-		BF5B4BD61A94BACC007636DE /* DungeonRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DungeonRoom.cpp; sourceTree = "<group>"; };
-		BF5B4BD71A94BACC007636DE /* DungeonRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DungeonRoom.h; sourceTree = "<group>"; };
 		BF5B4BDA1A94BC6B007636DE /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		BF5B4BDB1A94BC6B007636DE /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		BF5B4BE91A952E8D007636DE /* Dice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dice.cpp; sourceTree = "<group>"; };
@@ -264,12 +257,10 @@
 		BF6E6F2C1A99FF3500CD1834 /* InnerMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InnerMenuLayer.h; sourceTree = "<group>"; };
 		BF6E6F351A9A1AAF00CD1834 /* SoloGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoloGame.cpp; sourceTree = "<group>"; };
 		BF6E6F361A9A1AAF00CD1834 /* SoloGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoloGame.h; sourceTree = "<group>"; };
-		BF6E6F391A9A75DA00CD1834 /* DungeonRoomType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DungeonRoomType.cpp; sourceTree = "<group>"; };
-		BF6E6F3A1A9A75DA00CD1834 /* DungeonRoomType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DungeonRoomType.h; sourceTree = "<group>"; };
-		BF6E6F3D1A9A782200CD1834 /* DungeonRoomEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DungeonRoomEffect.cpp; sourceTree = "<group>"; };
-		BF6E6F3E1A9A782200CD1834 /* DungeonRoomEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DungeonRoomEffect.h; sourceTree = "<group>"; };
 		BF6E6F421A9B8B7D00CD1834 /* EffectType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EffectType.h; sourceTree = "<group>"; };
 		BF6E6F431A9B8B8700CD1834 /* EffectKind.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EffectKind.h; sourceTree = "<group>"; };
+		BFC373931A9BFDDA00520751 /* DungeonRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DungeonRoom.cpp; sourceTree = "<group>"; };
+		BFC373941A9BFDDA00520751 /* DungeonRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DungeonRoom.h; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -428,18 +419,13 @@
 			children = (
 				BF5B4BE81A952E8D007636DE /* dice */,
 				BF6E6F411A9B8B7000CD1834 /* enum */,
+				BFC3738F1A9BFD6C00520751 /* room */,
 				BF5B4BC21A94BA35007636DE /* Character.cpp */,
 				BF5B4BC31A94BA35007636DE /* Character.h */,
 				BF5B4BCA1A94BA91007636DE /* Dungeon.cpp */,
 				BF5B4BCB1A94BA91007636DE /* Dungeon.h */,
 				BF5B4BD21A94BABF007636DE /* DungeonFloor.cpp */,
 				BF5B4BD31A94BABF007636DE /* DungeonFloor.h */,
-				BF5B4BD61A94BACC007636DE /* DungeonRoom.cpp */,
-				BF5B4BD71A94BACC007636DE /* DungeonRoom.h */,
-				BF6E6F3D1A9A782200CD1834 /* DungeonRoomEffect.cpp */,
-				BF6E6F3E1A9A782200CD1834 /* DungeonRoomEffect.h */,
-				BF6E6F391A9A75DA00CD1834 /* DungeonRoomType.cpp */,
-				BF6E6F3A1A9A75DA00CD1834 /* DungeonRoomType.h */,
 				BF5B4B7D1A90E77A007636DE /* Game.cpp */,
 				BF5B4B7E1A90E77A007636DE /* Game.h */,
 				BF5B4BDA1A94BC6B007636DE /* GameObject.cpp */,
@@ -570,6 +556,15 @@
 				BF6E6F431A9B8B8700CD1834 /* EffectKind.h */,
 			);
 			path = enum;
+			sourceTree = "<group>";
+		};
+		BFC3738F1A9BFD6C00520751 /* room */ = {
+			isa = PBXGroup;
+			children = (
+				BFC373931A9BFDDA00520751 /* DungeonRoom.cpp */,
+				BFC373941A9BFDDA00520751 /* DungeonRoom.h */,
+			);
+			path = room;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -711,7 +706,7 @@
 				BF5B4BC41A94BA35007636DE /* Character.cpp in Sources */,
 				BF5B4BD41A94BABF007636DE /* DungeonFloor.cpp in Sources */,
 				BF5B4C1A1A954F19007636DE /* ActionDiceFace.cpp in Sources */,
-				BF5B4BD81A94BACC007636DE /* DungeonRoom.cpp in Sources */,
+				BFC373951A9BFDDA00520751 /* DungeonRoom.cpp in Sources */,
 				BF5B4BAB1A9221E2007636DE /* BackMenu.cpp in Sources */,
 				BF6E6F161A97EA7E00CD1834 /* ActionDiceRoller.cpp in Sources */,
 				BF6E6F121A97EA4900CD1834 /* DiceRoller.cpp in Sources */,
@@ -730,7 +725,6 @@
 				BF5B4C111A954EEA007636DE /* ActionDiceFaceBuilder.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				BF6E6F2D1A99FF3500CD1834 /* BackgroundLayer.cpp in Sources */,
-				BF6E6F3F1A9A782200CD1834 /* DungeonRoomEffect.cpp in Sources */,
 				BF5B4BC81A94BA51007636DE /* Skill.cpp in Sources */,
 				BF5B4C261A955EB2007636DE /* MonsterDiceFaceBuilder.cpp in Sources */,
 				BF5B4B8B1A9214B8007636DE /* CreditsScene.cpp in Sources */,
@@ -739,7 +733,6 @@
 				BF5B4B7F1A90E77A007636DE /* Game.cpp in Sources */,
 				BF5B4BC01A94BA2C007636DE /* Player.cpp in Sources */,
 				BF5B4B8F1A9214C2007636DE /* OptionsScene.cpp in Sources */,
-				BF6E6F3B1A9A75DA00CD1834 /* DungeonRoomType.cpp in Sources */,
 				BF5B4BCC1A94BA91007636DE /* Dungeon.cpp in Sources */,
 				BF5B4BDC1A94BC6B007636DE /* GameObject.cpp in Sources */,
 			);
@@ -760,7 +753,6 @@
 				BF5B4BAC1A9221E2007636DE /* BackMenu.cpp in Sources */,
 				BF6E6F131A97EA4900CD1834 /* DiceRoller.cpp in Sources */,
 				BF5B4B901A9214C2007636DE /* OptionsScene.cpp in Sources */,
-				BF6E6F3C1A9A75DA00CD1834 /* DungeonRoomType.cpp in Sources */,
 				BF6E6F381A9A1AAF00CD1834 /* SoloGame.cpp in Sources */,
 				BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				BF5B4C051A9539FD007636DE /* MinorMonsterDice.cpp in Sources */,
@@ -768,7 +760,6 @@
 				BF5B4B3D1A8F7B4F007636DE /* MainMenuScene.cpp in Sources */,
 				BF6E6F301A99FF3500CD1834 /* BaseMenuLayer.cpp in Sources */,
 				BF5B4C231A955EA7007636DE /* MonsterDiceFace.cpp in Sources */,
-				BF5B4BD91A94BACC007636DE /* DungeonRoom.cpp in Sources */,
 				BF6E6F2E1A99FF3500CD1834 /* BackgroundLayer.cpp in Sources */,
 				BF5B4C121A954EEA007636DE /* ActionDiceFaceBuilder.cpp in Sources */,
 				BF5B4C011A953981007636DE /* ActionDice.cpp in Sources */,
@@ -778,7 +769,6 @@
 				BF6E6F1F1A98C6A700CD1834 /* GameResources.cpp in Sources */,
 				BF5B4C1B1A954F19007636DE /* ActionDiceFace.cpp in Sources */,
 				BF5B4BA81A9220CD007636DE /* BackLabel.cpp in Sources */,
-				BF6E6F401A9A782200CD1834 /* DungeonRoomEffect.cpp in Sources */,
 				BF5B4C0E1A954CBD007636DE /* DiceFaceBuilder.cpp in Sources */,
 				BF5B4BC91A94BA51007636DE /* Skill.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,

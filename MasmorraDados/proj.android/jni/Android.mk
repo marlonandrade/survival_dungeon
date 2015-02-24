@@ -31,12 +31,10 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/dice/Dice.cpp \
 		   ../../Classes/model/dice/MajorMonsterDice.cpp \
 		   ../../Classes/model/dice/MinorMonsterDice.cpp \
+		   ../../Classes/model/room/DungeonRoom.cpp \
 		   ../../Classes/model/Character.cpp \
 		   ../../Classes/model/Dungeon.cpp \
 		   ../../Classes/model/DungeonFloor.cpp \
-		   ../../Classes/model/DungeonRoom.cpp \
-		   ../../Classes/model/DungeonRoomEffect.cpp \
-		   ../../Classes/model/DungeonRoomType.cpp \
 		   ../../Classes/model/Game.cpp \
 		   ../../Classes/model/GameObject.cpp \
 		   ../../Classes/model/GameOptions.cpp \
@@ -59,8 +57,11 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/model/dice/builder \
 		    $(LOCAL_PATH)/../../Classes/model/dice/face \
 		    $(LOCAL_PATH)/../../Classes/model/dice/roller \
+		    $(LOCAL_PATH)/../../Classes/model/enum \
+		    $(LOCAL_PATH)/../../Classes/model/room \
   		    $(LOCAL_PATH)/../../Classes/scene \
-		    $(LOCAL_PATH)/../../Classes/ui
+		    $(LOCAL_PATH)/../../Classes/ui \
+		    $(LOCAL_PATH)/../../Classes/ui/layer \
 
 # _COCOS_HEADER_ANDROID_BEGIN
 # _COCOS_HEADER_ANDROID_END

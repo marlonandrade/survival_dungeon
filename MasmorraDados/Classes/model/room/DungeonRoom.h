@@ -11,15 +11,12 @@
 
 #include "GameObject.h"
 
-#include "DungeonRoomType.h"
-
 class DungeonRoom : public GameObject {
-  CC_SYNTHESIZE(DungeonRoomType*, _type, Type);
-  // TODO: implementar cost -> Vector de Action
-  // CC_SYNTHESIZE(cocos2d::Vector<int>, _cost, Cost);
-  
 public:
-  CREATE_FUNC(DungeonRoom);
+  DungeonRoom();
+  
+  virtual std::string getImagePath() = 0;
+  virtual bool isExplorable() = 0;
 };
 
 #endif /* defined(__MasmorraDados__DungeonRoom__) */
