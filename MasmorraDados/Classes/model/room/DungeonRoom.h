@@ -13,8 +13,6 @@
 
 class DungeonRoom : public GameObject {
 public:
-  DungeonRoom();
-  
   virtual std::string getImagePath() = 0;
   virtual bool isExplorable() = 0;
 };

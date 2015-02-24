@@ -46,9 +46,6 @@ bool IntroScene::init() {
 }
 
 void IntroScene::loadResources(float deltaTime) {
-  auto game = Game::create();
-  
   auto gameplayScene = GameplayScene::create();
-  gameplayScene->setGame(game);
   Director::getInstance()->replaceScene(gameplayScene);
 }

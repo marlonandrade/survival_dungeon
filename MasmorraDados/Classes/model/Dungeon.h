@@ -11,13 +11,26 @@
 
 #include "GameObject.h"
 
+#include "Definitions.h"
 #include "DungeonRoom.h"
 
+typedef cocos2d::Map<int, DungeonRoom*> DungeonGrid;
+
 class Dungeon : public GameObject {
-  CC_SYNTHESIZE(cocos2d::Vector<DungeonRoom*>, _rooms, Rooms);
+private:
+  DungeonGrid _rooms;
+  //cocos2d::Map<int, DungeonRoom*> _rooms;
   
 public:
+  virtual bool init();
   CREATE_FUNC(Dungeon);
+  
+  void setRoomForPosition(DungeonRoom* room, cocos2d::Vec2 position);
+  DungeonRoom* getRoomForPosition(cocos2d::Vec2 position);
+  
+  DungeonRoom* getInitialRoom();
+private:
+  int indexForPosition(cocos2d::Vec2 position);
 };
 
 #endif /* defined(__MasmorraDados__Dungeon__) */

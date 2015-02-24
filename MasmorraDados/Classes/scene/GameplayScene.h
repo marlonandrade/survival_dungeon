@@ -20,6 +20,8 @@ public:
   virtual bool init();
   CREATE_FUNC(GameplayScene);
   
+private:
+  cocos2d::Layer* getDungeonLayer();
   void adjustInitialLayers();
 };
 
