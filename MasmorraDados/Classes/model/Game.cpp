@@ -66,11 +66,7 @@ void Game::_setupAvaiableRooms() {
   Vector<DungeonRoom*> rooms;
   
   for (int i = 0; i < 100; i++) {
-    if (i % 10 < 8) {
-      rooms.pushBack(RuneRoom::create());
-    } else {
-      rooms.pushBack(MinorMonsterRoom::create());
-    }
+    rooms.pushBack(RuneRoom::create());
   }
   
   this->setAvailableRooms(rooms);
@@ -81,7 +77,6 @@ DungeonRoom* Game::_pickRandomRoom() {
   
   auto randomRoom = availableRooms.getRandomObject();
   if (randomRoom) {
-    log("%s", randomRoom->getImagePath().c_str());
     availableRooms.eraseObject(randomRoom);
   }
   
