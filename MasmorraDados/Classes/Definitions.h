@@ -20,6 +20,11 @@
 
 #define CHARACTER_INITIAL_HP 6
 
+#define PLACE_ROOM_DURATION 0.8
+
+#define DUNGEON_ROOM_Z_ORDER 0
+#define GAME_OBJECTS_Z_ORDER 1
+
 #define NO_ERROR                       0
 #define NO_REROLL_AVAILABLE            0x9000
 

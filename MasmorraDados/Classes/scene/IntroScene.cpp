@@ -18,6 +18,8 @@ bool IntroScene::init() {
     return false;
   }
   
+  srand(std::time(0));
+  
   auto layer = Layer::create();
   
   auto director = Director::getInstance();

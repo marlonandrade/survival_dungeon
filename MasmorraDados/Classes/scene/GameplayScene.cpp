@@ -10,12 +10,12 @@
 
 #include "BackgroundLayer.h"
 #include "CharacterSprite.h"
+#include "RoomPlacement.h"
 
 USING_NS_CC;
 
 #define DUNGEON_LAYER_TAG     1000
-#define GAMEOBJECTS_LAYER_TAG 1001
-#define CONTROLS_LAYER_TAG    1002
+#define CONTROLS_LAYER_TAG    1001
 
 #define CHARACTER_SPRITE_TAG  2000
 
@@ -26,34 +26,46 @@ bool GameplayScene::init() {
     return false;
   }
   
-  float delayTime = 0;
-  
-  auto game = Game::createWithRoomPlacedDelegate([&](Vec2 position, DungeonRoom* room) {
-    auto roomSprite = Sprite::create(room->getImagePath());
+  auto game = Game::createWithRoomPlacedDelegate([&](Vector<RoomPlacement*> placements) {
+    float delayTime = 0;
+    int zOrder = placements.size();
     
-    auto size = Director::getInstance()->getVisibleSize();
-    auto origin = Director::getInstance()->getVisibleOrigin();
-    
-    roomSprite->setPosition(Vec2(origin.x + size.width - DUNGEON_SIZE - 20,
-                                 origin.y + size.height - DUNGEON_SIZE - 20));
-    
-    this->getDungeonLayer()->addChild(roomSprite);
-    
-    auto centerPosition = INITIAL_POSITION;
-    
-    auto offsetX = position.x - centerPosition.x;
-    auto offsetY = position.y - centerPosition.y;
-    
-    auto spritePosition = Vec2(offsetX * TILE_DIMENSION,
-                               offsetY * TILE_DIMENSION);
-    
-    auto delay = DelayTime::create(delayTime);
-    auto move = MoveTo::create(0.3, spritePosition);
-    
-    roomSprite->runAction(Sequence::createWithTwoActions(delay, move));
-    
-    delayTime += 0.3;
-    if (delayTime > 2) delayTime = 0;
+    for (auto placement : placements) {
+      auto room = placement->getRoom();
+      auto position = placement->getPosition();
+      
+      auto roomSprite = Sprite::create(room->getImagePath());
+      
+      auto size = Director::getInstance()->getVisibleSize();
+      auto origin = Director::getInstance()->getVisibleOrigin();
+      
+      roomSprite->setPosition(Vec2(origin.x + size.width / 2 - TILE_DIMENSION / 2 - 20,
+                                   origin.y + size.height / 2 - TILE_DIMENSION / 2 - 20));
+      
+      this->getDungeonLayer()->addChild(roomSprite, zOrder);
+      
+      auto centerPosition = INITIAL_POSITION;
+      
+      auto offsetX = position.x - centerPosition.x;
+      auto offsetY = position.y - centerPosition.y;
+      
+      auto spritePosition = Vec2(offsetX * TILE_DIMENSION,
+                                 offsetY * TILE_DIMENSION);
+      
+      auto delay = DelayTime::create(delayTime);
+      auto topZOrder = CallFunc::create([=]() {
+        roomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER + 10);
+      });
+      auto easeMove = EaseBackIn::create(MoveTo::create(PLACE_ROOM_DURATION, spritePosition));
+      auto normalizeZOrder = CallFunc::create([=]() {
+        roomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
+      });
+      
+      roomSprite->runAction(Sequence::create(delay, topZOrder, easeMove, normalizeZOrder, NULL));
+      
+      delayTime += PLACE_ROOM_DURATION;
+      zOrder--;
+    }
   });
   
   this->setGame(game);
@@ -75,10 +87,6 @@ void GameplayScene::adjustInitialLayers() {
   dungeonLayer->setPosition(center);
   this->addChild(dungeonLayer, -1);
   
-  auto gameObjectsLayer = this->_createGameObjectsLayer();
-  gameObjectsLayer->setPosition(center);
-  this->addChild(gameObjectsLayer, 0);
-  
   auto controlsLayer = this->_createControlsLayer();
   controlsLayer->setPosition(center);
   this->addChild(controlsLayer, 1);
@@ -94,21 +102,15 @@ Layer* GameplayScene::_createDungeonLayer() {
   auto dungeon = this->getGame()->getDungeon();
   auto initialRoom = dungeon->getInitialRoom();
   auto initialSprite = Sprite::create(initialRoom->getImagePath());
-  dungeonLayer->addChild(initialSprite);
+  dungeonLayer->addChild(initialSprite, DUNGEON_ROOM_Z_ORDER);
+  
+  auto characterSprite = CharacterSprite::create();
+  characterSprite->setTag(CHARACTER_SPRITE_TAG);
+  dungeonLayer->addChild(characterSprite, GAME_OBJECTS_Z_ORDER);
   
   return dungeonLayer;
 }
 
-Layer* GameplayScene::_createGameObjectsLayer() {
-  auto gameObjectsLayer = Layer::create();
-  gameObjectsLayer->setTag(GAMEOBJECTS_LAYER_TAG);
-  
-  auto characterSprite = CharacterSprite::create();
-  characterSprite->setTag(CHARACTER_SPRITE_TAG);
-  gameObjectsLayer->addChild(characterSprite);
-  
-  return gameObjectsLayer;
-}
 
 Layer* GameplayScene::_createControlsLayer() {
   auto controlsLayer = Layer::create();
@@ -121,16 +123,12 @@ Layer* GameplayScene::getDungeonLayer() {
   return (Layer*) this->getChildByTag(DUNGEON_LAYER_TAG);
 }
 
-Layer* GameplayScene::getGameObjectsLayer() {
-  return (Layer*) this->getChildByTag(GAMEOBJECTS_LAYER_TAG);
-}
-
 Layer* GameplayScene::getControlsLayer() {
   return (Layer*) this->getChildByTag(CONTROLS_LAYER_TAG);
 }
 
 void GameplayScene::_adjustCharacterSpritePosition() {
-  auto sprite = this->getGameObjectsLayer()->getChildByTag(CHARACTER_SPRITE_TAG);
+  auto sprite = this->getDungeonLayer()->getChildByTag(CHARACTER_SPRITE_TAG);
   
   auto characterPosition = this->getGame()->getCharacterPosition();
   

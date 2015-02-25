@@ -13,9 +13,10 @@
 
 #include "Definitions.h"
 #include "DungeonRoom.h"
+#include "RoomPlacement.h"
 
 typedef cocos2d::Map<int, DungeonRoom*> DungeonGrid;
-typedef std::function<void (cocos2d::Vec2, DungeonRoom*)> RoomPlacedDelegate;
+typedef std::function<void (cocos2d::Vector<RoomPlacement*>)> RoomPlacedDelegate;
 typedef std::function<DungeonRoom* (void)> NewRoomDataSource;
 
 class Dungeon : public GameObject {
@@ -37,7 +38,7 @@ public:
 private:
   int indexForPosition(cocos2d::Vec2 position);
   
-  void _placeNewRoomAtPosition(cocos2d::Vec2 position);
+  RoomPlacement* _placeNewRoomAtPosition(cocos2d::Vec2 position);
 };
 
 #endif /* defined(__MasmorraDados__Dungeon__) */

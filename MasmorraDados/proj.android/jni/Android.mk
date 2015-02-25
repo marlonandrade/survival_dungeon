@@ -28,6 +28,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/GameObject.cpp \
 		   ../../Classes/model/Monster.cpp \
 		   ../../Classes/model/Player.cpp \
+		   ../../Classes/model/RoomPlacement.cpp \
 		   ../../Classes/model/Skill.cpp \
 		   ../../Classes/scene/GameplayScene.cpp \
 		   ../../Classes/scene/IntroScene.cpp \

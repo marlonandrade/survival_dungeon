@@ -37,17 +37,24 @@ DungeonRoom* Dungeon::getInitialRoom() {
 }
 
 void Dungeon::placeRoomsAdjacentTo(Vec2 position) {
+  Vector<RoomPlacement*> placements;
+  
   auto top = Vec2(position.x, position.y + 1);
-  this->_placeNewRoomAtPosition(top);
+  placements.pushBack(this->_placeNewRoomAtPosition(top));
   
   auto right = Vec2(position.x + 1, position.y);
-  this->_placeNewRoomAtPosition(right);
+  placements.pushBack(this->_placeNewRoomAtPosition(right));
   
   auto bottom = Vec2(position.x, position.y - 1);
-  this->_placeNewRoomAtPosition(bottom);
+  placements.pushBack(this->_placeNewRoomAtPosition(bottom));
   
   auto left = Vec2(position.x - 1, position.y);
-  this->_placeNewRoomAtPosition(left);
+  placements.pushBack(this->_placeNewRoomAtPosition(left));
+  
+  auto roomPlacedDelegate = this->getRoomPlacedDelegate();
+  if (roomPlacedDelegate) {
+    roomPlacedDelegate(placements);
+  }
 }
 
 #pragma mark - Private Interface
@@ -56,7 +63,9 @@ int Dungeon::indexForPosition(cocos2d::Vec2 position) {
   return position.x * DUNGEON_SIZE + position.y;
 }
 
-void Dungeon::_placeNewRoomAtPosition(Vec2 position) {
+RoomPlacement* Dungeon::_placeNewRoomAtPosition(Vec2 position) {
+  RoomPlacement* placement;
+  
   auto alreadyPlacedRoom = this->getRoomForPosition(position);
   auto newRoomDataSource = this->getNewRoomDataSource();
   
@@ -64,9 +73,10 @@ void Dungeon::_placeNewRoomAtPosition(Vec2 position) {
     DungeonRoom* room = newRoomDataSource();
     this->setRoomForPosition(room, position);
     
-    auto roomPlacedDelegate = this->getRoomPlacedDelegate();
-    if (roomPlacedDelegate) {
-      roomPlacedDelegate(position, room);
-    }
+    placement = RoomPlacement::create();
+    placement->setPosition(position);
+    placement->setRoom(room);
   }
+  
+  return placement;
 }
