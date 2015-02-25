@@ -23,13 +23,14 @@ public:
 private:
   void adjustInitialLayers();
   
-  cocos2d::Layer* _createDungeonLayer();
+  cocos2d::Layer* _createObjectsLayer();
   cocos2d::Layer* _createControlsLayer();
   
-  cocos2d::Layer* getDungeonLayer();
+  cocos2d::Layer* getObjectsLayer();
   cocos2d::Layer* getControlsLayer();
   
-  void _adjustCharacterSpritePosition();
+  cocos2d::Vec2 _positionInScene(cocos2d::Vec2 gameCoordinate);
+  void _adjustCharacterDiceSpritePosition();
   
   cocos2d::Vec2 _centerOfScene();
 };
