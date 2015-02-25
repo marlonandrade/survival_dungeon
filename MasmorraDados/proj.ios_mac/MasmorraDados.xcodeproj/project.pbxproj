@@ -34,8 +34,8 @@
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		BF0840951A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */; };
 		BF0840961A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */; };
-		BF08409A1A9CD84D003F0D76 /* CharacterSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840981A9CD84D003F0D76 /* CharacterSprite.cpp */; };
-		BF08409B1A9CD84D003F0D76 /* CharacterSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840981A9CD84D003F0D76 /* CharacterSprite.cpp */; };
+		BF08409A1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */; };
+		BF08409B1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -146,8 +146,8 @@
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroundLayer.cpp; sourceTree = "<group>"; };
 		BF0840941A9CD506003F0D76 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
-		BF0840981A9CD84D003F0D76 /* CharacterSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterSprite.cpp; sourceTree = "<group>"; };
-		BF0840991A9CD84D003F0D76 /* CharacterSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterSprite.h; sourceTree = "<group>"; };
+		BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterDiceSprite.cpp; sourceTree = "<group>"; };
+		BF0840991A9CD84D003F0D76 /* CharacterDiceSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDiceSprite.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -360,8 +360,8 @@
 		BF0840971A9CD541003F0D76 /* sprite */ = {
 			isa = PBXGroup;
 			children = (
-				BF0840981A9CD84D003F0D76 /* CharacterSprite.cpp */,
-				BF0840991A9CD84D003F0D76 /* CharacterSprite.h */,
+				BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */,
+				BF0840991A9CD84D003F0D76 /* CharacterDiceSprite.h */,
 			);
 			path = sprite;
 			sourceTree = "<group>";
@@ -595,7 +595,7 @@
 				BF5B4B351A8F7616007636DE /* IntroScene.cpp in Sources */,
 				BF5B4B971A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
-				BF08409A1A9CD84D003F0D76 /* CharacterSprite.cpp in Sources */,
+				BF08409A1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */,
 				BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */,
 				BF5B4BEB1A952E8D007636DE /* Dice.cpp in Sources */,
 				BF5B4C1E1A955DA4007636DE /* Monster.cpp in Sources */,
@@ -632,7 +632,7 @@
 				BFAA744D1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,
 				BF5B4C011A953981007636DE /* ActionDice.cpp in Sources */,
 				BF5B4BCD1A94BA91007636DE /* Dungeon.cpp in Sources */,
-				BF08409B1A9CD84D003F0D76 /* CharacterSprite.cpp in Sources */,
+				BF08409B1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */,
 				BF5B4BC91A94BA51007636DE /* Skill.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				BF5B4BDD1A94BC6B007636DE /* GameObject.cpp in Sources */,
