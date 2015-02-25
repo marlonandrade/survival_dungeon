@@ -12,8 +12,7 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
-		   ../../Classes/scene/GameplayScene.cpp \
-		   ../../Classes/scene/IntroScene.cpp \
+		   ../../Classes/layer/BackgroundLayer.cpp \
 		   ../../Classes/model/character/Character.cpp \
 		   ../../Classes/model/dice/face/DiceFace.cpp \
 		   ../../Classes/model/dice/roller/ActionDiceRoller.cpp \
@@ -30,7 +29,9 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/Monster.cpp \
 		   ../../Classes/model/Player.cpp \
 		   ../../Classes/model/Skill.cpp \
-		   ../../Classes/layer/BackgroundLayer.cpp
+		   ../../Classes/scene/GameplayScene.cpp \
+		   ../../Classes/scene/IntroScene.cpp \
+		   ../../Classes/sprite/CharacterSprite.cpp 
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/layer \
@@ -40,7 +41,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/model/dice/face \
 		    $(LOCAL_PATH)/../../Classes/model/dice/roller \
 		    $(LOCAL_PATH)/../../Classes/model/room \
-  		    $(LOCAL_PATH)/../../Classes/scene
+  		    $(LOCAL_PATH)/../../Classes/scene \
+  		    $(LOCAL_PATH)/../../Classes/sprite
 
 # _COCOS_HEADER_ANDROID_BEGIN
 # _COCOS_HEADER_ANDROID_END
