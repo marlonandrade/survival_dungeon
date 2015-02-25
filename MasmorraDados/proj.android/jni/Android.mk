@@ -21,6 +21,9 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/dice/ActionDice.cpp \
 		   ../../Classes/model/dice/Dice.cpp \
 		   ../../Classes/model/room/DungeonRoom.cpp \
+		   ../../Classes/model/room/InitialRoom.cpp \
+		   ../../Classes/model/room/MinorMonsterRoom.cpp \
+		   ../../Classes/model/room/RuneRoom.cpp \
 		   ../../Classes/model/Dungeon.cpp \
 		   ../../Classes/model/Game.cpp \
 		   ../../Classes/model/GameObject.cpp \

@@ -18,6 +18,7 @@
 class Game : public GameObject {
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
   CC_SYNTHESIZE(cocos2d::Vector<DungeonRoom*>, _availableRooms, AvailableRooms);
+  CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
 protected:
   cocos2d::Vec2 _characterPosition;
 public:
@@ -25,12 +26,12 @@ public:
   virtual void setCharacterPosition(cocos2d::Vec2 position);
   
 public:
-  virtual bool init();
+  static Game* createWithRoomPlacedDelegate(RoomPlacedDelegate delegate);
+  virtual bool initWithRoomPlacedDelegate(RoomPlacedDelegate delegate);
   CREATE_FUNC(Game);
   
-  
 private:
-  void _setupInitialPosition();
+  void _setupInitialPosition(RoomPlacedDelegate delegate);
   void _setupAvaiableRooms();
   
   DungeonRoom* _pickRandomRoom();

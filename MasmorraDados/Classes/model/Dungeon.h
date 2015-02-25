@@ -15,10 +15,14 @@
 #include "DungeonRoom.h"
 
 typedef cocos2d::Map<int, DungeonRoom*> DungeonGrid;
+typedef std::function<void (cocos2d::Vec2, DungeonRoom*)> RoomPlacedDelegate;
+typedef std::function<DungeonRoom* (void)> NewRoomDataSource;
 
 class Dungeon : public GameObject {
 private:
   DungeonGrid _rooms;
+  CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
+  CC_SYNTHESIZE(NewRoomDataSource, _newRoomDataSource, NewRoomDataSource);
   
 public:
   virtual bool init();
@@ -26,11 +30,14 @@ public:
   
   void setRoomForPosition(DungeonRoom* room, cocos2d::Vec2 position);
   DungeonRoom* getRoomForPosition(cocos2d::Vec2 position);
+  
   DungeonRoom* getInitialRoom();
   
-  void placeTilesAdjacentTo(cocos2d::Vec2 position);
+  void placeRoomsAdjacentTo(cocos2d::Vec2 position);
 private:
   int indexForPosition(cocos2d::Vec2 position);
+  
+  void _placeNewRoomAtPosition(cocos2d::Vec2 position);
 };
 
 #endif /* defined(__MasmorraDados__Dungeon__) */

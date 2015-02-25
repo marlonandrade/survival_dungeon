@@ -26,7 +26,38 @@ bool GameplayScene::init() {
     return false;
   }
   
-  this->setGame(Game::create());
+  float delayTime = 0;
+  
+  auto game = Game::createWithRoomPlacedDelegate([&](Vec2 position, DungeonRoom* room) {
+    auto roomSprite = Sprite::create(room->getImagePath());
+    
+    auto size = Director::getInstance()->getVisibleSize();
+    auto origin = Director::getInstance()->getVisibleOrigin();
+    
+    roomSprite->setPosition(Vec2(origin.x + size.width - DUNGEON_SIZE - 20,
+                                 origin.y + size.height - DUNGEON_SIZE - 20));
+    
+    this->getDungeonLayer()->addChild(roomSprite);
+    
+    auto center = this->_centerOfScene();
+    auto centerPosition = INITIAL_POSITION;
+    
+    auto offsetX = position.x - centerPosition.x;
+    auto offsetY = position.y - centerPosition.y;
+    
+    auto spritePosition = Vec2(center.x + offsetX * TILE_DIMENSION,
+                               center.y + offsetY * TILE_DIMENSION);
+    
+    auto delay = DelayTime::create(delayTime);
+    auto move = MoveTo::create(0.3, spritePosition);
+    
+    roomSprite->runAction(Sequence::createWithTwoActions(delay, move));
+    
+    delayTime += 0.3;
+    if (delayTime > 2) delayTime = 0;
+  });
+  
+  this->setGame(game);
   this->adjustInitialLayers();
   
   return true;
@@ -51,7 +82,6 @@ Layer* GameplayScene::_createDungeonLayer() {
   auto dungeon = this->getGame()->getDungeon();
   auto initialRoom = dungeon->getInitialRoom();
   auto initialSprite = Sprite::create(initialRoom->getImagePath());
-  initialSprite->setAnchorPoint(Vec2(0.5, 0.5));
   initialSprite->setPosition(this->_centerOfScene());
   
   dungeonLayer->addChild(initialSprite);

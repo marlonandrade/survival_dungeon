@@ -36,38 +36,37 @@ DungeonRoom* Dungeon::getInitialRoom() {
   return this->getRoomForPosition(INITIAL_POSITION);
 }
 
-void Dungeon::placeTilesAdjacentTo(Vec2 position) {
-  auto top = Vec2(position.x, position.y - 1);
-  auto topTile = this->getRoomForPosition(top);
-  if (!topTile) {
-    log("pick top tile");
-    // pick a tile
-  }
+void Dungeon::placeRoomsAdjacentTo(Vec2 position) {
+  auto top = Vec2(position.x, position.y + 1);
+  this->_placeNewRoomAtPosition(top);
   
   auto right = Vec2(position.x + 1, position.y);
-  auto rightTile = this->getRoomForPosition(right);
-  if (!rightTile) {
-    log("pick right tile");
-    // pick a tile
-  }
+  this->_placeNewRoomAtPosition(right);
   
-  auto bottom = Vec2(position.x, position.y + 1);
-  auto bottomTile = this->getRoomForPosition(bottom);
-  if (!bottomTile) {
-    log("pick bottom tile");
-    // pick a tile
-  }
+  auto bottom = Vec2(position.x, position.y - 1);
+  this->_placeNewRoomAtPosition(bottom);
   
   auto left = Vec2(position.x - 1, position.y);
-  auto leftTile = this->getRoomForPosition(left);
-  if (!leftTile) {
-    log("pick left tile");
-    // pick a tile
-  }
+  this->_placeNewRoomAtPosition(left);
 }
 
 #pragma mark - Private Interface
 
 int Dungeon::indexForPosition(cocos2d::Vec2 position) {
   return position.x * DUNGEON_SIZE + position.y;
+}
+
+void Dungeon::_placeNewRoomAtPosition(Vec2 position) {
+  auto alreadyPlacedRoom = this->getRoomForPosition(position);
+  auto newRoomDataSource = this->getNewRoomDataSource();
+  
+  if (!alreadyPlacedRoom && newRoomDataSource) {
+    DungeonRoom* room = newRoomDataSource();
+    this->setRoomForPosition(room, position);
+    
+    auto roomPlacedDelegate = this->getRoomPlacedDelegate();
+    if (roomPlacedDelegate) {
+      roomPlacedDelegate(position, room);
+    }
+  }
 }

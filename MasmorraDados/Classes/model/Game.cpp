@@ -10,32 +10,52 @@
 
 #include "Definitions.h"
 #include "InitialRoom.h"
+#include "MinorMonsterRoom.h"
+#include "RuneRoom.h"
 
 USING_NS_CC;
 
 #pragma mark - Public Interface
 
-void Game::setCharacterPosition(Vec2 position) {
-  _characterPosition = position;
+Game* Game::createWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
+  auto game = new (std::nothrow) Game();
   
-  this->getDungeon()->placeTilesAdjacentTo(position);
+  if (game && game->initWithRoomPlacedDelegate(delegate)) {
+    game->autorelease();
+  } else {
+    CC_SAFE_DELETE(game);
+  }
+  
+  return game;
 }
 
-bool Game::init() {
+bool Game::initWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
   if (!GameObject::init()) {
     return false;
   }
   
   this->_setupAvaiableRooms();
-  this->_setupInitialPosition();
+  this->_setupInitialPosition(delegate);
   
   return true;
 }
 
+
+void Game::setCharacterPosition(Vec2 position) {
+  _characterPosition = position;
+  
+  this->getDungeon()->placeRoomsAdjacentTo(position);
+}
+
 #pragma mark - Private Interface
 
-void Game::_setupInitialPosition() {
+void Game::_setupInitialPosition(RoomPlacedDelegate delegate) {
   auto dungeon = Dungeon::create();
+  dungeon->setRoomPlacedDelegate(delegate);
+  dungeon->setNewRoomDataSource([&]() -> DungeonRoom* {
+    return this->_pickRandomRoom();
+  });
+  
   auto initialRoom = InitialRoom::create();
   dungeon->setRoomForPosition(initialRoom, INITIAL_POSITION);
   
@@ -43,9 +63,26 @@ void Game::_setupInitialPosition() {
 }
 
 void Game::_setupAvaiableRooms() {
+  Vector<DungeonRoom*> rooms;
   
+  for (int i = 0; i < 100; i++) {
+    if (i % 10 < 9) {
+      rooms.pushBack(RuneRoom::create());
+    } else {
+      rooms.pushBack(MinorMonsterRoom::create());
+    }
+  }
+  
+  this->setAvailableRooms(rooms);
 }
 
 DungeonRoom* Game::_pickRandomRoom() {
-  return this->getAvailableRooms().getRandomObject();
+  auto availableRooms = this->getAvailableRooms();
+  
+  auto randomRoom = availableRooms.getRandomObject();
+  if (randomRoom) {
+    availableRooms.eraseObject(randomRoom);
+  }
+  
+  return randomRoom;
 }
