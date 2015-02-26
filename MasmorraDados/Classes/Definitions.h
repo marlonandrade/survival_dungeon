@@ -26,20 +26,25 @@
 
 #define PLACE_ROOM_DURATION       0.5
 #define RETURN_CHARACTER_DURATION 0.2
-#define BW_OVERLAY_DURATION       0.2
+#define OVERLAY_DURATION          0.2
+
+#pragma mark - Colors / Alpha
+
+#define OVERLAY_COLOR             cocos2d::Color4B(0, 0, 0, 0)
+#define OVERLAY_OPACITY           150 // 255 -> fully opaque | 0 -> transparent
 
 #pragma mark - Node Tags
 
-#define OBJECTS_LAYER_TAG          1000
-#define CONTROLS_LAYER_TAG         1001
-#define BW_OVERLAY_LAYER_TAG       1002
-#define CHARACTER_DICE_SPRITE_TAG  2000
+#define OBJECTS_LAYER_TAG         1000
+#define CONTROLS_LAYER_TAG        1001
+#define OVERLAY_LAYER_TAG         1002
+#define CHARACTER_DICE_SPRITE_TAG 2000
 
 #pragma mark - Z Order
 
 #define DUNGEON_ROOM_Z_ORDER 0
 #define GAME_OBJECTS_Z_ORDER 1
-#define BW_OVERLAY_Z_ORDER   5
+#define OVERLAY_Z_ORDER   5
 
 #pragma mark - Errors
 

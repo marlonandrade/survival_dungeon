@@ -231,17 +231,17 @@ void GameplayScene::_adjustCharacterDiceSpritePosition() {
 }
 
 void GameplayScene::_addOverlayWithVisibleNodes(Vector<Node *> visibleNodes) {
-  auto bwLayer = LayerColor::create(Color4B(0, 0, 0, 0));
-  bwLayer->setTag(BW_OVERLAY_LAYER_TAG);
-  this->addChild(bwLayer, BW_OVERLAY_Z_ORDER);
+  auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
+  overlayLayer->setTag(OVERLAY_LAYER_TAG);
+  this->addChild(overlayLayer, OVERLAY_Z_ORDER);
   
-  auto fadeIn = FadeTo::create(BW_OVERLAY_DURATION, 100);
-  bwLayer->runAction(fadeIn);
+  auto fadeIn = FadeTo::create(OVERLAY_DURATION, OVERLAY_OPACITY);
+  overlayLayer->runAction(fadeIn);
   
   for (auto visibleNode : visibleNodes) {
     visibleNode->retain();
     visibleNode->removeFromParent();
-    bwLayer->addChild(visibleNode);
+    overlayLayer->addChild(visibleNode);
     visibleNode->release();
   }
 }
@@ -249,12 +249,12 @@ void GameplayScene::_addOverlayWithVisibleNodes(Vector<Node *> visibleNodes) {
 void GameplayScene::_removeOverlay() {
   this->_disableInteractions();
   
-  auto bwLayer = this->getChildByTag(BW_OVERLAY_LAYER_TAG);
+  auto overlayLayer = this->getChildByTag(OVERLAY_LAYER_TAG);
   
-  auto fadeOut = FadeOut::create(BW_OVERLAY_DURATION);
+  auto fadeOut = FadeOut::create(OVERLAY_DURATION);
   auto delayToFinishCharacterAnimation = DelayTime::create(RETURN_CHARACTER_DURATION);
   auto changeLayer = CallFunc::create([=]() {
-    auto children = bwLayer->getChildren();
+    auto children = overlayLayer->getChildren();
     for (auto node : children) {
       node->retain();
       node->removeFromParent();
@@ -267,7 +267,7 @@ void GameplayScene::_removeOverlay() {
     this->_enableInteractions();
   });
   
-  bwLayer->runAction(Sequence::create(fadeOut, delayToFinishCharacterAnimation,
+  overlayLayer->runAction(Sequence::create(fadeOut, delayToFinishCharacterAnimation,
                                       changeLayer, removeSelf, animationEnded, NULL));
 }
 
@@ -287,7 +287,7 @@ Node* GameplayScene::_getNodeForCharacterPosition() {
 
 Vector<Node*> GameplayScene::_getNodesForAdjacentCharacterPosition() {
   Node* activeLayer = this->getObjectsLayer();
-  auto overlayLayer = this->getChildByTag(BW_OVERLAY_LAYER_TAG);
+  auto overlayLayer = this->getChildByTag(OVERLAY_LAYER_TAG);
   if (overlayLayer) {
     activeLayer = overlayLayer;
   }
