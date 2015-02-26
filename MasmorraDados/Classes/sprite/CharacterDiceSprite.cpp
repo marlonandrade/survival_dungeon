@@ -20,7 +20,6 @@ bool CharacterDiceSprite::init() {
   }
   
   this->setHitpoints(CHARACTER_INITIAL_HP);
-  this->_initializeEventListeners();
   
   return true;
 }
@@ -33,24 +32,6 @@ void CharacterDiceSprite::setHitpoints(int hitpoints) {
 }
 
 #pragma mark - Private Interface
-
-void CharacterDiceSprite::_initializeEventListeners() {
-  auto touchListener = EventListenerTouchOneByOne::create();
-  touchListener->onTouchBegan = [](Touch* touch, Event* event) {
-    auto bounds = event->getCurrentTarget()->getBoundingBox();
-    return bounds.containsPoint(touch->getLocation());
-  };
-  touchListener->onTouchMoved = [=](Touch* touch, Event* event) {
-    this->setPosition(touch->getLocation());
-    log("onTouchMoved (%f, %f)", touch->getLocation().x, touch->getLocation().y);
-  };
-  touchListener->onTouchEnded = [](Touch* touch, Event* event) {
-    log("onTouchEnded (%f, %f)", touch->getLocation().x, touch->getLocation().y);
-  };
-  
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  dispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
-}
 
 std::string CharacterDiceSprite::getFileNameForHitpoints(int hitpoints) {
   std::stringstream stream;

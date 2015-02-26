@@ -39,17 +39,9 @@ DungeonRoom* Dungeon::getInitialRoom() {
 void Dungeon::placeRoomsAdjacentTo(Vec2 position) {
   Vector<RoomPlacement*> placements;
   
-  auto top = Vec2(position.x, position.y + 1);
-  placements.pushBack(this->_placeNewRoomAtPosition(top));
-  
-  auto right = Vec2(position.x + 1, position.y);
-  placements.pushBack(this->_placeNewRoomAtPosition(right));
-  
-  auto bottom = Vec2(position.x, position.y - 1);
-  placements.pushBack(this->_placeNewRoomAtPosition(bottom));
-  
-  auto left = Vec2(position.x - 1, position.y);
-  placements.pushBack(this->_placeNewRoomAtPosition(left));
+  for (Vec2 adjacentPosition : this->adjacentPositionsTo(position)) {
+    placements.pushBack(this->_placeNewRoomAtPosition(adjacentPosition));
+  }
   
   auto roomPlacedDelegate = this->getRoomPlacedDelegate();
   if (roomPlacedDelegate) {
@@ -57,11 +49,33 @@ void Dungeon::placeRoomsAdjacentTo(Vec2 position) {
   }
 }
 
-#pragma mark - Private Interface
+std::vector<Vec2> Dungeon::adjacentPositionsTo(cocos2d::Vec2 position) {
+  std::vector<Vec2> adjacentPositions;
+  
+  auto top = Vec2(position.x, position.y + 1);
+  adjacentPositions.push_back(top);
+  
+  auto right = Vec2(position.x + 1, position.y);
+  adjacentPositions.push_back(right);
+  
+  auto bottom = Vec2(position.x, position.y - 1);
+  adjacentPositions.push_back(bottom);
+  
+  auto left = Vec2(position.x - 1, position.y);
+  adjacentPositions.push_back(left);
+  
+  return adjacentPositions;
+}
+
+std::string Dungeon::nameForPosition(cocos2d::Vec2 position) {
+  return std::to_string(this->indexForPosition(position));
+}
 
 int Dungeon::indexForPosition(cocos2d::Vec2 position) {
   return position.x * DUNGEON_SIZE + position.y;
 }
+
+#pragma mark - Private Interface
 
 RoomPlacement* Dungeon::_placeNewRoomAtPosition(Vec2 position) {
   RoomPlacement* placement;

@@ -18,7 +18,6 @@ public:
   
   void setHitpoints(int hitpoints);
 private:
-  void _initializeEventListeners();
   std::string getFileNameForHitpoints(int hitpoints);
 };
 

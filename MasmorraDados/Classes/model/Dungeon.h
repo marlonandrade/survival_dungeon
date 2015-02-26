@@ -35,9 +35,12 @@ public:
   DungeonRoom* getInitialRoom();
   
   void placeRoomsAdjacentTo(cocos2d::Vec2 position);
-private:
-  int indexForPosition(cocos2d::Vec2 position);
   
+  std::vector<cocos2d::Vec2> adjacentPositionsTo(cocos2d::Vec2 position);
+  
+  std::string nameForPosition(cocos2d::Vec2 position);
+  int indexForPosition(cocos2d::Vec2 position);
+private:
   RoomPlacement* _placeNewRoomAtPosition(cocos2d::Vec2 position);
 };
 
