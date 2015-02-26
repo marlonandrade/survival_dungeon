@@ -34,6 +34,7 @@ private:
   cocos2d::Layer* getControlsLayer();
   
   cocos2d::Vec2 _positionInScene(cocos2d::Vec2 gameCoordinate);
+  cocos2d::Vec2 _positionInGameCoordinate(cocos2d::Vec2 scenePosition);
   std::string _nameForGameCoordinate(cocos2d::Vec2 gameCoordinate);
   
   void _adjustCharacterDiceSpritePosition();

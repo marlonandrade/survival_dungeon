@@ -40,7 +40,11 @@ void Dungeon::placeRoomsAdjacentTo(Vec2 position) {
   Vector<RoomPlacement*> placements;
   
   for (Vec2 adjacentPosition : this->adjacentPositionsTo(position)) {
-    placements.pushBack(this->_placeNewRoomAtPosition(adjacentPosition));
+    auto placement = this->_placeNewRoomAtPosition(adjacentPosition);
+    
+    if (placement) {
+      placements.pushBack(placement);
+    }
   }
   
   auto roomPlacedDelegate = this->getRoomPlacedDelegate();
@@ -78,7 +82,7 @@ int Dungeon::indexForPosition(cocos2d::Vec2 position) {
 #pragma mark - Private Interface
 
 RoomPlacement* Dungeon::_placeNewRoomAtPosition(Vec2 position) {
-  RoomPlacement* placement;
+  RoomPlacement* placement = nullptr;
   
   auto alreadyPlacedRoom = this->getRoomForPosition(position);
   auto newRoomDataSource = this->getNewRoomDataSource();

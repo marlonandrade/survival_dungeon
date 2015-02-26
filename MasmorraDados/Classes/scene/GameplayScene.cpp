@@ -133,24 +133,54 @@ Node* GameplayScene::_createCharacterDiceSprite() {
       visibleNodes.pushBack(this->_getNodeForCharacterPosition());
       visibleNodes.pushBack(this->_getNodesForAdjacentCharacterPosition());
       this->_addOverlayWithVisibleNodes(visibleNodes);
-      
-      // b&w the rest of the game
-      // highlight adjacent tiles
     }
     
     return canMove;
   };
   touchListener->onTouchMoved = [=](Touch* touch, Event* event) {
+    auto touchLocation = touch->getLocation();
+    
+    for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
+      Color3B color = Color3B::WHITE;
+      
+      if (adjacentNode->getBoundingBox().containsPoint(touchLocation)) {
+        color = Color3B(170, 255, 170);
+      }
+      
+      adjacentNode->setColor(color);
+    }
     sprite->setPosition(touch->getLocation());
   };
   touchListener->onTouchEnded = [=](Touch* touch, Event* event) {
-    this->_removeOverlay();
+    bool characterMoved = false;
+    auto touchLocation = touch->getLocation();
     
     auto coordinate = this->getGame()->getCharacterPosition();
-    auto position = this->_positionInScene(coordinate);
-    auto move = MoveTo::create(RETURN_CHARACTER_DURATION, position);
+    auto scenePosition = this->_positionInScene(coordinate);
     
-    sprite->runAction(move);
+    this->_removeOverlay();
+    
+    for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
+      adjacentNode->setColor(Color3B::WHITE);
+      
+      if (adjacentNode->getBoundingBox().containsPoint(touchLocation)) {
+        characterMoved = true;
+        
+        auto newCoordinate = this->_positionInGameCoordinate(touchLocation);
+        auto newPosition = this->_positionInScene(newCoordinate);
+        
+        auto moveNewPosition = MoveTo::create(RETURN_CHARACTER_DURATION, newPosition);
+        auto actionEnded = CallFunc::create([=]() {
+          this->getGame()->setCharacterPosition(newCoordinate);
+        });
+        sprite->runAction(Sequence::create(moveNewPosition, actionEnded, NULL));
+      }
+    }
+    
+    if (!characterMoved) {
+      auto moveBack = MoveTo::create(RETURN_CHARACTER_DURATION, scenePosition);
+      sprite->runAction(moveBack);
+    }
   };
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
@@ -176,6 +206,22 @@ Vec2 GameplayScene::_positionInScene(Vec2 gameCoordinate) {
   
   return Vec2(centerOfScene.x + offsetX * TILE_DIMENSION,
               centerOfScene.y + offsetY * TILE_DIMENSION);
+}
+
+Vec2 GameplayScene::_positionInGameCoordinate(Vec2 scenePosition) {
+  auto centerPosition = INITIAL_POSITION;
+  auto centerOfScene = this->_centerOfScene();
+  
+  auto offsetX = scenePosition.x - centerOfScene.x;
+  auto offsetY = scenePosition.y - centerOfScene.y;
+  
+  auto halfTileDimension = TILE_DIMENSION / 2;
+  
+  offsetX > halfTileDimension ? offsetX += halfTileDimension : offsetX -= halfTileDimension;
+  offsetY > halfTileDimension ? offsetY += halfTileDimension : offsetY -= halfTileDimension;
+  
+  return Vec2(centerPosition.x + int(offsetX / TILE_DIMENSION),
+              centerPosition.y + int(offsetY / TILE_DIMENSION));
 }
 
 void GameplayScene::_adjustCharacterDiceSpritePosition() {
@@ -240,13 +286,19 @@ Node* GameplayScene::_getNodeForCharacterPosition() {
 }
 
 Vector<Node*> GameplayScene::_getNodesForAdjacentCharacterPosition() {
+  Node* activeLayer = this->getObjectsLayer();
+  auto overlayLayer = this->getChildByTag(BW_OVERLAY_LAYER_TAG);
+  if (overlayLayer) {
+    activeLayer = overlayLayer;
+  }
+  
   Vector<Node*> nodes;
   
   auto position = this->getGame()->getCharacterPosition();
   auto adjacentPositions = this->getGame()->getDungeon()->adjacentPositionsTo(position);
   for (auto adjacentPosition : adjacentPositions) {
     auto name = this->getGame()->getDungeon()->nameForPosition(adjacentPosition);
-    nodes.pushBack(this->getObjectsLayer()->getChildByName(name));
+    nodes.pushBack(activeLayer->getChildByName(name));
   }
   
   return nodes;

@@ -24,8 +24,7 @@
 
 #pragma mark - Animation Durations
 
-#define PLACE_ROOM_DURATION       0.2
-//#define PLACE_ROOM_DURATION       0.8
+#define PLACE_ROOM_DURATION       0.7
 #define RETURN_CHARACTER_DURATION 0.2
 #define BW_OVERLAY_DURATION       0.2
 

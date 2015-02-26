@@ -40,7 +40,6 @@ bool Game::initWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
   return true;
 }
 
-
 void Game::setCharacterPosition(Vec2 position) {
   _characterPosition = position;
   
