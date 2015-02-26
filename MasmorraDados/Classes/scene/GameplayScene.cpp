@@ -252,7 +252,6 @@ void GameplayScene::_removeOverlay() {
   auto overlayLayer = this->getObjectsLayer()->getChildByTag(OVERLAY_LAYER_TAG);
   
   auto fadeOut = FadeOut::create(OVERLAY_DURATION);
-  auto delayToFinishCharacterAnimation = DelayTime::create(RETURN_CHARACTER_DURATION);
   auto changeLayer = CallFunc::create([=]() {
     for (auto node : this->getInteractableNodes()) {
       auto oldZOrder = node->getLocalZOrder() - OVERLAY_Z_ORDER;
@@ -264,8 +263,7 @@ void GameplayScene::_removeOverlay() {
     this->_enableInteractions();
   });
   
-  overlayLayer->runAction(Sequence::create(fadeOut, delayToFinishCharacterAnimation,
-                                      changeLayer, removeSelf, animationEnded, NULL));
+  overlayLayer->runAction(Sequence::create(fadeOut, changeLayer, removeSelf, animationEnded, NULL));
 }
 
 Vec2 GameplayScene::_centerOfScene() {
