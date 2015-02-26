@@ -44,7 +44,7 @@ bool GameplayScene::init() {
                                origin.y + size.height - TILE_DIMENSION / 2 - 20);
       roomSprite->setPosition(deckPosition);
       
-      this->getObjectsLayer()->addChild(roomSprite, zOrder);
+      this->_getObjectsLayer()->addChild(roomSprite, zOrder);
       
       auto spritePosition = this->_positionInScene(position);
       
@@ -129,7 +129,7 @@ Node* GameplayScene::_createCharacterDiceSprite() {
     
     if (canMove) {
       Vector<Node*> visibleNodes;
-      visibleNodes.pushBack(this->getObjectsLayer()->getChildByTag(CHARACTER_DICE_SPRITE_TAG));
+      visibleNodes.pushBack(this->_getObjectsLayer()->getChildByTag(CHARACTER_DICE_SPRITE_TAG));
       visibleNodes.pushBack(this->_getNodeForCharacterPosition());
       visibleNodes.pushBack(this->_getNodesForAdjacentCharacterPosition());
       this->_addOverlayWithVisibleNodes(visibleNodes);
@@ -189,11 +189,11 @@ Node* GameplayScene::_createCharacterDiceSprite() {
   return sprite;
 }
 
-Layer* GameplayScene::getObjectsLayer() {
+Layer* GameplayScene::_getObjectsLayer() {
   return (Layer*) this->getChildByTag(OBJECTS_LAYER_TAG);
 }
 
-Layer* GameplayScene::getControlsLayer() {
+Layer* GameplayScene::_getControlsLayer() {
   return (Layer*) this->getChildByTag(CONTROLS_LAYER_TAG);
 }
 
@@ -225,7 +225,7 @@ Vec2 GameplayScene::_positionInGameCoordinate(Vec2 scenePosition) {
 }
 
 void GameplayScene::_adjustCharacterDiceSpritePosition() {
-  auto sprite = this->getObjectsLayer()->getChildByTag(CHARACTER_DICE_SPRITE_TAG);
+  auto sprite = this->_getObjectsLayer()->getChildByTag(CHARACTER_DICE_SPRITE_TAG);
   auto characterPosition = this->getGame()->getCharacterPosition();
   sprite->setPosition(this->_positionInScene(characterPosition));
 }
@@ -233,7 +233,7 @@ void GameplayScene::_adjustCharacterDiceSpritePosition() {
 void GameplayScene::_addOverlayWithVisibleNodes(Vector<Node *> visibleNodes) {
   auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
   overlayLayer->setTag(OVERLAY_LAYER_TAG);
-  this->getObjectsLayer()->addChild(overlayLayer, OVERLAY_Z_ORDER);
+  this->_getObjectsLayer()->addChild(overlayLayer, OVERLAY_Z_ORDER);
   
   auto fadeIn = FadeTo::create(OVERLAY_DURATION, OVERLAY_OPACITY);
   overlayLayer->runAction(fadeIn);
@@ -249,7 +249,7 @@ void GameplayScene::_addOverlayWithVisibleNodes(Vector<Node *> visibleNodes) {
 void GameplayScene::_removeOverlay() {
   this->_disableInteractions();
   
-  auto overlayLayer = this->getObjectsLayer()->getChildByTag(OVERLAY_LAYER_TAG);
+  auto overlayLayer = this->_getObjectsLayer()->getChildByTag(OVERLAY_LAYER_TAG);
   
   auto fadeOut = FadeOut::create(OVERLAY_DURATION);
   auto changeLayer = CallFunc::create([=]() {
@@ -277,11 +277,11 @@ Vec2 GameplayScene::_centerOfScene() {
 Node* GameplayScene::_getNodeForCharacterPosition() {
   auto position = this->getGame()->getCharacterPosition();
   auto name = this->getGame()->getDungeon()->nameForPosition(position);
-  return this->getObjectsLayer()->getChildByName(name);
+  return this->_getObjectsLayer()->getChildByName(name);
 }
 
 Vector<Node*> GameplayScene::_getNodesForAdjacentCharacterPosition() {
-  Node* activeLayer = this->getObjectsLayer();
+  Node* activeLayer = this->_getObjectsLayer();
   auto overlayLayer = this->getChildByTag(OVERLAY_LAYER_TAG);
   if (overlayLayer) {
     activeLayer = overlayLayer;

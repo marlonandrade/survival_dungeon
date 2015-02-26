@@ -31,8 +31,8 @@ private:
   
   cocos2d::Node* _createCharacterDiceSprite();
   
-  cocos2d::Layer* getObjectsLayer();
-  cocos2d::Layer* getControlsLayer();
+  cocos2d::Layer* _getObjectsLayer();
+  cocos2d::Layer* _getControlsLayer();
   
   cocos2d::Vec2 _positionInScene(cocos2d::Vec2 gameCoordinate);
   cocos2d::Vec2 _positionInGameCoordinate(cocos2d::Vec2 scenePosition);
