@@ -15,6 +15,7 @@
 
 class GameplayScene : public cocos2d::Scene {
   CC_SYNTHESIZE_RETAIN(Game*, _game, Game);
+  CC_SYNTHESIZE(cocos2d::Vector<cocos2d::Node*>, _interactableNodes, InteractableNodes);
 protected:
   bool _userInteractionEnabled;
   

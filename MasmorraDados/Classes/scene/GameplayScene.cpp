@@ -233,33 +233,30 @@ void GameplayScene::_adjustCharacterDiceSpritePosition() {
 void GameplayScene::_addOverlayWithVisibleNodes(Vector<Node *> visibleNodes) {
   auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
   overlayLayer->setTag(OVERLAY_LAYER_TAG);
-  this->addChild(overlayLayer, OVERLAY_Z_ORDER);
+  this->getObjectsLayer()->addChild(overlayLayer, OVERLAY_Z_ORDER);
   
   auto fadeIn = FadeTo::create(OVERLAY_DURATION, OVERLAY_OPACITY);
   overlayLayer->runAction(fadeIn);
   
   for (auto visibleNode : visibleNodes) {
-    visibleNode->retain();
-    visibleNode->removeFromParent();
-    overlayLayer->addChild(visibleNode);
-    visibleNode->release();
+    auto newZOrder = visibleNode->getLocalZOrder() + OVERLAY_Z_ORDER;
+    visibleNode->setLocalZOrder(newZOrder);
   }
+  
+  this->setInteractableNodes(visibleNodes);
 }
 
 void GameplayScene::_removeOverlay() {
   this->_disableInteractions();
   
-  auto overlayLayer = this->getChildByTag(OVERLAY_LAYER_TAG);
+  auto overlayLayer = this->getObjectsLayer()->getChildByTag(OVERLAY_LAYER_TAG);
   
   auto fadeOut = FadeOut::create(OVERLAY_DURATION);
   auto delayToFinishCharacterAnimation = DelayTime::create(RETURN_CHARACTER_DURATION);
   auto changeLayer = CallFunc::create([=]() {
-    auto children = overlayLayer->getChildren();
-    for (auto node : children) {
-      node->retain();
-      node->removeFromParent();
-      this->getObjectsLayer()->addChild(node);
-      node->release();
+    for (auto node : this->getInteractableNodes()) {
+      auto oldZOrder = node->getLocalZOrder() - OVERLAY_Z_ORDER;
+      node->setLocalZOrder(oldZOrder);
     }
   });
   auto removeSelf = RemoveSelf::create();

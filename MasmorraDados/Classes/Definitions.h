@@ -44,7 +44,7 @@
 
 #define DUNGEON_ROOM_Z_ORDER 0
 #define GAME_OBJECTS_Z_ORDER 1
-#define OVERLAY_Z_ORDER   5
+#define OVERLAY_Z_ORDER      10
 
 #pragma mark - Errors
 
