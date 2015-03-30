@@ -24,7 +24,9 @@ bool GameplayScene::init() {
   this->_enableInteractions();
   
   auto game = Game::createWithRoomPlacedDelegate([&](Vector<RoomPlacement*> placements) {
-    this->_disableInteractions();
+    if (placements.size() > 0) {
+      this->_disableInteractions();
+    }
     
     float delayTime = 0;
     int zOrder = placements.size();
@@ -84,6 +86,24 @@ void GameplayScene::adjustInitialLayers() {
   auto objectsLayer = this->_createObjectsLayer();
   this->addChild(objectsLayer, -1);
   
+  auto touchListener = EventListenerTouchOneByOne::create();
+  touchListener->onTouchBegan = [=](Touch* touch, Event* event) {
+    return true;
+  };
+  touchListener->onTouchMoved = [=](Touch* touch, Event* event) {
+    auto delta = touch->getDelta();
+    
+    auto currentPosition = objectsLayer->getPosition();
+    auto newPosition = Vec2(currentPosition.x + delta.x,
+                            currentPosition.y + delta.y);
+    
+    backgroundLayer->setPosition(newPosition);
+    objectsLayer->setPosition(newPosition);
+  };
+  
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->addEventListenerWithSceneGraphPriority(touchListener, objectsLayer);
+  
   auto controlsLayer = this->_createControlsLayer();
   this->addChild(controlsLayer, 1);
   
@@ -105,7 +125,7 @@ Layer* GameplayScene::_createObjectsLayer() {
   objectsLayer->addChild(initialSprite, DUNGEON_ROOM_Z_ORDER);
   
   objectsLayer->addChild(this->_createCharacterDiceSprite(), GAME_OBJECTS_Z_ORDER);
-  
+    
   return objectsLayer;
 }
 
@@ -121,9 +141,18 @@ Node* GameplayScene::_createCharacterDiceSprite() {
   sprite->setTag(CHARACTER_DICE_SPRITE_TAG);
   
   auto touchListener = EventListenerTouchOneByOne::create();
+  touchListener->setSwallowTouches(true);
   touchListener->onTouchBegan = [&](Touch* touch, Event* event) {
-    auto bounds = event->getCurrentTarget()->getBoundingBox();
-    auto touchInSprite = bounds.containsPoint(touch->getLocation());
+    auto target = event->getCurrentTarget();
+    auto layer = target->getParent();
+    
+    auto bounds = target->getBoundingBox();
+    auto touchLocation = layer->convertTouchToNodeSpace(touch);
+    
+    auto touchInSprite = bounds.containsPoint(touchLocation);
+    
+    log("%d", touchInSprite);
+    
     bool containsBoot = true;
     auto canMove = this->_isInteractionEnabled() && touchInSprite && containsBoot;
     
@@ -138,7 +167,11 @@ Node* GameplayScene::_createCharacterDiceSprite() {
     return canMove;
   };
   touchListener->onTouchMoved = [=](Touch* touch, Event* event) {
-    auto touchLocation = touch->getLocation();
+    auto target = event->getCurrentTarget();
+    auto layer = target->getParent();
+    
+    auto bounds = target->getBoundingBox();
+    auto touchLocation = layer->convertTouchToNodeSpace(touch);
     
     for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
       Color3B color = Color3B::WHITE;
@@ -149,11 +182,17 @@ Node* GameplayScene::_createCharacterDiceSprite() {
       
       adjacentNode->setColor(color);
     }
-    sprite->setPosition(touch->getLocation());
+    
+    sprite->setPosition(touchLocation);
   };
   touchListener->onTouchEnded = [=](Touch* touch, Event* event) {
+    auto target = event->getCurrentTarget();
+    auto layer = target->getParent();
+    
+    auto bounds = target->getBoundingBox();
+    auto touchLocation = layer->convertTouchToNodeSpace(touch);
+    
     bool characterMoved = false;
-    auto touchLocation = touch->getLocation();
     
     auto coordinate = this->getGame()->getCharacterPosition();
     auto scenePosition = this->_positionInScene(coordinate);
@@ -231,9 +270,14 @@ void GameplayScene::_adjustCharacterDiceSpritePosition() {
 }
 
 void GameplayScene::_addOverlayWithVisibleNodes(Vector<Node *> visibleNodes) {
+  auto objectsLayer = this->_getObjectsLayer();
+  
   auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
   overlayLayer->setTag(OVERLAY_LAYER_TAG);
-  this->_getObjectsLayer()->addChild(overlayLayer, OVERLAY_Z_ORDER);
+  overlayLayer->setPosition(Vec2(-objectsLayer->getPosition().x,
+                                 -objectsLayer->getPosition().y));
+  
+  objectsLayer->addChild(overlayLayer, OVERLAY_Z_ORDER);
   
   auto fadeIn = FadeTo::create(OVERLAY_DURATION, OVERLAY_OPACITY);
   overlayLayer->runAction(fadeIn);
