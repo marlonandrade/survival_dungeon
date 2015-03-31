@@ -85,18 +85,37 @@ void GameplayScene::adjustInitialLayers() {
   
   auto touchListener = EventListenerTouchOneByOne::create();
   touchListener->onTouchBegan = [=](Touch* touch, Event* event) {
-    log("scroll onTouchBegan");
-    
     return true;
   };
   touchListener->onTouchMoved = [=](Touch* touch, Event* event) {
-    log("scroll onTouchMoved");
-    
     auto delta = touch->getDelta();
     
     auto currentPosition = scrollableLayer->getPosition();
-    auto newPosition = Vec2(currentPosition.x + delta.x,
-                            currentPosition.y + delta.y);
+    
+    auto x = currentPosition.x + delta.x;
+    auto y = currentPosition.y + delta.y;
+    
+    auto margin = TILE_DIMENSION * 0.5;
+    
+    auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
+    auto visibleSize = Director::getInstance()->getVisibleSize();
+    
+    auto maxX = visibleOrigin.x + visibleSize.width + margin;
+    auto minX = visibleOrigin.x - margin;
+    auto maxY = visibleOrigin.y + visibleSize.height + margin;
+    auto minY = visibleOrigin.y - margin;
+    
+    log("(%f, %f)", x, y);
+    log("(%f, %f, %f, %f)", maxX, minX, maxY, minY);
+    
+    if (x >= maxX) x = maxX;
+    if (x <= minX) x = minX;
+    if (y >= maxY) y = maxY;
+    if (y <= minY) y = minY;
+    
+    log("(%f, %f)", x, y);
+    
+    auto newPosition = Vec2(x, y);
     
     scrollableLayer->setPosition(newPosition);
   };
@@ -146,8 +165,6 @@ Node* GameplayScene::_createCharacterDiceSprite() {
   auto touchListener = EventListenerTouchOneByOne::create();
   touchListener->setSwallowTouches(true);
   touchListener->onTouchBegan = [&](Touch* touch, Event* event) {
-    log("char onTouchBegan");
-    
     auto target = event->getCurrentTarget();
     auto layer = target->getParent();
     
@@ -167,13 +184,9 @@ Node* GameplayScene::_createCharacterDiceSprite() {
       this->_addOverlayWithVisibleNodes(visibleNodes);
     }
     
-    log("can move: %d", canMove);
-    
     return canMove;
   };
   touchListener->onTouchMoved = [=](Touch* touch, Event* event) {
-    log("char onTouchMoved");
-    
     auto target = event->getCurrentTarget();
     auto layer = target->getParent();
     

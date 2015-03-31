@@ -24,6 +24,9 @@ bool Dungeon::init() {
 
 void Dungeon::setRoomForPosition(DungeonRoom* room, Vec2 position) {
   auto index = this->indexForPosition(position);
+  
+  // armazenar top, left, bottom e right
+  
   _rooms.insert(index, room);
 }
 
