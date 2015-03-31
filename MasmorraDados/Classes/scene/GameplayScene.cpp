@@ -80,32 +80,35 @@ bool GameplayScene::init() {
 void GameplayScene::adjustInitialLayers() {
   auto center = this->_centerOfScene();
   
-  auto backgroundLayer = BackgroundLayer::create();
-  this->addChild(backgroundLayer, -2);
-  
-  auto objectsLayer = this->_createObjectsLayer();
-  this->addChild(objectsLayer, -1);
+  auto scrollableLayer = Layer::create();
+  scrollableLayer->setTag(SCROLLABLE_LAYER_TAG);
   
   auto touchListener = EventListenerTouchOneByOne::create();
   touchListener->onTouchBegan = [=](Touch* touch, Event* event) {
+    log("scroll onTouchBegan");
+    
     return true;
   };
   touchListener->onTouchMoved = [=](Touch* touch, Event* event) {
+    log("scroll onTouchMoved");
+    
     auto delta = touch->getDelta();
     
-    auto currentPosition = objectsLayer->getPosition();
+    auto currentPosition = scrollableLayer->getPosition();
     auto newPosition = Vec2(currentPosition.x + delta.x,
                             currentPosition.y + delta.y);
     
-    backgroundLayer->setPosition(newPosition);
-    objectsLayer->setPosition(newPosition);
+    scrollableLayer->setPosition(newPosition);
   };
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
-  dispatcher->addEventListenerWithSceneGraphPriority(touchListener, objectsLayer);
+  dispatcher->addEventListenerWithSceneGraphPriority(touchListener, scrollableLayer);
   
-  auto controlsLayer = this->_createControlsLayer();
-  this->addChild(controlsLayer, 1);
+  scrollableLayer->addChild(BackgroundLayer::create(), -10);
+  scrollableLayer->addChild(this->_createObjectsLayer(), 0);
+  
+  this->addChild(scrollableLayer, 0);
+  this->addChild(this->_createControlsLayer(), 1);
   
   this->getGame()->setCharacterPosition(INITIAL_POSITION);
   this->_adjustCharacterDiceSpritePosition();
@@ -143,6 +146,8 @@ Node* GameplayScene::_createCharacterDiceSprite() {
   auto touchListener = EventListenerTouchOneByOne::create();
   touchListener->setSwallowTouches(true);
   touchListener->onTouchBegan = [&](Touch* touch, Event* event) {
+    log("char onTouchBegan");
+    
     auto target = event->getCurrentTarget();
     auto layer = target->getParent();
     
@@ -150,8 +155,6 @@ Node* GameplayScene::_createCharacterDiceSprite() {
     auto touchLocation = layer->convertTouchToNodeSpace(touch);
     
     auto touchInSprite = bounds.containsPoint(touchLocation);
-    
-    log("%d", touchInSprite);
     
     bool containsBoot = true;
     auto canMove = this->_isInteractionEnabled() && touchInSprite && containsBoot;
@@ -164,9 +167,13 @@ Node* GameplayScene::_createCharacterDiceSprite() {
       this->_addOverlayWithVisibleNodes(visibleNodes);
     }
     
+    log("can move: %d", canMove);
+    
     return canMove;
   };
   touchListener->onTouchMoved = [=](Touch* touch, Event* event) {
+    log("char onTouchMoved");
+    
     auto target = event->getCurrentTarget();
     auto layer = target->getParent();
     
@@ -228,12 +235,18 @@ Node* GameplayScene::_createCharacterDiceSprite() {
   return sprite;
 }
 
+Layer* GameplayScene::_getScrollableLayer() {
+  return (Layer*) this->getChildByTag(SCROLLABLE_LAYER_TAG);
+}
+
 Layer* GameplayScene::_getObjectsLayer() {
-  return (Layer*) this->getChildByTag(OBJECTS_LAYER_TAG);
+  auto scrollableLayer = this->_getScrollableLayer();
+  return (Layer*) scrollableLayer->getChildByTag(OBJECTS_LAYER_TAG);
 }
 
 Layer* GameplayScene::_getControlsLayer() {
-  return (Layer*) this->getChildByTag(CONTROLS_LAYER_TAG);
+  auto scrollableLayer = this->_getScrollableLayer();
+  return (Layer*) scrollableLayer->getChildByTag(CONTROLS_LAYER_TAG);
 }
 
 Vec2 GameplayScene::_positionInScene(Vec2 gameCoordinate) {
@@ -271,11 +284,12 @@ void GameplayScene::_adjustCharacterDiceSpritePosition() {
 
 void GameplayScene::_addOverlayWithVisibleNodes(Vector<Node *> visibleNodes) {
   auto objectsLayer = this->_getObjectsLayer();
+  auto scrollableLayer = this->_getScrollableLayer();
   
   auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
   overlayLayer->setTag(OVERLAY_LAYER_TAG);
-  overlayLayer->setPosition(Vec2(-objectsLayer->getPosition().x,
-                                 -objectsLayer->getPosition().y));
+  overlayLayer->setPosition(Vec2(-scrollableLayer->getPosition().x,
+                                 -scrollableLayer->getPosition().y));
   
   objectsLayer->addChild(overlayLayer, OVERLAY_Z_ORDER);
   

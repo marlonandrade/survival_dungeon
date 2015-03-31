@@ -31,6 +31,7 @@ private:
   
   cocos2d::Node* _createCharacterDiceSprite();
   
+  cocos2d::Layer* _getScrollableLayer();
   cocos2d::Layer* _getObjectsLayer();
   cocos2d::Layer* _getControlsLayer();
   

@@ -38,6 +38,7 @@
 #define OBJECTS_LAYER_TAG         1000
 #define CONTROLS_LAYER_TAG        1001
 #define OVERLAY_LAYER_TAG         1002
+#define SCROLLABLE_LAYER_TAG      1003
 #define CHARACTER_DICE_SPRITE_TAG 2000
 
 #pragma mark - Z Order
