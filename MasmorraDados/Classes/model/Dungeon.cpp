@@ -19,13 +19,32 @@ bool Dungeon::init() {
     return false;
   }
   
+  this->setTopMostRoomPosition(INITIAL_POSITION);
+  this->setRightMostRoomPosition(INITIAL_POSITION);
+  this->setBottomMostRoomPosition(INITIAL_POSITION);
+  this->setLeftMostRoomPosition(INITIAL_POSITION);
+  
   return true;
 }
 
 void Dungeon::setRoomForPosition(DungeonRoom* room, Vec2 position) {
   auto index = this->indexForPosition(position);
   
-  // armazenar top, left, bottom e right
+  if (position.y > this->getTopMostRoomPosition().y) {
+    this->setTopMostRoomPosition(position);
+  }
+  
+  if (position.x > this->getRightMostRoomPosition().x) {
+    this->setRightMostRoomPosition(position);
+  }
+  
+  if (position.y < this->getBottomMostRoomPosition().y) {
+    this->setBottomMostRoomPosition(position);
+  }
+  
+  if (position.x < this->getLeftMostRoomPosition().x) {
+    this->setLeftMostRoomPosition(position);
+  }
   
   _rooms.insert(index, room);
 }
@@ -56,7 +75,7 @@ void Dungeon::placeRoomsAdjacentTo(Vec2 position) {
   }
 }
 
-std::vector<Vec2> Dungeon::adjacentPositionsTo(cocos2d::Vec2 position) {
+std::vector<Vec2> Dungeon::adjacentPositionsTo(Vec2 position) {
   std::vector<Vec2> adjacentPositions;
   
   auto top = Vec2(position.x, position.y + 1);
@@ -74,12 +93,44 @@ std::vector<Vec2> Dungeon::adjacentPositionsTo(cocos2d::Vec2 position) {
   return adjacentPositions;
 }
 
-std::string Dungeon::nameForPosition(cocos2d::Vec2 position) {
+std::string Dungeon::nameForPosition(Vec2 position) {
   return std::to_string(this->indexForPosition(position));
 }
 
-int Dungeon::indexForPosition(cocos2d::Vec2 position) {
+int Dungeon::indexForPosition(Vec2 position) {
   return position.x * DUNGEON_SIZE + position.y;
+}
+
+void Dungeon::setTopMostRoomPosition(Vec2 position) {
+  _topMostRoomPosition = position;
+}
+
+Vec2 Dungeon::getTopMostRoomPosition() {
+  return _topMostRoomPosition;
+}
+
+void Dungeon::setRightMostRoomPosition(Vec2 position) {
+  _rightMostRoomPosition = position;
+}
+
+Vec2 Dungeon::getRightMostRoomPosition() {
+  return _rightMostRoomPosition;
+}
+
+void Dungeon::setBottomMostRoomPosition(Vec2 position) {
+  _bottomMostRoomPosition = position;
+}
+
+Vec2 Dungeon::getBottomMostRoomPosition() {
+  return _bottomMostRoomPosition;
+}
+
+void Dungeon::setLeftMostRoomPosition(Vec2 position) {
+  _leftMostRoomPosition = position;
+}
+
+Vec2 Dungeon::getLeftMostRoomPosition() {
+  return _leftMostRoomPosition;
 }
 
 #pragma mark - Private Interface
