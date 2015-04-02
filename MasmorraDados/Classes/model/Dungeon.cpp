@@ -94,7 +94,9 @@ std::vector<Vec2> Dungeon::adjacentPositionsTo(Vec2 position) {
 }
 
 std::string Dungeon::nameForPosition(Vec2 position) {
-  return std::to_string(this->indexForPosition(position));
+  std::stringstream ss;
+  ss << this->indexForPosition(position);
+  return ss.str();
 }
 
 int Dungeon::indexForPosition(Vec2 position) {
