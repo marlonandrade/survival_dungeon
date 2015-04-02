@@ -25,6 +25,11 @@ private:
   CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
   CC_SYNTHESIZE(NewRoomDataSource, _newRoomDataSource, NewRoomDataSource);
   
+  cocos2d::Vec2 _topMostRoomPosition;
+  cocos2d::Vec2 _rightMostRoomPosition;
+  cocos2d::Vec2 _bottomMostRoomPosition;
+  cocos2d::Vec2 _leftMostRoomPosition;
+  
 public:
   virtual bool init();
   CREATE_FUNC(Dungeon);
@@ -40,6 +45,18 @@ public:
   
   std::string nameForPosition(cocos2d::Vec2 position);
   int indexForPosition(cocos2d::Vec2 position);
+  
+  void setTopMostRoomPosition(cocos2d::Vec2 position);
+  cocos2d::Vec2 getTopMostRoomPosition();
+  
+  void setRightMostRoomPosition(cocos2d::Vec2 position);
+  cocos2d::Vec2 getRightMostRoomPosition();
+  
+  void setBottomMostRoomPosition(cocos2d::Vec2 position);
+  cocos2d::Vec2 getBottomMostRoomPosition();
+  
+  void setLeftMostRoomPosition(cocos2d::Vec2 position);
+  cocos2d::Vec2 getLeftMostRoomPosition();
 private:
   RoomPlacement* _placeNewRoomAtPosition(cocos2d::Vec2 position);
 };

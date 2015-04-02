@@ -100,20 +100,51 @@ void GameplayScene::adjustInitialLayers() {
     auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
     auto visibleSize = Director::getInstance()->getVisibleSize();
     
-    auto maxX = visibleOrigin.x + visibleSize.width + margin;
-    auto minX = visibleOrigin.x - margin;
-    auto maxY = visibleOrigin.y + visibleSize.height + margin;
-    auto minY = visibleOrigin.y - margin;
+    auto top = this->getGame()->getDungeon()->getTopMostRoomPosition();
+    auto right = this->getGame()->getDungeon()->getRightMostRoomPosition();
+    auto bottom = this->getGame()->getDungeon()->getBottomMostRoomPosition();
+    auto left = this->getGame()->getDungeon()->getLeftMostRoomPosition();
     
-    log("(%f, %f)", x, y);
-    log("(%f, %f, %f, %f)", maxX, minX, maxY, minY);
+    auto initial = INITIAL_POSITION;
+    
+    auto topDelta = abs(top.y - initial.y);
+    auto rightDelta = abs(right.x - initial.x);
+    auto bottomDelta = abs(bottom.y - initial.y);
+    auto leftDelta = abs(left.x - initial.x);
+    
+    auto horizontalNoScroll = visibleSize.width / 2;
+    auto verticalNoScroll = visibleSize.height / 2;
+    
+    auto topDistance = verticalNoScroll - (topDelta * TILE_DIMENSION + TILE_DIMENSION / 2);
+    auto rightDistance = horizontalNoScroll - (rightDelta * TILE_DIMENSION + TILE_DIMENSION / 2);
+    auto bottomDistance = verticalNoScroll - (bottomDelta * TILE_DIMENSION + TILE_DIMENSION / 2);
+    auto leftDistance = horizontalNoScroll - (leftDelta * TILE_DIMENSION + TILE_DIMENSION / 2);
+    
+    auto maxY = visibleOrigin.y + margin;
+    auto maxX = visibleOrigin.x + margin;
+    auto minY = visibleOrigin.y - margin;
+    auto minX = visibleOrigin.x - margin;
+    
+    if (topDistance < 0) {
+      minY += topDistance;
+    }
+    
+    if (rightDistance < 0) {
+      minX += rightDistance;
+    }
+    
+    if (bottomDistance < 0) {
+      maxY -= bottomDistance;
+    }
+    
+    if (leftDistance < 0) {
+      maxX -= leftDistance;
+    }
     
     if (x >= maxX) x = maxX;
-    if (x <= minX) x = minX;
     if (y >= maxY) y = maxY;
+    if (x <= minX) x = minX;
     if (y <= minY) y = minY;
-    
-    log("(%f, %f)", x, y);
     
     auto newPosition = Vec2(x, y);
     
