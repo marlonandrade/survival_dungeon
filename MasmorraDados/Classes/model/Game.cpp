@@ -65,7 +65,11 @@ void Game::_setupAvaiableRooms() {
   Vector<DungeonRoom*> rooms;
   
   for (int i = 0; i < 100; i++) {
-    rooms.pushBack(RuneRoom::create());
+    if (i % 10 > 2) {
+      rooms.pushBack(RuneRoom::create());
+    } else {
+      rooms.pushBack(MinorMonsterRoom::create());
+    }
   }
   
   this->setAvailableRooms(rooms);
