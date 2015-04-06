@@ -12,6 +12,7 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
+		   ../../Classes/delegate/CharacterMoveDelegate.cpp \
 		   ../../Classes/layer/BackgroundLayer.cpp \
 		   ../../Classes/layer/ScrollableLayer.cpp \
 		   ../../Classes/model/character/Character.cpp \
@@ -36,6 +37,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/sprite/CharacterDiceSprite.cpp 
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
+		    $(LOCAL_PATH)/../../Classes/delegate \
 		    $(LOCAL_PATH)/../../Classes/layer \
 		    $(LOCAL_PATH)/../../Classes/model \
 		    $(LOCAL_PATH)/../../Classes/model/character \

@@ -11,9 +11,10 @@
 
 #include "cocos2d.h"
 
+#include "CharacterMoveDelegate.h"
 #include "Game.h"
 
-class GameplayScene : public cocos2d::Scene {
+class GameplayScene : public cocos2d::Scene, CharacterMoveDelegate {
   CC_SYNTHESIZE_RETAIN(Game*, _game, Game);
   CC_SYNTHESIZE(cocos2d::Vector<cocos2d::Node*>, _interactableNodes, InteractableNodes);
 protected:
@@ -52,6 +53,14 @@ private:
   bool _isInteractionEnabled();
   void _disableInteractions();
   void _enableInteractions();
+  
+public:
+  virtual bool canCharacterMove();
+  virtual void characterWillMove(CharacterDiceSprite* sprite);
+  virtual void characterIsMovingToLocation(cocos2d::Vec2 location);
+  virtual bool canCharacterMoveToLocation(cocos2d::Vec2 location);
+  virtual void characterMovedToLocation(CharacterDiceSprite* sprite, cocos2d::Vec2 location);
+  virtual void characterDidNotMove(CharacterDiceSprite* sprite);
 };
 
 #endif /* defined(__MasmorraDados__GameplayScene__) */

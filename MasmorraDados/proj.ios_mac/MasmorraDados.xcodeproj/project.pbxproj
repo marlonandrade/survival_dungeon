@@ -144,6 +144,7 @@
 		5087E78A17EB975400C73F5D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		BF0712431AD2E68C002252A9 /* CharacterMoveDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterMoveDelegate.h; sourceTree = "<group>"; };
 		BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroundLayer.cpp; sourceTree = "<group>"; };
 		BF0840941A9CD506003F0D76 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterDiceSprite.cpp; sourceTree = "<group>"; };
@@ -328,6 +329,7 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BF0712411AD2E679002252A9 /* delegate */,
 				BF0840921A9CD506003F0D76 /* layer */,
 				BF5B4B311A8F75FA007636DE /* model */,
 				BF5B4B321A8F75FA007636DE /* scene */,
@@ -348,6 +350,14 @@
 				503AE10417EB98FF00D1A890 /* Prefix.pch */,
 			);
 			name = mac;
+			sourceTree = "<group>";
+		};
+		BF0712411AD2E679002252A9 /* delegate */ = {
+			isa = PBXGroup;
+			children = (
+				BF0712431AD2E68C002252A9 /* CharacterMoveDelegate.h */,
+			);
+			path = delegate;
 			sourceTree = "<group>";
 		};
 		BF0840921A9CD506003F0D76 /* layer */ = {

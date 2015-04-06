@@ -119,93 +119,7 @@ Layer* GameplayScene::_createControlsLayer() {
 }
 
 Node* GameplayScene::_createCharacterDiceSprite() {
-  auto sprite = CharacterDiceSprite::create();
-  sprite->setTag(CHARACTER_DICE_SPRITE_TAG);
-  
-  auto touchListener = EventListenerTouchOneByOne::create();
-  touchListener->setSwallowTouches(true);
-  touchListener->onTouchBegan = [&](Touch* touch, Event* event) {
-    auto target = event->getCurrentTarget();
-    auto layer = target->getParent();
-    
-    auto bounds = target->getBoundingBox();
-    auto touchLocation = layer->convertTouchToNodeSpace(touch);
-    
-    auto touchInSprite = bounds.containsPoint(touchLocation);
-    
-    bool containsBoot = true;
-    auto canMove = this->_isInteractionEnabled() && touchInSprite && containsBoot;
-    
-    if (canMove) {
-      Vector<Node*> visibleNodes;
-      visibleNodes.pushBack(this->_getObjectsLayer()->getChildByTag(CHARACTER_DICE_SPRITE_TAG));
-      visibleNodes.pushBack(this->_getNodeForCharacterPosition());
-      visibleNodes.pushBack(this->_getNodesForAdjacentCharacterPosition());
-      this->_addOverlayWithVisibleNodes(visibleNodes);
-    }
-    
-    return canMove;
-  };
-  touchListener->onTouchMoved = [=](Touch* touch, Event* event) {
-    auto target = event->getCurrentTarget();
-    auto layer = target->getParent();
-    
-    auto bounds = target->getBoundingBox();
-    auto touchLocation = layer->convertTouchToNodeSpace(touch);
-    
-    for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
-      Color3B color = Color3B::WHITE;
-      
-      if (adjacentNode->getBoundingBox().containsPoint(touchLocation)) {
-        color = Color3B(170, 255, 170);
-      }
-      
-      adjacentNode->setColor(color);
-    }
-    
-    sprite->setPosition(touchLocation);
-  };
-  touchListener->onTouchEnded = [=](Touch* touch, Event* event) {
-    auto target = event->getCurrentTarget();
-    auto layer = target->getParent();
-    
-    auto bounds = target->getBoundingBox();
-    auto touchLocation = layer->convertTouchToNodeSpace(touch);
-    
-    bool characterMoved = false;
-    
-    auto coordinate = this->getGame()->getCharacterPosition();
-    auto scenePosition = this->_positionInScene(coordinate);
-    
-    this->_removeOverlay();
-    
-    for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
-      adjacentNode->setColor(Color3B::WHITE);
-      
-      if (adjacentNode->getBoundingBox().containsPoint(touchLocation)) {
-        characterMoved = true;
-        
-        auto newCoordinate = this->_positionInGameCoordinate(touchLocation);
-        auto newPosition = this->_positionInScene(newCoordinate);
-        
-        auto moveNewPosition = MoveTo::create(RETURN_CHARACTER_DURATION, newPosition);
-        auto actionEnded = CallFunc::create([=]() {
-          this->getGame()->setCharacterPosition(newCoordinate);
-        });
-        sprite->runAction(Sequence::create(moveNewPosition, actionEnded, NULL));
-      }
-    }
-    
-    if (!characterMoved) {
-      auto moveBack = MoveTo::create(RETURN_CHARACTER_DURATION, scenePosition);
-      sprite->runAction(moveBack);
-    }
-  };
-  
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  dispatcher->addEventListenerWithSceneGraphPriority(touchListener, sprite);
-  
-  return sprite;
+  return CharacterDiceSprite::createWithDelegate(this);
 }
 
 Layer* GameplayScene::_getScrollableLayer() {
@@ -340,4 +254,75 @@ void GameplayScene::_disableInteractions() {
 
 void GameplayScene::_enableInteractions() {
   _userInteractionEnabled = true;
+}
+
+#pragma mark - CharacterMoveDelegate Methods
+
+bool GameplayScene::canCharacterMove() {
+  bool playerHasBoot = true;
+  return this->_isInteractionEnabled() && playerHasBoot;
+}
+
+void GameplayScene::characterWillMove(CharacterDiceSprite* sprite) {
+  Vector<Node*> visibleNodes;
+  visibleNodes.pushBack(this->_getObjectsLayer()->getChildByTag(CHARACTER_DICE_SPRITE_TAG));
+  visibleNodes.pushBack(this->_getNodeForCharacterPosition());
+  visibleNodes.pushBack(this->_getNodesForAdjacentCharacterPosition());
+  this->_addOverlayWithVisibleNodes(visibleNodes);
+}
+
+void GameplayScene::characterIsMovingToLocation(Vec2 location) {
+  for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
+    Color3B color = Color3B::WHITE;
+    
+    if (adjacentNode->getBoundingBox().containsPoint(location)) {
+      color = Color3B(170, 255, 170);
+    }
+    
+    adjacentNode->setColor(color);
+  }
+}
+
+bool GameplayScene::canCharacterMoveToLocation(Vec2 location) {
+  bool canMove = false;
+  
+  for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
+    if (adjacentNode->getBoundingBox().containsPoint(location)) {
+      canMove = true;
+      break;
+    }
+  }
+  
+  return canMove;
+}
+
+void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 location) {
+  this->_removeOverlay();
+  
+  for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
+    adjacentNode->setColor(Color3B::WHITE);
+  }
+  
+  auto newCoordinate = this->_positionInGameCoordinate(location);
+  auto newPosition = this->_positionInScene(newCoordinate);
+  
+  auto moveNewPosition = MoveTo::create(RETURN_CHARACTER_DURATION, newPosition);
+  auto actionEnded = CallFunc::create([=]() {
+    this->getGame()->setCharacterPosition(newCoordinate);
+  });
+  sprite->runAction(Sequence::create(moveNewPosition, actionEnded, NULL));
+}
+
+void GameplayScene::characterDidNotMove(CharacterDiceSprite* sprite) {
+  this->_removeOverlay();
+  
+  for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
+    adjacentNode->setColor(Color3B::WHITE);
+  }
+  
+  auto coordinate = this->getGame()->getCharacterPosition();
+  auto scenePosition = this->_positionInScene(coordinate);
+  
+  auto moveBack = MoveTo::create(RETURN_CHARACTER_DURATION, scenePosition);
+  sprite->runAction(moveBack);
 }
