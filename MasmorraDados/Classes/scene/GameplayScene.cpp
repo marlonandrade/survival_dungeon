@@ -11,6 +11,7 @@
 #include "BackgroundLayer.h"
 #include "CharacterDiceSprite.h"
 #include "RoomPlacement.h"
+#include "ScrollableLayer.h"
 
 USING_NS_CC;
 
@@ -80,79 +81,7 @@ bool GameplayScene::init() {
 void GameplayScene::adjustInitialLayers() {
   auto center = this->_centerOfScene();
   
-  auto scrollableLayer = Layer::create();
-  scrollableLayer->setTag(SCROLLABLE_LAYER_TAG);
-  
-  auto touchListener = EventListenerTouchOneByOne::create();
-  touchListener->onTouchBegan = [=](Touch* touch, Event* event) {
-    return true;
-  };
-  touchListener->onTouchMoved = [=](Touch* touch, Event* event) {
-    auto delta = touch->getDelta();
-    
-    auto currentPosition = scrollableLayer->getPosition();
-    
-    auto x = currentPosition.x + delta.x;
-    auto y = currentPosition.y + delta.y;
-    
-    auto margin = TILE_DIMENSION * 0.5;
-    
-    auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    
-    auto top = this->getGame()->getDungeon()->getTopMostRoomPosition();
-    auto right = this->getGame()->getDungeon()->getRightMostRoomPosition();
-    auto bottom = this->getGame()->getDungeon()->getBottomMostRoomPosition();
-    auto left = this->getGame()->getDungeon()->getLeftMostRoomPosition();
-    
-    auto initial = INITIAL_POSITION;
-    
-    auto topDelta = abs(top.y - initial.y);
-    auto rightDelta = abs(right.x - initial.x);
-    auto bottomDelta = abs(bottom.y - initial.y);
-    auto leftDelta = abs(left.x - initial.x);
-    
-    auto horizontalNoScroll = visibleSize.width / 2;
-    auto verticalNoScroll = visibleSize.height / 2;
-    
-    auto topDistance = verticalNoScroll - (topDelta * TILE_DIMENSION + TILE_DIMENSION / 2);
-    auto rightDistance = horizontalNoScroll - (rightDelta * TILE_DIMENSION + TILE_DIMENSION / 2);
-    auto bottomDistance = verticalNoScroll - (bottomDelta * TILE_DIMENSION + TILE_DIMENSION / 2);
-    auto leftDistance = horizontalNoScroll - (leftDelta * TILE_DIMENSION + TILE_DIMENSION / 2);
-    
-    auto maxY = visibleOrigin.y + margin;
-    auto maxX = visibleOrigin.x + margin;
-    auto minY = visibleOrigin.y - margin;
-    auto minX = visibleOrigin.x - margin;
-    
-    if (topDistance < 0) {
-      minY += topDistance;
-    }
-    
-    if (rightDistance < 0) {
-      minX += rightDistance;
-    }
-    
-    if (bottomDistance < 0) {
-      maxY -= bottomDistance;
-    }
-    
-    if (leftDistance < 0) {
-      maxX -= leftDistance;
-    }
-    
-    if (x >= maxX) x = maxX;
-    if (y >= maxY) y = maxY;
-    if (x <= minX) x = minX;
-    if (y <= minY) y = minY;
-    
-    auto newPosition = Vec2(x, y);
-    
-    scrollableLayer->setPosition(newPosition);
-  };
-  
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  dispatcher->addEventListenerWithSceneGraphPriority(touchListener, scrollableLayer);
+  auto scrollableLayer = ScrollableLayer::createWithDungeon(this->getGame()->getDungeon());
   
   scrollableLayer->addChild(BackgroundLayer::create(), -10);
   scrollableLayer->addChild(this->_createObjectsLayer(), 0);
