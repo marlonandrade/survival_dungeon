@@ -9,8 +9,10 @@
 #include "Game.h"
 
 #include "Definitions.h"
+#include "DungeonTurn.h"
 #include "InitialRoom.h"
 #include "MinorMonsterRoom.h"
+#include "PlayerTurn.h"
 #include "RuneRoom.h"
 
 USING_NS_CC;
@@ -34,10 +36,15 @@ bool Game::initWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
     return false;
   }
   
+  this->setTurn(PlayerTurn::create());
   this->_setupAvaiableRooms();
   this->_setupInitialPosition(delegate);
   
   return true;
+}
+
+void Game::setTurn(Turn* turn) {
+  _turn = turn;
 }
 
 void Game::setCharacterPosition(Vec2 position) {

@@ -30,6 +30,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
         glview = GLViewImpl::create("My Game");
         director->setOpenGLView(glview);
     }
+  
+  glview->setDesignResolutionSize(480, 360, ResolutionPolicy::FIXED_WIDTH);
 
     // turn on display FPS
     director->setDisplayStats(true);

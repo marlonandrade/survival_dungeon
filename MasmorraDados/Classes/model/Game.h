@@ -14,6 +14,7 @@
 #include "Dungeon.h"
 #include "DungeonRoom.h"
 #include "GameObject.h"
+#include "Turn.h"
 
 class Game : public GameObject {
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
@@ -21,9 +22,12 @@ class Game : public GameObject {
   CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
 protected:
   cocos2d::Vec2 _characterPosition;
+  Turn* _turn;
+  
 public:
   virtual cocos2d::Vec2 getCharacterPosition(void) const { return _characterPosition; }
   virtual void setCharacterPosition(cocos2d::Vec2 position);
+  virtual void setTurn(Turn* turn);
   
 public:
   static Game* createWithRoomPlacedDelegate(RoomPlacedDelegate delegate);

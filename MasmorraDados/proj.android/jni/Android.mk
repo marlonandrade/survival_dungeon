@@ -12,7 +12,6 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
-		   ../../Classes/delegate/CharacterMoveDelegate.cpp \
 		   ../../Classes/layer/BackgroundLayer.cpp \
 		   ../../Classes/layer/ScrollableLayer.cpp \
 		   ../../Classes/model/character/Character.cpp \
@@ -25,6 +24,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/room/InitialRoom.cpp \
 		   ../../Classes/model/room/MinorMonsterRoom.cpp \
 		   ../../Classes/model/room/RuneRoom.cpp \
+		   ../../Classes/model/turn/DungeonTurn.cpp \
+		   ../../Classes/model/turn/PlayerTurn.cpp \
 		   ../../Classes/model/Dungeon.cpp \
 		   ../../Classes/model/Game.cpp \
 		   ../../Classes/model/GameObject.cpp \
@@ -34,7 +35,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/Skill.cpp \
 		   ../../Classes/scene/GameplayScene.cpp \
 		   ../../Classes/scene/IntroScene.cpp \
-		   ../../Classes/sprite/CharacterDiceSprite.cpp 
+		   ../../Classes/sprite/CharacterDiceSprite.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/delegate \
@@ -45,6 +46,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/model/dice/face \
 		    $(LOCAL_PATH)/../../Classes/model/dice/roller \
 		    $(LOCAL_PATH)/../../Classes/model/room \
+		    $(LOCAL_PATH)/../../Classes/model/turn \
   		    $(LOCAL_PATH)/../../Classes/scene \
   		    $(LOCAL_PATH)/../../Classes/sprite
 
