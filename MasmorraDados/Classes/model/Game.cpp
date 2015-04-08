@@ -38,13 +38,21 @@ bool Game::initWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
   
   this->setTurn(PlayerTurn::create());
   this->_setupAvaiableRooms();
-  this->_setupInitialPosition(delegate);
+  this->_setupDungeon(delegate);
   
   return true;
 }
 
 void Game::setTurn(Turn* turn) {
   _turn = turn;
+}
+
+bool Game::isPlayerTurn() {
+  return dynamic_cast<PlayerTurn*>(_turn) != NULL;
+}
+
+void Game::executeCurrentTurn() {
+  _turn->execute(this);
 }
 
 void Game::setCharacterPosition(Vec2 position) {
@@ -55,7 +63,7 @@ void Game::setCharacterPosition(Vec2 position) {
 
 #pragma mark - Private Interface
 
-void Game::_setupInitialPosition(RoomPlacedDelegate delegate) {
+void Game::_setupDungeon(RoomPlacedDelegate delegate) {
   auto dungeon = Dungeon::create();
   dungeon->setRoomPlacedDelegate(delegate);
   dungeon->setNewRoomDataSource([&]() -> DungeonRoom* {

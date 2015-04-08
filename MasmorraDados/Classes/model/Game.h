@@ -28,6 +28,8 @@ public:
   virtual cocos2d::Vec2 getCharacterPosition(void) const { return _characterPosition; }
   virtual void setCharacterPosition(cocos2d::Vec2 position);
   virtual void setTurn(Turn* turn);
+  virtual bool isPlayerTurn();
+  virtual void executeCurrentTurn();
   
 public:
   static Game* createWithRoomPlacedDelegate(RoomPlacedDelegate delegate);
@@ -35,7 +37,7 @@ public:
   CREATE_FUNC(Game);
   
 private:
-  void _setupInitialPosition(RoomPlacedDelegate delegate);
+  void _setupDungeon(RoomPlacedDelegate delegate);
   void _setupAvaiableRooms();
   
   DungeonRoom* _pickRandomRoom();

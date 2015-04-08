@@ -115,6 +115,12 @@ Layer* GameplayScene::_createControlsLayer() {
   auto controlsLayer = Layer::create();
   controlsLayer->setTag(CONTROLS_LAYER_TAG);
   
+  auto actionDiceLayer = LayerColor::create(Color4B(0, 0, 0, 100));
+  actionDiceLayer->setPosition(Vec2(100, 10));
+  actionDiceLayer->setContentSize(Size(controlsLayer->getContentSize().width - (2 * 100), 80));
+  
+  controlsLayer->addChild(actionDiceLayer);
+  
   return controlsLayer;
 }
 
