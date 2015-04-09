@@ -15,7 +15,3 @@ bool ActionDice::init() {
   
   return true;
 }
-
-DiceFace* ActionDice::roll() {
-  return nullptr;
-}

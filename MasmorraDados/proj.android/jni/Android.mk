@@ -35,6 +35,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/Skill.cpp \
 		   ../../Classes/scene/GameplayScene.cpp \
 		   ../../Classes/scene/IntroScene.cpp \
+		   ../../Classes/sprite/ActionDiceSprite.cpp \
 		   ../../Classes/sprite/CharacterDiceSprite.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \

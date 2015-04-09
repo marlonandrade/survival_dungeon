@@ -85,6 +85,8 @@
 		BFC5975B1AD43D19007C03A7 /* DungeonTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC597551AD43D19007C03A7 /* DungeonTurn.cpp */; };
 		BFC5975C1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC597571AD43D19007C03A7 /* PlayerTurn.cpp */; };
 		BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC597571AD43D19007C03A7 /* PlayerTurn.cpp */; };
+		BFE583A91AD6E41400A4E194 /* ActionDiceSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE583A71AD6E41400A4E194 /* ActionDiceSprite.cpp */; };
+		BFE583AA1AD6E41400A4E194 /* ActionDiceSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE583A71AD6E41400A4E194 /* ActionDiceSprite.cpp */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
@@ -206,6 +208,8 @@
 		BFC597571AD43D19007C03A7 /* PlayerTurn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerTurn.cpp; sourceTree = "<group>"; };
 		BFC597581AD43D19007C03A7 /* PlayerTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTurn.h; sourceTree = "<group>"; };
 		BFC597591AD43D19007C03A7 /* Turn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Turn.h; sourceTree = "<group>"; };
+		BFE583A71AD6E41400A4E194 /* ActionDiceSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceSprite.cpp; sourceTree = "<group>"; };
+		BFE583A81AD6E41400A4E194 /* ActionDiceSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceSprite.h; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -383,6 +387,8 @@
 		BF0840971A9CD541003F0D76 /* sprite */ = {
 			isa = PBXGroup;
 			children = (
+				BFE583A71AD6E41400A4E194 /* ActionDiceSprite.cpp */,
+				BFE583A81AD6E41400A4E194 /* ActionDiceSprite.h */,
 				BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */,
 				BF0840991A9CD84D003F0D76 /* CharacterDiceSprite.h */,
 			);
@@ -630,6 +636,7 @@
 				BF5B4B351A8F7616007636DE /* IntroScene.cpp in Sources */,
 				BF5B4B971A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				BFE583A91AD6E41400A4E194 /* ActionDiceSprite.cpp in Sources */,
 				BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */,
 				BFAA74501A9E8A4100E45DF8 /* CharacterDiceSprite.cpp in Sources */,
 				BF5B4BEB1A952E8D007636DE /* Dice.cpp in Sources */,
@@ -677,6 +684,7 @@
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				BF5B4BDD1A94BC6B007636DE /* GameObject.cpp in Sources */,
 				BF6E6F171A97EA7E00CD1834 /* ActionDiceRoller.cpp in Sources */,
+				BFE583AA1AD6E41400A4E194 /* ActionDiceSprite.cpp in Sources */,
 				BF5B4B801A90E77A007636DE /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

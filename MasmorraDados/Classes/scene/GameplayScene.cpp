@@ -8,6 +8,7 @@
 
 #include "GameplayScene.h"
 
+#include "ActionDiceSprite.h"
 #include "BackgroundLayer.h"
 #include "CharacterDiceSprite.h"
 #include "RoomPlacement.h"
@@ -116,8 +117,28 @@ Layer* GameplayScene::_createControlsLayer() {
   controlsLayer->setTag(CONTROLS_LAYER_TAG);
   
   auto actionDiceLayer = LayerColor::create(Color4B(0, 0, 0, 100));
-  actionDiceLayer->setPosition(Vec2(100, 10));
-  actionDiceLayer->setContentSize(Size(controlsLayer->getContentSize().width - (2 * 100), 80));
+  actionDiceLayer->setPosition(Vec2(60, 10));
+  actionDiceLayer->setContentSize(Size(controlsLayer->getContentSize().width - (2 * 60), 80));
+  
+  auto dice = ActionDiceSprite::create();
+  
+  int numberOfDices = 6;
+  
+  auto diceTotalWidth = dice->getContentSize().width * numberOfDices;
+  auto availableMargin = actionDiceLayer->getContentSize().width - diceTotalWidth;
+  
+  auto marginPerDice = availableMargin / (numberOfDices + 1);
+  
+  for (int i = 0; i < numberOfDices; i++) {
+    dice = ActionDiceSprite::create();
+    
+    auto width = dice->getContentSize().width;
+    auto x = width * i + marginPerDice * (i + 1) + width / 2;
+    auto y = actionDiceLayer->getContentSize().height / 2;
+    
+    dice->setPosition(Vec2(x, y));
+    actionDiceLayer->addChild(dice);
+  }
   
   controlsLayer->addChild(actionDiceLayer);
   

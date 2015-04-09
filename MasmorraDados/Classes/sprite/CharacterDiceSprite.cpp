@@ -21,7 +21,7 @@ CharacterDiceSprite* CharacterDiceSprite::createWithDelegate(CharacterMoveDelega
   } else {
     CC_SAFE_DELETE(character);
   }
-  
+
   return character;
 }
 
