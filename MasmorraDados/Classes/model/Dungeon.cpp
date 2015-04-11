@@ -81,10 +81,10 @@ void Dungeon::calculateRoomDistanceToPlayer(Vec2 playerPosition) {
     auto dungeonRoom = std::get<1>(room);
     
     auto position = this->positionForIndex(index);
-    auto distance = abs(position.x - playerPosition.x) +
-                    abs(position.y - playerPosition.y);
+    auto distance = fabs(position.x - playerPosition.x) +
+                    fabs(position.y - playerPosition.y);
     
-    dungeonRoom->setDistanceToPLayer(distance);
+    dungeonRoom->setDistanceToPlayer(distance);
   }
 }
 
