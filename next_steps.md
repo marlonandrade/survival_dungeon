@@ -10,7 +10,7 @@
 . Dados de ação / player
 . Yatzee
 . Consumir 'poder'
-. Criar matriz de distância do player
+. DONE - Criar matriz de distância do player
 . Passar 'turno'
 
 ## 0.2
