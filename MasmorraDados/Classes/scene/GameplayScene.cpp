@@ -117,14 +117,14 @@ Layer* GameplayScene::_createControlsLayer() {
   controlsLayer->setTag(CONTROLS_LAYER_TAG);
   
   auto actionDiceLayer = LayerColor::create(Color4B(0, 0, 0, 100));
-  actionDiceLayer->setPosition(Vec2(80, 10));
-  actionDiceLayer->setContentSize(Size(controlsLayer->getContentSize().width - (2 * 80), 80));
+  actionDiceLayer->setPosition(Vec2(70, 10));
+  actionDiceLayer->setContentSize(Size(controlsLayer->getContentSize().width - (2 * 70), 80));
   
   auto dice = ActionDiceSprite::create();
   
   int numberOfDices = 6;
   
-  auto margin = 40;
+  auto margin = 30;
   
   auto diceTotalWidth = dice->getContentSize().width * numberOfDices;
   auto availableMargin = actionDiceLayer->getContentSize().width - diceTotalWidth - margin;
@@ -139,7 +139,7 @@ Layer* GameplayScene::_createControlsLayer() {
     auto y = actionDiceLayer->getContentSize().height / 2;
     
     dice->setPosition(Vec2(x, y));
-    actionDiceLayer->addChild(dice);
+    actionDiceLayer->addChild(dice, i);
   }
   
   controlsLayer->addChild(actionDiceLayer);
