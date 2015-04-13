@@ -59,6 +59,7 @@ void Game::setCharacterPosition(Vec2 position) {
   _characterPosition = position;
   
   this->getDungeon()->placeRoomsAdjacentTo(position);
+  this->getDungeon()->calculateRoomDistanceToPlayer(position);
 }
 
 #pragma mark - Private Interface

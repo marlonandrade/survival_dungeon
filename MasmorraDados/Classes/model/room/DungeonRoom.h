@@ -13,6 +13,7 @@
 
 class DungeonRoom : public GameObject {
 public:
+  CC_SYNTHESIZE(int, _distanceToPlayer, DistanceToPlayer);
   virtual std::string getImagePath() = 0;
   virtual bool isExplorable() = 0;
 };

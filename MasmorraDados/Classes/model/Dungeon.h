@@ -40,11 +40,13 @@ public:
   DungeonRoom* getInitialRoom();
   
   void placeRoomsAdjacentTo(cocos2d::Vec2 position);
+  void calculateRoomDistanceToPlayer(cocos2d::Vec2 playerPosition);
   
   std::vector<cocos2d::Vec2> adjacentPositionsTo(cocos2d::Vec2 position);
   
   std::string nameForPosition(cocos2d::Vec2 position);
   int indexForPosition(cocos2d::Vec2 position);
+  cocos2d::Vec2 positionForIndex(int index);
   
   void setTopMostRoomPosition(cocos2d::Vec2 position);
   cocos2d::Vec2 getTopMostRoomPosition();

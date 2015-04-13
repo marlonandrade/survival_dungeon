@@ -75,6 +75,19 @@ void Dungeon::placeRoomsAdjacentTo(Vec2 position) {
   }
 }
 
+void Dungeon::calculateRoomDistanceToPlayer(Vec2 playerPosition) {
+  for (auto room : this->_rooms) {
+    auto index = std::get<0>(room);
+    auto dungeonRoom = std::get<1>(room);
+    
+    auto position = this->positionForIndex(index);
+    auto distance = fabs(position.x - playerPosition.x) +
+                    fabs(position.y - playerPosition.y);
+    
+    dungeonRoom->setDistanceToPlayer(distance);
+  }
+}
+
 std::vector<Vec2> Dungeon::adjacentPositionsTo(Vec2 position) {
   std::vector<Vec2> adjacentPositions;
   
@@ -101,6 +114,12 @@ std::string Dungeon::nameForPosition(Vec2 position) {
 
 int Dungeon::indexForPosition(Vec2 position) {
   return position.x * DUNGEON_SIZE + position.y;
+}
+
+Vec2 Dungeon::positionForIndex(int index) {
+  auto x = index / DUNGEON_SIZE;
+  auto y = index % DUNGEON_SIZE;
+  return Vec2(x, y);
 }
 
 void Dungeon::setTopMostRoomPosition(Vec2 position) {
