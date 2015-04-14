@@ -9,20 +9,27 @@
 #include "ActionDiceSprite.h"
 
 #include "ActionDice.h"
-#include "ActionDiceState.h"
-#include "ActionDiceStateNormal.h"
 
 USING_NS_CC;
 
 #pragma mark - Public Interface
 
-bool ActionDiceSprite::init() {
-  if (!Sprite::init()) {
+ActionDiceSprite* ActionDiceSprite::createWithDice(Dice *dice) {
+  auto sprite = new (std::nothrow) ActionDiceSprite();
+  if (sprite && sprite->initWithDice(dice)) {
+    sprite->autorelease();
+  } else {
+    CC_SAFE_DELETE(sprite);
+  }
+  
+  return sprite;
+}
+
+bool ActionDiceSprite::initWithDice(Dice *dice) {
+  if (!DiceSprite::initWithDice(dice)) {
     return false;
   }
   
-  this->setTexture(this->_getFileNameForDice(nullptr));
-  this->setDiceState(ActionDiceStateNormal::create());
   this->_setupTouchListener();
   
   return true;
@@ -39,10 +46,6 @@ void ActionDiceSprite::_setupTouchListener() {
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   dispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
-}
-
-std::string ActionDiceSprite::_getFileNameForDice(ActionDice* dice) {
-  return "images/dice/sword.png";
 }
 
 #pragma mark Touch Events
@@ -70,6 +73,6 @@ void ActionDiceSprite::_onTouchEnded(Touch* touch, Event* event) {
   auto touchInSprite = bounds.containsPoint(touchLocation);
   
   if (touchInSprite) {
-    this->getDiceState()->changeState(this);
+    this->getDice()->getState()->changeState(this->getDice());
   }
 }

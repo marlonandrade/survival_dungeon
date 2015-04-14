@@ -70,10 +70,10 @@ void ScrollableLayer::_onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event
   
   auto initial = INITIAL_POSITION;
   
-  auto topDelta = abs(top.y - initial.y);
-  auto rightDelta = abs(right.x - initial.x);
-  auto bottomDelta = abs(bottom.y - initial.y);
-  auto leftDelta = abs(left.x - initial.x);
+  auto topDelta = fabs(top.y - initial.y);
+  auto rightDelta = fabs(right.x - initial.x);
+  auto bottomDelta = fabs(bottom.y - initial.y);
+  auto leftDelta = fabs(left.x - initial.x);
   
   auto horizontalNoScroll = visibleSize.width / 2;
   auto verticalNoScroll = visibleSize.height / 2;

@@ -16,10 +16,10 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/layer/ScrollableLayer.cpp \
 		   ../../Classes/model/character/Character.cpp \
 		   ../../Classes/model/dice/face/DiceFace.cpp \
-		   ../../Classes/model/dice/roller/ActionDiceRoller.cpp \
-		   ../../Classes/model/dice/roller/DiceRoller.cpp \
 		   ../../Classes/model/dice/ActionDice.cpp \
 		   ../../Classes/model/dice/Dice.cpp \
+		   ../../Classes/model/dice/state/ActionDiceStateNormal.cpp \
+		   ../../Classes/model/dice/state/ActionDiceStateSelected.cpp \
 		   ../../Classes/model/room/DungeonRoom.cpp \
 		   ../../Classes/model/room/InitialRoom.cpp \
 		   ../../Classes/model/room/MinorMonsterRoom.cpp \
@@ -36,7 +36,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/scene/GameplayScene.cpp \
 		   ../../Classes/scene/IntroScene.cpp \
 		   ../../Classes/sprite/ActionDiceSprite.cpp \
-		   ../../Classes/sprite/CharacterDiceSprite.cpp
+		   ../../Classes/sprite/CharacterDiceSprite.cpp \
+		   ../../Classes/sprite/DiceSprite.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/delegate \
@@ -45,7 +46,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/model/character \
 		    $(LOCAL_PATH)/../../Classes/model/dice \
 		    $(LOCAL_PATH)/../../Classes/model/dice/face \
-		    $(LOCAL_PATH)/../../Classes/model/dice/roller \
+		    $(LOCAL_PATH)/../../Classes/model/dice/state \
 		    $(LOCAL_PATH)/../../Classes/model/room \
 		    $(LOCAL_PATH)/../../Classes/model/turn \
   		    $(LOCAL_PATH)/../../Classes/scene \
