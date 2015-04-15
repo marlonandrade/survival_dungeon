@@ -140,3 +140,12 @@ Um nó possui relação de pai (parent) e filho (child).
 Todas propriedades modificadas em um nó pai se propaga também para os nós filhos (lembrar da estrutura da árvore).  
 
 
+
+## Multi resolução
+
+
+
+## Multi device
+
+- Código agnostico de plataforma, desenvolvido em c++ e compilado para Android usando a NDK, e iOS nativamente.
+

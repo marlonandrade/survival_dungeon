@@ -12,13 +12,20 @@
 #include "GameObject.h"
 
 #include "DiceFace.h"
+#include "DiceState.h"
+
+typedef cocos2d::Vector<DiceFace*> DiceFaces;
 
 class Dice : public GameObject {
-  CC_SYNTHESIZE(cocos2d::Vector<DiceFace*>, _faces, Faces);
+  CC_PROPERTY(DiceFace*, _selectedFace, SelectedFace);
+  CC_SYNTHESIZE(DiceFaces, _faces, Faces);
+  CC_SYNTHESIZE(cocos2d::Sprite*, _sprite, Sprite);
+  CC_SYNTHESIZE_RETAIN(DiceState*, _state, State);
 public:
-  CREATE_FUNC(Dice);
+  static Dice* createWithFaces(DiceFaces faces);
+  virtual bool initWithFaces(DiceFaces faces);
   
-  virtual DiceFace* roll();
+  virtual void roll();
 };
 
 #endif /* defined(__MasmorraDados__Dice__) */

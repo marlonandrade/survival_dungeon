@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 
+#include "ActionDice.h"
 #include "Dungeon.h"
 #include "DungeonRoom.h"
 #include "GameObject.h"
@@ -18,6 +19,7 @@
 
 class Game : public GameObject {
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
+  CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _actionDices, ActionDices);
   CC_SYNTHESIZE(cocos2d::Vector<DungeonRoom*>, _availableRooms, AvailableRooms);
   CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
 protected:
@@ -39,6 +41,7 @@ public:
 private:
   void _setupDungeon(RoomPlacedDelegate delegate);
   void _setupAvaiableRooms();
+  void _setupActionDices();
   
   DungeonRoom* _pickRandomRoom();
   void _placeAdjacentTiles();

@@ -9,16 +9,16 @@
 #ifndef __MasmorraDados__ActionDiceStateNormal__
 #define __MasmorraDados__ActionDiceStateNormal__
 
-#include "ActionDiceState.h"
+#include "DiceState.h"
 #include "cocos2d.h"
 
-class ActionDiceStateNormal : public ActionDiceState {
+class ActionDiceStateNormal : public DiceState {
 public:
   CREATE_FUNC(ActionDiceStateNormal);
   virtual bool init();
   
   virtual bool canChangeState();
-  virtual void changeState(ActionDiceSprite *sprite);
+  virtual void changeState(Dice *dice);
 };
 
 #endif /* defined(__MasmorraDados__ActionDiceStateNormal__) */

@@ -15,7 +15,14 @@ bool BackgroundLayer::init() {
     return false;
   }
   
-  this->addChild(Sprite::create("images/background.jpg"));
+  auto sprite = Sprite::create("images/background.png");
+  Texture2D::TexParams params = { GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT };
+  sprite->getTexture()->setTexParameters(params);
+  sprite->setPosition(Vec2(this->getContentSize().width / 2,
+                           this->getContentSize().height / 2));
+  sprite->setTextureRect(Rect(0, 0, 400, 400));
+  
+  this->addChild(sprite);
   
   return true;
 }

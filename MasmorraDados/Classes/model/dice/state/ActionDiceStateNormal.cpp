@@ -10,6 +10,7 @@
 
 #include "ActionDiceSprite.h"
 #include "ActionDiceStateSelected.h"
+#include "Dice.h"
 
 USING_NS_CC;
 
@@ -23,11 +24,13 @@ bool ActionDiceStateNormal::canChangeState() {
   return true;
 }
 
-void ActionDiceStateNormal::changeState(ActionDiceSprite* sprite) {
+void ActionDiceStateNormal::changeState(Dice* dice) {
+  auto sprite = dice->getSprite();
+  
   auto selectedSprite = Sprite::create("images/dice/selected.png");
   selectedSprite->setPosition(Vec2(sprite->getContentSize().width / 2,
                                    sprite->getContentSize().height / 2));
   sprite->addChild(selectedSprite);
   
-  sprite->setDiceState(ActionDiceStateSelected::create());
+  dice->setState(ActionDiceStateSelected::create());
 }

@@ -9,21 +9,17 @@
 #ifndef __MasmorraDados__ActionDiceSprite__
 #define __MasmorraDados__ActionDiceSprite__
 
-#include "cocos2d.h"
-#include "ActionDiceState.h"
+#include "DiceSprite.h"
 
 class ActionDice;
-class ActionDiceState;
 
-class ActionDiceSprite : public cocos2d::Sprite {
+class ActionDiceSprite : public DiceSprite {
 public:
-  CREATE_FUNC(ActionDiceSprite);
-  CC_SYNTHESIZE_RETAIN(ActionDiceState*, _diceState, DiceState);
+  static ActionDiceSprite* createWithDice(Dice* dice);
+  virtual bool initWithDice(Dice* dice);
   
-  virtual bool init();
 private:
   void _setupTouchListener();
-  std::string _getFileNameForDice(ActionDice* dice);
   
   bool _onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
   void _onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);

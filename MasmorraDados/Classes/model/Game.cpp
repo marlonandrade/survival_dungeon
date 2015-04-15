@@ -39,6 +39,7 @@ bool Game::initWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
   this->setTurn(PlayerTurn::create());
   this->_setupAvaiableRooms();
   this->_setupDungeon(delegate);
+  this->_setupActionDices();
   
   return true;
 }
@@ -89,6 +90,16 @@ void Game::_setupAvaiableRooms() {
   }
   
   this->setAvailableRooms(rooms);
+}
+
+void Game::_setupActionDices() {
+  Vector<ActionDice*> dices;
+  
+  for (int i = 0; i < 6; i++) {
+    dices.pushBack(ActionDice::create());
+  }
+  
+  this->setActionDices(dices);
 }
 
 DungeonRoom* Game::_pickRandomRoom() {
