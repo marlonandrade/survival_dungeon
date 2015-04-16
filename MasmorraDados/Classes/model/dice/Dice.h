@@ -18,8 +18,9 @@ typedef cocos2d::Vector<DiceFace*> DiceFaces;
 
 class Dice : public GameObject {
   CC_PROPERTY(DiceFace*, _selectedFace, SelectedFace);
-  CC_SYNTHESIZE(DiceFaces, _faces, Faces);
+  CC_PROPERTY(DiceFaces, _faces, Faces);
   CC_SYNTHESIZE(cocos2d::Sprite*, _sprite, Sprite);
+  CC_SYNTHESIZE(std::string, _blurImagePath, BlurImagePath);
   CC_SYNTHESIZE_RETAIN(DiceState*, _state, State);
 public:
   static Dice* createWithFaces(DiceFaces faces);

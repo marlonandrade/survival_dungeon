@@ -10,6 +10,7 @@
 
 #include "ActionDiceSprite.h"
 #include "DiceFace.h"
+#include "Shake.h"
 
 USING_NS_CC;
 
@@ -23,7 +24,30 @@ void Dice::setSelectedFace(DiceFace *selectedFace) {
     CC_SAFE_RELEASE(_selectedFace);
     _selectedFace = selectedFace;
     
-    this->getSprite()->setTexture(selectedFace->getImagePath());
+    auto sprite = this->getSprite();
+    sprite->setTexture(selectedFace->getImagePath());
+    
+    auto blurSprite = CallFunc::create([=]() {
+      sprite->setTexture(selectedFace->getDice()->getBlurImagePath());
+    });
+    auto shake = Shake::create(0.3, Vec2(3, 3));
+    auto finalSprite = CallFunc::create([=]() {
+      sprite->setTexture(selectedFace->getImagePath());
+    });
+    
+    sprite->runAction(Sequence::create(blurSprite, shake, finalSprite, NULL));
+  }
+}
+
+DiceFaces Dice::getFaces() {
+  return _faces;
+}
+
+void Dice::setFaces(DiceFaces faces) {
+  _faces = faces;
+  
+  for (auto face : faces) {
+    face->setDice(this);
   }
 }
 

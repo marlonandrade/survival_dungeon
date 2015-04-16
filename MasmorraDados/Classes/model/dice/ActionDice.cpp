@@ -29,6 +29,7 @@ bool ActionDice::init() {
     return false;
   }
   
+  this->setBlurImagePath("images/dice/blur.png");
   this->setState(ActionDiceStateNormal::create());
   
   return true;
