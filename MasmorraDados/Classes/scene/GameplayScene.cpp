@@ -124,12 +124,14 @@ Layer* GameplayScene::_getControlsLayer() {
 }
 
 void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacement*> placements) {
+  auto objectsLayer = this->_getObjectsLayer();
+  int zOrder = placements.size();
+  
   if (placements.size() > 0) {
     this->_disableInteractions();
   }
   
   float delayTime = 0;
-  int zOrder = placements.size();
   
   for (auto placement : placements) {
     auto room = placement->getRoom();
@@ -140,13 +142,16 @@ void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacement*> placements) {
     roomSprite->setName(name);
     
     auto size = Director::getInstance()->getVisibleSize();
-    auto origin = Director::getInstance()->getVisibleOrigin();
+    auto origin = Director::getInstance()->getVisibleOrigin() - objectsLayer->getParent()->getPosition();
     
-    auto deckPosition = Vec2(origin.x + size.width - TILE_DIMENSION / 2 - 20,
-                             origin.y + size.height - TILE_DIMENSION / 2 - 20);
+    auto initialSize = TILE_DIMENSION * TILE_PLACEMENT_SCALE;
+    
+    auto deckPosition = Vec2(origin.x + size.width - initialSize / 2 - 10,
+                             origin.y + size.height - initialSize / 2 - 10);
+    roomSprite->setScale(TILE_PLACEMENT_SCALE, TILE_PLACEMENT_SCALE);
     roomSprite->setPosition(deckPosition);
     
-    this->_getObjectsLayer()->addChild(roomSprite, zOrder);
+    objectsLayer->addChild(roomSprite, zOrder + 1);
     
     auto spritePosition = this->_positionInScene(position);
     
@@ -155,7 +160,10 @@ void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacement*> placements) {
       this->_disableInteractions();
       roomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER + 10);
     });
-    auto easeMove = EaseBackIn::create(MoveTo::create(PLACE_ROOM_DURATION, spritePosition));
+    auto moveAndScale = Spawn::create(MoveTo::create(PLACE_ROOM_DURATION, spritePosition),
+                                      ScaleTo::create(PLACE_ROOM_DURATION, 1),
+                                      NULL);
+    auto easeMove = EaseBackIn::create(moveAndScale);
     auto animationEnded = CallFunc::create([=]() {
       this->_enableInteractions();
       roomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
