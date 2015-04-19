@@ -8,6 +8,7 @@
 
 #include "ActionDice.h"
 
+#include "ActionDiceStateDisabled.h"
 #include "ActionDiceStateNormal.h"
 #include "ActionDiceStateSelected.h"
 #include "DiceFace.h"
@@ -44,4 +45,19 @@ void ActionDice::roll() {
 
 bool ActionDice::isSelected() {
   return dynamic_cast<ActionDiceStateSelected*>(this->getState()) > 0;
+}
+
+bool ActionDice::isDisabled() {
+  return dynamic_cast<ActionDiceStateDisabled*>(this->getState()) > 0;
+}
+
+void ActionDice::setDisabled() {
+  auto sprite = this->getSprite();
+  
+  auto disabledSprite = Sprite::create("images/dice/disabled.png");
+  disabledSprite->setPosition(Vec2(sprite->getContentSize().width / 2,
+                                   sprite->getContentSize().height / 2));
+  sprite->addChild(disabledSprite);
+  
+  this->setState(ActionDiceStateDisabled::create());
 }

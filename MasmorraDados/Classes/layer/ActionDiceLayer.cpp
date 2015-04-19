@@ -106,6 +106,8 @@ Node* ActionDiceLayer::_createRerollButton() {
       for (auto dice : this->getDices()) {
         if (dice->isSelected()) {
           dice->roll();
+        } else if (!dice->isDisabled()) {
+          dice->setDisabled();
         }
       }
       log("reroll pressed");

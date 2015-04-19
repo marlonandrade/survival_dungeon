@@ -85,3 +85,10 @@ void Dice::changeState() {
 bool Dice::isSelected() {
   return false;
 }
+
+bool Dice::isDisabled() {
+  return false;
+}
+
+void Dice::setDisabled() {
+}
