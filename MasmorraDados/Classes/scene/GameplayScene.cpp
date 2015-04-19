@@ -298,6 +298,14 @@ void GameplayScene::_enableInteractions() {
   _userInteractionEnabled = true;
 }
 
+void GameplayScene::_resetCharacterMoveState() {
+  this->_removeOverlay();
+  
+  for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
+    adjacentNode->setColor(Color3B::WHITE);
+  }
+}
+
 #pragma mark - CharacterMoveDelegate Methods
 
 bool GameplayScene::canCharacterMove() {
@@ -339,11 +347,7 @@ bool GameplayScene::canCharacterMoveToLocation(Vec2 location) {
 }
 
 void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 location) {
-  this->_removeOverlay();
-  
-  for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
-    adjacentNode->setColor(Color3B::WHITE);
-  }
+  this->_resetCharacterMoveState();
   
   auto newCoordinate = this->_positionInGameCoordinate(location);
   auto newPosition = this->_positionInScene(newCoordinate);
@@ -356,11 +360,7 @@ void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 l
 }
 
 void GameplayScene::characterDidNotMove(CharacterDiceSprite* sprite) {
-  this->_removeOverlay();
-  
-  for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
-    adjacentNode->setColor(Color3B::WHITE);
-  }
+  this->_resetCharacterMoveState();
   
   auto coordinate = this->getGame()->getCharacterPosition();
   auto scenePosition = this->_positionInScene(coordinate);

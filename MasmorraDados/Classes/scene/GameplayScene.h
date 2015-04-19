@@ -56,6 +56,7 @@ private:
   void _disableInteractions();
   void _enableInteractions();
   
+  void _resetCharacterMoveState();
 public:
   virtual bool canCharacterMove();
   virtual void characterWillMove(CharacterDiceSprite* sprite);
