@@ -19,24 +19,22 @@ DiceFace* Dice::getSelectedFace() {
 }
 
 void Dice::setSelectedFace(DiceFace *selectedFace) {
-  if (_selectedFace != selectedFace) {
-    CC_SAFE_RETAIN(selectedFace);
-    CC_SAFE_RELEASE(_selectedFace);
-    _selectedFace = selectedFace;
-    
-    auto sprite = this->getSprite();
+  CC_SAFE_RETAIN(selectedFace);
+  CC_SAFE_RELEASE(_selectedFace);
+  _selectedFace = selectedFace;
+  
+  auto sprite = this->getSprite();
+  sprite->setTexture(selectedFace->getImagePath());
+  
+  auto blurSprite = CallFunc::create([=]() {
+    sprite->setTexture(selectedFace->getDice()->getBlurImagePath());
+  });
+  auto shake = Shake::create(0.3, Vec2(3, 3));
+  auto finalSprite = CallFunc::create([=]() {
     sprite->setTexture(selectedFace->getImagePath());
-    
-    auto blurSprite = CallFunc::create([=]() {
-      sprite->setTexture(selectedFace->getDice()->getBlurImagePath());
-    });
-    auto shake = Shake::create(0.3, Vec2(3, 3));
-    auto finalSprite = CallFunc::create([=]() {
-      sprite->setTexture(selectedFace->getImagePath());
-    });
-    
-    sprite->runAction(Sequence::create(blurSprite, shake, finalSprite, NULL));
-  }
+  });
+  
+  sprite->runAction(Sequence::create(blurSprite, shake, finalSprite, NULL));
 }
 
 DiceFaces Dice::getFaces() {
@@ -82,4 +80,8 @@ void Dice::roll() {
 
 void Dice::changeState() {
   this->getState()->changeState(this);
+}
+
+bool Dice::isSelected() {
+  return false;
 }

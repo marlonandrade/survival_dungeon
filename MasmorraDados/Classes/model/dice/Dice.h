@@ -28,6 +28,8 @@ public:
   
   virtual void roll();
   virtual void changeState();
+  
+  virtual bool isSelected();
 };
 
 #endif /* defined(__MasmorraDados__Dice__) */
