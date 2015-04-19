@@ -79,3 +79,7 @@ bool Dice::initWithFaces(DiceFaces faces) {
 void Dice::roll() {
   this->setSelectedFace(this->getFaces().getRandomObject());
 }
+
+void Dice::changeState() {
+  this->getState()->changeState(this);
+}

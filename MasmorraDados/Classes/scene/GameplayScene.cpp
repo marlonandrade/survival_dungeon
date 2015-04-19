@@ -8,7 +8,7 @@
 
 #include "GameplayScene.h"
 
-#include "ActionDiceSprite.h"
+#include "ActionDiceLayer.h"
 #include "BackgroundLayer.h"
 #include "CharacterDiceSprite.h"
 #include "RoomPlacement.h"
@@ -71,36 +71,7 @@ Layer* GameplayScene::_createObjectsLayer() {
 Layer* GameplayScene::_createControlsLayer() {
   auto controlsLayer = Layer::create();
   controlsLayer->setTag(CONTROLS_LAYER_TAG);
-  
-  auto actionDiceLayer = LayerColor::create(Color4B(0, 0, 0, 100));
-  actionDiceLayer->setPosition(Vec2(70, 10));
-  actionDiceLayer->setContentSize(Size(controlsLayer->getContentSize().width - (2 * 70), 80));
-  
-  auto actionDices = this->getGame()->getActionDices();
-  
-  int numberOfDices = actionDices.size();
-  
-  auto margin = 30;
-  
-  auto sprite = actionDices.at(0)->getSprite();
-  
-  auto diceTotalWidth = sprite->getContentSize().width * numberOfDices;
-  auto availableMargin = actionDiceLayer->getContentSize().width - diceTotalWidth - margin;
-  
-  auto marginPerDice = availableMargin / (numberOfDices - 1);
-  
-  for (int i = 0; i < numberOfDices; i++) {
-    sprite = actionDices.at(i)->getSprite();
-    
-    auto width = sprite->getContentSize().width;
-    auto x = width * i + marginPerDice * i + width / 2 + margin / 2;
-    auto y = actionDiceLayer->getContentSize().height / 2;
-    
-    sprite->setPosition(Vec2(x, y));
-    actionDiceLayer->addChild(sprite, i);
-  }
-  
-  controlsLayer->addChild(actionDiceLayer);
+  controlsLayer->addChild(ActionDiceLayer::createWithDices(this->getGame()->getActionDices()));
   
   return controlsLayer;
 }

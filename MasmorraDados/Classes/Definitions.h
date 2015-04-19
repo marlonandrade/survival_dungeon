@@ -18,6 +18,11 @@
 #define TILE_DIMENSION       100
 #define TILE_PLACEMENT_SCALE 0.3
 
+#define ACTION_DICE_BACKGROUND_BOTTOM_MARGIN 10
+
+#define ACTION_DICE_MARGIN          10
+#define ACTION_DICE_MARGIN_PER_DICE 3
+
 #pragma mark - Game Mechanics
 
 #define MAX_ACTION_REROLLS   2
