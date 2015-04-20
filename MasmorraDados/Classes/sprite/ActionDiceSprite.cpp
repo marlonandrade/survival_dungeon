@@ -73,6 +73,6 @@ void ActionDiceSprite::_onTouchEnded(Touch* touch, Event* event) {
   auto touchInSprite = bounds.containsPoint(touchLocation);
   
   if (touchInSprite) {
-    this->getDice()->getState()->changeState(this->getDice());
+    this->getDice()->changeState();
   }
 }

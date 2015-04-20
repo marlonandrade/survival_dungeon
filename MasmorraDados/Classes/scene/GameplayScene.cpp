@@ -8,7 +8,7 @@
 
 #include "GameplayScene.h"
 
-#include "ActionDiceSprite.h"
+#include "ActionDiceLayer.h"
 #include "BackgroundLayer.h"
 #include "CharacterDiceSprite.h"
 #include "RoomPlacement.h"
@@ -25,51 +25,7 @@ bool GameplayScene::init() {
   
   this->_enableInteractions();
   
-  auto game = Game::createWithRoomPlacedDelegate([&](Vector<RoomPlacement*> placements) {
-    if (placements.size() > 0) {
-      this->_disableInteractions();
-    }
-    
-    float delayTime = 0;
-    int zOrder = placements.size();
-    
-    for (auto placement : placements) {
-      auto room = placement->getRoom();
-      auto position = placement->getPosition();
-      
-      auto roomSprite = Sprite::create(room->getImagePath());
-      auto name = this->getGame()->getDungeon()->nameForPosition(position);
-      roomSprite->setName(name);
-      
-      auto size = Director::getInstance()->getVisibleSize();
-      auto origin = Director::getInstance()->getVisibleOrigin();
-      
-      auto deckPosition = Vec2(origin.x + size.width - TILE_DIMENSION / 2 - 20,
-                               origin.y + size.height - TILE_DIMENSION / 2 - 20);
-      roomSprite->setPosition(deckPosition);
-      
-      this->_getObjectsLayer()->addChild(roomSprite, zOrder);
-      
-      auto spritePosition = this->_positionInScene(position);
-      
-      auto delay = DelayTime::create(delayTime);
-      auto animationStarted = CallFunc::create([=]() {
-        this->_disableInteractions();
-        roomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER + 10);
-      });
-      auto easeMove = EaseBackIn::create(MoveTo::create(PLACE_ROOM_DURATION, spritePosition));
-      auto animationEnded = CallFunc::create([=]() {
-        this->_enableInteractions();
-        roomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
-      });
-      
-      roomSprite->runAction(Sequence::create(delay, animationStarted, easeMove,
-                                             animationEnded, NULL));
-      
-      delayTime += PLACE_ROOM_DURATION;
-      zOrder--;
-    }
-  });
+  auto game = Game::createWithRoomPlacedDelegate(CC_CALLBACK_1(GameplayScene::_roomsHasBeenPlaced, this));
   
   this->setGame(game);
   this->adjustInitialLayers();
@@ -115,36 +71,7 @@ Layer* GameplayScene::_createObjectsLayer() {
 Layer* GameplayScene::_createControlsLayer() {
   auto controlsLayer = Layer::create();
   controlsLayer->setTag(CONTROLS_LAYER_TAG);
-  
-  auto actionDiceLayer = LayerColor::create(Color4B(0, 0, 0, 100));
-  actionDiceLayer->setPosition(Vec2(70, 10));
-  actionDiceLayer->setContentSize(Size(controlsLayer->getContentSize().width - (2 * 70), 80));
-  
-  auto actionDices = this->getGame()->getActionDices();
-  
-  int numberOfDices = actionDices.size();
-  
-  auto margin = 30;
-  
-  auto sprite = actionDices.at(0)->getSprite();
-  
-  auto diceTotalWidth = sprite->getContentSize().width * numberOfDices;
-  auto availableMargin = actionDiceLayer->getContentSize().width - diceTotalWidth - margin;
-  
-  auto marginPerDice = availableMargin / (numberOfDices - 1);
-  
-  for (int i = 0; i < numberOfDices; i++) {
-    sprite = actionDices.at(i)->getSprite();
-    
-    auto width = sprite->getContentSize().width;
-    auto x = width * i + marginPerDice * i + width / 2 + margin / 2;
-    auto y = actionDiceLayer->getContentSize().height / 2;
-    
-    sprite->setPosition(Vec2(x, y));
-    actionDiceLayer->addChild(sprite, i);
-  }
-  
-  controlsLayer->addChild(actionDiceLayer);
+  controlsLayer->addChild(ActionDiceLayer::createWithDices(this->getGame()->getActionDices()));
   
   return controlsLayer;
 }
@@ -166,6 +93,61 @@ Layer* GameplayScene::_getControlsLayer() {
   auto scrollableLayer = this->_getScrollableLayer();
   return (Layer*) scrollableLayer->getChildByTag(CONTROLS_LAYER_TAG);
 }
+
+void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacement*> placements) {
+  auto objectsLayer = this->_getObjectsLayer();
+  int zOrder = placements.size();
+  
+  if (placements.size() > 0) {
+    this->_disableInteractions();
+  }
+  
+  float delayTime = 0;
+  
+  for (auto placement : placements) {
+    auto room = placement->getRoom();
+    auto position = placement->getPosition();
+    
+    auto roomSprite = Sprite::create(room->getImagePath());
+    auto name = this->getGame()->getDungeon()->nameForPosition(position);
+    roomSprite->setName(name);
+    
+    auto size = Director::getInstance()->getVisibleSize();
+    auto origin = Director::getInstance()->getVisibleOrigin() - objectsLayer->getParent()->getPosition();
+    
+    auto initialSize = TILE_DIMENSION * TILE_PLACEMENT_SCALE;
+    
+    auto deckPosition = Vec2(origin.x + size.width - initialSize / 2 - 10,
+                             origin.y + size.height - initialSize / 2 - 10);
+    roomSprite->setScale(TILE_PLACEMENT_SCALE, TILE_PLACEMENT_SCALE);
+    roomSprite->setPosition(deckPosition);
+    
+    objectsLayer->addChild(roomSprite, zOrder + 1);
+    
+    auto spritePosition = this->_positionInScene(position);
+    
+    auto delay = DelayTime::create(delayTime);
+    auto animationStarted = CallFunc::create([=]() {
+      this->_disableInteractions();
+      roomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER + 10);
+    });
+    auto moveAndScale = Spawn::create(MoveTo::create(PLACE_ROOM_DURATION, spritePosition),
+                                      ScaleTo::create(PLACE_ROOM_DURATION, 1),
+                                      NULL);
+    auto easeMove = EaseBackIn::create(moveAndScale);
+    auto animationEnded = CallFunc::create([=]() {
+      this->_enableInteractions();
+      roomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
+    });
+    
+    roomSprite->runAction(Sequence::create(delay, animationStarted, easeMove,
+                                           animationEnded, NULL));
+    
+    delayTime += PLACE_ROOM_DURATION;
+    zOrder--;
+  }
+}
+
 
 Vec2 GameplayScene::_positionInScene(Vec2 gameCoordinate) {
   auto centerPosition = INITIAL_POSITION;
@@ -287,6 +269,14 @@ void GameplayScene::_enableInteractions() {
   _userInteractionEnabled = true;
 }
 
+void GameplayScene::_resetCharacterMoveState() {
+  this->_removeOverlay();
+  
+  for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
+    adjacentNode->setColor(Color3B::WHITE);
+  }
+}
+
 #pragma mark - CharacterMoveDelegate Methods
 
 bool GameplayScene::canCharacterMove() {
@@ -328,11 +318,7 @@ bool GameplayScene::canCharacterMoveToLocation(Vec2 location) {
 }
 
 void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 location) {
-  this->_removeOverlay();
-  
-  for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
-    adjacentNode->setColor(Color3B::WHITE);
-  }
+  this->_resetCharacterMoveState();
   
   auto newCoordinate = this->_positionInGameCoordinate(location);
   auto newPosition = this->_positionInScene(newCoordinate);
@@ -345,11 +331,7 @@ void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 l
 }
 
 void GameplayScene::characterDidNotMove(CharacterDiceSprite* sprite) {
-  this->_removeOverlay();
-  
-  for (auto adjacentNode : this->_getNodesForAdjacentCharacterPosition()) {
-    adjacentNode->setColor(Color3B::WHITE);
-  }
+  this->_resetCharacterMoveState();
   
   auto coordinate = this->getGame()->getCharacterPosition();
   auto scenePosition = this->_positionInScene(coordinate);

@@ -20,7 +20,7 @@ bool BackgroundLayer::init() {
   sprite->getTexture()->setTexParameters(params);
   sprite->setPosition(Vec2(this->getContentSize().width / 2,
                            this->getContentSize().height / 2));
-  sprite->setTextureRect(Rect(0, 0, 400, 400));
+  sprite->setTextureRect(Rect(0, 0, 4000, 4000));
   
   this->addChild(sprite);
   

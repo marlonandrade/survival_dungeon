@@ -27,6 +27,12 @@ public:
   virtual bool initWithFaces(DiceFaces faces);
   
   virtual void roll();
+  virtual void changeState();
+  
+  virtual bool isSelected();
+  virtual bool isDisabled();
+  
+  virtual void setDisabled();
 };
 
 #endif /* defined(__MasmorraDados__Dice__) */

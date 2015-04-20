@@ -13,9 +13,16 @@
 
 #pragma mark - Dimensions
 
-#define DUNGEON_SIZE     100
-#define INITIAL_POSITION cocos2d::Vec2(DUNGEON_SIZE/2, DUNGEON_SIZE/2)
-#define TILE_DIMENSION   100
+#define DUNGEON_SIZE         100
+#define INITIAL_POSITION     cocos2d::Vec2(DUNGEON_SIZE/2, DUNGEON_SIZE/2)
+#define TILE_DIMENSION       100
+#define TILE_PLACEMENT_SCALE 0.3
+
+#define ACTION_DICE_BACKGROUND_BOTTOM_MARGIN 10
+#define ACTION_DICE_BACKGROUND_BUTTON_MARGIN 5
+
+#define ACTION_DICE_MARGIN          10
+#define ACTION_DICE_MARGIN_PER_DICE 3
 
 #pragma mark - Game Mechanics
 

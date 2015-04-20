@@ -15,6 +15,11 @@ class ActionDice : public Dice {
 public:
   virtual bool init();
   CREATE_FUNC(ActionDice);
+  
+  virtual void roll();
+  virtual bool isSelected();
+  virtual bool isDisabled();
+  virtual void setDisabled();
 };
 
 #endif /* defined(__MasmorraDados__ActionDice__) */

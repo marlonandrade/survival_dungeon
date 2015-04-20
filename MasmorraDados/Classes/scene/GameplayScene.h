@@ -36,6 +36,8 @@ private:
   cocos2d::Layer* _getObjectsLayer();
   cocos2d::Layer* _getControlsLayer();
   
+  void _roomsHasBeenPlaced(cocos2d::Vector<RoomPlacement*> placements);
+  
   cocos2d::Vec2 _positionInScene(cocos2d::Vec2 gameCoordinate);
   cocos2d::Vec2 _positionInGameCoordinate(cocos2d::Vec2 scenePosition);
   std::string _nameForGameCoordinate(cocos2d::Vec2 gameCoordinate);
@@ -54,6 +56,7 @@ private:
   void _disableInteractions();
   void _enableInteractions();
   
+  void _resetCharacterMoveState();
 public:
   virtual bool canCharacterMove();
   virtual void characterWillMove(CharacterDiceSprite* sprite);
