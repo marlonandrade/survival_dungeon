@@ -21,6 +21,7 @@ public:
   virtual bool initWithDices(cocos2d::Vector<ActionDice*> dices);
   
 private:
+  void _setupChilds(cocos2d::Vector<ActionDice*> dices);
   cocos2d::Node* _createActionDices(cocos2d::Vector<ActionDice*> dices);
   cocos2d::Node* _createRerollButton();
   cocos2d::Node* _createOkButton();

@@ -30,38 +30,48 @@ bool ActionDiceLayer::initWithDices(Vector<ActionDice *> dices) {
   }
   
   this->setDices(dices);
-  
-  auto actionDices = this->_createActionDices(dices);
-  auto rerollButton = this->_createRerollButton();
-  auto okButton = this->_createOkButton();
-  
-  this->addChild(actionDices);
-  this->addChild(rerollButton);
-  this->addChild(okButton);
-  
-  auto x = this->getContentSize().width / 2 - actionDices->getContentSize().width / 2;
-  auto y = ACTION_DICE_BACKGROUND_BOTTOM_MARGIN;
-  
-  actionDices->setPosition(Vec2(x, y));
-  
-  x = actionDices->getPosition().x + actionDices->getContentSize().width + ACTION_DICE_BACKGROUND_BUTTON_MARGIN;
-  y = actionDices->getPosition().y + actionDices->getContentSize().height - rerollButton->getContentSize().height - 10;
-  
-  rerollButton->setPosition(Vec2(x, y));
-  
-  y = actionDices->getPosition().y + 10;
-  
-  okButton->setPosition(Vec2(x, y));
+  this->_setupChilds(dices);
   
   return true;
 }
 
 #pragma mark - Private Interface
 
-Node* ActionDiceLayer::_createActionDices(Vector<ActionDice*> dices) {
+void ActionDiceLayer::_setupChilds(Vector<ActionDice *> dices) {
   auto backgroundLayer = LayerColor::create(Color4B(0, 0, 0, 100));
   
-  auto margin = ACTION_DICE_MARGIN;
+  auto diceSprite = dices.at(0)->getSprite();
+  
+  auto width = this->getContentSize().width;
+  auto height = diceSprite->getContentSize().height + ACTION_DICE_MARGIN * 2;
+  
+  backgroundLayer->setContentSize(Size(width, height));
+  
+  auto actionDices = this->_createActionDices(dices);
+  backgroundLayer->addChild(actionDices);
+  auto dicesX = backgroundLayer->getContentSize().width / 2 -
+                actionDices->getContentSize().width / 2;
+  auto dicesY = ACTION_DICE_MARGIN;
+  actionDices->setPosition(Vec2(dicesX, dicesY));
+  
+  auto rerollButton = this->_createRerollButton();
+  backgroundLayer->addChild(rerollButton);
+  auto rerollX = actionDices->getPosition().x / 2;
+  auto rerollY = height / 2;
+  rerollButton->setPosition(Vec2(rerollX, rerollY));
+  
+  auto okButton = this->_createOkButton();
+  backgroundLayer->addChild(okButton);
+  auto okX = width - (actionDices->getPosition().x / 2);
+  auto okY = height / 2;
+  okButton->setPosition(Vec2(okX, okY));
+  
+  this->addChild(backgroundLayer);
+}
+
+Node* ActionDiceLayer::_createActionDices(Vector<ActionDice*> dices) {
+  auto actionDices = Node::create();
+  
   auto marginPerDice = ACTION_DICE_MARGIN_PER_DICE;
   
   auto diceSprite = dices.at(0)->getSprite();
@@ -73,34 +83,26 @@ Node* ActionDiceLayer::_createActionDices(Vector<ActionDice*> dices) {
     auto width = diceSprite->getContentSize().width;
     auto height = diceSprite->getContentSize().height;
     
-    auto x = width * i + marginPerDice * i + width / 2 + margin;
-    auto y = height / 2 + margin;
+    auto x = width * i + marginPerDice * i + width / 2;
+    auto y = height / 2;
     
     diceSprite->setPosition(Vec2(x, y));
-    backgroundLayer->addChild(diceSprite, i);
+    actionDices->addChild(diceSprite, i);
   }
   
-  auto totalHorizontalMargin = margin * 2 + marginPerDice * (numberOfDices - 1);
-  auto totalVerticalMargin = margin * 2;
+  auto totalWidth = diceSprite->getContentSize().width * numberOfDices +
+                    marginPerDice * (numberOfDices - 1);
+  auto totalHeight = diceSprite->getContentSize().height;
   
-  auto totalWidth = numberOfDices * diceSprite->getContentSize().width + totalHorizontalMargin;
-  auto totalHeight = diceSprite->getContentSize().height + totalVerticalMargin;
+  actionDices->setContentSize(Size(totalWidth, totalHeight));
   
-  backgroundLayer->setContentSize(Size(totalWidth, totalHeight));
-  
-  return backgroundLayer;
+  return actionDices;
 }
 
 Node* ActionDiceLayer::_createRerollButton() {
-  auto rerollButton = ui::Button::create("images/button/normal.png",
-                                         "images/button/selected.png",
-                                         "images/button/disabled.png");
-  rerollButton->setTitleText("reroll");
-  rerollButton->setTitleColor(Color3B::BLACK);
-  rerollButton->setAnchorPoint(Vec2(0, 0));
-  rerollButton->setCapInsets(Rect(2, 2, 42, 32));
-  rerollButton->setScale9Enabled(true);
-  rerollButton->setContentSize(Size(40, 20));
+  auto rerollButton = ui::Button::create("images/button/reroll-normal.png",
+                                         "images/button/reroll-selected.png",
+                                         "images/button/reroll-disabled.png");
   rerollButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
     if (type == ui::Widget::TouchEventType::ENDED) {
       for (auto dice : this->getDices()) {
