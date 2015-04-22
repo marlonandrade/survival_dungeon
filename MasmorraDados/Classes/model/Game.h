@@ -17,19 +17,28 @@
 #include "GameObject.h"
 #include "Turn.h"
 
+class TurnDelegate;
+
 class Game : public GameObject {
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _actionDices, ActionDices);
   CC_SYNTHESIZE(cocos2d::Vector<DungeonRoom*>, _availableRooms, AvailableRooms);
   CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
+private:
+  Turn* _turn;
 protected:
   cocos2d::Vec2 _characterPosition;
-  Turn* _turn;
+  TurnDelegate* _turnDelegate;
   
 public:
+  virtual Turn* getTurn(void) const { return _turn; }
+  virtual void setTurn(Turn* turn);
+  
   virtual cocos2d::Vec2 getCharacterPosition(void) const { return _characterPosition; }
   virtual void setCharacterPosition(cocos2d::Vec2 position);
-  virtual void setTurn(Turn* turn);
+  virtual void setTurnDelegate(TurnDelegate* turnDelegate);
+  
+  virtual bool isInitialTurn();
   virtual bool isPlayerTurn();
   virtual void executeCurrentTurn();
   

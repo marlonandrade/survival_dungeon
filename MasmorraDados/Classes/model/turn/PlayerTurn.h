@@ -12,7 +12,7 @@
 #include "cocos2d.h"
 #include "Turn.h"
 
-class PlayerTurn : public cocos2d::Ref, public Turn {
+class PlayerTurn : public Turn {
 public:
   CREATE_FUNC(PlayerTurn);
   

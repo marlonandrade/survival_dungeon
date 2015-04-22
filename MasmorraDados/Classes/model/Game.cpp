@@ -11,9 +11,11 @@
 #include "Definitions.h"
 #include "DungeonTurn.h"
 #include "InitialRoom.h"
+#include "InitialTurn.h"
 #include "MinorMonsterRoom.h"
 #include "PlayerTurn.h"
 #include "RuneRoom.h"
+#include "TurnDelegate.h"
 
 USING_NS_CC;
 
@@ -36,7 +38,7 @@ bool Game::initWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
     return false;
   }
   
-  this->setTurn(PlayerTurn::create());
+  this->setTurn(InitialTurn::create());
   this->_setupAvaiableRooms();
   this->_setupDungeon(delegate);
   this->_setupActionDices();
@@ -44,16 +46,30 @@ bool Game::initWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
   return true;
 }
 
-void Game::setTurn(Turn* turn) {
-  _turn = turn;
+bool Game::isInitialTurn() {
+  return IS(_turn, InitialTurn);
 }
 
 bool Game::isPlayerTurn() {
-  return dynamic_cast<PlayerTurn*>(_turn) != NULL;
+  return IS(_turn, PlayerTurn);
 }
 
 void Game::executeCurrentTurn() {
   _turn->execute(this);
+}
+
+void Game::setTurn(Turn* turn) {
+  if (_turn != turn) {
+    CC_SAFE_RETAIN(turn);
+    
+    if (_turnDelegate) {
+      _turnDelegate->turnHasEnded(_turn);
+      _turnDelegate->turnHasStarted(turn);
+    }
+    
+    CC_SAFE_RELEASE(_turn);
+    _turn = turn;
+  }
 }
 
 void Game::setCharacterPosition(Vec2 position) {
@@ -61,6 +77,10 @@ void Game::setCharacterPosition(Vec2 position) {
   
   this->getDungeon()->placeRoomsAdjacentTo(position);
   this->getDungeon()->calculateRoomDistanceToPlayer(position);
+}
+
+void Game::setTurnDelegate(TurnDelegate *turnDelegate) {
+  _turnDelegate = turnDelegate;
 }
 
 #pragma mark - Private Interface

@@ -14,6 +14,9 @@
 #include "RoomPlacement.h"
 #include "ScrollableLayer.h"
 
+#include "InitialTurn.h"
+#include "PlayerTurn.h"
+
 USING_NS_CC;
 
 #pragma mark - Public Interface
@@ -26,6 +29,7 @@ bool GameplayScene::init() {
   this->_enableInteractions();
   
   auto game = Game::createWithRoomPlacedDelegate(CC_CALLBACK_1(GameplayScene::_roomsHasBeenPlaced, this));
+  game->setTurnDelegate(this);
   
   this->setGame(game);
   this->adjustInitialLayers();
@@ -70,6 +74,7 @@ Layer* GameplayScene::_createObjectsLayer() {
 
 Layer* GameplayScene::_createControlsLayer() {
   auto controlsLayer = Layer::create();
+  controlsLayer->setVisible(false);
   controlsLayer->setTag(CONTROLS_LAYER_TAG);
   controlsLayer->addChild(ActionDiceLayer::createWithDices(this->getGame()->getActionDices()));
   
@@ -90,8 +95,7 @@ Layer* GameplayScene::_getObjectsLayer() {
 }
 
 Layer* GameplayScene::_getControlsLayer() {
-  auto scrollableLayer = this->_getScrollableLayer();
-  return (Layer*) scrollableLayer->getChildByTag(CONTROLS_LAYER_TAG);
+  return (Layer*) this->getChildByTag(CONTROLS_LAYER_TAG);
 }
 
 void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacement*> placements) {
@@ -103,6 +107,7 @@ void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacement*> placements) {
   }
   
   float delayTime = 0;
+  auto lastPlacement = placements.at(placements.size() - 1);
   
   for (auto placement : placements) {
     auto room = placement->getRoom();
@@ -138,6 +143,10 @@ void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacement*> placements) {
     auto animationEnded = CallFunc::create([=]() {
       this->_enableInteractions();
       roomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
+      
+      if (placement == lastPlacement && this->getGame()->isInitialTurn()) {
+        this->getGame()->executeCurrentTurn();
+      }
     });
     
     roomSprite->runAction(Sequence::create(delay, animationStarted, easeMove,
@@ -338,4 +347,30 @@ void GameplayScene::characterDidNotMove(CharacterDiceSprite* sprite) {
   
   auto moveBack = MoveTo::create(RETURN_CHARACTER_DURATION, scenePosition);
   sprite->runAction(moveBack);
+}
+
+#pragma mark - Turn Delegate Methods
+
+void GameplayScene::turnHasStarted(Turn* turn) {
+  log("turn has started");
+  
+  if (IS(turn, PlayerTurn)) {
+    auto show = Show::create();
+    auto roll = CallFunc::create([&] {
+      for (auto dice : this->getGame()->getActionDices()) {
+        dice->roll();
+      }
+    });
+    auto showAndRoll = Sequence::create(show, roll, NULL);
+    
+    this->_getControlsLayer()->runAction(showAndRoll);
+  }
+}
+
+void GameplayScene::turnHasEnded(Turn* turn) {
+  log("turn has ended");
+  
+  if (IS(turn, PlayerTurn)) {
+    this->_getControlsLayer()->runAction(Hide::create());
+  }
 }

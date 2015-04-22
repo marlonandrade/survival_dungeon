@@ -10,10 +10,11 @@
 #define __MasmorraDados__Turn__
 
 #include "cocos2d.h"
+#include "GameObject.h"
 
 class Game;
 
-class Turn {
+class Turn : public GameObject {
 public:
   virtual bool init() { return true; }
   virtual void execute(Game* game) = 0;

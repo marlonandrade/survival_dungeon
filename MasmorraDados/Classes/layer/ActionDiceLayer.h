@@ -19,7 +19,6 @@ class ActionDiceLayer : public cocos2d::Layer {
 public:
   static ActionDiceLayer* createWithDices(cocos2d::Vector<ActionDice*> dices);
   virtual bool initWithDices(cocos2d::Vector<ActionDice*> dices);
-  
 private:
   void _setupChilds(cocos2d::Vector<ActionDice*> dices);
   cocos2d::Node* _createActionDices(cocos2d::Vector<ActionDice*> dices);

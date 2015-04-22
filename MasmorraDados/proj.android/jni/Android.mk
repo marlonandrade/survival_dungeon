@@ -28,6 +28,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/room/MinorMonsterRoom.cpp \
 		   ../../Classes/model/room/RuneRoom.cpp \
 		   ../../Classes/model/turn/DungeonTurn.cpp \
+		   ../../Classes/model/turn/InitialTurn.cpp \
 		   ../../Classes/model/turn/PlayerTurn.cpp \
 		   ../../Classes/model/Dungeon.cpp \
 		   ../../Classes/model/Game.cpp \

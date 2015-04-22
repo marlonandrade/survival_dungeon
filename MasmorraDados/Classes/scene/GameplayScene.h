@@ -13,8 +13,10 @@
 
 #include "CharacterMoveDelegate.h"
 #include "Game.h"
+#include "Turn.h"
+#include "TurnDelegate.h"
 
-class GameplayScene : public cocos2d::Scene, CharacterMoveDelegate {
+class GameplayScene : public cocos2d::Scene, CharacterMoveDelegate, TurnDelegate {
   CC_SYNTHESIZE_RETAIN(Game*, _game, Game);
   CC_SYNTHESIZE(cocos2d::Vector<cocos2d::Node*>, _interactableNodes, InteractableNodes);
 protected:
@@ -58,12 +60,16 @@ private:
   
   void _resetCharacterMoveState();
 public:
+#pragma mark - Character Move Delegate
   virtual bool canCharacterMove();
   virtual void characterWillMove(CharacterDiceSprite* sprite);
   virtual void characterIsMovingToLocation(cocos2d::Vec2 location);
   virtual bool canCharacterMoveToLocation(cocos2d::Vec2 location);
   virtual void characterMovedToLocation(CharacterDiceSprite* sprite, cocos2d::Vec2 location);
   virtual void characterDidNotMove(CharacterDiceSprite* sprite);
+#pragma mark - Turn Delegate
+  virtual void turnHasStarted(Turn* turn);
+  virtual void turnHasEnded(Turn* turn);
 };
 
 #endif /* defined(__MasmorraDados__GameplayScene__) */

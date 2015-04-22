@@ -11,6 +11,7 @@
 #include "ActionDiceStateDisabled.h"
 #include "ActionDiceStateNormal.h"
 #include "ActionDiceStateSelected.h"
+#include "Definitions.h"
 #include "DiceFace.h"
 
 USING_NS_CC;
@@ -44,11 +45,11 @@ void ActionDice::roll() {
 }
 
 bool ActionDice::isSelected() {
-  return dynamic_cast<ActionDiceStateSelected*>(this->getState()) > 0;
+  return IS(this->getState(), ActionDiceStateSelected);
 }
 
 bool ActionDice::isDisabled() {
-  return dynamic_cast<ActionDiceStateDisabled*>(this->getState()) > 0;
+  return IS(this->getState(), ActionDiceStateDisabled);
 }
 
 void ActionDice::setDisabled() {

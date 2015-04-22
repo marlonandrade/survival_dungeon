@@ -11,7 +11,7 @@
 
 #include "Turn.h"
 
-class DungeonTurn : public cocos2d::Ref, public Turn {
+class DungeonTurn : public Turn {
 public:
   CREATE_FUNC(DungeonTurn);
   

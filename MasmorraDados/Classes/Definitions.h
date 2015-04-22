@@ -58,4 +58,8 @@
 #define NO_ERROR                       0
 #define NO_REROLL_AVAILABLE            0x9000
 
+#pragma mark - Helpers
+
+#define IS(object, class) dynamic_cast<class*>(object) > 0
+
 #endif /* defined(__MasmorraDados__Definitions__) */
