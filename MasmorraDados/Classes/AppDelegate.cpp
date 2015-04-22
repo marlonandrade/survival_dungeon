@@ -77,7 +77,8 @@ void AppDelegate::_adjustResolution() {
   auto designAspectRatio = DESIGN_SIZE.width / DESIGN_SIZE.height;
   auto deviceAspectRatio = deviceSize.width / deviceSize.height;
   
-  glView->setDesignResolutionSize(DESIGN_SIZE.width, DESIGN_SIZE.height, ResolutionPolicy::NO_BORDER);
+  glView->setDesignResolutionSize(DESIGN_SIZE.width, DESIGN_SIZE.height,
+                                  ResolutionPolicy::FIXED_HEIGHT);
   
   std::vector<std::string> resourceSearchPaths;
   
