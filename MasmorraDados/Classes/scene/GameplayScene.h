@@ -59,6 +59,9 @@ private:
   void _enableInteractions();
   
   void _resetCharacterMoveState();
+  
+  void _showPlayerTurnInfo();
+  void _hidePlayerTurnInfo();
 public:
 #pragma mark - Character Move Delegate
   virtual bool canCharacterMove();

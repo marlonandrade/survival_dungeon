@@ -39,13 +39,14 @@
 #define OVERLAY_COLOR             cocos2d::Color4B(0, 0, 0, 0)
 #define OVERLAY_OPACITY           150 // 255 -> fully opaque | 0 -> transparent
 
-#pragma mark - Node Tags
+#pragma mark - Node Names
 
-#define OBJECTS_LAYER_TAG         1000
-#define CONTROLS_LAYER_TAG        1001
-#define OVERLAY_LAYER_TAG         1002
-#define SCROLLABLE_LAYER_TAG      1003
-#define CHARACTER_DICE_SPRITE_TAG 2000
+#define OBJECTS_LAYER_NAME         "ObjectsLayer"
+#define CONTROLS_LAYER_NAME        "ControlsLayer"
+#define OVERLAY_LAYER_NAME         "OverlayLayer"
+#define SCROLLABLE_LAYER_NAME      "ScrollableLayer"
+#define PLAYER_TURN_LAYER_NAME     "PlayerTurnLayer"
+#define CHARACTER_DICE_SPRITE_NAME "CharacterDiceSprite"
 
 #pragma mark - Z Order
 

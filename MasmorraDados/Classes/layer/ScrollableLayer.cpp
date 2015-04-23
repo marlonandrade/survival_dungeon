@@ -36,7 +36,7 @@ bool ScrollableLayer::initWithDungeon(Dungeon *dungeon) {
 }
 
 void ScrollableLayer::_setupTouchListener() {
-  this->setTag(SCROLLABLE_LAYER_TAG);
+  this->setName(SCROLLABLE_LAYER_NAME);
   
   auto touchListener = EventListenerTouchOneByOne::create();
   touchListener->onTouchBegan = CC_CALLBACK_2(ScrollableLayer::_onTouchBegan, this);

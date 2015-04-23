@@ -56,7 +56,7 @@ void GameplayScene::adjustInitialLayers() {
 
 Layer* GameplayScene::_createObjectsLayer() {
   auto objectsLayer = Layer::create();
-  objectsLayer->setTag(OBJECTS_LAYER_TAG);
+  objectsLayer->setName(OBJECTS_LAYER_NAME);
   
   auto initialRoom = this->getGame()->getDungeon()->getInitialRoom();
   auto initialPosition = INITIAL_POSITION;
@@ -75,9 +75,9 @@ Layer* GameplayScene::_createObjectsLayer() {
 Layer* GameplayScene::_createControlsLayer() {
   auto controlsLayer = Layer::create();
   controlsLayer->setVisible(false);
-  controlsLayer->setTag(CONTROLS_LAYER_TAG);
+  controlsLayer->setName(CONTROLS_LAYER_NAME);
   controlsLayer->addChild(ActionDiceLayer::createWithDices(this->getGame()->getActionDices()));
-  
+    
   return controlsLayer;
 }
 
@@ -86,16 +86,16 @@ Node* GameplayScene::_createCharacterDiceSprite() {
 }
 
 Layer* GameplayScene::_getScrollableLayer() {
-  return (Layer*) this->getChildByTag(SCROLLABLE_LAYER_TAG);
+  return (Layer*) this->getChildByName(SCROLLABLE_LAYER_NAME);
 }
 
 Layer* GameplayScene::_getObjectsLayer() {
   auto scrollableLayer = this->_getScrollableLayer();
-  return (Layer*) scrollableLayer->getChildByTag(OBJECTS_LAYER_TAG);
+  return (Layer*) scrollableLayer->getChildByName(OBJECTS_LAYER_NAME);
 }
 
 Layer* GameplayScene::_getControlsLayer() {
-  return (Layer*) this->getChildByTag(CONTROLS_LAYER_TAG);
+  return (Layer*) this->getChildByName(CONTROLS_LAYER_NAME);
 }
 
 void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacement*> placements) {
@@ -186,7 +186,7 @@ Vec2 GameplayScene::_positionInGameCoordinate(Vec2 scenePosition) {
 }
 
 void GameplayScene::_adjustCharacterDiceSpritePosition() {
-  auto sprite = this->_getObjectsLayer()->getChildByTag(CHARACTER_DICE_SPRITE_TAG);
+  auto sprite = this->_getObjectsLayer()->getChildByName(CHARACTER_DICE_SPRITE_NAME);
   auto characterPosition = this->getGame()->getCharacterPosition();
   sprite->setPosition(this->_positionInScene(characterPosition));
 }
@@ -196,7 +196,7 @@ void GameplayScene::_addOverlayWithVisibleNodes(Vector<Node *> visibleNodes) {
   auto scrollableLayer = this->_getScrollableLayer();
   
   auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
-  overlayLayer->setTag(OVERLAY_LAYER_TAG);
+  overlayLayer->setName(OVERLAY_LAYER_NAME);
   overlayLayer->setPosition(Vec2(-scrollableLayer->getPosition().x,
                                  -scrollableLayer->getPosition().y));
   
@@ -216,7 +216,7 @@ void GameplayScene::_addOverlayWithVisibleNodes(Vector<Node *> visibleNodes) {
 void GameplayScene::_removeOverlay() {
   this->_disableInteractions();
   
-  auto overlayLayer = this->_getObjectsLayer()->getChildByTag(OVERLAY_LAYER_TAG);
+  auto overlayLayer = this->_getObjectsLayer()->getChildByName(OVERLAY_LAYER_NAME);
   
   auto fadeOut = FadeOut::create(OVERLAY_DURATION);
   auto changeLayer = CallFunc::create([=]() {
@@ -249,7 +249,7 @@ Node* GameplayScene::_getNodeForCharacterPosition() {
 
 Vector<Node*> GameplayScene::_getNodesForAdjacentCharacterPosition() {
   Node* activeLayer = this->_getObjectsLayer();
-  auto overlayLayer = this->getChildByTag(OVERLAY_LAYER_TAG);
+  auto overlayLayer = this->getChildByName(OVERLAY_LAYER_NAME);
   if (overlayLayer) {
     activeLayer = overlayLayer;
   }
@@ -286,6 +286,33 @@ void GameplayScene::_resetCharacterMoveState() {
   }
 }
 
+void GameplayScene::_showPlayerTurnInfo() {
+  auto layer = LayerColor::create(Color4B(0, 0, 0, 130));
+  layer->setName(PLAYER_TURN_LAYER_NAME);
+  this->addChild(layer);
+  
+  auto playerTurn = Sprite::create("images/turn/player_turn.png");
+  playerTurn->setPosition(this->_centerOfScene());
+  playerTurn->setScale(0.5, 0.5);
+  playerTurn->setOpacity(0);
+  layer->addChild(playerTurn);
+  
+  layer->runAction(Sequence::create(DelayTime::create(2.0),
+                                    FadeTo::create(0.2, 0),
+                                    CallFunc::create([&] {
+    this->removeChildByName(PLAYER_TURN_LAYER_NAME);
+  }), NULL));
+  playerTurn->runAction(Sequence::create(Spawn::create(FadeIn::create(0.2),
+                                                       EaseBackOut::create(ScaleTo::create(0.2, 1)), NULL),
+                        DelayTime::create(1.8),
+                        Spawn::create(FadeOut::create(0.2),
+                                      EaseBackIn::create(ScaleTo::create(0.4, 0)), NULL),
+                        NULL));
+}
+
+void GameplayScene::_hidePlayerTurnInfo() {
+}
+
 #pragma mark - CharacterMoveDelegate Methods
 
 bool GameplayScene::canCharacterMove() {
@@ -295,7 +322,7 @@ bool GameplayScene::canCharacterMove() {
 
 void GameplayScene::characterWillMove(CharacterDiceSprite* sprite) {
   Vector<Node*> visibleNodes;
-  visibleNodes.pushBack(this->_getObjectsLayer()->getChildByTag(CHARACTER_DICE_SPRITE_TAG));
+  visibleNodes.pushBack(this->_getObjectsLayer()->getChildByName(CHARACTER_DICE_SPRITE_NAME));
   visibleNodes.pushBack(this->_getNodeForCharacterPosition());
   visibleNodes.pushBack(this->_getNodesForAdjacentCharacterPosition());
   this->_addOverlayWithVisibleNodes(visibleNodes);
@@ -364,6 +391,8 @@ void GameplayScene::turnHasStarted(Turn* turn) {
     auto showAndRoll = Sequence::create(show, roll, NULL);
     
     this->_getControlsLayer()->runAction(showAndRoll);
+    
+    this->_showPlayerTurnInfo();
   }
 }
 

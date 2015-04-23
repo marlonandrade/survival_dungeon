@@ -32,7 +32,7 @@ bool CharacterDiceSprite::initWithDelegate(CharacterMoveDelegate *delegate) {
   }
   
   this->setDelegate(delegate);
-  this->setTag(CHARACTER_DICE_SPRITE_TAG);
+  this->setName(CHARACTER_DICE_SPRITE_NAME);
   this->setHitpoints(CHARACTER_INITIAL_HP);
   this->_setupTouchListener();
   
