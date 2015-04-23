@@ -61,7 +61,8 @@ private:
   void _resetCharacterMoveState();
   
   void _showPlayerTurnInfo();
-  void _hidePlayerTurnInfo();
+  void _showDungeonTurnInfo();
+  void _showTurnInfo(cocos2d::Sprite* infoSprite);
 public:
 #pragma mark - Character Move Delegate
   virtual bool canCharacterMove();

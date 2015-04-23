@@ -33,6 +33,7 @@
 #define PLACE_ROOM_DURATION       0.5
 #define RETURN_CHARACTER_DURATION 0.2
 #define OVERLAY_DURATION          0.2
+#define TURN_INFO_DURATION        1.5
 
 #pragma mark - Colors / Alpha
 
@@ -45,7 +46,7 @@
 #define CONTROLS_LAYER_NAME        "ControlsLayer"
 #define OVERLAY_LAYER_NAME         "OverlayLayer"
 #define SCROLLABLE_LAYER_NAME      "ScrollableLayer"
-#define PLAYER_TURN_LAYER_NAME     "PlayerTurnLayer"
+#define TURN_OVERLAY_LAYER_NAME    "TurnOverlayLayer"
 #define CHARACTER_DICE_SPRITE_NAME "CharacterDiceSprite"
 
 #pragma mark - Z Order
