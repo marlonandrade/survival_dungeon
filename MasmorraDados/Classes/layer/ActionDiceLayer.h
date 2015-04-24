@@ -19,11 +19,16 @@ class ActionDiceLayer : public cocos2d::Layer {
 public:
   static ActionDiceLayer* createWithDices(cocos2d::Vector<ActionDice*> dices);
   virtual bool initWithDices(cocos2d::Vector<ActionDice*> dices);
+  void resetRollCount();
 private:
+  int _rollCount;
+  
   void _setupChilds(cocos2d::Vector<ActionDice*> dices);
   cocos2d::Node* _createActionDices(cocos2d::Vector<ActionDice*> dices);
   cocos2d::Node* _createRerollButton();
   cocos2d::Node* _createOkButton();
+  
+  cocos2d::ui::Button* _getRerollButton();
 };
 
 #endif /* defined(__MasmorraDados__ActionDiceLayer__) */

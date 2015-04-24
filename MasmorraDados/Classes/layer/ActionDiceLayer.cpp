@@ -31,8 +31,16 @@ bool ActionDiceLayer::initWithDices(Vector<ActionDice *> dices) {
   
   this->setDices(dices);
   this->_setupChilds(dices);
+  this->resetRollCount();
   
   return true;
+}
+
+void ActionDiceLayer::resetRollCount() {
+  auto rerollButton = this->_getRerollButton();
+  rerollButton->setEnabled(true);
+  rerollButton->setBright(true);
+  this->_rollCount = 1;
 }
 
 #pragma mark - Private Interface
@@ -44,29 +52,28 @@ void ActionDiceLayer::_setupChilds(Vector<ActionDice *> dices) {
   
   auto width = this->getContentSize().width;
   auto height = diceSprite->getContentSize().height + ACTION_DICE_MARGIN * 2;
-  
   backgroundLayer->setContentSize(Size(width, height));
   
+  this->addChild(backgroundLayer);
+  
   auto actionDices = this->_createActionDices(dices);
-  backgroundLayer->addChild(actionDices);
+  this->addChild(actionDices);
   auto dicesX = backgroundLayer->getContentSize().width / 2 -
                 actionDices->getContentSize().width / 2;
   auto dicesY = ACTION_DICE_MARGIN;
   actionDices->setPosition(Vec2(dicesX, dicesY));
   
   auto rerollButton = this->_createRerollButton();
-  backgroundLayer->addChild(rerollButton);
+  this->addChild(rerollButton);
   auto rerollX = actionDices->getPosition().x / 2;
   auto rerollY = height / 2;
   rerollButton->setPosition(Vec2(rerollX, rerollY));
   
   auto okButton = this->_createOkButton();
-  backgroundLayer->addChild(okButton);
+  this->addChild(okButton);
   auto okX = width - (actionDices->getPosition().x / 2);
   auto okY = height / 2;
   okButton->setPosition(Vec2(okX, okY));
-  
-  this->addChild(backgroundLayer);
 }
 
 Node* ActionDiceLayer::_createActionDices(Vector<ActionDice*> dices) {
@@ -103,14 +110,22 @@ Node* ActionDiceLayer::_createRerollButton() {
   auto rerollButton = ui::Button::create("images/button/reroll-normal.png",
                                          "images/button/reroll-selected.png",
                                          "images/button/reroll-disabled.png");
-  rerollButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
+  rerollButton->setName(DICE_REROLL_BUTTON_NAME);
+  rerollButton->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type) {
     if (type == ui::Widget::TouchEventType::ENDED) {
+      this->_rollCount++;
+      
       for (auto dice : this->getDices()) {
         if (dice->isSelected()) {
           dice->roll();
         } else if (!dice->isDisabled()) {
           dice->setDisabled();
         }
+      }
+      
+      if (this->_rollCount > 3) {
+        rerollButton->setEnabled(false);
+        rerollButton->setBright(false);
       }
       log("reroll pressed");
     }
@@ -123,6 +138,7 @@ Node* ActionDiceLayer::_createOkButton() {
   auto okButton = ui::Button::create("images/button/ok-normal.png",
                                      "images/button/ok-selected.png",
                                      "images/button/ok-disabled.png");
+  okButton->setName(DICE_OK_BUTTON_NAME);
   okButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
     if (type == ui::Widget::TouchEventType::ENDED) {
       log("ok pressed");
@@ -130,4 +146,8 @@ Node* ActionDiceLayer::_createOkButton() {
   });
   
   return okButton;
+}
+
+ui::Button* ActionDiceLayer::_getRerollButton() {
+  return (ui::Button*) this->getChildByName(DICE_REROLL_BUTTON_NAME);
 }

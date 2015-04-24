@@ -48,6 +48,8 @@
 #define SCROLLABLE_LAYER_NAME      "ScrollableLayer"
 #define TURN_OVERLAY_LAYER_NAME    "TurnOverlayLayer"
 #define CHARACTER_DICE_SPRITE_NAME "CharacterDiceSprite"
+#define DICE_REROLL_BUTTON_NAME    "DiceRerollButton"
+#define DICE_OK_BUTTON_NAME        "DiceOkButton"
 
 #pragma mark - Z Order
 
