@@ -8,8 +8,10 @@
 
 #include "InitialRoom.h"
 
+#include "Definitions.h"
+
 std::string InitialRoom::getImagePath() {
-  return "images/rooms/initial.png";
+  return IMG_ROOM_INITIAL;
 }
 
 bool InitialRoom::isExplorable() {

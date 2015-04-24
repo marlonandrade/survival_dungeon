@@ -60,9 +60,15 @@ void CharacterDiceSprite::_setupTouchListener() {
 }
 
 std::string CharacterDiceSprite::_getFileNameForHitpoints(int hitpoints) {
+  std::string fileName = IMG_DICE_CHAR;
+  
+  auto xxPos = fileName.find("xx");
+  
   std::stringstream stream;
-  stream << "images/character/" << hitpoints << ".png";
-  return stream.str();
+  stream << hitpoints;
+  auto hp = stream.str();
+  
+  return fileName.replace(xxPos, 2, hp);
 }
 
 #pragma mark Touch Events

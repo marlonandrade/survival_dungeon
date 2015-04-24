@@ -8,6 +8,8 @@
 
 #include "BackgroundLayer.h"
 
+#include "Definitions.h"
+
 USING_NS_CC;
 
 bool BackgroundLayer::init() {
@@ -15,7 +17,7 @@ bool BackgroundLayer::init() {
     return false;
   }
   
-  auto sprite = Sprite::create("images/background.png");
+  auto sprite = Sprite::create(IMG_BACKGROUND);
   Texture2D::TexParams params = { GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT };
   sprite->getTexture()->setTexParameters(params);
   sprite->setPosition(Vec2(this->getContentSize().width / 2,

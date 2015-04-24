@@ -8,8 +8,10 @@
 
 #include "RuneRoom.h"
 
+#include "Definitions.h"
+
 std::string RuneRoom::getImagePath() {
-  return "images/rooms/rune.png";
+  return IMG_ROOM_RUNE;
 }
 
 bool RuneRoom::isExplorable() {

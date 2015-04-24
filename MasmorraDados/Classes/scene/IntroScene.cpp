@@ -30,7 +30,7 @@ bool IntroScene::init() {
   Vec2 center = Vec2(visibleSize.width / 2 + visibleOrigin.x,
                      visibleSize.height / 2 + visibleOrigin.y);
   
-  auto introImage = Sprite::create("images/intro.jpg");
+  auto introImage = Sprite::create(IMG_INTRO);
   
   float scaleX = visibleSize.width / introImage->getContentSize().width;
   float scaleY = visibleSize.height / introImage->getContentSize().height;

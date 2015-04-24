@@ -28,6 +28,8 @@ private:
   cocos2d::Node* _createRerollButton();
   cocos2d::Node* _createOkButton();
   
+  void _adjustRerollButtonTextures();
+  
   cocos2d::ui::Button* _getRerollButton();
 };
 

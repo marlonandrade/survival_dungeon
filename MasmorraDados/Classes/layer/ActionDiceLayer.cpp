@@ -41,6 +41,7 @@ void ActionDiceLayer::resetRollCount() {
   rerollButton->setEnabled(true);
   rerollButton->setBright(true);
   this->_rollCount = 1;
+  this->_adjustRerollButtonTextures();
 }
 
 #pragma mark - Private Interface
@@ -107,13 +108,13 @@ Node* ActionDiceLayer::_createActionDices(Vector<ActionDice*> dices) {
 }
 
 Node* ActionDiceLayer::_createRerollButton() {
-  auto rerollButton = ui::Button::create("images/button/reroll-normal.png",
-                                         "images/button/reroll-selected.png",
-                                         "images/button/reroll-disabled.png");
+  auto rerollButton = ui::Button::create();
   rerollButton->setName(DICE_REROLL_BUTTON_NAME);
   rerollButton->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type) {
     if (type == ui::Widget::TouchEventType::ENDED) {
       this->_rollCount++;
+      
+      this->_adjustRerollButtonTextures();
       
       for (auto dice : this->getDices()) {
         if (dice->isSelected()) {
@@ -127,6 +128,7 @@ Node* ActionDiceLayer::_createRerollButton() {
         rerollButton->setEnabled(false);
         rerollButton->setBright(false);
       }
+      
       log("reroll pressed");
     }
   });
@@ -135,9 +137,9 @@ Node* ActionDiceLayer::_createRerollButton() {
 }
 
 Node* ActionDiceLayer::_createOkButton() {
-  auto okButton = ui::Button::create("images/button/ok-normal.png",
-                                     "images/button/ok-selected.png",
-                                     "images/button/ok-disabled.png");
+  auto okButton = ui::Button::create(IMG_BUTTON_OK_NORMAL,
+                                     IMG_BUTTON_OK_SELECTED,
+                                     IMG_BUTTON_OK_DISABLED);
   okButton->setName(DICE_OK_BUTTON_NAME);
   okButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
     if (type == ui::Widget::TouchEventType::ENDED) {
@@ -146,6 +148,29 @@ Node* ActionDiceLayer::_createOkButton() {
   });
   
   return okButton;
+}
+
+void ActionDiceLayer::_adjustRerollButtonTextures() {
+  auto rerollButton = this->_getRerollButton();
+  
+  std::string normalTexture = IMG_BUTTON_REROLL_NORMAL;
+  std::string selectedTexture = IMG_BUTTON_REROLL_SELECTED;
+  std::string disabledTexture = IMG_BUTTON_REROLL_DISABLED;
+  
+  auto normalXXPos = normalTexture.find("xx");
+  auto selectedXXPos = selectedTexture.find("xx");
+  auto disabledXXPos = disabledTexture.find("xx");
+  
+  std::stringstream stream;
+  stream << 4 - this->_rollCount;
+  auto rerollsLeft = stream.str();
+  
+  normalTexture = normalTexture.replace(normalXXPos, 1, rerollsLeft);
+  selectedTexture = selectedTexture.replace(selectedXXPos, 1, rerollsLeft);
+  disabledTexture = disabledTexture.replace(disabledXXPos, 1, rerollsLeft);
+  
+  rerollButton->loadTextures(normalTexture, selectedTexture);
+  rerollButton->loadTextureDisabled(disabledTexture);
 }
 
 ui::Button* ActionDiceLayer::_getRerollButton() {

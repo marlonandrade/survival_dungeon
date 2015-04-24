@@ -8,8 +8,10 @@
 
 #include "MinorMonsterRoom.h"
 
+#include "Definitions.h"
+
 std::string MinorMonsterRoom::getImagePath() {
-  return "images/rooms/minor_monster.png";
+  return IMG_ROOM_MINOR_MONSTER;
 }
 
 bool MinorMonsterRoom::isExplorable() {

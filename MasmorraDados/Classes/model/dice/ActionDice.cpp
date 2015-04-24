@@ -20,18 +20,18 @@ USING_NS_CC;
 
 bool ActionDice::init() {
   DiceFaces faces;
-  faces.pushBack(DiceFace::createWithImagePath("images/dice/boot.png"));
-  faces.pushBack(DiceFace::createWithImagePath("images/dice/bow.png"));
-  faces.pushBack(DiceFace::createWithImagePath("images/dice/heal.png"));
-  faces.pushBack(DiceFace::createWithImagePath("images/dice/magic.png"));
-  faces.pushBack(DiceFace::createWithImagePath("images/dice/shield.png"));
-  faces.pushBack(DiceFace::createWithImagePath("images/dice/sword.png"));
+  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_BOOT));
+  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_BOW));
+  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_HEAL));
+  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_MAGIC));
+  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_SHIELD));
+  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_SWORD));
   
   if (!Dice::initWithFaces(faces)) {
     return false;
   }
   
-  this->setBlurImagePath("images/dice/blur.png");
+  this->setBlurImagePath(IMG_DICE_ACTION_BLUR);
   this->setState(ActionDiceStateNormal::create());
   
   return true;
@@ -55,7 +55,7 @@ bool ActionDice::isDisabled() {
 void ActionDice::setDisabled() {
   auto sprite = this->getSprite();
   
-  auto disabledSprite = Sprite::create("images/dice/disabled.png");
+  auto disabledSprite = Sprite::create(IMG_DICE_ACTION_DISABLED);
   disabledSprite->setPosition(Vec2(sprite->getContentSize().width / 2,
                                    sprite->getContentSize().height / 2));
   sprite->addChild(disabledSprite);

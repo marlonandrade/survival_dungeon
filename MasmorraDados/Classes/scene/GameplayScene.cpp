@@ -287,11 +287,11 @@ void GameplayScene::_resetCharacterMoveState() {
 }
 
 void GameplayScene::_showPlayerTurnInfo() {
-  this->_showTurnInfo(Sprite::create("images/turn/player.png"));
+  this->_showTurnInfo(Sprite::create(IMG_TURN_PLAYER));
 }
 
 void GameplayScene::_showDungeonTurnInfo() {
-  this->_showTurnInfo(Sprite::create("images/turn/dungeon.png"));
+  this->_showTurnInfo(Sprite::create(IMG_TURN_DUNGEON));
 }
 
 void GameplayScene::_showTurnInfo(cocos2d::Sprite *infoSprite) {
