@@ -120,15 +120,9 @@ Node* ActionDiceLayer::_createRerollButton() {
 }
 
 Node* ActionDiceLayer::_createOkButton() {
-  auto okButton = ui::Button::create("images/button/normal.png",
-                                     "images/button/selected.png",
-                                     "images/button/disabled.png");
-  okButton->setTitleText("ok");
-  okButton->setTitleColor(Color3B::BLACK);
-  okButton->setAnchorPoint(Vec2(0, 0));
-  okButton->setCapInsets(Rect(2, 2, 42, 32));
-  okButton->setScale9Enabled(true);
-  okButton->setContentSize(Size(40, 20));
+  auto okButton = ui::Button::create("images/button/ok-normal.png",
+                                     "images/button/ok-selected.png",
+                                     "images/button/ok-disabled.png");
   okButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
     if (type == ui::Widget::TouchEventType::ENDED) {
       log("ok pressed");
