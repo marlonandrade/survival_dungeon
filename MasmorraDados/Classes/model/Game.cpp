@@ -15,7 +15,6 @@
 #include "MinorMonsterRoom.h"
 #include "PlayerTurn.h"
 #include "RuneRoom.h"
-#include "TurnDelegate.h"
 
 USING_NS_CC;
 
@@ -62,10 +61,9 @@ void Game::setTurn(Turn* turn) {
   if (_turn != turn) {
     CC_SAFE_RETAIN(turn);
     
-    if (_turnDelegate) {
-      _turnDelegate->turnHasEnded(_turn);
-      _turnDelegate->turnHasStarted(turn);
-    }
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->dispatchCustomEvent(EVT_TURN_HAS_ENDED, _turn);
+    dispatcher->dispatchCustomEvent(EVT_TURN_HAS_STARTED, turn);
     
     CC_SAFE_RELEASE(_turn);
     _turn = turn;
@@ -77,10 +75,6 @@ void Game::setCharacterPosition(Vec2 position) {
   
   this->getDungeon()->placeRoomsAdjacentTo(position);
   this->getDungeon()->calculateRoomDistanceToPlayer(position);
-}
-
-void Game::setTurnDelegate(TurnDelegate *turnDelegate) {
-  _turnDelegate = turnDelegate;
 }
 
 #pragma mark - Private Interface

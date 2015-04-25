@@ -26,10 +26,15 @@ bool GameplayScene::init() {
     return false;
   }
   
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->addCustomEventListener(EVT_TURN_HAS_ENDED,
+                                     CC_CALLBACK_1(GameplayScene::_evtTurnHasEnded, this));
+  dispatcher->addCustomEventListener(EVT_TURN_HAS_STARTED,
+                                     CC_CALLBACK_1(GameplayScene::_evtTurnHasStarted, this));
+  
   this->_enableInteractions();
   
   auto game = Game::createWithRoomPlacedDelegate(CC_CALLBACK_1(GameplayScene::_roomsHasBeenPlaced, this));
-  game->setTurnDelegate(this);
   
   this->setGame(game);
   this->adjustInitialLayers();
@@ -329,6 +334,38 @@ void GameplayScene::_showTurnInfo(cocos2d::Sprite *infoSprite) {
                                          fadeOutTurnInfo, NULL));
 }
 
+#pragma mark - Events
+
+void GameplayScene::_evtTurnHasStarted(EventCustom* event) {
+  log("turn has started");
+  
+  auto turn = (Turn*) event->getUserData();
+  
+  if (IS(turn, PlayerTurn)) {
+    auto show = Show::create();
+    auto roll = CallFunc::create([&] {
+      for (auto dice : this->getGame()->getActionDices()) {
+        dice->roll();
+      }
+    });
+    auto showAndRoll = Sequence::create(show, roll, NULL);
+    
+    this->_getControlsLayer()->runAction(showAndRoll);
+    
+    this->_showPlayerTurnInfo();
+  }
+}
+
+void GameplayScene::_evtTurnHasEnded(EventCustom* event) {
+  log("turn has ended");
+  
+  auto turn = (Turn*) event->getUserData();
+  
+  if (IS(turn, PlayerTurn)) {
+    this->_getControlsLayer()->runAction(Hide::create());
+  }
+}
+
 #pragma mark - CharacterMoveDelegate Methods
 
 bool GameplayScene::canCharacterMove() {
@@ -390,32 +427,4 @@ void GameplayScene::characterDidNotMove(CharacterDiceSprite* sprite) {
   
   auto moveBack = MoveTo::create(RETURN_CHARACTER_DURATION, scenePosition);
   sprite->runAction(moveBack);
-}
-
-#pragma mark - Turn Delegate Methods
-
-void GameplayScene::turnHasStarted(Turn* turn) {
-  log("turn has started");
-  
-  if (IS(turn, PlayerTurn)) {
-    auto show = Show::create();
-    auto roll = CallFunc::create([&] {
-      for (auto dice : this->getGame()->getActionDices()) {
-        dice->roll();
-      }
-    });
-    auto showAndRoll = Sequence::create(show, roll, NULL);
-    
-    this->_getControlsLayer()->runAction(showAndRoll);
-    
-    this->_showPlayerTurnInfo();
-  }
-}
-
-void GameplayScene::turnHasEnded(Turn* turn) {
-  log("turn has ended");
-  
-  if (IS(turn, PlayerTurn)) {
-    this->_getControlsLayer()->runAction(Hide::create());
-  }
 }

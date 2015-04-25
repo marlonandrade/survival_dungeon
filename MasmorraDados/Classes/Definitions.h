@@ -98,4 +98,10 @@
 #define IMG_TURN_DUNGEON            "turn/dungeon.png"
 #define IMG_TURN_PLAYER             "turn/player.png"
 
+#pragma mark - Events
+
+#define EVT_TURN_HAS_ENDED          "turn_has_ended"
+#define EVT_TURN_HAS_STARTED        "turn_has_started"
+
+
 #endif /* defined(__MasmorraDados__Definitions__) */

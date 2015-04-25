@@ -217,7 +217,6 @@
 		BFBAE2A21AD171AD00A5FC9A /* ScrollableLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableLayer.h; sourceTree = "<group>"; };
 		BFBE57AB1AE0143400D93530 /* Shake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shake.cpp; sourceTree = "<group>"; };
 		BFBE57AC1AE0143400D93530 /* Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shake.h; sourceTree = "<group>"; };
-		BFC33C1B1AE7FDF300934C34 /* TurnDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurnDelegate.h; sourceTree = "<group>"; };
 		BFC33C1F1AE803D300934C34 /* InitialTurn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitialTurn.cpp; sourceTree = "<group>"; };
 		BFC33C201AE803D300934C34 /* InitialTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialTurn.h; sourceTree = "<group>"; };
 		BFC373931A9BFDDA00520751 /* DungeonRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DungeonRoom.cpp; sourceTree = "<group>"; };
@@ -532,7 +531,6 @@
 				BFC597571AD43D19007C03A7 /* PlayerTurn.cpp */,
 				BFC597581AD43D19007C03A7 /* PlayerTurn.h */,
 				BFC597591AD43D19007C03A7 /* Turn.h */,
-				BFC33C1B1AE7FDF300934C34 /* TurnDelegate.h */,
 			);
 			path = turn;
 			sourceTree = "<group>";
