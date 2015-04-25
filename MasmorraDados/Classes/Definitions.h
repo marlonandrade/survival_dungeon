@@ -103,5 +103,8 @@
 #define EVT_TURN_HAS_ENDED          "turn_has_ended"
 #define EVT_TURN_HAS_STARTED        "turn_has_started"
 
+#define EVT_DICE_STATE_NEW          "state_changed_new"
+#define EVT_DICE_STATE_OLD          "state_changed_old"
+
 
 #endif /* defined(__MasmorraDados__Definitions__) */

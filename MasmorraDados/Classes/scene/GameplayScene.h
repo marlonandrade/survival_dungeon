@@ -64,8 +64,8 @@ private:
   void _showTurnInfo(cocos2d::Sprite* infoSprite);
   
 #pragma mark - Events
-  virtual void _evtTurnHasStarted(cocos2d::EventCustom* event);
-  virtual void _evtTurnHasEnded(cocos2d::EventCustom* event);
+  virtual void handleTurnHasStarted(cocos2d::EventCustom* event);
+  virtual void handleTurnHasEnded(cocos2d::EventCustom* event);
 public:
 #pragma mark - Character Move Delegate
   virtual bool canCharacterMove();

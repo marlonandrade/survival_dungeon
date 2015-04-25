@@ -9,10 +9,13 @@
 #include "Dice.h"
 
 #include "ActionDiceSprite.h"
+#include "Definitions.h"
 #include "DiceFace.h"
 #include "Shake.h"
 
 USING_NS_CC;
+
+#pragma mark - Properties
 
 DiceFace* Dice::getSelectedFace() {
   return _selectedFace;
@@ -46,6 +49,24 @@ void Dice::setFaces(DiceFaces faces) {
   
   for (auto face : faces) {
     face->setDice(this);
+  }
+}
+
+DiceState* Dice::getState() {
+  return _state;
+}
+
+void Dice::setState(DiceState *state) {
+  if (_state != state) {
+    CC_SAFE_RETAIN(state);
+    
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->dispatchCustomEvent(EVT_DICE_STATE_OLD, _state);
+    
+    CC_SAFE_RELEASE(_state);
+    _state = state;
+    
+    dispatcher->dispatchCustomEvent(EVT_DICE_STATE_NEW, _state);
   }
 }
 

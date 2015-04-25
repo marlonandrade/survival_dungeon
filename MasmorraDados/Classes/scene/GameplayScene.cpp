@@ -26,18 +26,18 @@ bool GameplayScene::init() {
     return false;
   }
   
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  dispatcher->addCustomEventListener(EVT_TURN_HAS_ENDED,
-                                     CC_CALLBACK_1(GameplayScene::_evtTurnHasEnded, this));
-  dispatcher->addCustomEventListener(EVT_TURN_HAS_STARTED,
-                                     CC_CALLBACK_1(GameplayScene::_evtTurnHasStarted, this));
-  
   this->_enableInteractions();
   
   auto game = Game::createWithRoomPlacedDelegate(CC_CALLBACK_1(GameplayScene::_roomsHasBeenPlaced, this));
   
   this->setGame(game);
   this->adjustInitialLayers();
+  
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->addCustomEventListener(EVT_TURN_HAS_ENDED,
+                                     CC_CALLBACK_1(GameplayScene::handleTurnHasEnded, this));
+  dispatcher->addCustomEventListener(EVT_TURN_HAS_STARTED,
+                                     CC_CALLBACK_1(GameplayScene::handleTurnHasStarted, this));
   
   return true;
 }
@@ -336,7 +336,7 @@ void GameplayScene::_showTurnInfo(cocos2d::Sprite *infoSprite) {
 
 #pragma mark - Events
 
-void GameplayScene::_evtTurnHasStarted(EventCustom* event) {
+void GameplayScene::handleTurnHasStarted(EventCustom* event) {
   log("turn has started");
   
   auto turn = (Turn*) event->getUserData();
@@ -356,7 +356,7 @@ void GameplayScene::_evtTurnHasStarted(EventCustom* event) {
   }
 }
 
-void GameplayScene::_evtTurnHasEnded(EventCustom* event) {
+void GameplayScene::handleTurnHasEnded(EventCustom* event) {
   log("turn has ended");
   
   auto turn = (Turn*) event->getUserData();

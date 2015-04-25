@@ -63,10 +63,11 @@ void Game::setTurn(Turn* turn) {
     
     auto dispatcher = Director::getInstance()->getEventDispatcher();
     dispatcher->dispatchCustomEvent(EVT_TURN_HAS_ENDED, _turn);
-    dispatcher->dispatchCustomEvent(EVT_TURN_HAS_STARTED, turn);
     
     CC_SAFE_RELEASE(_turn);
     _turn = turn;
+    
+    dispatcher->dispatchCustomEvent(EVT_TURN_HAS_STARTED, _turn);
   }
 }
 

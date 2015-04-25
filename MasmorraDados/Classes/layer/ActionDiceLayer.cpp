@@ -10,6 +10,9 @@
 
 #include "Definitions.h"
 
+#include "ActionDiceStateNormal.h"
+#include "ActionDiceStateSelected.h"
+
 USING_NS_CC;
 
 #pragma mark - Public Interface
@@ -33,15 +36,28 @@ bool ActionDiceLayer::initWithDices(Vector<ActionDice *> dices) {
   this->_setupChilds(dices);
   this->resetRollCount();
   
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->addCustomEventListener(EVT_DICE_STATE_NEW,
+                                     CC_CALLBACK_1(ActionDiceLayer::handleDiceStateNew, this));
+  
   return true;
 }
 
 void ActionDiceLayer::resetRollCount() {
-  auto rerollButton = this->_getRerollButton();
-  rerollButton->setEnabled(true);
-  rerollButton->setBright(true);
   this->_rollCount = 1;
   this->_adjustRerollButtonTextures();
+}
+
+void ActionDiceLayer::handleDiceStateNew(EventCustom* event) {
+  bool anyDiceSelected = false;
+  for (auto dice : this->getDices()) {
+    if (dice->isSelected()) {
+      anyDiceSelected = true;
+      break;
+    }
+  }
+  
+  this->_setRerollButtonEnabled(anyDiceSelected);
 }
 
 #pragma mark - Private Interface
@@ -124,11 +140,6 @@ Node* ActionDiceLayer::_createRerollButton() {
         }
       }
       
-      if (this->_rollCount > 3) {
-        rerollButton->setEnabled(false);
-        rerollButton->setBright(false);
-      }
-      
       log("reroll pressed");
     }
   });
@@ -148,6 +159,16 @@ Node* ActionDiceLayer::_createOkButton() {
   });
   
   return okButton;
+}
+
+void ActionDiceLayer::_setRerollButtonEnabled(bool enabled) {
+  if (this->_rollCount > 3) {
+    enabled = false;
+  }
+  
+  auto rerollButton = this->_getRerollButton();
+  rerollButton->setEnabled(enabled);
+  rerollButton->setBright(enabled);
 }
 
 void ActionDiceLayer::_adjustRerollButtonTextures() {
