@@ -22,6 +22,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/dice/Dice.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateDisabled.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateNormal.cpp \
+		   ../../Classes/model/dice/state/ActionDiceStateRolled.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateSelected.cpp \
 		   ../../Classes/model/room/DungeonRoom.cpp \
 		   ../../Classes/model/room/InitialRoom.cpp \

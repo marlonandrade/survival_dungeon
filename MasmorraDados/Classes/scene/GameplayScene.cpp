@@ -31,20 +31,16 @@ bool GameplayScene::init() {
   auto game = Game::createWithRoomPlacedDelegate(CC_CALLBACK_1(GameplayScene::_roomsHasBeenPlaced, this));
   
   this->setGame(game);
-  this->adjustInitialLayers();
   
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  dispatcher->addCustomEventListener(EVT_TURN_HAS_ENDED,
-                                     CC_CALLBACK_1(GameplayScene::_handleTurnHasEnded, this));
-  dispatcher->addCustomEventListener(EVT_TURN_HAS_STARTED,
-                                     CC_CALLBACK_1(GameplayScene::_handleTurnHasStarted, this));
+  this->_adjustInitialLayers();
+  this->_setupEventHandlers();
   
   return true;
 }
 
 #pragma mark - Private Interface
 
-void GameplayScene::adjustInitialLayers() {
+void GameplayScene::_adjustInitialLayers() {
   auto center = this->_centerOfScene();
   
   auto scrollableLayer = ScrollableLayer::createWithDungeon(this->getGame()->getDungeon());
@@ -57,6 +53,16 @@ void GameplayScene::adjustInitialLayers() {
   
   this->getGame()->setCharacterPosition(INITIAL_POSITION);
   this->_adjustCharacterDiceSpritePosition();
+}
+
+void GameplayScene::_setupEventHandlers() {
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->addCustomEventListener(EVT_TURN_HAS_ENDED,
+                                     CC_CALLBACK_1(GameplayScene::_handleTurnHasEnded, this));
+  dispatcher->addCustomEventListener(EVT_TURN_HAS_STARTED,
+                                     CC_CALLBACK_1(GameplayScene::_handleTurnHasStarted, this));
+  dispatcher->addCustomEventListener(EVT_ACTION_DICES_ROLLED,
+                                     CC_CALLBACK_1(GameplayScene::_handleActionDicesRolled, this));
 }
 
 Layer* GameplayScene::_createObjectsLayer() {
@@ -364,6 +370,25 @@ void GameplayScene::_handleTurnHasEnded(EventCustom* event) {
   if (IS(turn, PlayerTurn)) {
     this->_getControlsLayer()->runAction(Hide::create());
   }
+}
+
+void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
+  auto actionDicesLayer = (ActionDiceLayer*) event->getUserData();
+  
+  for (auto dice : actionDicesLayer->getDices()) {
+    auto sprite = dice->getSprite();
+    CC_SAFE_RETAIN(sprite);
+    auto position = sprite->getParent()->getPosition();
+    sprite->removeFromParent();
+    
+    auto newPosition = sprite->getPosition() + position;
+    sprite->setPosition(newPosition);
+    
+    this->_getControlsLayer()->addChild(sprite);
+    CC_SAFE_RELEASE(sprite);
+  }
+  
+  actionDicesLayer->removeFromParent();
 }
 
 #pragma mark - CharacterMoveDelegate Methods

@@ -185,8 +185,13 @@ void ActionDiceLayer::_handleRerollTouched(Ref* sender, ui::Widget::TouchEventTy
 }
 
 void ActionDiceLayer::_handleOkTouched(Ref* sender, ui::Widget::TouchEventType type) {
+  for (auto dice : this->getDices()) {
+    dice->setRolled();
+  }
+  
   if (type == ui::Widget::TouchEventType::ENDED) {
-    log("ok pressed");
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->dispatchCustomEvent(EVT_ACTION_DICES_ROLLED, this);
   }
 }
 

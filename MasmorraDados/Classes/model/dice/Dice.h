@@ -29,11 +29,13 @@ public:
   
   virtual void roll();
   virtual void changeState();
+  virtual void resetState();
   
   virtual bool isSelected();
   virtual bool isDisabled();
   
   virtual void setDisabled();
+  virtual void setRolled();
 };
 
 #endif /* defined(__MasmorraDados__Dice__) */

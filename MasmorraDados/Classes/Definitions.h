@@ -100,11 +100,13 @@
 
 #pragma mark - Events
 
-#define EVT_TURN_HAS_ENDED          "turn_has_ended"
-#define EVT_TURN_HAS_STARTED        "turn_has_started"
+#define EVT_TURN_HAS_ENDED          "turn_has_ended"        // data -> turn
+#define EVT_TURN_HAS_STARTED        "turn_has_started"      // data -> turn
 
-#define EVT_DICE_STATE_NEW          "state_changed_new"
-#define EVT_DICE_STATE_OLD          "state_changed_old"
+#define EVT_DICE_STATE_NEW          "state_changed_new"     // data -> new state
+#define EVT_DICE_STATE_OLD          "state_changed_old"     // data -> previous state
+
+#define EVT_ACTION_DICES_ROLLED     "action_dices_rolled"   // data -> ActionDiceLayer
 
 
 #endif /* defined(__MasmorraDados__Definitions__) */

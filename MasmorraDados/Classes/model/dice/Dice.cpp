@@ -103,6 +103,9 @@ void Dice::changeState() {
   this->getState()->changeState(this);
 }
 
+void Dice::resetState() {
+}
+
 bool Dice::isSelected() {
   return false;
 }
@@ -112,4 +115,7 @@ bool Dice::isDisabled() {
 }
 
 void Dice::setDisabled() {
+}
+
+void Dice::setRolled() {
 }

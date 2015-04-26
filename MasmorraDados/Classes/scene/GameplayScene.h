@@ -26,7 +26,9 @@ public:
   CREATE_FUNC(GameplayScene);
   
 private:
-  void adjustInitialLayers();
+  void _adjustInitialLayers();
+  
+  void _setupEventHandlers();
   
   cocos2d::Layer* _createObjectsLayer();
   cocos2d::Layer* _createControlsLayer();
@@ -66,6 +68,7 @@ private:
 #pragma mark - Events
   void _handleTurnHasStarted(cocos2d::EventCustom* event);
   void _handleTurnHasEnded(cocos2d::EventCustom* event);
+  void _handleActionDicesRolled(cocos2d::EventCustom* event);
 public:
 #pragma mark - Character Move Delegate
   virtual bool canCharacterMove();

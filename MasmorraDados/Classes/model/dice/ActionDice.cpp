@@ -10,6 +10,7 @@
 
 #include "ActionDiceStateDisabled.h"
 #include "ActionDiceStateNormal.h"
+#include "ActionDiceStateRolled.h"
 #include "ActionDiceStateSelected.h"
 #include "Definitions.h"
 #include "DiceFace.h"
@@ -44,6 +45,12 @@ void ActionDice::roll() {
   this->getSprite()->removeAllChildren();
 }
 
+void ActionDice::resetState() {
+  Dice::resetState();
+  
+  this->setState(ActionDiceStateNormal::create());
+}
+
 bool ActionDice::isSelected() {
   return IS(this->getState(), ActionDiceStateSelected);
 }
@@ -53,6 +60,8 @@ bool ActionDice::isDisabled() {
 }
 
 void ActionDice::setDisabled() {
+  Dice::setDisabled();
+  
   auto sprite = this->getSprite();
   
   auto disabledSprite = Sprite::create(IMG_DICE_ACTION_DISABLED);
@@ -61,4 +70,12 @@ void ActionDice::setDisabled() {
   sprite->addChild(disabledSprite);
   
   this->setState(ActionDiceStateDisabled::create());
+}
+
+void ActionDice::setRolled() {
+  Dice::setRolled();
+  
+  this->getSprite()->removeAllChildren();
+  
+  this->setState(ActionDiceStateRolled::create());
 }

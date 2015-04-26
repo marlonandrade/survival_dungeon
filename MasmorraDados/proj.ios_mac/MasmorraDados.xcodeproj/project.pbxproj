@@ -95,6 +95,8 @@
 		BFC5975B1AD43D19007C03A7 /* DungeonTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC597551AD43D19007C03A7 /* DungeonTurn.cpp */; };
 		BFC5975C1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC597571AD43D19007C03A7 /* PlayerTurn.cpp */; };
 		BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC597571AD43D19007C03A7 /* PlayerTurn.cpp */; };
+		BFD7AA2B1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA291AED27430079C68E /* ActionDiceStateRolled.cpp */; };
+		BFD7AA2C1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA291AED27430079C68E /* ActionDiceStateRolled.cpp */; };
 		BFDFE2671ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFDFE2651ADC2B8A00106124 /* ActionDiceStateNormal.cpp */; };
 		BFDFE2681ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFDFE2651ADC2B8A00106124 /* ActionDiceStateNormal.cpp */; };
 		BFDFE26B1ADC2CAE00106124 /* ActionDiceStateSelected.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFDFE2691ADC2CAE00106124 /* ActionDiceStateSelected.cpp */; };
@@ -230,6 +232,8 @@
 		BFC597571AD43D19007C03A7 /* PlayerTurn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerTurn.cpp; sourceTree = "<group>"; };
 		BFC597581AD43D19007C03A7 /* PlayerTurn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTurn.h; sourceTree = "<group>"; };
 		BFC597591AD43D19007C03A7 /* Turn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Turn.h; sourceTree = "<group>"; };
+		BFD7AA291AED27430079C68E /* ActionDiceStateRolled.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceStateRolled.cpp; sourceTree = "<group>"; };
+		BFD7AA2A1AED27430079C68E /* ActionDiceStateRolled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceStateRolled.h; sourceTree = "<group>"; };
 		BFDFE25E1ADC2B1D00106124 /* DiceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceState.h; sourceTree = "<group>"; };
 		BFDFE2651ADC2B8A00106124 /* ActionDiceStateNormal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceStateNormal.cpp; sourceTree = "<group>"; };
 		BFDFE2661ADC2B8A00106124 /* ActionDiceStateNormal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceStateNormal.h; sourceTree = "<group>"; };
@@ -542,6 +546,8 @@
 				BF6D78D91AE44973002D67C7 /* ActionDiceStateDisabled.h */,
 				BFDFE2651ADC2B8A00106124 /* ActionDiceStateNormal.cpp */,
 				BFDFE2661ADC2B8A00106124 /* ActionDiceStateNormal.h */,
+				BFD7AA291AED27430079C68E /* ActionDiceStateRolled.cpp */,
+				BFD7AA2A1AED27430079C68E /* ActionDiceStateRolled.h */,
 				BFDFE2691ADC2CAE00106124 /* ActionDiceStateSelected.cpp */,
 				BFDFE26A1ADC2CAE00106124 /* ActionDiceStateSelected.h */,
 			);
@@ -704,6 +710,7 @@
 				BFAA74431A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */,
 				BF5B4B7F1A90E77A007636DE /* Game.cpp in Sources */,
 				BF0840951A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */,
+				BFD7AA2B1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */,
 				BF5B4BC01A94BA2C007636DE /* Player.cpp in Sources */,
 				BF5B4BCC1A94BA91007636DE /* Dungeon.cpp in Sources */,
 				BFAE71D91A9E2BF0004902C1 /* RoomPlacement.cpp in Sources */,
@@ -722,6 +729,7 @@
 				BF6D78DB1AE44973002D67C7 /* ActionDiceStateDisabled.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				BFDFE26C1ADC2CAE00106124 /* ActionDiceStateSelected.cpp in Sources */,
+				BFD7AA2C1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */,
 				BF5B4B361A8F7616007636DE /* IntroScene.cpp in Sources */,
 				BF5B4C1F1A955DA4007636DE /* Monster.cpp in Sources */,
 				BF5B4BC11A94BA2C007636DE /* Player.cpp in Sources */,
