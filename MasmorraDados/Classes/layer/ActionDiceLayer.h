@@ -21,8 +21,6 @@ public:
   virtual bool initWithDices(cocos2d::Vector<ActionDice*> dices);
   void resetRollCount();
   
-#pragma mark - Events
-  virtual void handleDiceStateNew(cocos2d::EventCustom* event);
 private:
   int _rollCount;
   
@@ -35,6 +33,11 @@ private:
   void _adjustRerollButtonTextures();
   
   cocos2d::ui::Button* _getRerollButton();
+  
+#pragma mark - Events
+  void _handleRerollTouched(cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+  void _handleOkTouched(cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+  void _handleDiceStateNew(cocos2d::EventCustom* event);
 };
 
 #endif /* defined(__MasmorraDados__ActionDiceLayer__) */

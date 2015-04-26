@@ -38,7 +38,7 @@ bool ActionDiceLayer::initWithDices(Vector<ActionDice *> dices) {
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   dispatcher->addCustomEventListener(EVT_DICE_STATE_NEW,
-                                     CC_CALLBACK_1(ActionDiceLayer::handleDiceStateNew, this));
+                                     CC_CALLBACK_1(ActionDiceLayer::_handleDiceStateNew, this));
   
   return true;
 }
@@ -46,18 +46,6 @@ bool ActionDiceLayer::initWithDices(Vector<ActionDice *> dices) {
 void ActionDiceLayer::resetRollCount() {
   this->_rollCount = 1;
   this->_adjustRerollButtonTextures();
-}
-
-void ActionDiceLayer::handleDiceStateNew(EventCustom* event) {
-  bool anyDiceSelected = false;
-  for (auto dice : this->getDices()) {
-    if (dice->isSelected()) {
-      anyDiceSelected = true;
-      break;
-    }
-  }
-  
-  this->_setRerollButtonEnabled(anyDiceSelected);
 }
 
 #pragma mark - Private Interface
@@ -126,23 +114,7 @@ Node* ActionDiceLayer::_createActionDices(Vector<ActionDice*> dices) {
 Node* ActionDiceLayer::_createRerollButton() {
   auto rerollButton = ui::Button::create();
   rerollButton->setName(DICE_REROLL_BUTTON_NAME);
-  rerollButton->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type) {
-    if (type == ui::Widget::TouchEventType::ENDED) {
-      this->_rollCount++;
-      
-      this->_adjustRerollButtonTextures();
-      
-      for (auto dice : this->getDices()) {
-        if (dice->isSelected()) {
-          dice->roll();
-        } else if (!dice->isDisabled()) {
-          dice->setDisabled();
-        }
-      }
-      
-      log("reroll pressed");
-    }
-  });
+  rerollButton->addTouchEventListener(CC_CALLBACK_2(ActionDiceLayer::_handleRerollTouched, this));
   
   return rerollButton;
 }
@@ -152,11 +124,7 @@ Node* ActionDiceLayer::_createOkButton() {
                                      IMG_BUTTON_OK_SELECTED,
                                      IMG_BUTTON_OK_DISABLED);
   okButton->setName(DICE_OK_BUTTON_NAME);
-  okButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
-    if (type == ui::Widget::TouchEventType::ENDED) {
-      log("ok pressed");
-    }
-  });
+  okButton->addTouchEventListener(CC_CALLBACK_2(ActionDiceLayer::_handleOkTouched, this));
   
   return okButton;
 }
@@ -196,4 +164,40 @@ void ActionDiceLayer::_adjustRerollButtonTextures() {
 
 ui::Button* ActionDiceLayer::_getRerollButton() {
   return (ui::Button*) this->getChildByName(DICE_REROLL_BUTTON_NAME);
+}
+
+#pragma mark - Event Handlers
+
+void ActionDiceLayer::_handleRerollTouched(Ref* sender, ui::Widget::TouchEventType type) {
+  if (type == ui::Widget::TouchEventType::ENDED) {
+    this->_rollCount++;
+    
+    this->_adjustRerollButtonTextures();
+    
+    for (auto dice : this->getDices()) {
+      if (dice->isSelected()) {
+        dice->roll();
+      } else if (!dice->isDisabled()) {
+        dice->setDisabled();
+      }
+    }
+  }
+}
+
+void ActionDiceLayer::_handleOkTouched(Ref* sender, ui::Widget::TouchEventType type) {
+  if (type == ui::Widget::TouchEventType::ENDED) {
+    log("ok pressed");
+  }
+}
+
+void ActionDiceLayer::_handleDiceStateNew(EventCustom* event) {
+  bool anyDiceSelected = false;
+  for (auto dice : this->getDices()) {
+    if (dice->isSelected()) {
+      anyDiceSelected = true;
+      break;
+    }
+  }
+  
+  this->_setRerollButtonEnabled(anyDiceSelected);
 }

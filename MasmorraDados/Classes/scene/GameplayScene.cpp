@@ -35,9 +35,9 @@ bool GameplayScene::init() {
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   dispatcher->addCustomEventListener(EVT_TURN_HAS_ENDED,
-                                     CC_CALLBACK_1(GameplayScene::handleTurnHasEnded, this));
+                                     CC_CALLBACK_1(GameplayScene::_handleTurnHasEnded, this));
   dispatcher->addCustomEventListener(EVT_TURN_HAS_STARTED,
-                                     CC_CALLBACK_1(GameplayScene::handleTurnHasStarted, this));
+                                     CC_CALLBACK_1(GameplayScene::_handleTurnHasStarted, this));
   
   return true;
 }
@@ -334,9 +334,9 @@ void GameplayScene::_showTurnInfo(cocos2d::Sprite *infoSprite) {
                                          fadeOutTurnInfo, NULL));
 }
 
-#pragma mark - Events
+#pragma mark - Event Handlers
 
-void GameplayScene::handleTurnHasStarted(EventCustom* event) {
+void GameplayScene::_handleTurnHasStarted(EventCustom* event) {
   log("turn has started");
   
   auto turn = (Turn*) event->getUserData();
@@ -356,7 +356,7 @@ void GameplayScene::handleTurnHasStarted(EventCustom* event) {
   }
 }
 
-void GameplayScene::handleTurnHasEnded(EventCustom* event) {
+void GameplayScene::_handleTurnHasEnded(EventCustom* event) {
   log("turn has ended");
   
   auto turn = (Turn*) event->getUserData();
