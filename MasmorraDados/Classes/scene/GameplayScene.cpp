@@ -62,6 +62,8 @@ void GameplayScene::_setupEventHandlers() {
                                      CC_CALLBACK_1(GameplayScene::_handleTurnHasEnded, this));
   dispatcher->addCustomEventListener(EVT_TURN_HAS_STARTED,
                                      CC_CALLBACK_1(GameplayScene::_handleTurnHasStarted, this));
+  dispatcher->addCustomEventListener(EVT_ACTION_DICE_DRAG_STARTED,
+                                     CC_CALLBACK_1(GameplayScene::_handleActionDiceDragStarted, this));
   dispatcher->addCustomEventListener(EVT_ACTION_DICES_ROLLED,
                                      CC_CALLBACK_1(GameplayScene::_handleActionDicesRolled, this));
 }
@@ -88,8 +90,14 @@ Layer* GameplayScene::_createControlsLayer() {
   auto controlsLayer = Layer::create();
   controlsLayer->setVisible(false);
   controlsLayer->setName(CONTROLS_LAYER_NAME);
-  controlsLayer->addChild(ActionDiceLayer::createWithDices(this->getGame()->getActionDices()));
-  controlsLayer->addChild(PlayerSkillsLayer::create());
+  
+  auto actionDiceLayer = ActionDiceLayer::createWithDices(this->getGame()->getActionDices());
+  actionDiceLayer->setName(ACTION_DICE_LAYER_NAME);
+  controlsLayer->addChild(actionDiceLayer);
+  
+  auto playerSkillsLayer = PlayerSkillsLayer::create();
+  playerSkillsLayer->setName(PLAYER_SKILL_LAYER_NAME);
+  controlsLayer->addChild(playerSkillsLayer);
     
   return controlsLayer;
 }
@@ -372,6 +380,14 @@ void GameplayScene::_handleTurnHasEnded(EventCustom* event) {
   if (IS(turn, PlayerTurn)) {
     this->_getControlsLayer()->runAction(Hide::create());
   }
+}
+
+void GameplayScene::_handleActionDiceDragStarted(EventCustom* event) {
+  log("drag started");
+  
+  auto layer = (PlayerSkillsLayer*) this->_getControlsLayer()->getChildByName(PLAYER_SKILL_LAYER_NAME);
+  auto dockableNodes = layer->getDockableNodes();
+  this->_addOverlayWithVisibleNodes(dockableNodes);
 }
 
 void GameplayScene::_handleActionDicesRolled(EventCustom* event) {

@@ -68,6 +68,7 @@ private:
 #pragma mark - Events
   void _handleTurnHasStarted(cocos2d::EventCustom* event);
   void _handleTurnHasEnded(cocos2d::EventCustom* event);
+  void _handleActionDiceDragStarted(cocos2d::EventCustom* event);
   void _handleActionDicesRolled(cocos2d::EventCustom* event);
 public:
 #pragma mark - Character Move Delegate

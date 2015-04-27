@@ -9,6 +9,8 @@
 #include "ActionDiceSprite.h"
 
 #include "ActionDice.h"
+#include "ActionDiceStateRolled.h"
+#include "Definitions.h"
 
 USING_NS_CC;
 
@@ -57,7 +59,14 @@ bool ActionDiceSprite::_onTouchBegan(Touch* touch, Event* event) {
   auto bounds = target->getBoundingBox();
   auto touchLocation = layer->convertTouchToNodeSpace(touch);
   
-  return bounds.containsPoint(touchLocation);
+  auto touchedOnSprite = bounds.containsPoint(touchLocation);
+  
+  if (touchedOnSprite && IS(this->getDice()->getState(), ActionDiceStateRolled)) {
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_DRAG_STARTED, this->getDice());
+  }
+  
+  return touchedOnSprite;
 }
 
 void ActionDiceSprite::_onTouchMoved(Touch* touch, Event* event) {

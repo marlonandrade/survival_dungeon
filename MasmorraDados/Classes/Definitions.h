@@ -43,16 +43,18 @@
 
 #pragma mark - Node Names
 
-#define OBJECTS_LAYER_NAME         "ObjectsLayer"
+#define ACTION_DICE_LAYER_NAME     "ActionDiceLayerName"
+#define CHARACTER_DICE_SPRITE_NAME "CharacterDiceSprite"
 #define CONTROLS_LAYER_NAME        "ControlsLayer"
+#define DICE_OK_BUTTON_NAME        "DiceOkButton"
+#define DICE_REROLL_BUTTON_NAME    "DiceRerollButton"
+#define DOCK_CONTAINER_NODE_NAME   "DockContainerNodeName"
+#define FREE_BOOT_SPRITE_NAME      "FreeBootSprite"
+#define OBJECTS_LAYER_NAME         "ObjectsLayer"
 #define OVERLAY_LAYER_NAME         "OverlayLayer"
+#define PLAYER_SKILL_LAYER_NAME    "PlayerSkillLayerName"
 #define SCROLLABLE_LAYER_NAME      "ScrollableLayer"
 #define TURN_OVERLAY_LAYER_NAME    "TurnOverlayLayer"
-#define CHARACTER_DICE_SPRITE_NAME "CharacterDiceSprite"
-#define DICE_REROLL_BUTTON_NAME    "DiceRerollButton"
-#define DICE_OK_BUTTON_NAME        "DiceOkButton"
-#define FREE_BOOT_SPRITE_NAME      "FreeBootSprite"
-#define DOCK_CONTAINER_NODE_NAME   "DockContainerNodeName"
 
 #pragma mark - Z Order
 
@@ -106,13 +108,14 @@
 
 #pragma mark - Events
 
-#define EVT_TURN_HAS_ENDED          "turn_has_ended"        // data -> turn
-#define EVT_TURN_HAS_STARTED        "turn_has_started"      // data -> turn
+#define EVT_TURN_HAS_ENDED           "turn_has_ended"           // data -> turn
+#define EVT_TURN_HAS_STARTED         "turn_has_started"         // data -> turn
 
-#define EVT_DICE_STATE_NEW          "state_changed_new"     // data -> new state
-#define EVT_DICE_STATE_OLD          "state_changed_old"     // data -> previous state
+#define EVT_DICE_STATE_NEW           "state_changed_new"        // data -> new state
+#define EVT_DICE_STATE_OLD           "state_changed_old"        // data -> previous state
 
-#define EVT_ACTION_DICES_ROLLED     "action_dices_rolled"   // data -> ActionDiceLayer
+#define EVT_ACTION_DICE_DRAG_STARTED "action_dice_drag_started" // data -> ActionDice
+#define EVT_ACTION_DICES_ROLLED      "action_dices_rolled"      // data -> ActionDiceLayer
 
 
 #endif /* defined(__MasmorraDados__Definitions__) */
