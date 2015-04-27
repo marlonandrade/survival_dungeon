@@ -22,6 +22,7 @@
 
 #define ACTION_DICE_MARGIN          10
 #define ACTION_DICE_MARGIN_PER_DICE 3
+#define DOCK_MARGIN                 5
 
 #pragma mark - Game Mechanics
 
@@ -50,6 +51,8 @@
 #define CHARACTER_DICE_SPRITE_NAME "CharacterDiceSprite"
 #define DICE_REROLL_BUTTON_NAME    "DiceRerollButton"
 #define DICE_OK_BUTTON_NAME        "DiceOkButton"
+#define FREE_BOOT_SPRITE_NAME      "FreeBootSprite"
+#define DOCK_CONTAINER_NODE_NAME   "DockContainerNodeName"
 
 #pragma mark - Z Order
 
@@ -88,6 +91,9 @@
 #define IMG_DICE_ACTION_SELECTED    "dice/action/selected.png"
 #define IMG_DICE_ACTION_SHIELD      "dice/action/shield.png"
 #define IMG_DICE_ACTION_SWORD       "dice/action/sword.png"
+
+#define IMG_DICE_ACTION_FREE_BOOT   "dice/action/free_boot.png"
+#define IMG_DICE_ACTION_DOCK        "dice/action/dock.png"
 
 #define IMG_DICE_CHAR               "dice/char/xx.png"
 

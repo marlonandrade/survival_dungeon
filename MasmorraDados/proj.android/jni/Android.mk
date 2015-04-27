@@ -15,6 +15,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/animation/Shake.cpp \
 		   ../../Classes/layer/ActionDiceLayer.cpp \
 		   ../../Classes/layer/BackgroundLayer.cpp \
+		   ../../Classes/layer/PlayerSkillsLayer.cpp \
 		   ../../Classes/layer/ScrollableLayer.cpp \
 		   ../../Classes/model/character/Character.cpp \
 		   ../../Classes/model/dice/face/DiceFace.cpp \

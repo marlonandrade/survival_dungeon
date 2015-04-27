@@ -11,6 +11,7 @@
 #include "ActionDiceLayer.h"
 #include "BackgroundLayer.h"
 #include "CharacterDiceSprite.h"
+#include "PlayerSkillsLayer.h"
 #include "RoomPlacement.h"
 #include "ScrollableLayer.h"
 
@@ -88,6 +89,7 @@ Layer* GameplayScene::_createControlsLayer() {
   controlsLayer->setVisible(false);
   controlsLayer->setName(CONTROLS_LAYER_NAME);
   controlsLayer->addChild(ActionDiceLayer::createWithDices(this->getGame()->getActionDices()));
+  controlsLayer->addChild(PlayerSkillsLayer::create());
     
   return controlsLayer;
 }
