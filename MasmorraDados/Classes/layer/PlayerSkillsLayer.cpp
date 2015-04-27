@@ -54,24 +54,30 @@ void PlayerSkillsLayer::_setupDockableDice() {
   
   int dockableSpaces = 6;
   
+  auto height = 0;
+  auto marginBetweenSpaces = 1;
+  
   for (int i = 0; i < dockableSpaces; i++) {
     auto sprite = Sprite::create(IMG_DICE_ACTION_DOCK);
     
-    auto margin = i + 1;
+    height = sprite->getContentSize().height;
     
-    auto x = 0;
-    auto y = sprite->getContentSize().height * i + margin;
+    auto x = 0.f;
+    auto y = height * i + (i * marginBetweenSpaces);
     
     sprite->setPosition(Vec2(x, y));
     
     dockContainer->addChild(sprite);
   }
   
-  auto dockX = DOCK_MARGIN + bootSprite->getContentSize().width / 2;
-  auto dockY = this->getContentSize().height;
+  auto bootSize = bootSprite->getContentSize();
+  
+  auto dockX = DOCK_MARGIN + bootSize.width / 2;
+  auto dockY = this->getContentSize().height -
+      (DOCK_MARGIN + (dockableSpaces - 0.5) * height +
+       bootSize.height + dockableSpaces * marginBetweenSpaces);
   
   dockContainer->setPosition(Vec2(dockX, dockY));
-  
 }
 
 Node* PlayerSkillsLayer::_getDockContainer() {
