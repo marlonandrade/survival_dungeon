@@ -21,4 +21,5 @@ bool ActionDiceStateRolled::canChangeState() {
 }
 
 void ActionDiceStateRolled::changeState(Dice *dice) {
+  log("rolled change state");
 }

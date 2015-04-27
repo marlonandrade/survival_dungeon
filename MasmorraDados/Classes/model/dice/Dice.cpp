@@ -99,6 +99,10 @@ void Dice::roll() {
   this->setSelectedFace(this->getFaces().getRandomObject());
 }
 
+bool Dice::canChangeState() {
+  return this->getState()->canChangeState();
+}
+
 void Dice::changeState() {
   this->getState()->changeState(this);
 }
