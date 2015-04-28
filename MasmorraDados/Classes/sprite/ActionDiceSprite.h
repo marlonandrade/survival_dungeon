@@ -14,6 +14,7 @@
 class ActionDice;
 
 class ActionDiceSprite : public DiceSprite {
+  CC_SYNTHESIZE(cocos2d::Vec2, _originalPosition, OriginalPosition);
 public:
   static ActionDiceSprite* createWithDice(Dice* dice);
   virtual bool initWithDice(Dice* dice);

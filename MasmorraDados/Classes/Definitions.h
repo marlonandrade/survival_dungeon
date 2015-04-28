@@ -115,6 +115,8 @@
 #define EVT_DICE_STATE_OLD           "state_changed_old"        // data -> previous state
 
 #define EVT_ACTION_DICE_DRAG_STARTED "action_dice_drag_started" // data -> ActionDice
+#define EVT_ACTION_DICE_DRAG_MOVED   "action_dice_drag_moved"   // data -> ActionDiceDragData
+#define EVT_ACTION_DICE_DRAG_ENDED   "action_dice_drag_ended"   // data -> ActionDiceDragData
 #define EVT_ACTION_DICES_ROLLED      "action_dices_rolled"      // data -> ActionDiceLayer
 
 

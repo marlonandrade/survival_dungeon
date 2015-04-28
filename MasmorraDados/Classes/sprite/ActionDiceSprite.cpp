@@ -9,6 +9,7 @@
 #include "ActionDiceSprite.h"
 
 #include "ActionDice.h"
+#include "ActionDiceDragData.h"
 #include "ActionDiceStateRolled.h"
 #include "Definitions.h"
 
@@ -61,15 +62,28 @@ bool ActionDiceSprite::_onTouchBegan(Touch* touch, Event* event) {
   
   auto touchedOnSprite = bounds.containsPoint(touchLocation);
   
-  if (touchedOnSprite && IS(this->getDice()->getState(), ActionDiceStateRolled)) {
+  if (touchedOnSprite &&
+      IS(this->getDice()->getState(), ActionDiceStateRolled)) {
+    auto data = ActionDiceDragData::create();
+    data->setSprite(this);
+    data->setTouch(touch);
+    
     auto dispatcher = Director::getInstance()->getEventDispatcher();
-    dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_DRAG_STARTED, this->getDice());
+    dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_DRAG_STARTED, data);
   }
   
   return touchedOnSprite;
 }
 
 void ActionDiceSprite::_onTouchMoved(Touch* touch, Event* event) {
+  if (IS(this->getDice()->getState(), ActionDiceStateRolled)) {
+    auto data = ActionDiceDragData::create();
+    data->setSprite(this);
+    data->setTouch(touch);
+    
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_DRAG_MOVED, data);
+  }
 }
 
 void ActionDiceSprite::_onTouchEnded(Touch* touch, Event* event) {
@@ -83,5 +97,14 @@ void ActionDiceSprite::_onTouchEnded(Touch* touch, Event* event) {
   
   if (touchInSprite && this->getDice()->getState()->canChangeState()) {
     this->getDice()->changeState();
+  }
+  
+  if (IS(this->getDice()->getState(), ActionDiceStateRolled)) {
+    auto data = ActionDiceDragData::create();
+    data->setSprite(this);
+    data->setTouch(touch);
+    
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_DRAG_ENDED, data);
   }
 }

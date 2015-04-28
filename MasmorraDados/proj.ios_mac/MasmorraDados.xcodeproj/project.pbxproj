@@ -99,6 +99,8 @@
 		BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC597571AD43D19007C03A7 /* PlayerTurn.cpp */; };
 		BFD7AA2B1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA291AED27430079C68E /* ActionDiceStateRolled.cpp */; };
 		BFD7AA2C1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA291AED27430079C68E /* ActionDiceStateRolled.cpp */; };
+		BFD7AA311AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA2F1AEF0CCF0079C68E /* ActionDiceDragData.cpp */; };
+		BFD7AA321AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA2F1AEF0CCF0079C68E /* ActionDiceDragData.cpp */; };
 		BFDFE2671ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFDFE2651ADC2B8A00106124 /* ActionDiceStateNormal.cpp */; };
 		BFDFE2681ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFDFE2651ADC2B8A00106124 /* ActionDiceStateNormal.cpp */; };
 		BFDFE26B1ADC2CAE00106124 /* ActionDiceStateSelected.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFDFE2691ADC2CAE00106124 /* ActionDiceStateSelected.cpp */; };
@@ -238,6 +240,8 @@
 		BFC597591AD43D19007C03A7 /* Turn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Turn.h; sourceTree = "<group>"; };
 		BFD7AA291AED27430079C68E /* ActionDiceStateRolled.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceStateRolled.cpp; sourceTree = "<group>"; };
 		BFD7AA2A1AED27430079C68E /* ActionDiceStateRolled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceStateRolled.h; sourceTree = "<group>"; };
+		BFD7AA2F1AEF0CCF0079C68E /* ActionDiceDragData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceDragData.cpp; sourceTree = "<group>"; };
+		BFD7AA301AEF0CCF0079C68E /* ActionDiceDragData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceDragData.h; sourceTree = "<group>"; };
 		BFDFE25E1ADC2B1D00106124 /* DiceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceState.h; sourceTree = "<group>"; };
 		BFDFE2651ADC2B8A00106124 /* ActionDiceStateNormal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceStateNormal.cpp; sourceTree = "<group>"; };
 		BFDFE2661ADC2B8A00106124 /* ActionDiceStateNormal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceStateNormal.h; sourceTree = "<group>"; };
@@ -381,6 +385,7 @@
 			children = (
 				BFBE57AA1AE0142500D93530 /* animation */,
 				BF0712411AD2E679002252A9 /* delegate */,
+				BFD7AA2E1AEF0CB40079C68E /* event_data */,
 				BF0840921A9CD506003F0D76 /* layer */,
 				BF5B4B311A8F75FA007636DE /* model */,
 				BF5B4B321A8F75FA007636DE /* scene */,
@@ -545,6 +550,15 @@
 			path = turn;
 			sourceTree = "<group>";
 		};
+		BFD7AA2E1AEF0CB40079C68E /* event_data */ = {
+			isa = PBXGroup;
+			children = (
+				BFD7AA2F1AEF0CCF0079C68E /* ActionDiceDragData.cpp */,
+				BFD7AA301AEF0CCF0079C68E /* ActionDiceDragData.h */,
+			);
+			path = event_data;
+			sourceTree = "<group>";
+		};
 		BFDFE2641ADC2B7E00106124 /* state */ = {
 			isa = PBXGroup;
 			children = (
@@ -702,6 +716,7 @@
 				BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */,
 				BFAA74501A9E8A4100E45DF8 /* CharacterDiceSprite.cpp in Sources */,
 				BF6D78DA1AE44973002D67C7 /* ActionDiceStateDisabled.cpp in Sources */,
+				BFD7AA311AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
 				BFC33C211AE803D300934C34 /* InitialTurn.cpp in Sources */,
 				BF5B4BEB1A952E8D007636DE /* Dice.cpp in Sources */,
 				BF5B4C1E1A955DA4007636DE /* Monster.cpp in Sources */,
@@ -752,6 +767,7 @@
 				BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */,
 				BF6D78D11AE416F3002D67C7 /* ActionDiceLayer.cpp in Sources */,
+				BFD7AA321AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
 				BFAA744D1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,
 				BFDFE2681ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */,
 				BF5B4C011A953981007636DE /* ActionDice.cpp in Sources */,

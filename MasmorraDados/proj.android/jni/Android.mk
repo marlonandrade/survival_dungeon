@@ -13,6 +13,7 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
 		   ../../Classes/animation/Shake.cpp \
+		   ../../Classes/event_data/ActionDiceDragData.cpp \
 		   ../../Classes/layer/ActionDiceLayer.cpp \
 		   ../../Classes/layer/BackgroundLayer.cpp \
 		   ../../Classes/layer/PlayerSkillsLayer.cpp \
@@ -48,6 +49,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/animation \
 		    $(LOCAL_PATH)/../../Classes/delegate \
+		    $(LOCAL_PATH)/../../Classes/event_data \
 		    $(LOCAL_PATH)/../../Classes/layer \
 		    $(LOCAL_PATH)/../../Classes/model \
 		    $(LOCAL_PATH)/../../Classes/model/character \

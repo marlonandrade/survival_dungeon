@@ -8,6 +8,7 @@
 
 #include "GameplayScene.h"
 
+#include "ActionDiceDragData.h"
 #include "ActionDiceLayer.h"
 #include "BackgroundLayer.h"
 #include "CharacterDiceSprite.h"
@@ -64,6 +65,10 @@ void GameplayScene::_setupEventHandlers() {
                                      CC_CALLBACK_1(GameplayScene::_handleTurnHasStarted, this));
   dispatcher->addCustomEventListener(EVT_ACTION_DICE_DRAG_STARTED,
                                      CC_CALLBACK_1(GameplayScene::_handleActionDiceDragStarted, this));
+  dispatcher->addCustomEventListener(EVT_ACTION_DICE_DRAG_MOVED,
+                                     CC_CALLBACK_1(GameplayScene::_handleActionDiceDragMoved, this));
+  dispatcher->addCustomEventListener(EVT_ACTION_DICE_DRAG_ENDED,
+                                     CC_CALLBACK_1(GameplayScene::_handleActionDiceDragEnded, this));
   dispatcher->addCustomEventListener(EVT_ACTION_DICES_ROLLED,
                                      CC_CALLBACK_1(GameplayScene::_handleActionDicesRolled, this));
 }
@@ -216,42 +221,46 @@ void GameplayScene::_addOverlayWithVisibleNodes(Vector<Node *> visibleNodes) {
   auto objectsLayer = this->_getObjectsLayer();
   auto scrollableLayer = this->_getScrollableLayer();
   
-  auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
-  overlayLayer->setName(OVERLAY_LAYER_NAME);
-  overlayLayer->setPosition(Vec2(-scrollableLayer->getPosition().x,
-                                 -scrollableLayer->getPosition().y));
-  
-  objectsLayer->addChild(overlayLayer, OVERLAY_Z_ORDER);
-  
-  auto fadeIn = FadeTo::create(OVERLAY_DURATION, OVERLAY_OPACITY);
-  overlayLayer->runAction(fadeIn);
-  
-  for (auto visibleNode : visibleNodes) {
-    auto newZOrder = visibleNode->getLocalZOrder() + OVERLAY_Z_ORDER;
-    visibleNode->setLocalZOrder(newZOrder);
+  if (!objectsLayer->getChildByName(OVERLAY_LAYER_NAME)) {
+    auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
+    overlayLayer->setName(OVERLAY_LAYER_NAME);
+    overlayLayer->setPosition(Vec2(-scrollableLayer->getPosition().x,
+                                   -scrollableLayer->getPosition().y));
+    
+    objectsLayer->addChild(overlayLayer, OVERLAY_Z_ORDER);
+    
+    auto fadeIn = FadeTo::create(OVERLAY_DURATION, OVERLAY_OPACITY);
+    overlayLayer->runAction(fadeIn);
+    
+    for (auto visibleNode : visibleNodes) {
+      auto newZOrder = visibleNode->getLocalZOrder() + OVERLAY_Z_ORDER;
+      visibleNode->setLocalZOrder(newZOrder);
+    }
+    
+    this->setInteractableNodes(visibleNodes);
   }
-  
-  this->setInteractableNodes(visibleNodes);
 }
 
 void GameplayScene::_removeOverlay() {
-  this->_disableInteractions();
-  
   auto overlayLayer = this->_getObjectsLayer()->getChildByName(OVERLAY_LAYER_NAME);
   
-  auto fadeOut = FadeOut::create(OVERLAY_DURATION);
-  auto changeLayer = CallFunc::create([=]() {
-    for (auto node : this->getInteractableNodes()) {
-      auto oldZOrder = node->getLocalZOrder() - OVERLAY_Z_ORDER;
-      node->setLocalZOrder(oldZOrder);
-    }
-  });
-  auto removeSelf = RemoveSelf::create();
-  auto animationEnded = CallFunc::create([=]() {
-    this->_enableInteractions();
-  });
-  
-  overlayLayer->runAction(Sequence::create(fadeOut, changeLayer, removeSelf, animationEnded, NULL));
+  if (overlayLayer) {
+    this->_disableInteractions();
+    
+    auto fadeOut = FadeOut::create(OVERLAY_DURATION);
+    auto changeLayer = CallFunc::create([=]() {
+      for (auto node : this->getInteractableNodes()) {
+        auto oldZOrder = node->getLocalZOrder() - OVERLAY_Z_ORDER;
+        node->setLocalZOrder(oldZOrder);
+      }
+    });
+    auto removeSelf = RemoveSelf::create();
+    auto animationEnded = CallFunc::create([=]() {
+      this->_enableInteractions();
+    });
+    
+    overlayLayer->runAction(Sequence::create(fadeOut, changeLayer, removeSelf, animationEnded, NULL));
+  }
 }
 
 Vec2 GameplayScene::_centerOfScene() {
@@ -388,19 +397,76 @@ void GameplayScene::_handleActionDiceDragStarted(EventCustom* event) {
   auto layer = (PlayerSkillsLayer*) this->_getControlsLayer()->getChildByName(PLAYER_SKILL_LAYER_NAME);
   auto dockableNodes = layer->getDockableNodes();
   this->_addOverlayWithVisibleNodes(dockableNodes);
+  
+  auto data = (ActionDiceDragData*) event->getUserData();
+  auto sprite = data->getSprite();
+  sprite->runAction(ScaleTo::create(0.2, 0.6));
+}
+
+void GameplayScene::_handleActionDiceDragMoved(EventCustom* event) {
+  auto layer = (PlayerSkillsLayer*) this->_getControlsLayer()->getChildByName(PLAYER_SKILL_LAYER_NAME);
+  auto data = (ActionDiceDragData*) event->getUserData();
+  
+  auto touchLocation = layer->convertTouchToNodeSpace(data->getTouch());
+  data->getSprite()->setPosition(touchLocation);
+  
+  auto dockableContainer = this->getInteractableNodes().at(0)->getParent();
+  auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
+  
+  for (auto node : this->getInteractableNodes()) {
+    Color3B color = Color3B::WHITE;
+    
+    if (node->getBoundingBox().containsPoint(dockableLocation)) {
+      color = Color3B(170, 255, 170);
+    }
+    
+    node->setColor(color);
+  }
+}
+
+void GameplayScene::_handleActionDiceDragEnded(EventCustom* event) {
+  auto layer = (PlayerSkillsLayer*) this->_getControlsLayer()->getChildByName(PLAYER_SKILL_LAYER_NAME);
+  auto data = (ActionDiceDragData*) event->getUserData();
+  auto sprite = data->getSprite();
+  auto touchLocation = layer->convertTouchToNodeSpace(data->getTouch());
+  
+  auto dockableContainer = this->getInteractableNodes().at(0)->getParent();
+  auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
+  
+  bool moved = false;
+  for (auto node : this->getInteractableNodes()) {
+    if (node->getBoundingBox().containsPoint(dockableLocation)) {
+      moved = true;
+      break;
+    }
+  }
+  
+  log("drag ended");
+  if (moved) {
+    log("animate move");
+  } else {
+    auto move = MoveTo::create(0.2, sprite->getOriginalPosition());
+    auto scale = ScaleTo::create(0.2, 1);
+    
+    sprite->runAction(Spawn::create(move, scale, NULL));
+    log("animate back");
+  }
+  
+  this->_removeOverlay();
 }
 
 void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
   auto actionDicesLayer = (ActionDiceLayer*) event->getUserData();
   
   for (auto dice : actionDicesLayer->getDices()) {
-    auto sprite = dice->getSprite();
+    auto sprite = (ActionDiceSprite*) dice->getSprite();
     CC_SAFE_RETAIN(sprite);
     auto position = sprite->getParent()->getPosition();
     sprite->removeFromParent();
     
     auto newPosition = sprite->getPosition() + position;
     sprite->setPosition(newPosition);
+    sprite->setOriginalPosition(newPosition);
     
     this->_getControlsLayer()->addChild(sprite);
     CC_SAFE_RELEASE(sprite);
