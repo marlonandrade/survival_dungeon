@@ -149,6 +149,7 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
   
   auto data = (ActionDiceDragData*) event->getUserData();
   auto sprite = data->getSprite();
+  sprite->setLocalZOrder(sprite->getLocalZOrder() + DRAG_Z_ORDER_DELTA);
   sprite->runAction(ScaleTo::create(0.2, 0.58));
 }
 
@@ -175,6 +176,7 @@ void PlayerSkillsLayer::_handleActionDiceDragMoved(EventCustom* event) {
 void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
   auto data = (ActionDiceDragData*) event->getUserData();
   auto sprite = data->getSprite();
+  sprite->setLocalZOrder(sprite->getLocalZOrder() - DRAG_Z_ORDER_DELTA);
   auto touchLocation = this->convertTouchToNodeSpace(data->getTouch());
   
   auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
