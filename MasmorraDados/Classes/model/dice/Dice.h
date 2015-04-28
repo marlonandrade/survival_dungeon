@@ -28,7 +28,8 @@ public:
   virtual bool initWithFaces(DiceFaces faces);
   
   virtual void roll();
-  virtual bool canChangeState();
+  
+  bool canChangeState();
   virtual void changeState();
   virtual void resetState();
   

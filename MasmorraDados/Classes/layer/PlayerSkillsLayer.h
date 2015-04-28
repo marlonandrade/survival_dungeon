@@ -20,8 +20,16 @@ public:
 private:
   void _setupFreeBootSymbol();
   void _setupDockableDice();
+  void _setupEventHandlers();
   
   cocos2d::Node* _getDockContainer();
+  
+  void _addOverlay();
+  void _removeOverlay();
+#pragma mark - Event Handlers
+  void _handleActionDiceDragStarted(cocos2d::EventCustom* event);
+  void _handleActionDiceDragMoved(cocos2d::EventCustom* event);
+  void _handleActionDiceDragEnded(cocos2d::EventCustom* event);
 };
 
 #endif /* defined(__MasmorraDados__PlayerSkillsLayer__) */
