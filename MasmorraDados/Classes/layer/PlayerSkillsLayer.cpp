@@ -151,6 +151,17 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
   auto sprite = data->getSprite();
   sprite->setLocalZOrder(sprite->getLocalZOrder() + DRAG_Z_ORDER_DELTA);
   sprite->runAction(ScaleTo::create(0.2, 0.58));
+  
+  auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
+  auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
+  
+  for (auto node : this->getDockableNodes()) {
+    if (node->getChildren().size() > 0 &&
+        node->getBoundingBox().containsPoint(dockableLocation)) {
+      node->removeAllChildren();
+      break;
+    }
+  }
 }
 
 void PlayerSkillsLayer::_handleActionDiceDragMoved(EventCustom* event) {
@@ -165,7 +176,8 @@ void PlayerSkillsLayer::_handleActionDiceDragMoved(EventCustom* event) {
   for (auto node : this->getDockableNodes()) {
     Color3B color = Color3B::WHITE;
     
-    if (node->getBoundingBox().containsPoint(dockableLocation)) {
+    if (node->getChildren().size() == 0 &&
+        node->getBoundingBox().containsPoint(dockableLocation)) {
       color = Color3B(170, 255, 170);
     }
     
@@ -186,9 +198,11 @@ void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
   
   bool moved = false;
   for (auto node : this->getDockableNodes()) {
-    if (node->getBoundingBox().containsPoint(dockableLocation)) {
+    if (node->getChildren().size() == 0 &&
+        node->getBoundingBox().containsPoint(dockableLocation)) {
       moved = true;
       position = node->getPosition() + dockableContainer->getPosition();
+      node->addChild(Node::create());
       break;
     }
   }
