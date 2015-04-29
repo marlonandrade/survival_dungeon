@@ -15,6 +15,7 @@
 #include "MinorMonsterRoom.h"
 #include "PlayerTurn.h"
 #include "RuneRoom.h"
+#include "Turn.h"
 
 USING_NS_CC;
 

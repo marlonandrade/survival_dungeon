@@ -15,7 +15,8 @@
 #include "Dungeon.h"
 #include "DungeonRoom.h"
 #include "GameObject.h"
-#include "Turn.h"
+
+class Turn;
 
 class Game : public GameObject {
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
@@ -23,9 +24,8 @@ class Game : public GameObject {
   CC_SYNTHESIZE(cocos2d::Vector<DungeonRoom*>, _availableRooms, AvailableRooms);
   CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
   CC_SYNTHESIZE(bool, _freeBootUsed, FreeBootUsed);
-private:
-  Turn* _turn;
 protected:
+  Turn* _turn;
   cocos2d::Vec2 _characterPosition;
   
 public:
