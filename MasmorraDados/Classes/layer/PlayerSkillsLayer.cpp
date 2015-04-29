@@ -103,6 +103,10 @@ void PlayerSkillsLayer::_setupEventHandlers() {
       EVT_ACTION_DICE_DRAG_ENDED,
       CC_CALLBACK_1(PlayerSkillsLayer::_handleActionDiceDragEnded, this)
   );
+  dispatcher->addCustomEventListener(
+      EVT_ACTION_FREE_BOOT_SPENT,
+      CC_CALLBACK_1(PlayerSkillsLayer::_handleActionFreeBootSpent, this)
+  );
 }
 
 Node* PlayerSkillsLayer::_getDockContainer() {
@@ -151,6 +155,7 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
   auto sprite = data->getSprite();
   sprite->setLocalZOrder(sprite->getLocalZOrder() + DRAG_Z_ORDER_DELTA);
   sprite->runAction(ScaleTo::create(0.2, 0.58));
+  sprite->getDice()->setDocked(false);
   
   auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
   auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
@@ -211,6 +216,7 @@ void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
   if (moved) {
     auto move = MoveTo::create(0.1, position);
     sprite->runAction(move);
+    sprite->getDice()->setDocked(true);
     
     log("animate move");
   } else {
@@ -222,4 +228,12 @@ void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
   }
   
   this->_removeOverlay();
+}
+
+void PlayerSkillsLayer::_handleActionFreeBootSpent(EventCustom* event) {
+  auto freeBootSprite = this->getChildByName(FREE_BOOT_SPRITE_NAME);
+  auto spentActionSprite = Sprite::create(IMG_DICE_ACTION_SPENT);
+  spentActionSprite->setPosition(Vec2(freeBootSprite->getContentSize().width / 2,
+                                      freeBootSprite->getContentSize().height / 2));
+  freeBootSprite->addChild(spentActionSprite);
 }

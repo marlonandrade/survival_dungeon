@@ -16,5 +16,6 @@ USING_NS_CC;
 #pragma mark - Turn Methods
 
 void PlayerTurn::execute(Game *game) {
+  game->restoreFreeBoot();
   game->setTurn(DungeonTurn::create());
 }

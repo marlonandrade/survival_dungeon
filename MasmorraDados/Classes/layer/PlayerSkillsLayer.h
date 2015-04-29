@@ -30,6 +30,7 @@ private:
   void _handleActionDiceDragStarted(cocos2d::EventCustom* event);
   void _handleActionDiceDragMoved(cocos2d::EventCustom* event);
   void _handleActionDiceDragEnded(cocos2d::EventCustom* event);
+  void _handleActionFreeBootSpent(cocos2d::EventCustom* event);
 };
 
 #endif /* defined(__MasmorraDados__PlayerSkillsLayer__) */

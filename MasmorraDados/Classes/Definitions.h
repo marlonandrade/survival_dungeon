@@ -97,6 +97,7 @@
 
 #define IMG_DICE_ACTION_FREE_BOOT   "dice/action/free_boot.png"
 #define IMG_DICE_ACTION_DOCK        "dice/action/dock.png"
+#define IMG_DICE_ACTION_SPENT       "dice/action/spent.png"
 
 #define IMG_DICE_CHAR               "dice/char/xx.png"
 
@@ -120,5 +121,7 @@
 #define EVT_ACTION_DICE_DRAG_ENDED   "action_dice_drag_ended"   // data -> ActionDiceDragData
 #define EVT_ACTION_DICES_ROLLED      "action_dices_rolled"      // data -> ActionDiceLayer
 
+#define EVT_ACTION_FREE_BOOT_SPENT   "action_free_boot_spent"    // ?
+#define EVT_ACTION_DICE_SPENT        "action_dice_spent"         // data -> ActionDice
 
 #endif /* defined(__MasmorraDados__Definitions__) */

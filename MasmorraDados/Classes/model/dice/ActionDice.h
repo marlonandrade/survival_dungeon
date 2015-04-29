@@ -21,8 +21,10 @@ public:
   
   virtual bool isSelected();
   virtual bool isDisabled();
+  virtual bool isSpent();
   virtual void setDisabled();
   virtual void setRolled();
+  virtual void setSpent();
 };
 
 #endif /* defined(__MasmorraDados__ActionDice__) */

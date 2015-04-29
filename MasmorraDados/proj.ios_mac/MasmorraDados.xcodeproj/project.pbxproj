@@ -101,6 +101,8 @@
 		BFD7AA2C1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA291AED27430079C68E /* ActionDiceStateRolled.cpp */; };
 		BFD7AA311AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA2F1AEF0CCF0079C68E /* ActionDiceDragData.cpp */; };
 		BFD7AA321AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA2F1AEF0CCF0079C68E /* ActionDiceDragData.cpp */; };
+		BFD7AA351AF060170079C68E /* ActionDiceStateSpent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA331AF060170079C68E /* ActionDiceStateSpent.cpp */; };
+		BFD7AA361AF060170079C68E /* ActionDiceStateSpent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA331AF060170079C68E /* ActionDiceStateSpent.cpp */; };
 		BFDFE2671ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFDFE2651ADC2B8A00106124 /* ActionDiceStateNormal.cpp */; };
 		BFDFE2681ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFDFE2651ADC2B8A00106124 /* ActionDiceStateNormal.cpp */; };
 		BFDFE26B1ADC2CAE00106124 /* ActionDiceStateSelected.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFDFE2691ADC2CAE00106124 /* ActionDiceStateSelected.cpp */; };
@@ -242,6 +244,8 @@
 		BFD7AA2A1AED27430079C68E /* ActionDiceStateRolled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceStateRolled.h; sourceTree = "<group>"; };
 		BFD7AA2F1AEF0CCF0079C68E /* ActionDiceDragData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceDragData.cpp; sourceTree = "<group>"; };
 		BFD7AA301AEF0CCF0079C68E /* ActionDiceDragData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceDragData.h; sourceTree = "<group>"; };
+		BFD7AA331AF060170079C68E /* ActionDiceStateSpent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceStateSpent.cpp; sourceTree = "<group>"; };
+		BFD7AA341AF060170079C68E /* ActionDiceStateSpent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceStateSpent.h; sourceTree = "<group>"; };
 		BFDFE25E1ADC2B1D00106124 /* DiceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceState.h; sourceTree = "<group>"; };
 		BFDFE2651ADC2B8A00106124 /* ActionDiceStateNormal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceStateNormal.cpp; sourceTree = "<group>"; };
 		BFDFE2661ADC2B8A00106124 /* ActionDiceStateNormal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceStateNormal.h; sourceTree = "<group>"; };
@@ -570,6 +574,8 @@
 				BFD7AA2A1AED27430079C68E /* ActionDiceStateRolled.h */,
 				BFDFE2691ADC2CAE00106124 /* ActionDiceStateSelected.cpp */,
 				BFDFE26A1ADC2CAE00106124 /* ActionDiceStateSelected.h */,
+				BFD7AA331AF060170079C68E /* ActionDiceStateSpent.cpp */,
+				BFD7AA341AF060170079C68E /* ActionDiceStateSpent.h */,
 			);
 			path = state;
 			sourceTree = "<group>";
@@ -730,6 +736,7 @@
 				BF5B4BC81A94BA51007636DE /* Skill.cpp in Sources */,
 				BFAA74431A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */,
 				BF5B4B7F1A90E77A007636DE /* Game.cpp in Sources */,
+				BFD7AA351AF060170079C68E /* ActionDiceStateSpent.cpp in Sources */,
 				BF6A4D591AEE9882001FDF44 /* PlayerSkillsLayer.cpp in Sources */,
 				BF0840951A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */,
 				BFD7AA2B1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */,
@@ -760,6 +767,7 @@
 				BF5B4BEC1A952E8D007636DE /* Dice.cpp in Sources */,
 				BFBE57AE1AE0143400D93530 /* Shake.cpp in Sources */,
 				BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */,
+				BFD7AA361AF060170079C68E /* ActionDiceStateSpent.cpp in Sources */,
 				BF0840961A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */,
 				BF74CA7D1ADC834A0062F242 /* DiceSprite.cpp in Sources */,
 				BFAE71DA1A9E2BFB004902C1 /* RoomPlacement.cpp in Sources */,

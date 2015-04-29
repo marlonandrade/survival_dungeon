@@ -404,14 +404,18 @@ void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
     CC_SAFE_RELEASE(sprite);
   }
   
-  actionDicesLayer->removeFromParent();
+  actionDicesLayer->setVisible(false);
   playerSkillLayer->runAction(Show::create());
 }
 
 #pragma mark - CharacterMoveDelegate Methods
 
 bool GameplayScene::canCharacterMove() {
-  bool playerHasBoot = true;
+  auto availableSkills = this->getGame()->getAvailableSkills();
+  
+  bool playerHasBoot = availableSkills[IMG_DICE_ACTION_BOOT].asInt() ||
+      !this->getGame()->getFreeBootUsed();
+  
   return this->_isInteractionEnabled() && playerHasBoot;
 }
 
@@ -449,6 +453,23 @@ bool GameplayScene::canCharacterMoveToLocation(Vec2 location) {
 }
 
 void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 location) {
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  
+  if (!this->getGame()->getFreeBootUsed()) {
+    dispatcher->dispatchCustomEvent(EVT_ACTION_FREE_BOOT_SPENT);
+  } else {
+    auto dockedDices = this->getGame()->getDockedDices();
+    ActionDice* usedDice;
+    for (auto dice : dockedDices) {
+      if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_BOOT && !dice->isSpent()) {
+        usedDice = dice;
+        break;
+      }
+    }
+    
+    dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_SPENT, usedDice);
+  }
+  
   this->_resetCharacterMoveState();
   
   auto newCoordinate = this->_positionInGameCoordinate(location);

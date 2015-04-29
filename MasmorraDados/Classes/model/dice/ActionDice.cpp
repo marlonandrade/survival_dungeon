@@ -12,6 +12,7 @@
 #include "ActionDiceStateNormal.h"
 #include "ActionDiceStateRolled.h"
 #include "ActionDiceStateSelected.h"
+#include "ActionDiceStateSpent.h"
 #include "Definitions.h"
 #include "DiceFace.h"
 
@@ -21,6 +22,7 @@ USING_NS_CC;
 
 bool ActionDice::init() {
   DiceFaces faces;
+  
   faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_BOOT));
   faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_BOW));
   faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_HEAL));
@@ -59,6 +61,10 @@ bool ActionDice::isDisabled() {
   return IS(this->getState(), ActionDiceStateDisabled);
 }
 
+bool ActionDice::isSpent() {
+  return IS(this->getState(), ActionDiceStateSpent);
+}
+
 void ActionDice::setDisabled() {
   Dice::setDisabled();
   
@@ -78,4 +84,14 @@ void ActionDice::setRolled() {
   this->getSprite()->removeAllChildren();
   
   this->setState(ActionDiceStateRolled::create());
+}
+
+void ActionDice::setSpent() {
+  auto sprite = this->getSprite();
+  auto spentActionSprite = Sprite::create(IMG_DICE_ACTION_SPENT);
+  spentActionSprite->setPosition(Vec2(sprite->getContentSize().width / 2,
+                                      sprite->getContentSize().height / 2));
+  spentActionSprite->setScale(1.73);
+  sprite->addChild(spentActionSprite);
+  this->setState(ActionDiceStateSpent::create());
 }

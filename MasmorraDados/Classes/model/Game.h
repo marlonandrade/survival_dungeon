@@ -22,34 +22,41 @@ class Game : public GameObject {
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _actionDices, ActionDices);
   CC_SYNTHESIZE(cocos2d::Vector<DungeonRoom*>, _availableRooms, AvailableRooms);
   CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
+  CC_SYNTHESIZE(bool, _freeBootUsed, FreeBootUsed);
 private:
   Turn* _turn;
 protected:
   cocos2d::Vec2 _characterPosition;
   
 public:
+  static Game* createWithRoomPlacedDelegate(RoomPlacedDelegate delegate);
+  virtual bool initWithRoomPlacedDelegate(RoomPlacedDelegate delegate);
+  
   virtual Turn* getTurn(void) const { return _turn; }
   virtual void setTurn(Turn* turn);
   
   virtual cocos2d::Vec2 getCharacterPosition(void) const { return _characterPosition; }
   virtual void setCharacterPosition(cocos2d::Vec2 position);
   
+  virtual cocos2d::Vector<ActionDice*> getDockedDices();
+  virtual cocos2d::ValueMap getAvailableSkills();
+  
   virtual bool isInitialTurn();
   virtual bool isPlayerTurn();
   virtual void executeCurrentTurn();
-  
-public:
-  static Game* createWithRoomPlacedDelegate(RoomPlacedDelegate delegate);
-  virtual bool initWithRoomPlacedDelegate(RoomPlacedDelegate delegate);
-  CREATE_FUNC(Game);
-  
+  virtual void restoreFreeBoot();
 private:
   void _setupDungeon(RoomPlacedDelegate delegate);
   void _setupAvaiableRooms();
   void _setupActionDices();
+  void _setupEventHandlers();
   
   DungeonRoom* _pickRandomRoom();
   void _placeAdjacentTiles();
+  
+#pragma mark - Event Handlers
+  void _handleActionFreeBootSpent(cocos2d::EventCustom* event);
+  void _handleActionDiceSpent(cocos2d::EventCustom* event);
 };
 
 #endif /* defined(__MasmorraDados__Game__) */

@@ -23,6 +23,8 @@ class Dice : public GameObject {
   
   CC_SYNTHESIZE(cocos2d::Sprite*, _sprite, Sprite);
   CC_SYNTHESIZE(std::string, _blurImagePath, BlurImagePath);
+protected:
+  bool _docked;
 public:
   static Dice* createWithFaces(DiceFaces faces);
   virtual bool initWithFaces(DiceFaces faces);
@@ -32,6 +34,9 @@ public:
   bool canChangeState();
   virtual void changeState();
   virtual void resetState();
+  
+  virtual bool isDocked() const { return _docked; }
+  virtual void setDocked(bool docked) { _docked = docked; }
   
   virtual bool isSelected();
   virtual bool isDisabled();
