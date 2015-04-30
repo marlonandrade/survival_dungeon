@@ -20,6 +20,7 @@ public:
 private:
   void _setupFreeBootSymbol();
   void _setupDockableDice();
+  void _setupFinalizarButton();
   void _setupEventHandlers();
   
   cocos2d::Node* _getDockContainer();

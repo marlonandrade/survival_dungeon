@@ -22,6 +22,7 @@ bool PlayerSkillsLayer::init() {
   
   this->_setupFreeBootSymbol();
   this->_setupDockableDice();
+  this->_setupFinalizarButton();
   this->_setupEventHandlers();
   
   return true;
@@ -86,6 +87,19 @@ void PlayerSkillsLayer::_setupDockableDice() {
   
   dockContainer->setPosition(Vec2(dockX, dockY));
   dockContainer->setContentSize(Size(totalWidth, totalHeight));
+}
+
+void PlayerSkillsLayer::_setupFinalizarButton() {
+  auto sprite = Sprite::create(IMG_DICE_ACTION_FREE_BOOT);
+  sprite->setName(FREE_BOOT_SPRITE_NAME);
+  
+  auto size = sprite->getContentSize() / 2;
+  auto x = DOCK_MARGIN + size.width;
+  auto y = this->getContentSize().height - (DOCK_MARGIN + size.height);
+  
+  sprite->setPosition(Vec2(x, y));
+  
+  this->addChild(sprite);
 }
 
 void PlayerSkillsLayer::_setupEventHandlers() {
