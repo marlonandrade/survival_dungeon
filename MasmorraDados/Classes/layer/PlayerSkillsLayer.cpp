@@ -90,16 +90,19 @@ void PlayerSkillsLayer::_setupDockableDice() {
 }
 
 void PlayerSkillsLayer::_setupFinalizarButton() {
-  auto sprite = Sprite::create(IMG_DICE_ACTION_FREE_BOOT);
-  sprite->setName(FREE_BOOT_SPRITE_NAME);
+  auto button = ui::Button::create(IMG_BUTTON_END_TURN_NORMAL,
+                                   IMG_BUTTON_END_TURN_SELECTED,
+                                   IMG_BUTTON_END_TURN_DISABLED);
+  button->setName(END_TURN_BUTTON_NAME);
+  button->addTouchEventListener(CC_CALLBACK_2(PlayerSkillsLayer::_handleEndTurnTouched, this));
   
-  auto size = sprite->getContentSize() / 2;
-  auto x = DOCK_MARGIN + size.width;
-  auto y = this->getContentSize().height - (DOCK_MARGIN + size.height);
+  auto size = button->getContentSize() / 2;
+  auto x = this->getContentSize().width - (END_TURN_MARGIN + size.width);
+  auto y = this->getContentSize().height - (END_TURN_MARGIN + size.height);
   
-  sprite->setPosition(Vec2(x, y));
+  button->setPosition(Vec2(x, y));
   
-  this->addChild(sprite);
+  this->addChild(button);
 }
 
 void PlayerSkillsLayer::_setupEventHandlers() {
@@ -155,6 +158,15 @@ void PlayerSkillsLayer::_removeOverlay() {
   auto removeSelf = RemoveSelf::create();
   
   overlayLayer->runAction(Sequence::create(fadeOut, changeLayer, removeSelf, NULL));
+}
+
+#pragma mark - UI Event Handlers
+
+void PlayerSkillsLayer::_handleEndTurnTouched(Ref* sender, ui::Widget::TouchEventType type) {
+  if (type == ui::Widget::TouchEventType::ENDED) {
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->dispatchCustomEvent(EVT_END_PLAYER_TURN, this);
+  }
 }
 
 #pragma mark - Event Handlers

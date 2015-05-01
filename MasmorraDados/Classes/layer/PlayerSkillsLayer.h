@@ -10,6 +10,7 @@
 #define __MasmorraDados__PlayerSkillsLayer__
 
 #include "cocos2d.h"
+#include "ui/CocosGUI.h"
 
 class PlayerSkillsLayer : public cocos2d::Layer {
 public:
@@ -27,6 +28,9 @@ private:
   
   void _addOverlay();
   void _removeOverlay();
+#pragma mark - UI Events
+  void _handleEndTurnTouched(cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+  
 #pragma mark - Event Handlers
   void _handleActionDiceDragStarted(cocos2d::EventCustom* event);
   void _handleActionDiceDragMoved(cocos2d::EventCustom* event);

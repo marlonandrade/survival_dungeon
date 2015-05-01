@@ -23,6 +23,7 @@
 #define ACTION_DICE_MARGIN          10
 #define ACTION_DICE_MARGIN_PER_DICE 3
 #define DOCK_MARGIN                 5
+#define END_TURN_MARGIN             5
 
 #pragma mark - Game Mechanics
 
@@ -49,6 +50,7 @@
 #define DICE_OK_BUTTON_NAME        "DiceOkButton"
 #define DICE_REROLL_BUTTON_NAME    "DiceRerollButton"
 #define DOCK_CONTAINER_NODE_NAME   "DockContainerNodeName"
+#define END_TURN_BUTTON_NAME       "EndTurnButtonName"
 #define FREE_BOOT_SPRITE_NAME      "FreeBootSprite"
 #define OBJECTS_LAYER_NAME         "ObjectsLayer"
 #define OVERLAY_LAYER_NAME         "OverlayLayer"
@@ -74,44 +76,50 @@
 
 #pragma mark - Image Paths
 
-#define IMG_BACKGROUND             "background.png"
-#define IMG_INTRO                  "intro.jpg"
+#define IMG_BACKGROUND               "background.png"
+#define IMG_INTRO                    "intro.jpg"
 
-#define IMG_BUTTON_OK_DISABLED     "button/ok/disabled.png"
-#define IMG_BUTTON_OK_NORMAL       "button/ok/normal.png"
-#define IMG_BUTTON_OK_SELECTED     "button/ok/selected.png"
+#define IMG_BUTTON_END_TURN_DISABLED "button/end_turn/disabled.png"
+#define IMG_BUTTON_END_TURN_NORMAL   "button/end_turn/normal.png"
+#define IMG_BUTTON_END_TURN_SELECTED "button/end_turn/selected.png"
 
-#define IMG_BUTTON_REROLL_DISABLED "button/reroll/disabled_xx.png"
-#define IMG_BUTTON_REROLL_NORMAL   "button/reroll/normal_xx.png"
-#define IMG_BUTTON_REROLL_SELECTED "button/reroll/selected_xx.png"
+#define IMG_BUTTON_OK_DISABLED       "button/ok/disabled.png"
+#define IMG_BUTTON_OK_NORMAL         "button/ok/normal.png"
+#define IMG_BUTTON_OK_SELECTED       "button/ok/selected.png"
 
-#define IMG_DICE_ACTION_BLUR        "dice/action/blur.png"
-#define IMG_DICE_ACTION_BOOT        "dice/action/boot.png"
-#define IMG_DICE_ACTION_BOW         "dice/action/bow.png"
-#define IMG_DICE_ACTION_DISABLED    "dice/action/disabled.png"
-#define IMG_DICE_ACTION_HEAL        "dice/action/heal.png"
-#define IMG_DICE_ACTION_MAGIC       "dice/action/magic.png"
-#define IMG_DICE_ACTION_SELECTED    "dice/action/selected.png"
-#define IMG_DICE_ACTION_SHIELD      "dice/action/shield.png"
-#define IMG_DICE_ACTION_SWORD       "dice/action/sword.png"
+#define IMG_BUTTON_REROLL_DISABLED   "button/reroll/disabled_xx.png"
+#define IMG_BUTTON_REROLL_NORMAL     "button/reroll/normal_xx.png"
+#define IMG_BUTTON_REROLL_SELECTED   "button/reroll/selected_xx.png"
 
-#define IMG_DICE_ACTION_FREE_BOOT   "dice/action/free_boot.png"
-#define IMG_DICE_ACTION_DOCK        "dice/action/dock.png"
-#define IMG_DICE_ACTION_SPENT       "dice/action/spent.png"
+#define IMG_DICE_ACTION_BLUR         "dice/action/blur.png"
+#define IMG_DICE_ACTION_BOOT         "dice/action/boot.png"
+#define IMG_DICE_ACTION_BOW          "dice/action/bow.png"
+#define IMG_DICE_ACTION_DISABLED     "dice/action/disabled.png"
+#define IMG_DICE_ACTION_HEAL         "dice/action/heal.png"
+#define IMG_DICE_ACTION_MAGIC        "dice/action/magic.png"
+#define IMG_DICE_ACTION_SELECTED     "dice/action/selected.png"
+#define IMG_DICE_ACTION_SHIELD       "dice/action/shield.png"
+#define IMG_DICE_ACTION_SWORD        "dice/action/sword.png"
 
-#define IMG_DICE_CHAR               "dice/char/xx.png"
+#define IMG_DICE_ACTION_FREE_BOOT    "dice/action/free_boot.png"
+#define IMG_DICE_ACTION_DOCK         "dice/action/dock.png"
+#define IMG_DICE_ACTION_SPENT        "dice/action/spent.png"
 
-#define IMG_ROOM_INITIAL            "room/initial.png"
-#define IMG_ROOM_MINOR_MONSTER      "room/minor_monster.png"
-#define IMG_ROOM_RUNE               "room/rune.png"
+#define IMG_DICE_CHAR                "dice/char/xx.png"
 
-#define IMG_TURN_DUNGEON            "turn/dungeon.png"
-#define IMG_TURN_PLAYER             "turn/player.png"
+#define IMG_ROOM_INITIAL             "room/initial.png"
+#define IMG_ROOM_MINOR_MONSTER       "room/minor_monster.png"
+#define IMG_ROOM_RUNE                "room/rune.png"
+
+#define IMG_TURN_DUNGEON             "turn/dungeon.png"
+#define IMG_TURN_PLAYER              "turn/player.png"
 
 #pragma mark - Events
 
 #define EVT_TURN_HAS_ENDED           "turn_has_ended"           // data -> turn
 #define EVT_TURN_HAS_STARTED         "turn_has_started"         // data -> turn
+
+#define EVT_END_PLAYER_TURN          "end_player_turn"
 
 #define EVT_DICE_STATE_NEW           "state_changed_new"        // data -> new state
 #define EVT_DICE_STATE_OLD           "state_changed_old"        // data -> previous state
