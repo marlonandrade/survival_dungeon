@@ -8,7 +8,7 @@
 
 #include "BackgroundLayer.h"
 
-#include "Definitions.h"
+#include "Images.h"
 
 USING_NS_CC;
 

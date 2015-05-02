@@ -9,6 +9,8 @@
 #include "CharacterDiceSprite.h"
 
 #include "Definitions.h"
+#include "Images.h"
+#include "NodeNames.h"
 
 USING_NS_CC;
 

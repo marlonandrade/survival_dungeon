@@ -8,9 +8,10 @@
 
 #include "ActionDiceStateNormal.h"
 
+#include "Images.h"
+
 #include "ActionDiceSprite.h"
 #include "ActionDiceStateSelected.h"
-#include "Definitions.h"
 #include "Dice.h"
 
 USING_NS_CC;

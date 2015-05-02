@@ -8,10 +8,12 @@
 
 #include "ActionDiceSprite.h"
 
+#include "Definitions.h"
+#include "Events.h"
+
 #include "ActionDice.h"
 #include "ActionDiceDragData.h"
 #include "ActionDiceStateRolled.h"
-#include "Definitions.h"
 
 USING_NS_CC;
 

@@ -8,7 +8,7 @@
 
 #include "MinorMonsterRoom.h"
 
-#include "Definitions.h"
+#include "Images.h"
 
 std::string MinorMonsterRoom::getImagePath() {
   return IMG_ROOM_MINOR_MONSTER;

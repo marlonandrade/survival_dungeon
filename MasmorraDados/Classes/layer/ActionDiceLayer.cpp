@@ -9,6 +9,9 @@
 #include "ActionDiceLayer.h"
 
 #include "Definitions.h"
+#include "Events.h"
+#include "Images.h"
+#include "NodeNames.h"
 
 #include "ActionDiceStateNormal.h"
 #include "ActionDiceStateSelected.h"

@@ -9,6 +9,8 @@
 #include "Game.h"
 
 #include "Definitions.h"
+#include "Events.h"
+
 #include "DungeonTurn.h"
 #include "InitialRoom.h"
 #include "InitialTurn.h"

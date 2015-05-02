@@ -9,8 +9,8 @@
 #include "Dice.h"
 
 #include "ActionDiceSprite.h"
-#include "Definitions.h"
 #include "DiceFace.h"
+#include "Events.h"
 #include "Shake.h"
 
 USING_NS_CC;

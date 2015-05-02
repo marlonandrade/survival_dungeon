@@ -8,7 +8,7 @@
 
 #include "RuneRoom.h"
 
-#include "Definitions.h"
+#include "Images.h"
 
 std::string RuneRoom::getImagePath() {
   return IMG_ROOM_RUNE;

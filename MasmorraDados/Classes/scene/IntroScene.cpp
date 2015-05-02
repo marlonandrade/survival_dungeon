@@ -8,6 +8,7 @@
 
 #include "IntroScene.h"
 
+#include "Images.h"
 #include "Game.h"
 #include "GameplayScene.h"
 

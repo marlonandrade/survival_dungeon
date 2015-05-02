@@ -8,8 +8,12 @@
 
 #include "PlayerSkillsLayer.h"
 
-#include "ActionDiceDragData.h"
 #include "Definitions.h"
+#include "Events.h"
+#include "Images.h"
+#include "NodeNames.h"
+
+#include "ActionDiceDragData.h"
 
 USING_NS_CC;
 

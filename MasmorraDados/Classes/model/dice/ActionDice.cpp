@@ -8,12 +8,14 @@
 
 #include "ActionDice.h"
 
+#include "Definitions.h"
+#include "Images.h"
+
 #include "ActionDiceStateDisabled.h"
 #include "ActionDiceStateNormal.h"
 #include "ActionDiceStateRolled.h"
 #include "ActionDiceStateSelected.h"
 #include "ActionDiceStateSpent.h"
-#include "Definitions.h"
 #include "DiceFace.h"
 
 USING_NS_CC;

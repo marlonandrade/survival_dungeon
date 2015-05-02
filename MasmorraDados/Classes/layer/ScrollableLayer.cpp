@@ -8,7 +8,7 @@
 
 #include "ScrollableLayer.h"
 
-#include "Definitions.h"
+#include "NodeNames.h"
 
 USING_NS_CC;
 

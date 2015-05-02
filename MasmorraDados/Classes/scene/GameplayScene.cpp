@@ -8,6 +8,10 @@
 
 #include "GameplayScene.h"
 
+#include "Events.h"
+#include "Images.h"
+#include "NodeNames.h"
+
 #include "ActionDiceLayer.h"
 #include "ActionDiceSprite.h"
 #include "BackgroundLayer.h"

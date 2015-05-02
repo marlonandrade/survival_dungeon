@@ -8,7 +8,7 @@
 
 #include "InitialRoom.h"
 
-#include "Definitions.h"
+#include "Images.h"
 
 std::string InitialRoom::getImagePath() {
   return IMG_ROOM_INITIAL;
