@@ -15,6 +15,10 @@
 #include "ActionDice.h"
 
 class ActionDiceLayer : public cocos2d::Layer {
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _diceStateNewListener,
+                       DiceStateNewListener);
+  
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _dices, Dices);
 public:
   static ActionDiceLayer* createWithDices(cocos2d::Vector<ActionDice*> dices);
@@ -28,6 +32,7 @@ private:
   cocos2d::Node* _createActionDices(cocos2d::Vector<ActionDice*> dices);
   cocos2d::Node* _createRerollButton();
   cocos2d::Node* _createOkButton();
+  void _setupEventHandlers();
   
   void _setRerollButtonEnabled(bool enabled);
   void _adjustRerollButtonTextures();

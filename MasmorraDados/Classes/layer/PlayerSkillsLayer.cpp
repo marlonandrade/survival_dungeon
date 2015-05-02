@@ -108,21 +108,24 @@ void PlayerSkillsLayer::_setupFinalizarButton() {
 void PlayerSkillsLayer::_setupEventHandlers() {
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   
-  dispatcher->addCustomEventListener(
-      EVT_ACTION_DICE_DRAG_STARTED,
-      CC_CALLBACK_1(PlayerSkillsLayer::_handleActionDiceDragStarted, this)
+  auto diceDragStartedCallback = CC_CALLBACK_1(PlayerSkillsLayer::_handleActionDiceDragStarted, this);
+  this->setDiceDragStartedListener(
+    dispatcher->addCustomEventListener(EVT_ACTION_DICE_DRAG_STARTED, diceDragStartedCallback)
   );
-  dispatcher->addCustomEventListener(
-      EVT_ACTION_DICE_DRAG_MOVED,
-      CC_CALLBACK_1(PlayerSkillsLayer::_handleActionDiceDragMoved, this)
+  
+  auto diceDragMovedCallback = CC_CALLBACK_1(PlayerSkillsLayer::_handleActionDiceDragMoved, this);
+  this->setDiceDragMovedListener(
+    dispatcher->addCustomEventListener(EVT_ACTION_DICE_DRAG_MOVED, diceDragMovedCallback)
   );
-  dispatcher->addCustomEventListener(
-      EVT_ACTION_DICE_DRAG_ENDED,
-      CC_CALLBACK_1(PlayerSkillsLayer::_handleActionDiceDragEnded, this)
+  
+  auto diceDragEndedCallback = CC_CALLBACK_1(PlayerSkillsLayer::_handleActionDiceDragEnded, this);
+  this->setDiceDragEndedListener(
+    dispatcher->addCustomEventListener(EVT_ACTION_DICE_DRAG_ENDED, diceDragEndedCallback)
   );
-  dispatcher->addCustomEventListener(
-      EVT_ACTION_FREE_BOOT_SPENT,
-      CC_CALLBACK_1(PlayerSkillsLayer::_handleActionFreeBootSpent, this)
+  
+  auto freeBootSpentCallback = CC_CALLBACK_1(PlayerSkillsLayer::_handleActionFreeBootSpent, this);
+  this->setFreeBootSpentListener(
+    dispatcher->addCustomEventListener(EVT_ACTION_FREE_BOOT_SPENT, freeBootSpentCallback)
   );
 }
 

@@ -19,6 +19,13 @@
 class Turn;
 
 class Game : public GameObject {
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _freeBootSpentListener,
+                       FreeBootSpentListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _diceSpentListener,
+                       DiceSpentListener);
+  
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _actionDices, ActionDices);
   CC_SYNTHESIZE(cocos2d::Vector<DungeonRoom*>, _availableRooms, AvailableRooms);

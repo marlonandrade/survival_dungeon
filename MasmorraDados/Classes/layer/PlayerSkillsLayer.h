@@ -13,6 +13,18 @@
 #include "ui/CocosGUI.h"
 
 class PlayerSkillsLayer : public cocos2d::Layer {
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _diceDragStartedListener,
+                       DiceDragStartedListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _diceDragMovedListener,
+                       DiceDragMovedListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _diceDragEndedListener,
+                       DiceDragEndedListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _freeBootSpentListener,
+                       FreeBootSpentListener);
 public:
   CREATE_FUNC(PlayerSkillsLayer);
   virtual bool init();

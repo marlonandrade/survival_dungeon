@@ -59,12 +59,21 @@ void GameplayScene::_adjustInitialLayers() {
 
 void GameplayScene::_setupEventHandlers() {
   auto dispatcher = Director::getInstance()->getEventDispatcher();
-  dispatcher->addCustomEventListener(EVT_TURN_HAS_ENDED,
-                                     CC_CALLBACK_1(GameplayScene::_handleTurnHasEnded, this));
-  dispatcher->addCustomEventListener(EVT_TURN_HAS_STARTED,
-                                     CC_CALLBACK_1(GameplayScene::_handleTurnHasStarted, this));
-  dispatcher->addCustomEventListener(EVT_ACTION_DICES_ROLLED,
-                                     CC_CALLBACK_1(GameplayScene::_handleActionDicesRolled, this));
+  
+  auto turnHasStartedCallback = CC_CALLBACK_1(GameplayScene::_handleTurnHasStarted, this);
+  this->setTurnHasStartedListener(
+    dispatcher->addCustomEventListener(EVT_TURN_HAS_STARTED, turnHasStartedCallback)
+  );
+  
+  auto turnHasEndedCallback = CC_CALLBACK_1(GameplayScene::_handleTurnHasEnded, this);
+  this->setTurnHasEndedListener(
+    dispatcher->addCustomEventListener(EVT_TURN_HAS_ENDED, turnHasEndedCallback)
+  );
+  
+  auto actionDicesRolledCallback = CC_CALLBACK_1(GameplayScene::_handleActionDicesRolled, this);
+  this->setActionDicesRolledListener(
+    dispatcher->addCustomEventListener(EVT_ACTION_DICES_ROLLED, actionDicesRolledCallback)
+  );
 }
 
 Layer* GameplayScene::_createObjectsLayer() {

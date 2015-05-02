@@ -153,10 +153,16 @@ void Game::_setupActionDices() {
 
 void Game::_setupEventHandlers() {
   auto dispatcher = Director::getInstance()->getEventDispatcher();
-  dispatcher->addCustomEventListener(EVT_ACTION_FREE_BOOT_SPENT,
-                                     CC_CALLBACK_1(Game::_handleActionFreeBootSpent, this));
-  dispatcher->addCustomEventListener(EVT_ACTION_DICE_SPENT,
-                                     CC_CALLBACK_1(Game::_handleActionDiceSpent, this));
+  
+  auto freeBootSpentCallback = CC_CALLBACK_1(Game::_handleActionFreeBootSpent, this);
+  this->setFreeBootSpentListener(
+    dispatcher->addCustomEventListener(EVT_ACTION_FREE_BOOT_SPENT, freeBootSpentCallback)
+  );
+  
+  auto diceSpentCallback = CC_CALLBACK_1(Game::_handleActionDiceSpent, this);
+  this->setDiceSpentListener(
+    dispatcher->addCustomEventListener(EVT_ACTION_DICE_SPENT, diceSpentCallback)
+  );
 }
 
 DungeonRoom* Game::_pickRandomRoom() {

@@ -16,6 +16,16 @@
 #include "Turn.h"
 
 class GameplayScene : public cocos2d::Scene, CharacterMoveDelegate {
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _turnHasStartedListener,
+                       TurnHasStartedListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _turnHasEndedListener,
+                       TurnHasEndedListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _actionDicesRolledListener,
+                       ActionDicesRolledListener);
+  
   CC_SYNTHESIZE_RETAIN(Game*, _game, Game);
   CC_SYNTHESIZE(cocos2d::Vector<cocos2d::Node*>, _interactableNodes, InteractableNodes);
 protected:

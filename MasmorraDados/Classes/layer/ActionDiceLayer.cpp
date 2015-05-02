@@ -35,10 +35,7 @@ bool ActionDiceLayer::initWithDices(Vector<ActionDice *> dices) {
   this->setDices(dices);
   this->_setupChilds(dices);
   this->resetRollCount();
-  
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  dispatcher->addCustomEventListener(EVT_DICE_STATE_NEW,
-                                     CC_CALLBACK_1(ActionDiceLayer::_handleDiceStateNew, this));
+  this->_setupEventHandlers();
   
   return true;
 }
@@ -127,6 +124,15 @@ Node* ActionDiceLayer::_createOkButton() {
   okButton->addTouchEventListener(CC_CALLBACK_2(ActionDiceLayer::_handleOkTouched, this));
   
   return okButton;
+}
+
+void ActionDiceLayer::_setupEventHandlers() {
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  
+  auto diceStateNewCallback = CC_CALLBACK_1(ActionDiceLayer::_handleDiceStateNew, this);
+  this->setDiceStateNewListener(
+    dispatcher->addCustomEventListener(EVT_DICE_STATE_NEW, diceStateNewCallback)
+  );
 }
 
 void ActionDiceLayer::_setRerollButtonEnabled(bool enabled) {
