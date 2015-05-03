@@ -25,6 +25,9 @@ class Game : public GameObject {
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _diceSpentListener,
                        DiceSpentListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _endPlayerTurnListener,
+                       EndPlayerTurnListener);
   
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _actionDices, ActionDices);
@@ -64,6 +67,7 @@ private:
 #pragma mark - Event Handlers
   void _handleActionFreeBootSpent(cocos2d::EventCustom* event);
   void _handleActionDiceSpent(cocos2d::EventCustom* event);
+  void _handleEndPlayerTurn(cocos2d::EventCustom* event);
 };
 
 #endif /* defined(__MasmorraDados__Game__) */

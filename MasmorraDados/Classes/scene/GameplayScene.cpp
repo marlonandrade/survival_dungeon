@@ -20,6 +20,7 @@
 #include "RoomPlacement.h"
 #include "ScrollableLayer.h"
 
+#include "DungeonTurn.h"
 #include "InitialTurn.h"
 #include "PlayerTurn.h"
 
@@ -386,6 +387,8 @@ void GameplayScene::_handleTurnHasStarted(EventCustom* event) {
     this->_getControlsLayer()->runAction(showAndRoll);
     
     this->_showPlayerTurnInfo();
+  } else if (IS(turn, DungeonTurn)) {
+    this->_showDungeonTurnInfo();
   }
 }
 

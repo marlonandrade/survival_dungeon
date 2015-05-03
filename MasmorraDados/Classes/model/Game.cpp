@@ -165,6 +165,11 @@ void Game::_setupEventHandlers() {
   this->setDiceSpentListener(
     dispatcher->addCustomEventListener(EVT_ACTION_DICE_SPENT, diceSpentCallback)
   );
+  
+  auto endPlayerTurnCallback = CC_CALLBACK_1(Game::_handleEndPlayerTurn, this);
+  this->setEndPlayerTurnListener(
+    dispatcher->addCustomEventListener(EVT_END_PLAYER_TURN, endPlayerTurnCallback)
+  );
 }
 
 DungeonRoom* Game::_pickRandomRoom() {
@@ -187,4 +192,10 @@ void Game::_handleActionFreeBootSpent(EventCustom* event) {
 void Game::_handleActionDiceSpent(EventCustom* event) {
   auto dice = (ActionDice*) event->getUserData();
   dice->setSpent();
+}
+
+void Game::_handleEndPlayerTurn(EventCustom* event) {
+  if (this->isPlayerTurn()) {
+    this->executeCurrentTurn();
+  }
 }
