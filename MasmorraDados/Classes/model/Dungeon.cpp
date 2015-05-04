@@ -27,6 +27,21 @@ bool Dungeon::init() {
   return true;
 }
 
+void Dungeon::moveMonsters() {
+  log("move monsters");
+  // MOVER MONSTROS
+  // - primeiro monstros que dão mais xp
+  // - movem em direção ao jogador mais proximo
+}
+
+void Dungeon::riseMonsters() {
+  log("rise monsters");
+  // NASCER MONSTROS
+  // - somente nos andares que tiver jogador
+  // - somente nos tiles de monstro vazios
+  // - nasce primeiro nos mais perto dos player
+}
+
 void Dungeon::setRoomForPosition(DungeonRoom* room, Vec2 position) {
   auto index = this->indexForPosition(position);
   
@@ -164,6 +179,8 @@ RoomPlacement* Dungeon::_placeNewRoomAtPosition(Vec2 position) {
   
   if (!alreadyPlacedRoom && newRoomDataSource) {
     DungeonRoom* room = newRoomDataSource();
+    room->initialize();
+    
     this->setRoomForPosition(room, position);
     
     placement = RoomPlacement::create();

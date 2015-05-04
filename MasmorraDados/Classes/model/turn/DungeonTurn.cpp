@@ -14,5 +14,7 @@
 #pragma mark - Turn Methods
 
 void DungeonTurn::execute(Game *game) {
+  game->getDungeon()->moveMonsters();
+  game->getDungeon()->riseMonsters();
   game->setTurn(PlayerTurn::create());
 }

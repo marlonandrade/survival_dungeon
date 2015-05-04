@@ -10,6 +10,15 @@
 
 #include "Images.h"
 
+USING_NS_CC;
+
+#pragma mark - Public Interface
+
+void MinorMonsterRoom::initialize() {
+  // sortear um monstro
+  // disparar evento que novo monstro foi gerado
+}
+
 std::string MinorMonsterRoom::getImagePath() {
   return IMG_ROOM_MINOR_MONSTER;
 }
@@ -17,3 +26,4 @@ std::string MinorMonsterRoom::getImagePath() {
 bool MinorMonsterRoom::isExplorable() {
   return true;
 }
+

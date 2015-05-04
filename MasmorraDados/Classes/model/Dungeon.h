@@ -34,6 +34,9 @@ public:
   virtual bool init();
   CREATE_FUNC(Dungeon);
   
+  void moveMonsters();
+  void riseMonsters();
+  
   void setRoomForPosition(DungeonRoom* room, cocos2d::Vec2 position);
   DungeonRoom* getRoomForPosition(cocos2d::Vec2 position);
   
