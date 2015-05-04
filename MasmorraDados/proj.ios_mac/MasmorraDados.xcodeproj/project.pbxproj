@@ -111,6 +111,7 @@
 		BFDFE26C1ADC2CAE00106124 /* ActionDiceStateSelected.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFDFE2691ADC2CAE00106124 /* ActionDiceStateSelected.cpp */; };
 		BFE583A91AD6E41400A4E194 /* ActionDiceSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE583A71AD6E41400A4E194 /* ActionDiceSprite.cpp */; };
 		BFE583AA1AD6E41400A4E194 /* ActionDiceSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE583A71AD6E41400A4E194 /* ActionDiceSprite.cpp */; };
+		BFFA1F6C1AF7DA2F00A0BD9C /* DungeonRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC373931A9BFDDA00520751 /* DungeonRoom.cpp */; };
 		D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620B132DFF330009C878 /* OpenAL.framework */; };
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
@@ -804,6 +805,7 @@
 				BF5B4BCD1A94BA91007636DE /* Dungeon.cpp in Sources */,
 				BF08409B1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */,
 				BFBAE2A41AD171AD00A5FC9A /* ScrollableLayer.cpp in Sources */,
+				BFFA1F6C1AF7DA2F00A0BD9C /* DungeonRoom.cpp in Sources */,
 				BF5B4BC91A94BA51007636DE /* Skill.cpp in Sources */,
 				BFC33C221AE803D300934C34 /* InitialTurn.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
