@@ -10,11 +10,15 @@
 
 #include "Images.h"
 
+#include "MonsterDice.h"
+
 USING_NS_CC;
 
 #pragma mark - Public Interface
 
 void MinorMonsterRoom::initialize() {
+  auto dice = MonsterDice::createMinorMonsterDice();
+  
   // sortear um monstro
   // disparar evento que novo monstro foi gerado
 }
