@@ -11,16 +11,13 @@
 
 #include "DungeonRoom.h"
 
-class MonsterDice;
-
 class MinorMonsterRoom : public DungeonRoom {
 public:
   CREATE_FUNC(MinorMonsterRoom);
-  virtual void initialize();
+  virtual bool init();
+  
   virtual std::string getImagePath();
   virtual bool isExplorable();
-  
-  MonsterDice* monsterDice();
 };
 
 #endif /* defined(__MasmorraDados__MinorMonsterRoom__) */

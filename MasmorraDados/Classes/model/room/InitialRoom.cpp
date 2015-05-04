@@ -10,9 +10,6 @@
 
 #include "Images.h"
 
-void InitialRoom::initialize() {
-}
-
 std::string InitialRoom::getImagePath() {
   return IMG_ROOM_INITIAL;
 }

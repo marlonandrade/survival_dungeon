@@ -10,9 +10,6 @@
 
 #include "Images.h"
 
-void RuneRoom::initialize() {
-}
-
 std::string RuneRoom::getImagePath() {
   return IMG_ROOM_RUNE;
 }

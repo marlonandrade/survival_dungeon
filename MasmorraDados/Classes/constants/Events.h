@@ -25,4 +25,6 @@
 #define EVT_ACTION_FREE_BOOT_SPENT   "action_free_boot_spent"    // ?
 #define EVT_ACTION_DICE_SPENT        "action_dice_spent"         // data -> ActionDice
 
+#define EVT_MONSTER_DICE_GENERATED   "monster_dice_generated"    // data -> monster dice
+
 #endif /* defined(__MasmorraDados__Events__) */

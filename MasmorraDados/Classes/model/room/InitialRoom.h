@@ -15,7 +15,6 @@ class InitialRoom : public DungeonRoom {
 public:
   CREATE_FUNC(InitialRoom);
   
-  virtual void initialize();
   virtual std::string getImagePath();
   virtual bool isExplorable();
 };

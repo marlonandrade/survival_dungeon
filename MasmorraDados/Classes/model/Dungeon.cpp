@@ -28,6 +28,15 @@ bool Dungeon::init() {
 }
 
 void Dungeon::moveMonsters() {
+  for (auto room : this->_rooms) {
+    auto index = std::get<0>(room);
+    auto dungeonRoom = std::get<1>(room);
+    
+    auto monsters = dungeonRoom->getMonsters();
+    if (monsters.size()) {
+      log("monsters");
+    }
+  }
   log("move monsters");
   // MOVER MONSTROS
   // - primeiro monstros que dão mais xp
@@ -179,7 +188,6 @@ RoomPlacement* Dungeon::_placeNewRoomAtPosition(Vec2 position) {
   
   if (!alreadyPlacedRoom && newRoomDataSource) {
     DungeonRoom* room = newRoomDataSource();
-    room->initialize();
     
     this->setRoomForPosition(room, position);
     

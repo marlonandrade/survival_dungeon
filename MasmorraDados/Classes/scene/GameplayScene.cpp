@@ -389,6 +389,8 @@ void GameplayScene::_handleTurnHasStarted(EventCustom* event) {
     this->_showPlayerTurnInfo();
   } else if (IS(turn, DungeonTurn)) {
     this->_showDungeonTurnInfo();
+    
+    this->getGame()->getDungeon()->moveMonsters();
   }
 }
 

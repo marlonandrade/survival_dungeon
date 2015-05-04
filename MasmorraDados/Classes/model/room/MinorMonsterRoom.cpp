@@ -8,6 +8,7 @@
 
 #include "MinorMonsterRoom.h"
 
+#include "Events.h"
 #include "Images.h"
 
 #include "MonsterDice.h"
@@ -16,11 +17,19 @@ USING_NS_CC;
 
 #pragma mark - Public Interface
 
-void MinorMonsterRoom::initialize() {
-  auto dice = MonsterDice::createMinorMonsterDice();
+bool MinorMonsterRoom::init() {
+  if (!DungeonRoom::init()) {
+    return false;
+  }
   
-  // sortear um monstro
-  // disparar evento que novo monstro foi gerado
+  auto dice = MonsterDice::createMinorMonsterDice();
+  dice->retain();
+  this->getMonsters().pushBack(dice);
+  
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->dispatchCustomEvent(EVT_MONSTER_DICE_GENERATED, dice);
+  
+  return true;
 }
 
 std::string MinorMonsterRoom::getImagePath() {

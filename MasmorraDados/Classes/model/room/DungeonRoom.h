@@ -10,13 +10,17 @@
 #define __MasmorraDados__DungeonRoom__
 
 #include "GameObject.h"
+#include "MonsterDice.h"
 
 class DungeonRoom : public GameObject {
-public:
+  CC_SYNTHESIZE(cocos2d::Vector<MonsterDice*>, _monsters, Monsters);
   CC_SYNTHESIZE(int, _distanceToPlayer, DistanceToPlayer);
-  virtual void initialize() = 0;
-  virtual std::string getImagePath() = 0;
-  virtual bool isExplorable() = 0;
+public:
+  CREATE_FUNC(DungeonRoom);
+  virtual bool init();
+  
+  virtual std::string getImagePath();
+  virtual bool isExplorable();
 };
 
 #endif /* defined(__MasmorraDados__DungeonRoom__) */

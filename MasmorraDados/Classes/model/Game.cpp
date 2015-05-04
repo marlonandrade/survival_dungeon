@@ -133,11 +133,11 @@ void Game::_setupAvaiableRooms() {
   Vector<DungeonRoom*> rooms;
   
   for (int i = 0; i < 100; i++) {
-    if (i % 10 > 2) {
-      rooms.pushBack(RuneRoom::create());
-    } else {
+//    if (i % 10 > 2) {
+//      rooms.pushBack(RuneRoom::create());
+//    } else {
       rooms.pushBack(MinorMonsterRoom::create());
-    }
+//    }
   }
   
   this->setAvailableRooms(rooms);
