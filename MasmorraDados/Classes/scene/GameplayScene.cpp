@@ -537,6 +537,88 @@ void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 l
   auto newCoordinate = this->_positionInGameCoordinate(location);
   auto newPosition = this->_positionInScene(newCoordinate);
   
+  auto room = this->getGame()->getDungeon()->getRoomForPosition(newCoordinate);
+  auto monsters = room->getMonsters();
+  
+  auto charHalfWidth = sprite->getContentSize().width / 2;
+  auto charHalfHeight = sprite->getContentSize().height / 2;
+  
+  switch (monsters.size()) {
+    case 1: {
+      newPosition += Vec2(-(charHalfWidth + 1), 0);
+      
+      auto monster = monsters.at(0);
+      auto monsterSprite = monster->getSprite();
+      
+      auto w = monsterSprite->getContentSize().width / 2;
+      
+      auto monsterNewPosition = monsterSprite->getPosition() + Vec2(w + 1, 0);
+      auto moveMonster = MoveTo::create(RETURN_CHARACTER_DURATION, monsterNewPosition);
+      monsterSprite->runAction(moveMonster);
+      break;
+    }
+    case 2: {
+      newPosition += Vec2(-(charHalfWidth + 1), charHalfHeight + 1);
+      
+      auto monster1 = monsters.at(0);
+      auto monster1Sprite = monster1->getSprite();
+      
+      auto w = monster1Sprite->getContentSize().width / 2;
+      auto h = monster1Sprite->getContentSize().height / 2;
+      
+      auto monster1NewPosition = monster1Sprite->getPosition() + Vec2(w + 1, h + 1);
+      auto moveMonster1 = MoveTo::create(RETURN_CHARACTER_DURATION, monster1NewPosition);
+      monster1Sprite->runAction(moveMonster1);
+      
+      auto monster2 = monsters.at(1);
+      auto monster2Sprite = monster2->getSprite();
+      
+      h = monster2Sprite->getContentSize().height / 2;
+      
+      auto monster2NewPosition = monster2Sprite->getPosition() + Vec2(0, -(h + 1));
+      auto moveMonster2 = MoveTo::create(RETURN_CHARACTER_DURATION, monster2NewPosition);
+      monster2Sprite->runAction(moveMonster2);
+      break;
+    }
+    case 3: {
+      newPosition += Vec2(-(charHalfHeight + 1), charHalfHeight + 1);
+      
+      auto monster1 = monsters.at(0);
+      auto monster1Sprite = monster1->getSprite();
+      
+      auto w = monster1Sprite->getContentSize().width / 2;
+      auto h = monster1Sprite->getContentSize().height / 2;
+      
+      auto monster1NewPosition = monster1Sprite->getPosition() + Vec2(w + 1, h + 1);
+      auto moveMonster1 = MoveTo::create(RETURN_CHARACTER_DURATION, monster1NewPosition);
+      monster1Sprite->runAction(moveMonster1);
+      
+      auto monster2 = monsters.at(1);
+      auto monster2Sprite = monster2->getSprite();
+      
+      w = monster2Sprite->getContentSize().width / 2;
+      h = monster2Sprite->getContentSize().height / 2;
+      
+      auto monster2NewPosition = monster2Sprite->getPosition() + Vec2(-(w + 1), -(h + 1));
+      auto moveMonster2 = MoveTo::create(RETURN_CHARACTER_DURATION, monster2NewPosition);
+      monster2Sprite->runAction(moveMonster2);
+      
+      auto monster3 = monsters.at(2);
+      auto monster3Sprite = monster3->getSprite();
+      
+      w = monster3Sprite->getContentSize().width / 2;
+      h = monster3Sprite->getContentSize().height / 2;
+      
+      auto monster3NewPosition = monster3Sprite->getPosition() + Vec2(w + 1, -(h + 1));
+      auto moveMonster3 = MoveTo::create(RETURN_CHARACTER_DURATION, monster3NewPosition);
+      monster3Sprite->runAction(moveMonster3);
+      break;
+    }
+    default: {
+      break;
+    }
+  }
+  
   auto moveNewPosition = MoveTo::create(RETURN_CHARACTER_DURATION, newPosition);
   auto actionEnded = CallFunc::create([=]() {
     this->getGame()->setCharacterPosition(newCoordinate);
