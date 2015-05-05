@@ -12,12 +12,20 @@
 #include "DungeonRoom.h"
 
 class MinorMonsterRoom : public DungeonRoom {
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _roomHasBeenPlacedListener,
+                       RoomHasBeenPlacedListener);
+  
 public:
   CREATE_FUNC(MinorMonsterRoom);
   virtual bool init();
   
   virtual std::string getImagePath();
   virtual bool isExplorable();
+  
+private:
+#pragma mark - Events
+  void _handleRoomHasBeenPlaced(cocos2d::EventCustom* event);
 };
 
 #endif /* defined(__MasmorraDados__MinorMonsterRoom__) */

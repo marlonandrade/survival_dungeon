@@ -9,6 +9,7 @@
 #include "Dungeon.h"
 
 #include "Definitions.h"
+#include "Events.h"
 
 USING_NS_CC;
 
@@ -78,12 +79,24 @@ DungeonRoom* Dungeon::getRoomForPosition(Vec2 position) {
   return _rooms.at(index);
 }
 
+Vec2 Dungeon::getPositionForRoom(DungeonRoom *room) {
+  Vec2 position = Vec2::ZERO;
+  
+  auto indexes = _rooms.keys(room);
+  if (indexes.size()) {
+    auto index = indexes.at(0);
+    position = this->positionForIndex(index);
+  }
+  
+  return position;
+}
+
 DungeonRoom* Dungeon::getInitialRoom() {
   return this->getRoomForPosition(INITIAL_POSITION);
 }
 
 void Dungeon::placeRoomsAdjacentTo(Vec2 position) {
-  Vector<RoomPlacement*> placements;
+  Vector<RoomPlacementData*> placements;
   
   for (Vec2 adjacentPosition : this->adjacentPositionsTo(position)) {
     auto placement = this->_placeNewRoomAtPosition(adjacentPosition);
@@ -96,6 +109,11 @@ void Dungeon::placeRoomsAdjacentTo(Vec2 position) {
   auto roomPlacedDelegate = this->getRoomPlacedDelegate();
   if (roomPlacedDelegate) {
     roomPlacedDelegate(placements);
+    
+    for (auto placement : placements) {
+      auto dispatcher = Director::getInstance()->getEventDispatcher();
+      dispatcher->dispatchCustomEvent(EVT_ROOM_HAS_BEEN_PLACED, placement);
+    }
   }
 }
 
@@ -180,8 +198,8 @@ Vec2 Dungeon::getLeftMostRoomPosition() {
 
 #pragma mark - Private Interface
 
-RoomPlacement* Dungeon::_placeNewRoomAtPosition(Vec2 position) {
-  RoomPlacement* placement = nullptr;
+RoomPlacementData* Dungeon::_placeNewRoomAtPosition(Vec2 position) {
+  RoomPlacementData* placement = nullptr;
   
   auto alreadyPlacedRoom = this->getRoomForPosition(position);
   auto newRoomDataSource = this->getNewRoomDataSource();
@@ -191,7 +209,7 @@ RoomPlacement* Dungeon::_placeNewRoomAtPosition(Vec2 position) {
     
     this->setRoomForPosition(room, position);
     
-    placement = RoomPlacement::create();
+    placement = RoomPlacementData::create();
     placement->setPosition(position);
     placement->setRoom(room);
   }

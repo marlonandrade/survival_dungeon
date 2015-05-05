@@ -13,6 +13,7 @@
 
 #include "CharacterMoveDelegate.h"
 #include "Game.h"
+#include "MonsterRoomData.h"
 #include "Turn.h"
 
 class GameplayScene : public cocos2d::Scene, CharacterMoveDelegate {
@@ -25,11 +26,19 @@ class GameplayScene : public cocos2d::Scene, CharacterMoveDelegate {
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _actionDicesRolledListener,
                        ActionDicesRolledListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _monsterDiceGeneratedListener,
+                       MonsterDiceGeneratedListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _lastTileHasBeenPlacedListener,
+                       LastTileHasBeenPlacedListener);
   
   CC_SYNTHESIZE_RETAIN(Game*, _game, Game);
   CC_SYNTHESIZE(cocos2d::Vector<cocos2d::Node*>, _interactableNodes, InteractableNodes);
+  
 protected:
   bool _userInteractionEnabled;
+  cocos2d::Vector<MonsterRoomData*> _monsterRoomDatas;
   
 public:
   virtual bool init();
@@ -49,7 +58,7 @@ private:
   cocos2d::Layer* _getObjectsLayer();
   cocos2d::Layer* _getControlsLayer();
   
-  void _roomsHasBeenPlaced(cocos2d::Vector<RoomPlacement*> placements);
+  void _roomsHasBeenPlaced(cocos2d::Vector<RoomPlacementData*> placements);
   
   cocos2d::Vec2 _positionInScene(cocos2d::Vec2 gameCoordinate);
   cocos2d::Vec2 _positionInGameCoordinate(cocos2d::Vec2 scenePosition);
@@ -63,6 +72,7 @@ private:
   cocos2d::Vec2 _centerOfScene();
   
   cocos2d::Node* _getNodeForCharacterPosition();
+  cocos2d::Node* _getNodeForPosition(cocos2d::Vec2 position);
   cocos2d::Vector<cocos2d::Node*> _getNodesForAdjacentCharacterPosition();
   
   bool _isInteractionEnabled();
@@ -79,6 +89,8 @@ private:
   void _handleTurnHasStarted(cocos2d::EventCustom* event);
   void _handleTurnHasEnded(cocos2d::EventCustom* event);
   void _handleActionDicesRolled(cocos2d::EventCustom* event);
+  void _handleMonsterDiceGenerated(cocos2d::EventCustom* event);
+  void _handleLastTileHasBeenPlaced(cocos2d::EventCustom* event);
   
 public:
 #pragma mark - Character Move Delegate

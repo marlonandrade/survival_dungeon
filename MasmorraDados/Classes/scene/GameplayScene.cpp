@@ -16,8 +16,9 @@
 #include "ActionDiceSprite.h"
 #include "BackgroundLayer.h"
 #include "CharacterDiceSprite.h"
+#include "MonsterRoomData.h"
 #include "PlayerSkillsLayer.h"
-#include "RoomPlacement.h"
+#include "RoomPlacementData.h"
 #include "ScrollableLayer.h"
 
 #include "DungeonTurn.h"
@@ -39,8 +40,8 @@ bool GameplayScene::init() {
   
   this->setGame(game);
   
-  this->_adjustInitialLayers();
   this->_setupEventHandlers();
+  this->_adjustInitialLayers();
   
   return true;
 }
@@ -78,6 +79,16 @@ void GameplayScene::_setupEventHandlers() {
   auto actionDicesRolledCallback = CC_CALLBACK_1(GameplayScene::_handleActionDicesRolled, this);
   this->setActionDicesRolledListener(
     dispatcher->addCustomEventListener(EVT_ACTION_DICES_ROLLED, actionDicesRolledCallback)
+  );
+  
+  auto monsterDiceGeneratedCallback = CC_CALLBACK_1(GameplayScene::_handleMonsterDiceGenerated, this);
+  this->setMonsterDiceGeneratedListener(
+    dispatcher->addCustomEventListener(EVT_MONSTER_DICE_GENERATED, monsterDiceGeneratedCallback)
+  );
+  
+  auto lastTileHasBeenPlacedCallback = CC_CALLBACK_1(GameplayScene::_handleLastTileHasBeenPlaced, this);
+  this->setLastTileHasBeenPlacedListener(
+    dispatcher->addCustomEventListener(EVT_LAST_TILE_HAS_BEEN_PLACED, lastTileHasBeenPlacedCallback)
   );
 }
 
@@ -133,7 +144,7 @@ Layer* GameplayScene::_getControlsLayer() {
   return (Layer*) this->getChildByName(CONTROLS_LAYER_NAME);
 }
 
-void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacement*> placements) {
+void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacementData*> placements) {
   auto objectsLayer = this->_getObjectsLayer();
   int zOrder = placements.size();
   
@@ -178,8 +189,13 @@ void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacement*> placements) {
         this->_enableInteractions();
         roomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
         
-        if (placement == lastPlacement && this->getGame()->isInitialTurn()) {
-          this->getGame()->executeCurrentTurn();
+        if (placement == lastPlacement) {
+          auto dispatcher = Director::getInstance()->getEventDispatcher();
+          dispatcher->dispatchCustomEvent(EVT_LAST_TILE_HAS_BEEN_PLACED, placement);
+          
+          if (this->getGame()->isInitialTurn()) {
+            this->getGame()->executeCurrentTurn();
+          }
         }
       });
       
@@ -282,6 +298,10 @@ Vec2 GameplayScene::_centerOfScene() {
 
 Node* GameplayScene::_getNodeForCharacterPosition() {
   auto position = this->getGame()->getCharacterPosition();
+  return this->_getNodeForPosition(position);
+}
+
+Node* GameplayScene::_getNodeForPosition(Vec2 position) {
   auto name = this->getGame()->getDungeon()->nameForPosition(position);
   return this->_getObjectsLayer()->getChildByName(name);
 }
@@ -424,6 +444,30 @@ void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
   
   actionDicesLayer->setVisible(false);
   playerSkillLayer->runAction(Show::create());
+}
+
+void GameplayScene::_handleMonsterDiceGenerated(EventCustom* event) {
+  auto data = (MonsterRoomData*) event->getUserData();
+  _monsterRoomDatas.pushBack(data);
+}
+
+void GameplayScene::_handleLastTileHasBeenPlaced(EventCustom* event) {
+  for (auto data : _monsterRoomDatas) {
+    auto dice = data->getMonsterDice();
+    auto room = data->getRoom();
+    auto position = this->getGame()->getDungeon()->getPositionForRoom(room);
+    
+    log("(%f, %f)", position.x, position.y);
+    
+    auto node = this->_getNodeForPosition(position);
+    auto diceSprite = dice->getSprite();
+    
+    diceSprite->setPosition(Vec2(node->getContentSize().width / 2, node->getContentSize().height / 2));
+    dice->roll();
+    node->addChild(dice->getSprite());
+  }
+  
+  _monsterRoomDatas.clear();
 }
 
 #pragma mark - CharacterMoveDelegate Methods
