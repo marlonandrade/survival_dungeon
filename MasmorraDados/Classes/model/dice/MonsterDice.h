@@ -12,14 +12,6 @@
 #include "Dice.h"
 
 class MonsterDice : public Dice {
-public:
-  CREATE_FUNC(MonsterDice);
-  virtual bool init();
-//  static MonsterDice* createWithFaces(DiceFaces faces);
-//  virtual bool initWithFaces(DiceFaces faces);
-  
-//  static MonsterDice* createMinorMonsterDice();
-//  static MonsterDice* createMajorMonsterDice();
 };
 
 #endif /* defined(__MasmorraDados__MonsterDice__) */

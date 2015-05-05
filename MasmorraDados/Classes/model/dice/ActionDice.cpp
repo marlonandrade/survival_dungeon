@@ -11,6 +11,7 @@
 #include "Definitions.h"
 #include "Images.h"
 
+#include "ActionDiceSprite.h"
 #include "ActionDiceStateDisabled.h"
 #include "ActionDiceStateNormal.h"
 #include "ActionDiceStateRolled.h"
@@ -36,8 +37,10 @@ bool ActionDice::init() {
     return false;
   }
   
+  this->setSprite(ActionDiceSprite::createWithDice(this));
   this->setBlurImagePath(IMG_DICE_ACTION_BLUR);
   this->setState(ActionDiceStateNormal::create());
+  this->roll();
   
   return true;
 }

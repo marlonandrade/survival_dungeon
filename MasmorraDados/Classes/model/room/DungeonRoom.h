@@ -10,7 +10,7 @@
 #define __MasmorraDados__DungeonRoom__
 
 #include "GameObject.h"
-#include "MonsterDice.h"
+#include "MinorMonsterDice.h"
 
 class DungeonRoom : public GameObject {
   CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<MonsterDice*>, _monsters, Monsters);

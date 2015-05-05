@@ -22,7 +22,7 @@ bool MinorMonsterRoom::init() {
     return false;
   }
   
-  auto dice = MonsterDice::create();
+  auto dice = MinorMonsterDice::create();
   this->addMonsterDice(dice);
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
@@ -38,4 +38,3 @@ std::string MinorMonsterRoom::getImagePath() {
 bool MinorMonsterRoom::isExplorable() {
   return true;
 }
-

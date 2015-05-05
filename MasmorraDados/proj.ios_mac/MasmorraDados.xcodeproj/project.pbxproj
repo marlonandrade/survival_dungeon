@@ -97,8 +97,12 @@
 		BFC5975B1AD43D19007C03A7 /* DungeonTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC597551AD43D19007C03A7 /* DungeonTurn.cpp */; };
 		BFC5975C1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC597571AD43D19007C03A7 /* PlayerTurn.cpp */; };
 		BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC597571AD43D19007C03A7 /* PlayerTurn.cpp */; };
-		BFD36EE11AF66921003701EC /* MonsterDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD36EDF1AF66921003701EC /* MonsterDice.cpp */; };
-		BFD36EE21AF66921003701EC /* MonsterDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD36EDF1AF66921003701EC /* MonsterDice.cpp */; };
+		BFD36EE11AF66921003701EC /* MinorMonsterDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD36EDF1AF66921003701EC /* MinorMonsterDice.cpp */; };
+		BFD36EE21AF66921003701EC /* MinorMonsterDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD36EDF1AF66921003701EC /* MinorMonsterDice.cpp */; };
+		BFD36F151AF85107003701EC /* MajorMonsterDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD36F131AF85107003701EC /* MajorMonsterDice.cpp */; };
+		BFD36F161AF85107003701EC /* MajorMonsterDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD36F131AF85107003701EC /* MajorMonsterDice.cpp */; };
+		BFD36F191AF8518A003701EC /* MonsterDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD36F171AF8518A003701EC /* MonsterDice.cpp */; };
+		BFD36F1A1AF8518A003701EC /* MonsterDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD36F171AF8518A003701EC /* MonsterDice.cpp */; };
 		BFD7AA2B1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA291AED27430079C68E /* ActionDiceStateRolled.cpp */; };
 		BFD7AA2C1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA291AED27430079C68E /* ActionDiceStateRolled.cpp */; };
 		BFD7AA311AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD7AA2F1AEF0CCF0079C68E /* ActionDiceDragData.cpp */; };
@@ -246,8 +250,12 @@
 		BFD36EDC1AF54BBE003701EC /* Images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Images.h; sourceTree = "<group>"; };
 		BFD36EDD1AF54C0B003701EC /* NodeNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeNames.h; sourceTree = "<group>"; };
 		BFD36EDE1AF54C32003701EC /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
-		BFD36EDF1AF66921003701EC /* MonsterDice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterDice.cpp; sourceTree = "<group>"; };
-		BFD36EE01AF66921003701EC /* MonsterDice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterDice.h; sourceTree = "<group>"; };
+		BFD36EDF1AF66921003701EC /* MinorMonsterDice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MinorMonsterDice.cpp; sourceTree = "<group>"; };
+		BFD36EE01AF66921003701EC /* MinorMonsterDice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinorMonsterDice.h; sourceTree = "<group>"; };
+		BFD36F131AF85107003701EC /* MajorMonsterDice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MajorMonsterDice.cpp; sourceTree = "<group>"; };
+		BFD36F141AF85107003701EC /* MajorMonsterDice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MajorMonsterDice.h; sourceTree = "<group>"; };
+		BFD36F171AF8518A003701EC /* MonsterDice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterDice.cpp; sourceTree = "<group>"; };
+		BFD36F181AF8518A003701EC /* MonsterDice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterDice.h; sourceTree = "<group>"; };
 		BFD7AA291AED27430079C68E /* ActionDiceStateRolled.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceStateRolled.cpp; sourceTree = "<group>"; };
 		BFD7AA2A1AED27430079C68E /* ActionDiceStateRolled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceStateRolled.h; sourceTree = "<group>"; };
 		BFD7AA2F1AEF0CCF0079C68E /* ActionDiceDragData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceDragData.cpp; sourceTree = "<group>"; };
@@ -502,8 +510,12 @@
 				BF5B4BE91A952E8D007636DE /* Dice.cpp */,
 				BF5B4BEA1A952E8D007636DE /* Dice.h */,
 				BFDFE25E1ADC2B1D00106124 /* DiceState.h */,
-				BFD36EDF1AF66921003701EC /* MonsterDice.cpp */,
-				BFD36EE01AF66921003701EC /* MonsterDice.h */,
+				BFD36F131AF85107003701EC /* MajorMonsterDice.cpp */,
+				BFD36F141AF85107003701EC /* MajorMonsterDice.h */,
+				BFD36EDF1AF66921003701EC /* MinorMonsterDice.cpp */,
+				BFD36EE01AF66921003701EC /* MinorMonsterDice.h */,
+				BFD36F171AF8518A003701EC /* MonsterDice.cpp */,
+				BFD36F181AF8518A003701EC /* MonsterDice.h */,
 			);
 			path = dice;
 			sourceTree = "<group>";
@@ -741,6 +753,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				BFE583A91AD6E41400A4E194 /* ActionDiceSprite.cpp in Sources */,
 				BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */,
+				BFD36F151AF85107003701EC /* MajorMonsterDice.cpp in Sources */,
 				BFAA74501A9E8A4100E45DF8 /* CharacterDiceSprite.cpp in Sources */,
 				BF6D78DA1AE44973002D67C7 /* ActionDiceStateDisabled.cpp in Sources */,
 				BFD7AA311AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
@@ -756,7 +769,7 @@
 				BF6D78D01AE416F3002D67C7 /* ActionDiceLayer.cpp in Sources */,
 				BF5B4BC81A94BA51007636DE /* Skill.cpp in Sources */,
 				BFAA74431A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */,
-				BFD36EE11AF66921003701EC /* MonsterDice.cpp in Sources */,
+				BFD36EE11AF66921003701EC /* MinorMonsterDice.cpp in Sources */,
 				BF5B4B7F1A90E77A007636DE /* Game.cpp in Sources */,
 				BFD7AA351AF060170079C68E /* ActionDiceStateSpent.cpp in Sources */,
 				BF6A4D591AEE9882001FDF44 /* PlayerSkillsLayer.cpp in Sources */,
@@ -769,6 +782,7 @@
 				BFAA744C1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,
 				BFDFE2671ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */,
 				BFDFE26B1ADC2CAE00106124 /* ActionDiceStateSelected.cpp in Sources */,
+				BFD36F191AF8518A003701EC /* MonsterDice.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,15 +811,17 @@
 				BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */,
 				BF6D78D11AE416F3002D67C7 /* ActionDiceLayer.cpp in Sources */,
-				BFD36EE21AF66921003701EC /* MonsterDice.cpp in Sources */,
+				BFD36EE21AF66921003701EC /* MinorMonsterDice.cpp in Sources */,
 				BFD7AA321AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
 				BFAA744D1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,
 				BFDFE2681ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */,
 				BF5B4C011A953981007636DE /* ActionDice.cpp in Sources */,
 				BF5B4BCD1A94BA91007636DE /* Dungeon.cpp in Sources */,
+				BFD36F1A1AF8518A003701EC /* MonsterDice.cpp in Sources */,
 				BF08409B1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */,
 				BFBAE2A41AD171AD00A5FC9A /* ScrollableLayer.cpp in Sources */,
 				BFFA1F6C1AF7DA2F00A0BD9C /* DungeonRoom.cpp in Sources */,
+				BFD36F161AF85107003701EC /* MajorMonsterDice.cpp in Sources */,
 				BF5B4BC91A94BA51007636DE /* Skill.cpp in Sources */,
 				BFC33C221AE803D300934C34 /* InitialTurn.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,

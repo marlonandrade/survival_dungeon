@@ -23,6 +23,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/dice/ActionDice.cpp \
 		   ../../Classes/model/dice/Dice.cpp \
 		   ../../Classes/model/dice/MonsterDice.cpp \
+		   ../../Classes/model/dice/MinorMonsterDice.cpp \
+		   ../../Classes/model/dice/MajorMonsterDice.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateDisabled.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateNormal.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateRolled.cpp \
@@ -50,6 +52,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/animation \
+		    $(LOCAL_PATH)/../../Classes/constants \
 		    $(LOCAL_PATH)/../../Classes/delegate \
 		    $(LOCAL_PATH)/../../Classes/event_data \
 		    $(LOCAL_PATH)/../../Classes/layer \
