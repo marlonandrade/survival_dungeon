@@ -13,11 +13,13 @@
 
 class MonsterDice : public Dice {
 public:
-  static MonsterDice* createWithFaces(DiceFaces faces);
-  virtual bool initWithFaces(DiceFaces faces);
+  CREATE_FUNC(MonsterDice);
+  virtual bool init();
+//  static MonsterDice* createWithFaces(DiceFaces faces);
+//  virtual bool initWithFaces(DiceFaces faces);
   
-  static MonsterDice* createMinorMonsterDice();
-  static MonsterDice* createMajorMonsterDice();
+//  static MonsterDice* createMinorMonsterDice();
+//  static MonsterDice* createMajorMonsterDice();
 };
 
 #endif /* defined(__MasmorraDados__MonsterDice__) */

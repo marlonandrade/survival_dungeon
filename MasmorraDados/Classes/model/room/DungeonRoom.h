@@ -13,11 +13,14 @@
 #include "MonsterDice.h"
 
 class DungeonRoom : public GameObject {
-  CC_SYNTHESIZE(cocos2d::Vector<MonsterDice*>, _monsters, Monsters);
+  CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<MonsterDice*>, _monsters, Monsters);
   CC_SYNTHESIZE(int, _distanceToPlayer, DistanceToPlayer);
 public:
   CREATE_FUNC(DungeonRoom);
   virtual bool init();
+  
+  virtual void addMonsterDice(MonsterDice* monster);
+  virtual void removeMonsterDice(MonsterDice* monster);
   
   virtual std::string getImagePath();
   virtual bool isExplorable();

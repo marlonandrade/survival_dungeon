@@ -17,10 +17,15 @@ bool DungeonRoom::init() {
     return false;
   }
   
-  Vector<MonsterDice*> monsters = Vector<MonsterDice*>(3);
-  this->setMonsters(monsters);
-  
   return true;
+}
+
+void DungeonRoom::addMonsterDice(MonsterDice *monster) {
+  _monsters.pushBack(monster);
+}
+
+void DungeonRoom::removeMonsterDice(MonsterDice *monster) {
+  _monsters.eraseObject(monster);
 }
 
 std::string DungeonRoom::getImagePath() {

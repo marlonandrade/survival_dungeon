@@ -88,8 +88,8 @@ bool Dice::initWithFaces(DiceFaces faces) {
     return false;
   }
   
+  this->setSprite(Sprite::create());
   this->setFaces(faces);
-  this->setSprite(ActionDiceSprite::createWithDice(this));
   this->roll();
   
   return true;

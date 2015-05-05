@@ -22,9 +22,8 @@ bool MinorMonsterRoom::init() {
     return false;
   }
   
-  auto dice = MonsterDice::createMinorMonsterDice();
-  dice->retain();
-  this->getMonsters().pushBack(dice);
+  auto dice = MonsterDice::create();
+  this->addMonsterDice(dice);
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   dispatcher->dispatchCustomEvent(EVT_MONSTER_DICE_GENERATED, dice);
