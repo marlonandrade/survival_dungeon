@@ -60,4 +60,26 @@ void MinorMonsterRoom::_handleRoomHasBeenPlaced(EventCustom* event) {
     auto dispatcher = Director::getInstance()->getEventDispatcher();
     dispatcher->dispatchCustomEvent(EVT_MONSTER_DICE_GENERATED, data);
   }
+  if (placementData->getRoom() == this) {
+    auto dice = MinorMonsterDice::create();
+    this->addMonsterDice(dice);
+    
+    auto data = MonsterRoomData::create();
+    data->setMonsterDice(dice);
+    data->setRoom(this);
+    
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->dispatchCustomEvent(EVT_MONSTER_DICE_GENERATED, data);
+  }
+  if (placementData->getRoom() == this) {
+    auto dice = MinorMonsterDice::create();
+    this->addMonsterDice(dice);
+    
+    auto data = MonsterRoomData::create();
+    data->setMonsterDice(dice);
+    data->setRoom(this);
+    
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->dispatchCustomEvent(EVT_MONSTER_DICE_GENERATED, data);
+  }
 }

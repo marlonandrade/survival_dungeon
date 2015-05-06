@@ -105,6 +105,7 @@ Layer* GameplayScene::_createObjectsLayer() {
   objectsLayer->addChild(initialSprite, DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
   
   auto characterSprite = this->_createCharacterDiceSprite();
+  characterSprite->setName(CHARACTER_DICE_SPRITE_NAME);
   characterSprite->setPosition(Vec2(initialSprite->getContentSize().width / 2,
                                     initialSprite->getContentSize().height / 2));
   initialSprite->addChild(characterSprite);
@@ -236,6 +237,11 @@ Vec2 GameplayScene::_coordinateForPosition(Vec2 scenePosition) {
   
   return Vec2(centerCoordinate.x + int(offsetX / TILE_DIMENSION),
               centerCoordinate.y + int(offsetY / TILE_DIMENSION));
+}
+
+CharacterDiceSprite* GameplayScene::_getCharacterDiceSprite() {
+  auto room = this->_getNodeForCharacterCoordinate();
+  return (CharacterDiceSprite*) room->getChildByName(CHARACTER_DICE_SPRITE_NAME);
 }
 
 void GameplayScene::_adjustDiceSpritesForRoom(CharacterDiceSprite* charSprite, DungeonRoom* room) {
@@ -559,9 +565,17 @@ void GameplayScene::_handleMonsterDiceGenerated(EventCustom* event) {
 }
 
 void GameplayScene::_handleLastTileHasBeenPlaced(EventCustom* event) {
+  auto charSprite = this->_getCharacterDiceSprite();
+  Vector<DungeonRoom*> rooms;
+  
   for (auto data : _monsterRoomDatas) {
     auto dice = data->getMonsterDice();
     auto room = data->getRoom();
+    
+    if (!rooms.contains(room)) {
+      rooms.pushBack(room);
+    }
+    
     auto coordinate = this->getGame()->getDungeon()->getCoordinateForRoom(room);
     
     log("(%f, %f)", coordinate.x, coordinate.y);
@@ -572,6 +586,10 @@ void GameplayScene::_handleLastTileHasBeenPlaced(EventCustom* event) {
     diceSprite->setPosition(Vec2(node->getContentSize().width / 2, node->getContentSize().height / 2));
     dice->roll();
     node->addChild(dice->getSprite());
+  }
+  
+  for (auto room : rooms) {
+    this->_adjustDiceSpritesForRoom(charSprite, room);
   }
   
   _monsterRoomDatas.clear();
@@ -585,7 +603,8 @@ bool GameplayScene::canCharacterMove() {
   bool playerHasBoot = availableSkills[IMG_DICE_ACTION_BOOT].asInt() ||
       !this->getGame()->getFreeBootUsed();
   
-  return this->_isInteractionEnabled() && playerHasBoot;
+  return true;
+//  return this->_isInteractionEnabled() && playerHasBoot;
 }
 
 void GameplayScene::characterWillMove(CharacterDiceSprite* sprite) {
@@ -623,20 +642,20 @@ bool GameplayScene::canCharacterMoveToLocation(Vec2 location) {
 void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 location) {
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   
-  if (!this->getGame()->getFreeBootUsed()) {
-    dispatcher->dispatchCustomEvent(EVT_ACTION_FREE_BOOT_SPENT);
-  } else {
-    auto dockedDices = this->getGame()->getDockedDices();
-    ActionDice* usedDice;
-    for (auto dice : dockedDices) {
-      if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_BOOT && !dice->isSpent()) {
-        usedDice = dice;
-        break;
-      }
-    }
-    
-    dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_SPENT, usedDice);
-  }
+//  if (!this->getGame()->getFreeBootUsed()) {
+//    dispatcher->dispatchCustomEvent(EVT_ACTION_FREE_BOOT_SPENT);
+//  } else {
+//    auto dockedDices = this->getGame()->getDockedDices();
+//    ActionDice* usedDice;
+//    for (auto dice : dockedDices) {
+//      if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_BOOT && !dice->isSpent()) {
+//        usedDice = dice;
+//        break;
+//      }
+//    }
+//    
+//    dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_SPENT, usedDice);
+//  }
   
   this->_resetCharacterMoveState();
   

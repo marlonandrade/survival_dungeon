@@ -64,6 +64,7 @@ private:
   cocos2d::Vec2 _coordinateForPosition(cocos2d::Vec2 position);
   std::string _nameForGameCoordinate(cocos2d::Vec2 gameCoordinate);
   
+  CharacterDiceSprite* _getCharacterDiceSprite();
   void _adjustDiceSpritesForRoom(CharacterDiceSprite* charSprite, DungeonRoom* room);
   
   void _addOverlayWithVisibleNodes(cocos2d::Vector<Node*> visibleNodes);
