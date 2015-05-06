@@ -140,7 +140,7 @@ void Game::_setupAvaiableRooms() {
 //    }
   }
   
-  this->setAvailableRooms(rooms);
+  this->_availableRooms = rooms;
 }
 
 void Game::_setupActionDices() {
@@ -173,9 +173,10 @@ void Game::_setupEventHandlers() {
 }
 
 DungeonRoom* Game::_pickRandomRoom() {
-  auto availableRooms = this->getAvailableRooms();
+  auto availableRooms = this->_availableRooms;
   
   auto randomRoom = availableRooms.getRandomObject();
+  
   if (randomRoom) {
     availableRooms.eraseObject(randomRoom);
   }

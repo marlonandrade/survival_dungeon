@@ -31,10 +31,10 @@ class Game : public GameObject {
   
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _actionDices, ActionDices);
-  CC_SYNTHESIZE(cocos2d::Vector<DungeonRoom*>, _availableRooms, AvailableRooms);
   CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
   CC_SYNTHESIZE(bool, _freeBootUsed, FreeBootUsed);
 protected:
+  cocos2d::Vector<DungeonRoom*> _availableRooms;
   Turn* _turn;
   cocos2d::Vec2 _characterCoordinate;
   

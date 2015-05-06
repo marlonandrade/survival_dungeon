@@ -60,7 +60,6 @@ void GameplayScene::_adjustInitialLayers() {
   this->addChild(this->_createControlsLayer(), 1);
   
   this->getGame()->setCharacterCoordinate(INITIAL_COORDINATE);
-  this->_adjustCharacterDiceSpritePosition();
 }
 
 void GameplayScene::_setupEventHandlers() {
@@ -103,9 +102,12 @@ Layer* GameplayScene::_createObjectsLayer() {
   auto name = this->getGame()->getDungeon()->nameForCoordinate(initialCoordinate);
   initialSprite->setName(name);
   initialSprite->setPosition(this->_positionForCoordinate(initialCoordinate));
-  objectsLayer->addChild(initialSprite, DUNGEON_ROOM_Z_ORDER);
+  objectsLayer->addChild(initialSprite, DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
   
-  objectsLayer->addChild(this->_createCharacterDiceSprite(), GAME_OBJECTS_Z_ORDER);
+  auto characterSprite = this->_createCharacterDiceSprite();
+  characterSprite->setPosition(Vec2(initialSprite->getContentSize().width / 2,
+                                    initialSprite->getContentSize().height / 2));
+  initialSprite->addChild(characterSprite);
     
   return objectsLayer;
 }
@@ -236,13 +238,7 @@ Vec2 GameplayScene::_coordinateForPosition(Vec2 scenePosition) {
               centerCoordinate.y + int(offsetY / TILE_DIMENSION));
 }
 
-void GameplayScene::_adjustCharacterDiceSpritePosition() {
-  auto sprite = this->_getObjectsLayer()->getChildByName(CHARACTER_DICE_SPRITE_NAME);
-  auto characterCoordinate = this->getGame()->getCharacterCoordinate();
-  sprite->setPosition(this->_positionForCoordinate(characterCoordinate));
-}
-
-void GameplayScene::_adjustMonsterDicesSpritePosition(CharacterDiceSprite* charSprite, DungeonRoom* room) {
+void GameplayScene::_adjustDiceSpritesForRoom(CharacterDiceSprite* charSprite, DungeonRoom* room) {
   Vector<Sprite*> sprites;
   
   auto monsterDices = room->getMonsters();
@@ -260,12 +256,10 @@ void GameplayScene::_adjustMonsterDicesSpritePosition(CharacterDiceSprite* charS
   auto roomCenter = Vec2(roomSprite->getContentSize().width / 2,
                          roomSprite->getContentSize().height / 2);
   
-  auto position = this->_positionForCoordinate(coordinate);
-  
   switch (sprites.size()) {
     case 1: {
       auto sprite1 = sprites.at(0);
-      auto moveSprite1 = MoveTo::create(MOVE_DICE_DURATION, position);
+      auto moveSprite1 = MoveTo::create(MOVE_DICE_DURATION, roomCenter);
       sprite1->runAction(moveSprite1);
       break;
     }
@@ -596,7 +590,6 @@ bool GameplayScene::canCharacterMove() {
 
 void GameplayScene::characterWillMove(CharacterDiceSprite* sprite) {
   Vector<Node*> visibleNodes;
-  visibleNodes.pushBack(this->_getObjectsLayer()->getChildByName(CHARACTER_DICE_SPRITE_NAME));
   visibleNodes.pushBack(this->_getNodeForCharacterCoordinate());
   visibleNodes.pushBack(this->_getNodesForAdjacentCharacterCoordinate());
   this->_addOverlayWithVisibleNodes(visibleNodes);
@@ -648,20 +641,37 @@ void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 l
   this->_resetCharacterMoveState();
   
   auto newCoordinate = this->_coordinateForPosition(location);
+  auto oldCoordinate = this->getGame()->getCharacterCoordinate();
+  
   this->getGame()->setCharacterCoordinate(newCoordinate);
   
-  auto room = this->getGame()->getDungeon()->getRoomForCoordinate(newCoordinate);
-  auto monsters = room->getMonsters();
+  auto newRoom = this->getGame()->getDungeon()->getRoomForCoordinate(newCoordinate);
+  auto oldRoom = this->getGame()->getDungeon()->getRoomForCoordinate(oldCoordinate);
   
-  this->_adjustMonsterDicesSpritePosition(sprite, room);
+  auto oldRoomSprite = sprite->getParent();
+  auto newRoomSprite = this->_getNodeForCharacterCoordinate();
+  
+  auto oldPosition = oldRoomSprite->convertToWorldSpace(sprite->getPosition());
+  auto newPosition = newRoomSprite->convertToNodeSpace(oldPosition);
+  
+  sprite->retain();
+  sprite->removeFromParent();
+  newRoomSprite->addChild(sprite);
+  sprite->release();
+  
+  newRoomSprite->setZOrder(DUNGEON_ROOM_WITH_CHAR_Z_ORDER + OVERLAY_Z_ORDER);
+  oldRoomSprite->setZOrder(DUNGEON_ROOM_Z_ORDER + OVERLAY_Z_ORDER);
+ 
+  sprite->setPosition(newPosition);
+  
+  this->_adjustDiceSpritesForRoom(sprite, oldRoom);
+  this->_adjustDiceSpritesForRoom(sprite, newRoom);
 }
 
 void GameplayScene::characterDidNotMove(CharacterDiceSprite* sprite) {
   this->_resetCharacterMoveState();
   
-  auto coordinate = this->getGame()->getCharacterCoordinate();
-  auto scenePosition = this->_positionForCoordinate(coordinate);
-  
-  auto moveBack = MoveTo::create(MOVE_DICE_DURATION, scenePosition);
-  sprite->runAction(moveBack);
+  auto characterCoordinate = this->getGame()->getCharacterCoordinate();
+  auto room = this->getGame()->getDungeon()->getRoomForCoordinate(characterCoordinate);
+  this->_adjustDiceSpritesForRoom(sprite, room);
 }

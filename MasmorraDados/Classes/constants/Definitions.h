@@ -44,10 +44,11 @@
 
 #pragma mark - Z Order
 
-#define DUNGEON_ROOM_Z_ORDER 0
-#define GAME_OBJECTS_Z_ORDER 1
-#define OVERLAY_Z_ORDER      10
-#define DRAG_Z_ORDER_DELTA   10
+#define DUNGEON_ROOM_Z_ORDER           0
+#define GAME_OBJECTS_Z_ORDER           1
+#define DUNGEON_ROOM_WITH_CHAR_Z_ORDER 5
+#define OVERLAY_Z_ORDER                10
+#define DRAG_Z_ORDER_DELTA             10
 
 #pragma mark - Errors
 

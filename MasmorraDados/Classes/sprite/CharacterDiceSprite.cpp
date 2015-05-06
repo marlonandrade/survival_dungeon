@@ -102,20 +102,22 @@ void CharacterDiceSprite::_onTouchMoved(Touch *touch, Event *event) {
   
   this->setPosition(touchLocation);
   
-  this->getDelegate()->characterIsMovingToLocation(touchLocation);
+  auto dungeonLayer = layer->getParent();
+  auto position = dungeonLayer->convertTouchToNodeSpace(touch);
+  
+  this->getDelegate()->characterIsMovingToLocation(position);
 }
 
 void CharacterDiceSprite::_onTouchEnded(Touch *touch, Event *event) {
   auto target = event->getCurrentTarget();
-  auto layer = target->getParent();
+  auto dungeonLayer = target->getParent()->getParent();
   
-  auto bounds = target->getBoundingBox();
-  auto touchLocation = layer->convertTouchToNodeSpace(touch);
+  auto position = dungeonLayer->convertTouchToNodeSpace(touch);
   
-  bool characterMoved = this->getDelegate()->canCharacterMoveToLocation(touchLocation);
+  bool characterMoved = this->getDelegate()->canCharacterMoveToLocation(position);
   
   if (characterMoved) {
-    this->getDelegate()->characterMovedToLocation(this, touchLocation);
+    this->getDelegate()->characterMovedToLocation(this, position);
   } else {
     this->getDelegate()->characterDidNotMove(this);
   }
