@@ -60,20 +60,21 @@ private:
   
   void _roomsHasBeenPlaced(cocos2d::Vector<RoomPlacementData*> placements);
   
-  cocos2d::Vec2 _positionInScene(cocos2d::Vec2 gameCoordinate);
-  cocos2d::Vec2 _positionInGameCoordinate(cocos2d::Vec2 scenePosition);
+  cocos2d::Vec2 _positionForCoordinate(cocos2d::Vec2 coordinate);
+  cocos2d::Vec2 _coordinateForPosition(cocos2d::Vec2 position);
   std::string _nameForGameCoordinate(cocos2d::Vec2 gameCoordinate);
   
   void _adjustCharacterDiceSpritePosition();
+  void _adjustMonsterDicesSpritePosition(CharacterDiceSprite* charSprite, DungeonRoom* room);
   
   void _addOverlayWithVisibleNodes(cocos2d::Vector<Node*> visibleNodes);
   void _removeOverlay();
   
   cocos2d::Vec2 _centerOfScene();
   
-  cocos2d::Node* _getNodeForCharacterPosition();
-  cocos2d::Node* _getNodeForPosition(cocos2d::Vec2 position);
-  cocos2d::Vector<cocos2d::Node*> _getNodesForAdjacentCharacterPosition();
+  cocos2d::Node* _getNodeForCharacterCoordinate();
+  cocos2d::Node* _getNodeForCoordinate(cocos2d::Vec2 coordinate);
+  cocos2d::Vector<cocos2d::Node*> _getNodesForAdjacentCharacterCoordinate();
   
   bool _isInteractionEnabled();
   void _disableInteractions();

@@ -15,7 +15,7 @@
 
 class RoomPlacementData : public GameObject {
   CC_SYNTHESIZE_RETAIN(DungeonRoom*, _room, Room);
-  CC_SYNTHESIZE(cocos2d::Vec2, _position, Position);
+  CC_SYNTHESIZE(cocos2d::Vec2, _coordinate, Coordinate);
   CREATE_FUNC(RoomPlacementData);
 };
 

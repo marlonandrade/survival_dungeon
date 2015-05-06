@@ -14,7 +14,7 @@
 #pragma mark - Dimensions
 
 #define DUNGEON_SIZE         100
-#define INITIAL_POSITION     cocos2d::Vec2(DUNGEON_SIZE/2, DUNGEON_SIZE/2)
+#define INITIAL_COORDINATE   cocos2d::Vec2(DUNGEON_SIZE/2, DUNGEON_SIZE/2)
 #define TILE_DIMENSION       100
 #define TILE_PLACEMENT_SCALE 0.3
 
@@ -33,7 +33,7 @@
 #pragma mark - Animation Durations
 
 #define PLACE_ROOM_DURATION       0.5
-#define RETURN_CHARACTER_DURATION 0.2
+#define MOVE_DICE_DURATION        0.2
 #define OVERLAY_DURATION          0.2
 #define TURN_INFO_DURATION        1.5
 

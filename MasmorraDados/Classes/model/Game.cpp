@@ -37,11 +37,11 @@ void Game::setTurn(Turn* turn) {
   }
 }
 
-void Game::setCharacterPosition(Vec2 position) {
-  _characterPosition = position;
+void Game::setCharacterCoordinate(Vec2 coordinate) {
+  _characterCoordinate = coordinate;
   
-  this->getDungeon()->placeRoomsAdjacentTo(position);
-  this->getDungeon()->calculateRoomDistanceToPlayer(position);
+  this->getDungeon()->placeRoomsAdjacentTo(coordinate);
+  this->getDungeon()->calculateRoomDistanceToPlayer(coordinate);
 }
 
 #pragma mark - Public Interface
@@ -124,7 +124,7 @@ void Game::_setupDungeon(RoomPlacedDelegate delegate) {
   });
   
   auto initialRoom = InitialRoom::create();
-  dungeon->setRoomForPosition(initialRoom, INITIAL_POSITION);
+  dungeon->setRoomForCoordinate(initialRoom, INITIAL_COORDINATE);
   
   this->setDungeon(dungeon);
 }

@@ -63,12 +63,12 @@ void ScrollableLayer::_onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event
   auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
   auto visibleSize = Director::getInstance()->getVisibleSize();
   
-  auto top = this->getDungeon()->getTopMostRoomPosition();
-  auto right = this->getDungeon()->getRightMostRoomPosition();
-  auto bottom = this->getDungeon()->getBottomMostRoomPosition();
-  auto left = this->getDungeon()->getLeftMostRoomPosition();
+  auto top = this->getDungeon()->getTopMostRoomCoordinate();
+  auto right = this->getDungeon()->getRightMostRoomCoordinate();
+  auto bottom = this->getDungeon()->getBottomMostRoomCoordinate();
+  auto left = this->getDungeon()->getLeftMostRoomCoordinate();
   
-  auto initial = INITIAL_POSITION;
+  auto initial = INITIAL_COORDINATE;
   
   auto topDelta = fabs(top.y - initial.y);
   auto rightDelta = fabs(right.x - initial.x);

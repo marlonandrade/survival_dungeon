@@ -25,10 +25,10 @@ private:
   CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
   CC_SYNTHESIZE(NewRoomDataSource, _newRoomDataSource, NewRoomDataSource);
   
-  cocos2d::Vec2 _topMostRoomPosition;
-  cocos2d::Vec2 _rightMostRoomPosition;
-  cocos2d::Vec2 _bottomMostRoomPosition;
-  cocos2d::Vec2 _leftMostRoomPosition;
+  cocos2d::Vec2 _topMostRoomCoordinate;
+  cocos2d::Vec2 _rightMostRoomCoordinate;
+  cocos2d::Vec2 _bottomMostRoomCoordinate;
+  cocos2d::Vec2 _leftMostRoomCoordinate;
   
 public:
   virtual bool init();
@@ -37,34 +37,34 @@ public:
   void moveMonsters();
   void riseMonsters();
   
-  void setRoomForPosition(DungeonRoom* room, cocos2d::Vec2 position);
-  DungeonRoom* getRoomForPosition(cocos2d::Vec2 position);
-  cocos2d::Vec2 getPositionForRoom(DungeonRoom* room);
+  void setRoomForCoordinate(DungeonRoom* room, cocos2d::Vec2 coordinate);
+  DungeonRoom* getRoomForCoordinate(cocos2d::Vec2 coordinate);
+  cocos2d::Vec2 getCoordinateForRoom(DungeonRoom* room);
   
   DungeonRoom* getInitialRoom();
   
-  void placeRoomsAdjacentTo(cocos2d::Vec2 position);
-  void calculateRoomDistanceToPlayer(cocos2d::Vec2 playerPosition);
+  void placeRoomsAdjacentTo(cocos2d::Vec2 coordinate);
+  void calculateRoomDistanceToPlayer(cocos2d::Vec2 playerCoordinate);
   
-  std::vector<cocos2d::Vec2> adjacentPositionsTo(cocos2d::Vec2 position);
+  std::vector<cocos2d::Vec2> adjacentCoordinatesTo(cocos2d::Vec2 coordinate);
   
-  std::string nameForPosition(cocos2d::Vec2 position);
-  int indexForPosition(cocos2d::Vec2 position);
-  cocos2d::Vec2 positionForIndex(int index);
+  std::string nameForCoordinate(cocos2d::Vec2 coordinate);
+  int indexForCoordinate(cocos2d::Vec2 coordinate);
+  cocos2d::Vec2 coordinateForIndex(int index);
   
-  void setTopMostRoomPosition(cocos2d::Vec2 position);
-  cocos2d::Vec2 getTopMostRoomPosition();
+  void setTopMostRoomCoordinate(cocos2d::Vec2 coordinate);
+  cocos2d::Vec2 getTopMostRoomCoordinate();
   
-  void setRightMostRoomPosition(cocos2d::Vec2 position);
-  cocos2d::Vec2 getRightMostRoomPosition();
+  void setRightMostRoomCoordinate(cocos2d::Vec2 coordinate);
+  cocos2d::Vec2 getRightMostRoomCoordinate();
   
-  void setBottomMostRoomPosition(cocos2d::Vec2 position);
-  cocos2d::Vec2 getBottomMostRoomPosition();
+  void setBottomMostRoomCoordinate(cocos2d::Vec2 coordinate);
+  cocos2d::Vec2 getBottomMostRoomCoordinate();
   
-  void setLeftMostRoomPosition(cocos2d::Vec2 position);
-  cocos2d::Vec2 getLeftMostRoomPosition();
+  void setLeftMostRoomCoordinate(cocos2d::Vec2 coordinate);
+  cocos2d::Vec2 getLeftMostRoomCoordinate();
 private:
-  RoomPlacementData* _placeNewRoomAtPosition(cocos2d::Vec2 position);
+  RoomPlacementData* _placeNewRoomAtCoordinate(cocos2d::Vec2 coordinate);
 };
 
 #endif /* defined(__MasmorraDados__Dungeon__) */

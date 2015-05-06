@@ -36,7 +36,7 @@ class Game : public GameObject {
   CC_SYNTHESIZE(bool, _freeBootUsed, FreeBootUsed);
 protected:
   Turn* _turn;
-  cocos2d::Vec2 _characterPosition;
+  cocos2d::Vec2 _characterCoordinate;
   
 public:
   static Game* createWithRoomPlacedDelegate(RoomPlacedDelegate delegate);
@@ -45,8 +45,8 @@ public:
   virtual Turn* getTurn(void) const { return _turn; }
   virtual void setTurn(Turn* turn);
   
-  virtual cocos2d::Vec2 getCharacterPosition(void) const { return _characterPosition; }
-  virtual void setCharacterPosition(cocos2d::Vec2 position);
+  virtual cocos2d::Vec2 getCharacterCoordinate(void) const { return _characterCoordinate; }
+  virtual void setCharacterCoordinate(cocos2d::Vec2 coordinate);
   
   virtual cocos2d::Vector<ActionDice*> getDockedDices();
   virtual cocos2d::ValueMap getAvailableSkills();

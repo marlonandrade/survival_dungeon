@@ -20,10 +20,10 @@ bool Dungeon::init() {
     return false;
   }
   
-  this->setTopMostRoomPosition(INITIAL_POSITION);
-  this->setRightMostRoomPosition(INITIAL_POSITION);
-  this->setBottomMostRoomPosition(INITIAL_POSITION);
-  this->setLeftMostRoomPosition(INITIAL_POSITION);
+  this->setTopMostRoomCoordinate(INITIAL_COORDINATE);
+  this->setRightMostRoomCoordinate(INITIAL_COORDINATE);
+  this->setBottomMostRoomCoordinate(INITIAL_COORDINATE);
+  this->setLeftMostRoomCoordinate(INITIAL_COORDINATE);
   
   return true;
 }
@@ -52,54 +52,54 @@ void Dungeon::riseMonsters() {
   // - nasce primeiro nos mais perto dos player
 }
 
-void Dungeon::setRoomForPosition(DungeonRoom* room, Vec2 position) {
-  auto index = this->indexForPosition(position);
+void Dungeon::setRoomForCoordinate(DungeonRoom* room, Vec2 coordinate) {
+  auto index = this->indexForCoordinate(coordinate);
   
-  if (position.y > this->getTopMostRoomPosition().y) {
-    this->setTopMostRoomPosition(position);
+  if (coordinate.y > this->getTopMostRoomCoordinate().y) {
+    this->setTopMostRoomCoordinate(coordinate);
   }
   
-  if (position.x > this->getRightMostRoomPosition().x) {
-    this->setRightMostRoomPosition(position);
+  if (coordinate.x > this->getRightMostRoomCoordinate().x) {
+    this->setRightMostRoomCoordinate(coordinate);
   }
   
-  if (position.y < this->getBottomMostRoomPosition().y) {
-    this->setBottomMostRoomPosition(position);
+  if (coordinate.y < this->getBottomMostRoomCoordinate().y) {
+    this->setBottomMostRoomCoordinate(coordinate);
   }
   
-  if (position.x < this->getLeftMostRoomPosition().x) {
-    this->setLeftMostRoomPosition(position);
+  if (coordinate.x < this->getLeftMostRoomCoordinate().x) {
+    this->setLeftMostRoomCoordinate(coordinate);
   }
   
   _rooms.insert(index, room);
 }
 
-DungeonRoom* Dungeon::getRoomForPosition(Vec2 position) {
-  auto index = this->indexForPosition(position);
+DungeonRoom* Dungeon::getRoomForCoordinate(Vec2 coordinate) {
+  auto index = this->indexForCoordinate(coordinate);
   return _rooms.at(index);
 }
 
-Vec2 Dungeon::getPositionForRoom(DungeonRoom *room) {
-  Vec2 position = Vec2::ZERO;
+Vec2 Dungeon::getCoordinateForRoom(DungeonRoom *room) {
+  Vec2 coordinate = Vec2::ZERO;
   
   auto indexes = _rooms.keys(room);
   if (indexes.size()) {
     auto index = indexes.at(0);
-    position = this->positionForIndex(index);
+    coordinate = this->coordinateForIndex(index);
   }
   
-  return position;
+  return coordinate;
 }
 
 DungeonRoom* Dungeon::getInitialRoom() {
-  return this->getRoomForPosition(INITIAL_POSITION);
+  return this->getRoomForCoordinate(INITIAL_COORDINATE);
 }
 
-void Dungeon::placeRoomsAdjacentTo(Vec2 position) {
+void Dungeon::placeRoomsAdjacentTo(Vec2 coordinate) {
   Vector<RoomPlacementData*> placements;
   
-  for (Vec2 adjacentPosition : this->adjacentPositionsTo(position)) {
-    auto placement = this->_placeNewRoomAtPosition(adjacentPosition);
+  for (Vec2 adjacentCoordinate : this->adjacentCoordinatesTo(coordinate)) {
+    auto placement = this->_placeNewRoomAtCoordinate(adjacentCoordinate);
     
     if (placement) {
       placements.pushBack(placement);
@@ -117,100 +117,100 @@ void Dungeon::placeRoomsAdjacentTo(Vec2 position) {
   }
 }
 
-void Dungeon::calculateRoomDistanceToPlayer(Vec2 playerPosition) {
+void Dungeon::calculateRoomDistanceToPlayer(Vec2 playerCoordinate) {
   for (auto room : this->_rooms) {
     auto index = std::get<0>(room);
     auto dungeonRoom = std::get<1>(room);
     
-    auto position = this->positionForIndex(index);
-    auto distance = fabs(position.x - playerPosition.x) +
-                    fabs(position.y - playerPosition.y);
+    auto coordinate = this->coordinateForIndex(index);
+    auto distance = fabs(coordinate.x - playerCoordinate.x) +
+                    fabs(coordinate.y - playerCoordinate.y);
     
     dungeonRoom->setDistanceToPlayer(distance);
   }
 }
 
-std::vector<Vec2> Dungeon::adjacentPositionsTo(Vec2 position) {
-  std::vector<Vec2> adjacentPositions;
+std::vector<Vec2> Dungeon::adjacentCoordinatesTo(Vec2 coordinate) {
+  std::vector<Vec2> adjacentCoordinates;
   
-  auto top = Vec2(position.x, position.y + 1);
-  adjacentPositions.push_back(top);
+  auto top = Vec2(coordinate.x, coordinate.y + 1);
+  adjacentCoordinates.push_back(top);
   
-  auto right = Vec2(position.x + 1, position.y);
-  adjacentPositions.push_back(right);
+  auto right = Vec2(coordinate.x + 1, coordinate.y);
+  adjacentCoordinates.push_back(right);
   
-  auto bottom = Vec2(position.x, position.y - 1);
-  adjacentPositions.push_back(bottom);
+  auto bottom = Vec2(coordinate.x, coordinate.y - 1);
+  adjacentCoordinates.push_back(bottom);
   
-  auto left = Vec2(position.x - 1, position.y);
-  adjacentPositions.push_back(left);
+  auto left = Vec2(coordinate.x - 1, coordinate.y);
+  adjacentCoordinates.push_back(left);
   
-  return adjacentPositions;
+  return adjacentCoordinates;
 }
 
-std::string Dungeon::nameForPosition(Vec2 position) {
+std::string Dungeon::nameForCoordinate(Vec2 coordinate) {
   std::stringstream ss;
-  ss << this->indexForPosition(position);
+  ss << this->indexForCoordinate(coordinate);
   return ss.str();
 }
 
-int Dungeon::indexForPosition(Vec2 position) {
-  return position.x * DUNGEON_SIZE + position.y;
+int Dungeon::indexForCoordinate(Vec2 coordinate) {
+  return coordinate.x * DUNGEON_SIZE + coordinate.y;
 }
 
-Vec2 Dungeon::positionForIndex(int index) {
+Vec2 Dungeon::coordinateForIndex(int index) {
   auto x = index / DUNGEON_SIZE;
   auto y = index % DUNGEON_SIZE;
   return Vec2(x, y);
 }
 
-void Dungeon::setTopMostRoomPosition(Vec2 position) {
-  _topMostRoomPosition = position;
+void Dungeon::setTopMostRoomCoordinate(Vec2 coordinate) {
+  _topMostRoomCoordinate = coordinate;
 }
 
-Vec2 Dungeon::getTopMostRoomPosition() {
-  return _topMostRoomPosition;
+Vec2 Dungeon::getTopMostRoomCoordinate() {
+  return _topMostRoomCoordinate;
 }
 
-void Dungeon::setRightMostRoomPosition(Vec2 position) {
-  _rightMostRoomPosition = position;
+void Dungeon::setRightMostRoomCoordinate(Vec2 coordinate) {
+  _rightMostRoomCoordinate = coordinate;
 }
 
-Vec2 Dungeon::getRightMostRoomPosition() {
-  return _rightMostRoomPosition;
+Vec2 Dungeon::getRightMostRoomCoordinate() {
+  return _rightMostRoomCoordinate;
 }
 
-void Dungeon::setBottomMostRoomPosition(Vec2 position) {
-  _bottomMostRoomPosition = position;
+void Dungeon::setBottomMostRoomCoordinate(Vec2 coordinate) {
+  _bottomMostRoomCoordinate = coordinate;
 }
 
-Vec2 Dungeon::getBottomMostRoomPosition() {
-  return _bottomMostRoomPosition;
+Vec2 Dungeon::getBottomMostRoomCoordinate() {
+  return _bottomMostRoomCoordinate;
 }
 
-void Dungeon::setLeftMostRoomPosition(Vec2 position) {
-  _leftMostRoomPosition = position;
+void Dungeon::setLeftMostRoomCoordinate(Vec2 coordinate) {
+  _leftMostRoomCoordinate = coordinate;
 }
 
-Vec2 Dungeon::getLeftMostRoomPosition() {
-  return _leftMostRoomPosition;
+Vec2 Dungeon::getLeftMostRoomCoordinate() {
+  return _leftMostRoomCoordinate;
 }
 
 #pragma mark - Private Interface
 
-RoomPlacementData* Dungeon::_placeNewRoomAtPosition(Vec2 position) {
+RoomPlacementData* Dungeon::_placeNewRoomAtCoordinate(Vec2 coordinate) {
   RoomPlacementData* placement = nullptr;
   
-  auto alreadyPlacedRoom = this->getRoomForPosition(position);
+  auto alreadyPlacedRoom = this->getRoomForCoordinate(coordinate);
   auto newRoomDataSource = this->getNewRoomDataSource();
   
   if (!alreadyPlacedRoom && newRoomDataSource) {
     DungeonRoom* room = newRoomDataSource();
     
-    this->setRoomForPosition(room, position);
+    this->setRoomForCoordinate(room, coordinate);
     
     placement = RoomPlacementData::create();
-    placement->setPosition(position);
+    placement->setCoordinate(coordinate);
     placement->setRoom(room);
   }
   
