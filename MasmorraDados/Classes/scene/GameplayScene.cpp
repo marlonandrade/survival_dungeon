@@ -16,6 +16,7 @@
 #include "ActionDiceSprite.h"
 #include "BackgroundLayer.h"
 #include "CharacterDiceSprite.h"
+#include "MonsterMoveData.h"
 #include "MonsterRoomData.h"
 #include "PlayerSkillsLayer.h"
 #include "RoomPlacementData.h"
@@ -83,6 +84,11 @@ void GameplayScene::_setupEventHandlers() {
   auto monsterDiceGeneratedCallback = CC_CALLBACK_1(GameplayScene::_handleMonsterDiceGenerated, this);
   this->setMonsterDiceGeneratedListener(
     dispatcher->addCustomEventListener(EVT_MONSTER_DICE_GENERATED, monsterDiceGeneratedCallback)
+  );
+  
+  auto monsterMovedCallback = CC_CALLBACK_1(GameplayScene::_handleMonsterMoved, this);
+  this->setMonsterMovedListener(
+     dispatcher->addCustomEventListener(EVT_MONSTER_MOVED, monsterMovedCallback)
   );
   
   auto lastTileHasBeenPlacedCallback = CC_CALLBACK_1(GameplayScene::_handleLastTileHasBeenPlaced, this);
@@ -197,7 +203,7 @@ void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacementData*> placements) {
           dispatcher->dispatchCustomEvent(EVT_LAST_TILE_HAS_BEEN_PLACED, placement);
           
           if (this->getGame()->isInitialTurn()) {
-            this->getGame()->executeCurrentTurn();
+            this->getGame()->finishCurrentTurn();
           }
         }
       });
@@ -523,7 +529,11 @@ void GameplayScene::_handleTurnHasStarted(EventCustom* event) {
   } else if (IS(turn, DungeonTurn)) {
     this->_showDungeonTurnInfo();
     
-    this->getGame()->getDungeon()->moveMonsters();
+    auto delay = DelayTime::create(TURN_INFO_DURATION);
+    auto executeTurn = CallFunc::create([&] {
+      this->getGame()->executeCurrentTurn();
+    });
+    this->runAction(Sequence::create(delay, executeTurn, NULL));
   }
 }
 
@@ -562,6 +572,13 @@ void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
 void GameplayScene::_handleMonsterDiceGenerated(EventCustom* event) {
   auto data = (MonsterRoomData*) event->getUserData();
   _monsterRoomDatas.pushBack(data);
+}
+
+void GameplayScene::_handleMonsterMoved(EventCustom* event) {
+  auto data = (MonsterMoveData*) event->getUserData();
+  
+  auto destination = data->getDestination();
+  
 }
 
 void GameplayScene::_handleLastTileHasBeenPlaced(EventCustom* event) {

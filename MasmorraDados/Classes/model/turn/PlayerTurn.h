@@ -16,7 +16,7 @@ class PlayerTurn : public Turn {
 public:
   CREATE_FUNC(PlayerTurn);
   
-  virtual void execute(Game* game);
+  virtual void finish(Game* game);
 };
 
 

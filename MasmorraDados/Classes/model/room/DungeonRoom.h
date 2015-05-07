@@ -26,6 +26,9 @@ public:
   
   virtual std::string getImagePath();
   virtual bool isExplorable();
+  virtual bool isFull();
+  
+  bool isCloserToPlayerThen(DungeonRoom* other);
   
   virtual void hasBeenPlaced(RoomPlacementData* placement);
 };

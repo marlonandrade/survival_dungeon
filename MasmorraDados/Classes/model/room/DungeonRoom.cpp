@@ -55,5 +55,13 @@ bool DungeonRoom::isExplorable() {
   return false;
 }
 
+bool DungeonRoom::isFull() {
+  return _monsters.size() == 3;
+}
+
+bool DungeonRoom::isCloserToPlayerThen(DungeonRoom *other) {
+  return this->getDistanceToPlayer() < other->getDistanceToPlayer();
+}
+
 void DungeonRoom::hasBeenPlaced(RoomPlacementData *placement) {
 }

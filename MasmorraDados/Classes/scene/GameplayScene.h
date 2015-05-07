@@ -30,6 +30,9 @@ class GameplayScene : public cocos2d::Scene, CharacterMoveDelegate {
                        _monsterDiceGeneratedListener,
                        MonsterDiceGeneratedListener);
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _monsterMovedListener,
+                       MonsterMovedListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _lastTileHasBeenPlacedListener,
                        LastTileHasBeenPlacedListener);
   
@@ -91,6 +94,7 @@ private:
   void _handleTurnHasEnded(cocos2d::EventCustom* event);
   void _handleActionDicesRolled(cocos2d::EventCustom* event);
   void _handleMonsterDiceGenerated(cocos2d::EventCustom* event);
+  void _handleMonsterMoved(cocos2d::EventCustom* event);
   void _handleLastTileHasBeenPlaced(cocos2d::EventCustom* event);
   
 public:

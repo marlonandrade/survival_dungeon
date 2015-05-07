@@ -11,6 +11,8 @@
 #include "Definitions.h"
 #include "Events.h"
 
+#include "MonsterMoveData.h"
+
 USING_NS_CC;
 
 #pragma mark - Public Interface
@@ -29,16 +31,46 @@ bool Dungeon::init() {
 }
 
 void Dungeon::moveMonsters() {
+  log("move monsters");
+  
   for (auto room : this->_rooms) {
     auto index = std::get<0>(room);
     auto dungeonRoom = std::get<1>(room);
     
     auto monsters = dungeonRoom->getMonsters();
     if (monsters.size()) {
-      log("monsters");
+      auto coordinate = this->coordinateForIndex(index);
+      auto adjacentCoordinates = this->adjacentCoordinatesTo(coordinate);
+      
+      DungeonRoom* destination = NULL;
+      for (auto adjacentCoordinate : adjacentCoordinates) {
+        auto adjacent = this->getRoomForCoordinate(adjacentCoordinate);
+        
+        if (adjacent != NULL) {
+          if (destination == NULL ||
+              (adjacent->isCloserToPlayerThen(destination) && !adjacent->isFull())) {
+            destination = adjacent;
+          }
+        }
+      }
+      
+      log("bla");
+      if (destination != NULL) {
+        for (auto monster : dungeonRoom->getMonsters()) {
+          dungeonRoom->removeMonsterDice(monster);
+          destination->addMonsterDice(monster);
+          
+          auto data = MonsterMoveData::create();
+          data->setOrigin(dungeonRoom);
+          data->setDestination(destination);
+          data->setMonsterDice(monster);
+          
+          auto dispatcher = Director::getInstance()->getEventDispatcher();
+          dispatcher->dispatchCustomEvent(EVT_MONSTER_MOVED, data);
+        }
+      }
     }
   }
-  log("move monsters");
   // MOVER MONSTROS
   // - primeiro monstros que dão mais xp
   // - movem em direção ao jogador mais proximo
@@ -131,16 +163,16 @@ void Dungeon::calculateRoomDistanceToPlayer(Vec2 playerCoordinate) {
 std::vector<Vec2> Dungeon::adjacentCoordinatesTo(Vec2 coordinate) {
   std::vector<Vec2> adjacentCoordinates;
   
-  auto top = Vec2(coordinate.x, coordinate.y + 1);
+  auto top = coordinate + Vec2::UNIT_Y;
   adjacentCoordinates.push_back(top);
   
-  auto right = Vec2(coordinate.x + 1, coordinate.y);
+  auto right = coordinate + Vec2::UNIT_X;
   adjacentCoordinates.push_back(right);
   
-  auto bottom = Vec2(coordinate.x, coordinate.y - 1);
+  auto bottom = coordinate - Vec2::UNIT_Y;
   adjacentCoordinates.push_back(bottom);
   
-  auto left = Vec2(coordinate.x - 1, coordinate.y);
+  auto left = coordinate - Vec2::UNIT_X;
   adjacentCoordinates.push_back(left);
   
   return adjacentCoordinates;

@@ -15,7 +15,7 @@ class InitialTurn : public Turn {
 public:
   CREATE_FUNC(InitialTurn);
   
-  virtual void execute(Game* game);
+  virtual void finish(Game* game);
 };
 
 #endif /* defined(__MasmorraDados__InitialTurn__) */

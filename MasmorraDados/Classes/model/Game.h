@@ -54,7 +54,9 @@ public:
   virtual bool isInitialTurn();
   virtual bool isPlayerTurn();
   virtual void executeCurrentTurn();
+  virtual void finishCurrentTurn();
   virtual void restoreFreeBoot();
+  
 private:
   void _setupDungeon(RoomPlacedDelegate delegate);
   void _setupAvaiableRooms();

@@ -13,6 +13,6 @@
 
 #pragma mark - Turn Methods
 
-void InitialTurn::execute(Game *game) {
+void InitialTurn::finish(Game *game) {
   game->setTurn(PlayerTurn::create());
 }

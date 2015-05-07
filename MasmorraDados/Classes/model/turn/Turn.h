@@ -17,7 +17,8 @@ class Game;
 class Turn : public GameObject {
 public:
   virtual bool init() { return true; }
-  virtual void execute(Game* game) = 0;
+  virtual void execute(Game* game) {};
+  virtual void finish(Game* game) {};
 };
 
 #endif /* defined(__MasmorraDados__Turn__) */

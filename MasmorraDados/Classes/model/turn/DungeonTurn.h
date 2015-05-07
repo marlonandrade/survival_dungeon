@@ -16,6 +16,7 @@ public:
   CREATE_FUNC(DungeonTurn);
   
   virtual void execute(Game* game);
+  virtual void finish(Game* game);
 };
 
 #endif /* defined(__MasmorraDados__DungeonTurn__) */

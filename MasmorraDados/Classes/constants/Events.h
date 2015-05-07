@@ -32,5 +32,6 @@
 
 #define EVT_MONSTER_ADDED_TO_ROOM     "monster_added_to_room"     // data -> MonsterRoomData
 #define EVT_MONSTER_REMOVED_FROM_ROOM "monster_removed_from_room" // data -> MonsterRoomData
+#define EVT_MONSTER_MOVED             "monster_moved"             // data -> MonsterMoveData
 
 #endif /* defined(__MasmorraDados__Events__) */

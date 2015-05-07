@@ -16,5 +16,8 @@
 void DungeonTurn::execute(Game *game) {
   game->getDungeon()->moveMonsters();
   game->getDungeon()->riseMonsters();
+}
+
+void DungeonTurn::finish(Game *game) {
   game->setTurn(PlayerTurn::create());
 }

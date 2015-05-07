@@ -78,6 +78,8 @@
 		BF778C251AD8326C0009D168 /* sd in Resources */ = {isa = PBXBuildFile; fileRef = BF778C1E1AD8326C0009D168 /* sd */; };
 		BF778C261AD8326C0009D168 /* ud in Resources */ = {isa = PBXBuildFile; fileRef = BF778C1F1AD8326C0009D168 /* ud */; };
 		BF778C271AD8326C0009D168 /* ud in Resources */ = {isa = PBXBuildFile; fileRef = BF778C1F1AD8326C0009D168 /* ud */; };
+		BF7DB85F1AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */; };
+		BF7DB8601AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */; };
 		BFAA74431A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */; };
@@ -227,6 +229,8 @@
 		BF778C1D1AD8326C0009D168 /* md */ = {isa = PBXFileReference; lastKnownFileType = folder; path = md; sourceTree = "<group>"; };
 		BF778C1E1AD8326C0009D168 /* sd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sd; sourceTree = "<group>"; };
 		BF778C1F1AD8326C0009D168 /* ud */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ud; sourceTree = "<group>"; };
+		BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterMoveData.cpp; sourceTree = "<group>"; };
+		BF7DB85E1AFBD0A200CD5C6E /* MonsterMoveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterMoveData.h; sourceTree = "<group>"; };
 		BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitialRoom.cpp; sourceTree = "<group>"; };
 		BFAA74421A9C0E1D00E45DF8 /* InitialRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialRoom.h; sourceTree = "<group>"; };
 		BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuneRoom.cpp; sourceTree = "<group>"; };
@@ -594,6 +598,8 @@
 			children = (
 				BFD7AA2F1AEF0CCF0079C68E /* ActionDiceDragData.cpp */,
 				BFD7AA301AEF0CCF0079C68E /* ActionDiceDragData.h */,
+				BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */,
+				BF7DB85E1AFBD0A200CD5C6E /* MonsterMoveData.h */,
 				BF3EDB3D1AF92203002A2D7C /* MonsterRoomData.cpp */,
 				BF3EDB3E1AF92203002A2D7C /* MonsterRoomData.h */,
 				BF3EDB451AF9279A002A2D7C /* RoomPlacementData.cpp */,
@@ -767,6 +773,7 @@
 				BF3EDB471AF9279A002A2D7C /* RoomPlacementData.cpp in Sources */,
 				BF5B4BEB1A952E8D007636DE /* Dice.cpp in Sources */,
 				BF5B4C1E1A955DA4007636DE /* Monster.cpp in Sources */,
+				BF7DB85F1AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */,
 				BF74CA7C1ADC834A0062F242 /* DiceSprite.cpp in Sources */,
 				BFBE57AD1AE0143400D93530 /* Shake.cpp in Sources */,
 				BFBAE2A31AD171AD00A5FC9A /* ScrollableLayer.cpp in Sources */,
@@ -810,6 +817,7 @@
 				BF5B4BEC1A952E8D007636DE /* Dice.cpp in Sources */,
 				BFBE57AE1AE0143400D93530 /* Shake.cpp in Sources */,
 				BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */,
+				BF7DB8601AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */,
 				BF3EDB481AF9279A002A2D7C /* RoomPlacementData.cpp in Sources */,
 				BFD7AA361AF060170079C68E /* ActionDiceStateSpent.cpp in Sources */,
 				BF0840961A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */,

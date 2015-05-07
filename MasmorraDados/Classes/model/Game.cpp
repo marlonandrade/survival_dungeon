@@ -110,6 +110,10 @@ void Game::executeCurrentTurn() {
   _turn->execute(this);
 }
 
+void Game::finishCurrentTurn() {
+  _turn->finish(this);
+}
+
 void Game::restoreFreeBoot() {
   this->setFreeBootUsed(false);
 }
@@ -196,6 +200,6 @@ void Game::_handleActionDiceSpent(EventCustom* event) {
 
 void Game::_handleEndPlayerTurn(EventCustom* event) {
   if (this->isPlayerTurn()) {
-    this->executeCurrentTurn();
+    this->finishCurrentTurn();
   }
 }
