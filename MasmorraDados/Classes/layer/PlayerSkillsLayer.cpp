@@ -212,11 +212,16 @@ void PlayerSkillsLayer::_handleActionDiceDragMoved(EventCustom* event) {
   auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
   
   for (auto node : this->getDockableNodes()) {
-    Color3B color = Color3B::WHITE;
+    auto color = Color3B::WHITE;
+    
+    auto rect = node->getBoundingBox();
+    
+    rect.origin -= Vec2(DOCKABLE_HIDDEN_MARGIN, 0);
+    rect.size = rect.size + Size(DOCKABLE_HIDDEN_MARGIN * 2, 0);
     
     if (node->getChildren().size() == 0 &&
-        node->getBoundingBox().containsPoint(dockableLocation)) {
-      color = Color3B(170, 255, 170);
+        rect.containsPoint(dockableLocation)) {
+      color = Color3B(177, 255, 170);
     }
     
     node->setColor(color);
@@ -236,8 +241,13 @@ void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
   
   bool moved = false;
   for (auto node : this->getDockableNodes()) {
+    auto rect = node->getBoundingBox();
+    
+    rect.origin -= Vec2(DOCKABLE_HIDDEN_MARGIN, 0);
+    rect.size = rect.size + Size(DOCKABLE_HIDDEN_MARGIN * 2, 0);
+    
     if (node->getChildren().size() == 0 &&
-        node->getBoundingBox().containsPoint(dockableLocation)) {
+        rect.containsPoint(dockableLocation)) {
       moved = true;
       position = node->getPosition() + dockableContainer->getPosition();
       node->addChild(Node::create());

@@ -25,6 +25,8 @@
 #define DOCK_MARGIN                 5
 #define END_TURN_MARGIN             5
 
+#define DOCKABLE_HIDDEN_MARGIN      13
+
 #pragma mark - Game Mechanics
 
 #define MAX_ACTION_REROLLS   2

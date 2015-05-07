@@ -45,4 +45,4 @@ void MinorMonsterRoom::hasBeenPlaced(RoomPlacementData *placementData) {
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   dispatcher->dispatchCustomEvent(EVT_MONSTER_DICE_GENERATED, data);
-t}
+}
