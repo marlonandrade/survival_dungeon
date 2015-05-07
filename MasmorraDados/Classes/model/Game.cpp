@@ -176,6 +176,7 @@ DungeonRoom* Game::_pickRandomRoom() {
   auto randomRoom = this->_availableRooms.getRandomObject();
   
   if (randomRoom) {
+    randomRoom->retain();
     this->_availableRooms.eraseObject(randomRoom);
   }
   
