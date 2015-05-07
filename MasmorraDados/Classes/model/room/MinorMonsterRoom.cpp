@@ -24,13 +24,6 @@ bool MinorMonsterRoom::init() {
     return false;
   }
   
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  
-  auto roomHasBeenPlacedCallback = CC_CALLBACK_1(MinorMonsterRoom::_handleRoomHasBeenPlaced, this);
-  this->setRoomHasBeenPlacedListener(
-    dispatcher->addCustomEventListener(EVT_ROOM_HAS_BEEN_PLACED, roomHasBeenPlacedCallback)
-  );
-  
   return true;
 }
 
@@ -42,44 +35,14 @@ bool MinorMonsterRoom::isExplorable() {
   return true;
 }
 
-#pragma mark - Private Interface
-
-#pragma mark - Event Handlers
-
-void MinorMonsterRoom::_handleRoomHasBeenPlaced(EventCustom* event) {
-  auto placementData = (RoomPlacementData*) event->getUserData();
+void MinorMonsterRoom::hasBeenPlaced(RoomPlacementData *placementData) {
+  auto dice = MinorMonsterDice::create();
+  this->addMonsterDice(dice);
   
-  if (placementData->getRoom() == this) {
-    auto dice = MinorMonsterDice::create();
-    this->addMonsterDice(dice);
-    
-    auto data = MonsterRoomData::create();
-    data->setMonsterDice(dice);
-    data->setRoom(this);
-    
-    auto dispatcher = Director::getInstance()->getEventDispatcher();
-    dispatcher->dispatchCustomEvent(EVT_MONSTER_DICE_GENERATED, data);
-  }
-  if (placementData->getRoom() == this) {
-    auto dice = MinorMonsterDice::create();
-    this->addMonsterDice(dice);
-    
-    auto data = MonsterRoomData::create();
-    data->setMonsterDice(dice);
-    data->setRoom(this);
-    
-    auto dispatcher = Director::getInstance()->getEventDispatcher();
-    dispatcher->dispatchCustomEvent(EVT_MONSTER_DICE_GENERATED, data);
-  }
-  if (placementData->getRoom() == this) {
-    auto dice = MinorMonsterDice::create();
-    this->addMonsterDice(dice);
-    
-    auto data = MonsterRoomData::create();
-    data->setMonsterDice(dice);
-    data->setRoom(this);
-    
-    auto dispatcher = Director::getInstance()->getEventDispatcher();
-    dispatcher->dispatchCustomEvent(EVT_MONSTER_DICE_GENERATED, data);
-  }
-}
+  auto data = MonsterRoomData::create();
+  data->setMonsterDice(dice);
+  data->setRoom(this);
+  
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->dispatchCustomEvent(EVT_MONSTER_DICE_GENERATED, data);
+t}

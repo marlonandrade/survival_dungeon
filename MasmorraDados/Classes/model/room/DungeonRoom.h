@@ -12,6 +12,8 @@
 #include "GameObject.h"
 #include "MinorMonsterDice.h"
 
+class RoomPlacementData;
+
 class DungeonRoom : public GameObject {
   CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<MonsterDice*>, _monsters, Monsters);
   CC_SYNTHESIZE(int, _distanceToPlayer, DistanceToPlayer);
@@ -24,6 +26,9 @@ public:
   
   virtual std::string getImagePath();
   virtual bool isExplorable();
+  
+  virtual void hasBeenPlaced(RoomPlacementData* placement);
 };
+
 
 #endif /* defined(__MasmorraDados__DungeonRoom__) */

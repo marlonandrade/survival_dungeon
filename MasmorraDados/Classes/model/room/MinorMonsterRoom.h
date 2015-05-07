@@ -23,9 +23,7 @@ public:
   virtual std::string getImagePath();
   virtual bool isExplorable();
   
-private:
-#pragma mark - Events
-  void _handleRoomHasBeenPlaced(cocos2d::EventCustom* event);
+  virtual void hasBeenPlaced(RoomPlacementData* placement);
 };
 
 #endif /* defined(__MasmorraDados__MinorMonsterRoom__) */

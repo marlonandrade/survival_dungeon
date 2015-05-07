@@ -111,8 +111,8 @@ void Dungeon::placeRoomsAdjacentTo(Vec2 coordinate) {
     roomPlacedDelegate(placements);
     
     for (auto placement : placements) {
-      auto dispatcher = Director::getInstance()->getEventDispatcher();
-      dispatcher->dispatchCustomEvent(EVT_ROOM_HAS_BEEN_PLACED, placement);
+      auto room = placement->getRoom();
+      room->hasBeenPlaced(placement);
     }
   }
 }
@@ -123,10 +123,8 @@ void Dungeon::calculateRoomDistanceToPlayer(Vec2 playerCoordinate) {
     auto dungeonRoom = std::get<1>(room);
     
     auto coordinate = this->coordinateForIndex(index);
-    auto distance = fabs(coordinate.x - playerCoordinate.x) +
-                    fabs(coordinate.y - playerCoordinate.y);
     
-    dungeonRoom->setDistanceToPlayer(distance);
+    dungeonRoom->setDistanceToPlayer(coordinate.distance(playerCoordinate));
   }
 }
 

@@ -578,8 +578,6 @@ void GameplayScene::_handleLastTileHasBeenPlaced(EventCustom* event) {
     
     auto coordinate = this->getGame()->getDungeon()->getCoordinateForRoom(room);
     
-    log("(%f, %f)", coordinate.x, coordinate.y);
-    
     auto node = this->_getNodeForCoordinate(coordinate);
     auto diceSprite = dice->getSprite();
     

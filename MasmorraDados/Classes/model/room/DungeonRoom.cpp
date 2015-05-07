@@ -11,6 +11,7 @@
 #include "Events.h"
 
 #include "MonsterRoomData.h"
+#include "RoomPlacementData.h"
 
 USING_NS_CC;
 
@@ -52,4 +53,7 @@ std::string DungeonRoom::getImagePath() {
 
 bool DungeonRoom::isExplorable() {
   return false;
+}
+
+void DungeonRoom::hasBeenPlaced(RoomPlacementData *placement) {
 }
