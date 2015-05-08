@@ -594,6 +594,8 @@ void GameplayScene::_handleMonsterMoved(EventCustom* event) {
     monsterSprite->removeFromParent();
     destinationNode->addChild(monsterSprite);
     monsterSprite->release();
+    
+    monsterSprite->setPosition(monsterSprite->getPosition() + deltaPosition);
   }
   
   log("monster moved");
@@ -714,8 +716,8 @@ void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 l
   newRoomSprite->addChild(sprite);
   sprite->release();
   
-  newRoomSprite->setZOrder(DUNGEON_ROOM_WITH_CHAR_Z_ORDER + OVERLAY_Z_ORDER);
-  oldRoomSprite->setZOrder(DUNGEON_ROOM_Z_ORDER + OVERLAY_Z_ORDER);
+  newRoomSprite->setLocalZOrder(DUNGEON_ROOM_WITH_CHAR_Z_ORDER + OVERLAY_Z_ORDER);
+  oldRoomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER + OVERLAY_Z_ORDER);
  
   sprite->setPosition(newPosition);
   
