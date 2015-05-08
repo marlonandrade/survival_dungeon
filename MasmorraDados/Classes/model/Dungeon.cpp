@@ -37,30 +37,29 @@ void Dungeon::moveMonsters() {
   
   
   for (auto room : this->_rooms) {
-    auto dungeonRoom = std::get<1>(room);
+    auto origin = std::get<1>(room);
     
-    auto monsters = dungeonRoom->getMonsters();
+    auto monsters = origin->getMonsters();
     if (monsters.size()) {
-      auto coordinate = dungeonRoom->getCoordinate();
+      auto coordinate = origin->getCoordinate();
       auto adjacentCoordinates = this->adjacentCoordinatesTo(coordinate);
       
-      DungeonRoom* destination = NULL;
+      DungeonRoom* destination = origin;
       for (auto adjacentCoordinate : adjacentCoordinates) {
         auto adjacent = this->getRoomForCoordinate(adjacentCoordinate);
         
         if (adjacent != NULL) {
-          if (destination == NULL ||
-              (adjacent->isCloserToPlayerThen(destination) && !adjacent->isFull())) {
+          if (adjacent->isCloserToPlayerThen(destination) && !adjacent->isFull()) {
             destination = adjacent;
           }
         }
       }
       
-      if (destination != NULL) {
+      if (destination != NULL && destination != origin) {
         auto data = MonsterMoveData::create();
-        data->setOrigin(dungeonRoom);
+        data->setOrigin(origin);
         data->setDestination(destination);
-        data->setMonsterDices(dungeonRoom->getMonsters());
+        data->setMonsterDices(origin->getMonsters());
         movements.pushBack(data);
       }
     }
