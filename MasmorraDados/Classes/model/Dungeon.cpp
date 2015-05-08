@@ -33,13 +33,15 @@ bool Dungeon::init() {
 void Dungeon::moveMonsters() {
   log("move monsters");
   
+  Vector<MonsterMoveData*> movements;
+  
+  
   for (auto room : this->_rooms) {
-    auto index = std::get<0>(room);
     auto dungeonRoom = std::get<1>(room);
     
     auto monsters = dungeonRoom->getMonsters();
     if (monsters.size()) {
-      auto coordinate = this->coordinateForIndex(index);
+      auto coordinate = dungeonRoom->getCoordinate();
       auto adjacentCoordinates = this->adjacentCoordinatesTo(coordinate);
       
       DungeonRoom* destination = NULL;
@@ -54,22 +56,24 @@ void Dungeon::moveMonsters() {
         }
       }
       
-      log("bla");
       if (destination != NULL) {
-        for (auto monster : dungeonRoom->getMonsters()) {
-          dungeonRoom->removeMonsterDice(monster);
-          destination->addMonsterDice(monster);
-          
-          auto data = MonsterMoveData::create();
-          data->setOrigin(dungeonRoom);
-          data->setDestination(destination);
-          data->setMonsterDice(monster);
-          
-          auto dispatcher = Director::getInstance()->getEventDispatcher();
-          dispatcher->dispatchCustomEvent(EVT_MONSTER_MOVED, data);
-        }
+        auto data = MonsterMoveData::create();
+        data->setOrigin(dungeonRoom);
+        data->setDestination(destination);
+        data->setMonsterDices(dungeonRoom->getMonsters());
+        movements.pushBack(data);
       }
     }
+  }
+  
+  for (auto movement : movements) {
+    for (auto monster : movement->getMonsterDices()) {
+      movement->getOrigin()->removeMonsterDice(monster);
+      movement->getDestination()->addMonsterDice(monster);
+    }
+    
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->dispatchCustomEvent(EVT_MONSTER_MOVED, movement);
   }
   // MOVER MONSTROS
   // - primeiro monstros que dão mais xp

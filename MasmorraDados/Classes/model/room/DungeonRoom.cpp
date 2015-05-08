@@ -64,4 +64,5 @@ bool DungeonRoom::isCloserToPlayerThen(DungeonRoom *other) {
 }
 
 void DungeonRoom::hasBeenPlaced(RoomPlacementData *placement) {
+  this->setCoordinate(placement->getCoordinate());
 }

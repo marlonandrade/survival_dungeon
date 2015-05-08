@@ -305,6 +305,7 @@ void GameplayScene::_adjustDiceSpritesForRoom(CharacterDiceSprite* charSprite, D
       
       auto sprite2 = sprites.at(1);
       
+      w = sprite2->getContentSize().height / 2;
       h = sprite2->getContentSize().height / 2;
       
       auto sprite2NewPosition = roomCenter + Vec2(w + 1, h + 1);
@@ -577,8 +578,28 @@ void GameplayScene::_handleMonsterDiceGenerated(EventCustom* event) {
 void GameplayScene::_handleMonsterMoved(EventCustom* event) {
   auto data = (MonsterMoveData*) event->getUserData();
   
+  auto origin = data->getOrigin();
   auto destination = data->getDestination();
   
+  auto deltaCoordinate = origin->getCoordinate() - destination->getCoordinate();
+  auto deltaPosition = Vec2(deltaCoordinate.x * TILE_DIMENSION,
+                            deltaCoordinate.y * TILE_DIMENSION);
+  
+  auto destinationNode = this->_getNodeForCoordinate(destination->getCoordinate());
+  
+  for (auto monster : data->getMonsterDices()) {
+    auto monsterSprite = monster->getSprite();
+    
+    monsterSprite->retain();
+    monsterSprite->removeFromParent();
+    destinationNode->addChild(monsterSprite);
+    monsterSprite->release();
+  }
+  
+  log("monster moved");
+  
+  auto charSprite = this->_getCharacterDiceSprite();
+  this->_adjustDiceSpritesForRoom(charSprite, destination);
 }
 
 void GameplayScene::_handleLastTileHasBeenPlaced(EventCustom* event) {

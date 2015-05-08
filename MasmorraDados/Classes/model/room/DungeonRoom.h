@@ -17,6 +17,7 @@ class RoomPlacementData;
 class DungeonRoom : public GameObject {
   CC_SYNTHESIZE_PASS_BY_REF(cocos2d::Vector<MonsterDice*>, _monsters, Monsters);
   CC_SYNTHESIZE(int, _distanceToPlayer, DistanceToPlayer);
+  CC_SYNTHESIZE(cocos2d::Vec2, _coordinate, Coordinate);
 public:
   CREATE_FUNC(DungeonRoom);
   virtual bool init();

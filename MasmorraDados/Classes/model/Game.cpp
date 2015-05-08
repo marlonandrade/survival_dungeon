@@ -130,6 +130,12 @@ void Game::_setupDungeon(RoomPlacedDelegate delegate) {
   auto initialRoom = InitialRoom::create();
   dungeon->setRoomForCoordinate(initialRoom, INITIAL_COORDINATE);
   
+  auto placement = RoomPlacementData::create();
+  placement->setCoordinate(INITIAL_COORDINATE);
+  placement->setRoom(initialRoom);
+  
+  initialRoom->hasBeenPlaced(placement);
+  
   this->setDungeon(dungeon);
 }
 

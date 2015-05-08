@@ -36,6 +36,8 @@ bool MinorMonsterRoom::isExplorable() {
 }
 
 void MinorMonsterRoom::hasBeenPlaced(RoomPlacementData *placementData) {
+  DungeonRoom::hasBeenPlaced(placementData);
+  
   auto dice = MinorMonsterDice::create();
   this->addMonsterDice(dice);
   
