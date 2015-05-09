@@ -1,3 +1,12 @@
+Simplificações para finalizar:
+
+- remover movimentação dos montros
+- criar combate simplificado
+- adicionar tile de tesouro e tile para próximo nível
+- definir número de tiles para cada nível
+  - criar uma estrutura de uma PA para a quantidade de cada tipo de sala
+- fazer um 'score' de tesouro / experiencia
+
 O que falar:
 
 - jogos
