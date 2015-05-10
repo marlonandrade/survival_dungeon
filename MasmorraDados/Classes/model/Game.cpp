@@ -11,12 +11,15 @@
 #include "Definitions.h"
 #include "Events.h"
 
-#include "DungeonTurn.h"
+#include "DownstairsRoom.h"
 #include "InitialRoom.h"
-#include "InitialTurn.h"
 #include "MinorMonsterRoom.h"
-#include "PlayerTurn.h"
 #include "RuneRoom.h"
+#include "TreasureRoom.h"
+
+#include "DungeonTurn.h"
+#include "InitialTurn.h"
+#include "PlayerTurn.h"
 #include "Turn.h"
 
 USING_NS_CC;
@@ -63,6 +66,7 @@ bool Game::initWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
     return false;
   }
   
+  this->setLevel(1);
   this->setTurn(InitialTurn::create());
   this->_setupAvaiableRooms();
   this->_setupDungeon(delegate);
@@ -142,13 +146,25 @@ void Game::_setupDungeon(RoomPlacedDelegate delegate) {
 void Game::_setupAvaiableRooms() {
   Vector<DungeonRoom*> rooms;
   
-  for (int i = 0; i < 100; i++) {
-    if (i % 10 > 2) {
-      rooms.pushBack(RuneRoom::create());
-    } else {
-      rooms.pushBack(MinorMonsterRoom::create());
-    }
+  int level = this->getLevel();
+  
+  int numberOfRunes = level * (level * RUNE_COEFICIENT) + RUNE_CONSTANT;
+  for (int i = 0; i < numberOfRunes; i++) {
+    rooms.pushBack(RuneRoom::create());
   }
+  
+  int numberOfMonsters = level * (level * MINOR_MONSTER_COEFICIENT) + MINOR_MONSTER_CONSTANT;
+  for (int i = 0; i < numberOfMonsters; i++) {
+    rooms.pushBack(MinorMonsterRoom::create());
+  }
+  
+  int numberOfTreasures = level * (level * TREASURE_COEFICIENT) + TREASURE_CONSTANT;
+  for (int i = 0; i < numberOfTreasures; i++) {
+    rooms.pushBack(TreasureRoom::create());
+  }
+  
+  rooms.pushBack(DownstairsRoom::create());
+  
   
   this->_availableRooms = rooms;
 }

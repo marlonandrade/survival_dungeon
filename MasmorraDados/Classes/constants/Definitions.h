@@ -13,10 +13,11 @@
 
 #pragma mark - Dimensions
 
-#define DUNGEON_SIZE         100
-#define INITIAL_COORDINATE   cocos2d::Vec2(DUNGEON_SIZE/2, DUNGEON_SIZE/2)
-#define TILE_DIMENSION       100
-#define TILE_PLACEMENT_SCALE 0.3
+#define DUNGEON_SIZE            100
+#define INITIAL_COORDINATE      cocos2d::Vec2(DUNGEON_SIZE/2, DUNGEON_SIZE/2)
+#define TILE_DIMENSION          100
+#define TILE_PLACEMENT_SCALE    0.3
+#define NOT_CALCULATED_DISTANCE 1000
 
 #define ACTION_DICE_BACKGROUND_BUTTON_MARGIN 5
 
@@ -31,6 +32,15 @@
 
 #define MAX_ACTION_REROLLS   2
 #define CHARACTER_INITIAL_HP 6
+
+#pragma mark - Room Coeficients
+
+#define RUNE_COEFICIENT          0.225
+#define RUNE_CONSTANT            6
+#define MINOR_MONSTER_COEFICIENT 0.18
+#define MINOR_MONSTER_CONSTANT   2
+#define TREASURE_COEFICIENT      0.05
+#define TREASURE_CONSTANT        1
 
 #pragma mark - Animation Durations
 

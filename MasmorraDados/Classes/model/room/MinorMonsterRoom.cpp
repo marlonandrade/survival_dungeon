@@ -19,20 +19,8 @@ USING_NS_CC;
 
 #pragma mark - Public Interface
 
-bool MinorMonsterRoom::init() {
-  if (!DungeonRoom::init()) {
-    return false;
-  }
-  
-  return true;
-}
-
 std::string MinorMonsterRoom::getImagePath() {
   return IMG_ROOM_MINOR_MONSTER;
-}
-
-bool MinorMonsterRoom::isExplorable() {
-  return true;
 }
 
 void MinorMonsterRoom::hasBeenPlaced(RoomPlacementData *placementData) {

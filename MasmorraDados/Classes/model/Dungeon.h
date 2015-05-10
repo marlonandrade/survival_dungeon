@@ -64,6 +64,9 @@ public:
   void setLeftMostRoomCoordinate(cocos2d::Vec2 coordinate);
   cocos2d::Vec2 getLeftMostRoomCoordinate();
 private:
+  void _resetDistanceToPlayer();
+  void _fillDistanceForAdjacentRooms(DungeonRoom* room);
+  
   RoomPlacementData* _placeNewRoomAtCoordinate(cocos2d::Vec2 coordinate);
 };
 

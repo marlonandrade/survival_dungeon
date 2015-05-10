@@ -52,7 +52,7 @@ std::string DungeonRoom::getImagePath() {
 }
 
 bool DungeonRoom::isExplorable() {
-  return false;
+  return true;
 }
 
 bool DungeonRoom::isFull() {

@@ -18,10 +18,8 @@ class MinorMonsterRoom : public DungeonRoom {
   
 public:
   CREATE_FUNC(MinorMonsterRoom);
-  virtual bool init();
   
   virtual std::string getImagePath();
-  virtual bool isExplorable();
   
   virtual void hasBeenPlaced(RoomPlacementData* placement);
 };

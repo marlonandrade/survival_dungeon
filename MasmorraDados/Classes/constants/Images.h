@@ -100,6 +100,10 @@
         "room/minor_monster.png"
 #define IMG_ROOM_RUNE \
         "room/rune.png"
+#define IMG_ROOM_TREASURE \
+        "room/treasure.png"
+#define IMG_ROOM_DOWNSTAIRS \
+        "room/downstairs.png"
 
 #define IMG_TURN_DUNGEON \
         "turn/dungeon.png"

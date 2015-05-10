@@ -13,7 +13,3 @@
 std::string InitialRoom::getImagePath() {
   return IMG_ROOM_INITIAL;
 }
-
-bool InitialRoom::isExplorable() {
-  return true;
-}

@@ -153,14 +153,11 @@ void Dungeon::placeRoomsAdjacentTo(Vec2 coordinate) {
 }
 
 void Dungeon::calculateRoomDistanceToPlayer(Vec2 playerCoordinate) {
-  for (auto room : this->_rooms) {
-    auto index = std::get<0>(room);
-    auto dungeonRoom = std::get<1>(room);
-    
-    auto coordinate = this->coordinateForIndex(index);
-    
-    dungeonRoom->setDistanceToPlayer(coordinate.distance(playerCoordinate));
-  }
+  this->_resetDistanceToPlayer();
+  
+  auto playerRoom = this->getRoomForCoordinate(playerCoordinate);
+  playerRoom->setDistanceToPlayer(0);
+  this->_fillDistanceForAdjacentRooms(playerRoom);
 }
 
 std::vector<Vec2> Dungeon::adjacentCoordinatesTo(Vec2 coordinate) {
@@ -231,6 +228,32 @@ Vec2 Dungeon::getLeftMostRoomCoordinate() {
 
 #pragma mark - Private Interface
 
+void Dungeon::_resetDistanceToPlayer() {
+  for (auto room : this->_rooms) {
+    auto dungeonRoom = std::get<1>(room);
+    dungeonRoom->setDistanceToPlayer(NOT_CALCULATED_DISTANCE);
+  }
+}
+
+void Dungeon::_fillDistanceForAdjacentRooms(DungeonRoom *room) {
+  Vector<DungeonRoom*> visitedRooms;
+  
+  auto coordinates = this->adjacentCoordinatesTo(room->getCoordinate());
+  for (auto coordinate : coordinates) {
+    auto adjacentRoom = this->getRoomForCoordinate(coordinate);
+    if (adjacentRoom != NULL &&
+        adjacentRoom->getDistanceToPlayer() > room->getDistanceToPlayer()) {
+      adjacentRoom->setDistanceToPlayer(room->getDistanceToPlayer() + 1);
+      
+      visitedRooms.pushBack(adjacentRoom);
+    }
+  }
+  
+  for (auto visitedRoom : visitedRooms) {
+    this->_fillDistanceForAdjacentRooms(visitedRoom);
+  }
+}
+
 RoomPlacementData* Dungeon::_placeNewRoomAtCoordinate(Vec2 coordinate) {
   RoomPlacementData* placement = nullptr;
   
@@ -240,11 +263,13 @@ RoomPlacementData* Dungeon::_placeNewRoomAtCoordinate(Vec2 coordinate) {
   if (!alreadyPlacedRoom && newRoomDataSource) {
     DungeonRoom* room = newRoomDataSource();
     
-    this->setRoomForCoordinate(room, coordinate);
-    
-    placement = RoomPlacementData::create();
-    placement->setCoordinate(coordinate);
-    placement->setRoom(room);
+    if (room) {
+      this->setRoomForCoordinate(room, coordinate);
+      
+      placement = RoomPlacementData::create();
+      placement->setCoordinate(coordinate);
+      placement->setRoom(room);
+    }
   }
   
   return placement;

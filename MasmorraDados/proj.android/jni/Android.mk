@@ -33,10 +33,12 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateRolled.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateSelected.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateSpent.cpp \
+		   ../../Classes/model/room/DownstairsRoom.cpp \
 		   ../../Classes/model/room/DungeonRoom.cpp \
 		   ../../Classes/model/room/InitialRoom.cpp \
 		   ../../Classes/model/room/MinorMonsterRoom.cpp \
 		   ../../Classes/model/room/RuneRoom.cpp \
+		   ../../Classes/model/room/TreasureRoom.cpp \
 		   ../../Classes/model/turn/DungeonTurn.cpp \
 		   ../../Classes/model/turn/InitialTurn.cpp \
 		   ../../Classes/model/turn/PlayerTurn.cpp \

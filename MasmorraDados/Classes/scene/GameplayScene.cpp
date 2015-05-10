@@ -439,7 +439,11 @@ Vector<Node*> GameplayScene::_getNodesForAdjacentCharacterCoordinate() {
   auto adjacentCoordinates = this->getGame()->getDungeon()->adjacentCoordinatesTo(coordinate);
   for (auto adjacentCoordinate : adjacentCoordinates) {
     auto name = this->getGame()->getDungeon()->nameForCoordinate(adjacentCoordinate);
-    nodes.pushBack(activeLayer->getChildByName(name));
+    auto node = activeLayer->getChildByName(name);
+    
+    if (node) {
+      nodes.pushBack(activeLayer->getChildByName(name));
+    }
   }
   
   return nodes;
@@ -678,8 +682,8 @@ bool GameplayScene::canCharacterMoveToLocation(Vec2 location) {
 }
 
 void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 location) {
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  
+//  auto dispatcher = Director::getInstance()->getEventDispatcher();
+//  
 //  if (!this->getGame()->getFreeBootUsed()) {
 //    dispatcher->dispatchCustomEvent(EVT_ACTION_FREE_BOOT_SPENT);
 //  } else {

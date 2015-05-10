@@ -33,6 +33,10 @@
 		BF0840951A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */; };
 		BF0840961A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */; };
 		BF08409B1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */; };
+		BF0E30021AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30001AFE4F32003AAFE5 /* TreasureRoom.cpp */; };
+		BF0E30031AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30001AFE4F32003AAFE5 /* TreasureRoom.cpp */; };
+		BF0E30061AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30041AFE4F41003AAFE5 /* DownstairsRoom.cpp */; };
+		BF0E30071AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30041AFE4F41003AAFE5 /* DownstairsRoom.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -187,6 +191,10 @@
 		BF0840941A9CD506003F0D76 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterDiceSprite.cpp; sourceTree = "<group>"; };
 		BF0840991A9CD84D003F0D76 /* CharacterDiceSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDiceSprite.h; sourceTree = "<group>"; };
+		BF0E30001AFE4F32003AAFE5 /* TreasureRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TreasureRoom.cpp; sourceTree = "<group>"; };
+		BF0E30011AFE4F32003AAFE5 /* TreasureRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreasureRoom.h; sourceTree = "<group>"; };
+		BF0E30041AFE4F41003AAFE5 /* DownstairsRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DownstairsRoom.cpp; sourceTree = "<group>"; };
+		BF0E30051AFE4F41003AAFE5 /* DownstairsRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownstairsRoom.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -538,6 +546,8 @@
 		BFC3738F1A9BFD6C00520751 /* room */ = {
 			isa = PBXGroup;
 			children = (
+				BF0E30041AFE4F41003AAFE5 /* DownstairsRoom.cpp */,
+				BF0E30051AFE4F41003AAFE5 /* DownstairsRoom.h */,
 				BFC373931A9BFDDA00520751 /* DungeonRoom.cpp */,
 				BFC373941A9BFDDA00520751 /* DungeonRoom.h */,
 				BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */,
@@ -546,6 +556,8 @@
 				BFAA744B1A9D37E400E45DF8 /* MinorMonsterRoom.h */,
 				BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */,
 				BFAA74471A9D37DA00E45DF8 /* RuneRoom.h */,
+				BF0E30001AFE4F32003AAFE5 /* TreasureRoom.cpp */,
+				BF0E30011AFE4F32003AAFE5 /* TreasureRoom.h */,
 			);
 			path = room;
 			sourceTree = "<group>";
@@ -771,6 +783,7 @@
 				BFD7AA311AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
 				BFC33C211AE803D300934C34 /* InitialTurn.cpp in Sources */,
 				BF3EDB471AF9279A002A2D7C /* RoomPlacementData.cpp in Sources */,
+				BF0E30021AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */,
 				BF5B4BEB1A952E8D007636DE /* Dice.cpp in Sources */,
 				BF5B4C1E1A955DA4007636DE /* Monster.cpp in Sources */,
 				BF7DB85F1AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */,
@@ -790,6 +803,7 @@
 				BF0840951A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */,
 				BFD7AA2B1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */,
 				BF3EDB3F1AF92203002A2D7C /* MonsterRoomData.cpp in Sources */,
+				BF0E30061AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */,
 				BF5B4BC01A94BA2C007636DE /* Player.cpp in Sources */,
 				BF5B4BCC1A94BA91007636DE /* Dungeon.cpp in Sources */,
 				BF5B4BDC1A94BC6B007636DE /* GameObject.cpp in Sources */,
@@ -826,6 +840,7 @@
 				BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */,
 				BF6D78D11AE416F3002D67C7 /* ActionDiceLayer.cpp in Sources */,
+				BF0E30031AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */,
 				BFD36EE21AF66921003701EC /* MinorMonsterDice.cpp in Sources */,
 				BFD7AA321AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
 				BFAA744D1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,
@@ -837,6 +852,7 @@
 				BF08409B1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */,
 				BFBAE2A41AD171AD00A5FC9A /* ScrollableLayer.cpp in Sources */,
 				BFFA1F6C1AF7DA2F00A0BD9C /* DungeonRoom.cpp in Sources */,
+				BF0E30071AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */,
 				BFD36F161AF85107003701EC /* MajorMonsterDice.cpp in Sources */,
 				BF5B4BC91A94BA51007636DE /* Skill.cpp in Sources */,
 				BFC33C221AE803D300934C34 /* InitialTurn.cpp in Sources */,

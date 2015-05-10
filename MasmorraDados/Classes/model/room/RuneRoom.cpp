@@ -13,7 +13,3 @@
 std::string RuneRoom::getImagePath() {
   return IMG_ROOM_RUNE;
 }
-
-bool RuneRoom::isExplorable() {
-  return true;
-}

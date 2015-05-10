@@ -16,7 +16,6 @@ public:
   CREATE_FUNC(RuneRoom);
   
   virtual std::string getImagePath();
-  virtual bool isExplorable();
 };
 
 #endif /* defined(__MasmorraDados__RuneRoom__) */

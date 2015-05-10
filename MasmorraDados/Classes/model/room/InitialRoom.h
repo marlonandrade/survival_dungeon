@@ -16,7 +16,6 @@ public:
   CREATE_FUNC(InitialRoom);
   
   virtual std::string getImagePath();
-  virtual bool isExplorable();
 };
 
 #endif /* defined(__MasmorraDados__InitialRoom__) */
