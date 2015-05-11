@@ -33,7 +33,7 @@ class Game : public GameObject {
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _actionDices, ActionDices);
   CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
   CC_SYNTHESIZE(bool, _freeBootUsed, FreeBootUsed);
-  CC_SYNTHESIZE(int, _level, Level);
+  CC_PROPERTY(int, _level, Level);
 protected:
   cocos2d::Vector<DungeonRoom*> _availableRooms;
   Turn* _turn;
@@ -59,7 +59,7 @@ public:
   virtual void restoreFreeBoot();
   
 private:
-  void _setupDungeon(RoomPlacedDelegate delegate);
+  void _setupDungeon();
   void _setupAvaiableRooms();
   void _setupActionDices();
   void _setupEventHandlers();

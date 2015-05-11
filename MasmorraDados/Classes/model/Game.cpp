@@ -47,6 +47,19 @@ void Game::setCharacterCoordinate(Vec2 coordinate) {
   this->getDungeon()->calculateRoomDistanceToPlayer(coordinate);
 }
 
+int Game::getLevel() {
+  return _level;
+}
+
+void Game::setLevel(int level) {
+  _level = level;
+  
+  this->setTurn(InitialTurn::create());
+  this->_setupAvaiableRooms();
+  this->_setupDungeon();
+  this->_setupActionDices();
+}
+
 #pragma mark - Public Interface
 
 Game* Game::createWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
@@ -66,11 +79,9 @@ bool Game::initWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
     return false;
   }
   
+  this->setRoomPlacedDelegate(delegate);
   this->setLevel(1);
-  this->setTurn(InitialTurn::create());
-  this->_setupAvaiableRooms();
-  this->_setupDungeon(delegate);
-  this->_setupActionDices();
+  
   this->_setupEventHandlers();
   
   return true;
@@ -124,9 +135,9 @@ void Game::restoreFreeBoot() {
 
 #pragma mark - Private Interface
 
-void Game::_setupDungeon(RoomPlacedDelegate delegate) {
+void Game::_setupDungeon() {
   auto dungeon = Dungeon::create();
-  dungeon->setRoomPlacedDelegate(delegate);
+  dungeon->setRoomPlacedDelegate(this->getRoomPlacedDelegate());
   dungeon->setNewRoomDataSource([&]() -> DungeonRoom* {
     return this->_pickRandomRoom();
   });
