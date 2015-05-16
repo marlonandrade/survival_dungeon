@@ -13,10 +13,24 @@
 #include "Turn.h"
 
 class PlayerTurn : public Turn {
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _actionDicesRolledListener,
+                       ActionDicesRolledListener);
+protected:
+  bool _actionDicesRolled;
 public:
   CREATE_FUNC(PlayerTurn);
+  virtual bool init();
+  
+  bool isActionDicesRolled();
   
   virtual void finish(Game* game);
+  
+private:
+  void _setupEventHandlers();
+  
+#pragma mark - Events
+  void _handleActionDicesRolled(cocos2d::EventCustom* event);
 };
 
 

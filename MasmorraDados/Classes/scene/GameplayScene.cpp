@@ -640,13 +640,20 @@ void GameplayScene::_handleLastTileHasBeenPlaced(EventCustom* event) {
 #pragma mark - CharacterMoveDelegate Methods
 
 bool GameplayScene::canCharacterMove() {
-  auto availableSkills = this->getGame()->getAvailableSkills();
+  bool canMove = false;
   
-  bool playerHasBoot = availableSkills[IMG_DICE_ACTION_BOOT].asInt() ||
-      !this->getGame()->getFreeBootUsed();
+  if (this->getGame()->isPlayerTurn()) {
+    auto playerTurn = (PlayerTurn *) this->getGame()->getTurn();
   
-  return true;
-//  return this->_isInteractionEnabled() && playerHasBoot;
+    auto availableSkills = this->getGame()->getAvailableSkills();
+    
+    bool playerHasBoot = availableSkills[IMG_DICE_ACTION_BOOT].asInt() ||
+        !this->getGame()->getFreeBootUsed();
+    
+    canMove = playerTurn->isActionDicesRolled() && playerHasBoot;
+  }
+  
+  return canMove;
 }
 
 void GameplayScene::characterWillMove(CharacterDiceSprite* sprite) {
@@ -682,22 +689,22 @@ bool GameplayScene::canCharacterMoveToLocation(Vec2 location) {
 }
 
 void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 location) {
-//  auto dispatcher = Director::getInstance()->getEventDispatcher();
-//  
-//  if (!this->getGame()->getFreeBootUsed()) {
-//    dispatcher->dispatchCustomEvent(EVT_ACTION_FREE_BOOT_SPENT);
-//  } else {
-//    auto dockedDices = this->getGame()->getDockedDices();
-//    ActionDice* usedDice;
-//    for (auto dice : dockedDices) {
-//      if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_BOOT && !dice->isSpent()) {
-//        usedDice = dice;
-//        break;
-//      }
-//    }
-//    
-//    dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_SPENT, usedDice);
-//  }
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  
+  if (!this->getGame()->getFreeBootUsed()) {
+    dispatcher->dispatchCustomEvent(EVT_ACTION_FREE_BOOT_SPENT);
+  } else {
+    auto dockedDices = this->getGame()->getDockedDices();
+    ActionDice* usedDice;
+    for (auto dice : dockedDices) {
+      if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_BOOT && !dice->isSpent()) {
+        usedDice = dice;
+        break;
+      }
+    }
+    
+    dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_SPENT, usedDice);
+  }
   
   this->_resetCharacterMoveState();
   
