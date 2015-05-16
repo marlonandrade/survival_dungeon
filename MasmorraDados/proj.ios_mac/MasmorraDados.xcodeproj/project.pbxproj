@@ -37,6 +37,8 @@
 		BF0E30031AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30001AFE4F32003AAFE5 /* TreasureRoom.cpp */; };
 		BF0E30061AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30041AFE4F41003AAFE5 /* DownstairsRoom.cpp */; };
 		BF0E30071AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30041AFE4F41003AAFE5 /* DownstairsRoom.cpp */; };
+		BF0E300B1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30091B078947003AAFE5 /* CoordinateUtil.cpp */; };
+		BF0E300C1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30091B078947003AAFE5 /* CoordinateUtil.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -195,6 +197,8 @@
 		BF0E30011AFE4F32003AAFE5 /* TreasureRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreasureRoom.h; sourceTree = "<group>"; };
 		BF0E30041AFE4F41003AAFE5 /* DownstairsRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DownstairsRoom.cpp; sourceTree = "<group>"; };
 		BF0E30051AFE4F41003AAFE5 /* DownstairsRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownstairsRoom.h; sourceTree = "<group>"; };
+		BF0E30091B078947003AAFE5 /* CoordinateUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CoordinateUtil.cpp; sourceTree = "<group>"; };
+		BF0E300A1B078947003AAFE5 /* CoordinateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateUtil.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -427,6 +431,7 @@
 				BF5B4B311A8F75FA007636DE /* model */,
 				BF5B4B321A8F75FA007636DE /* scene */,
 				BF0840971A9CD541003F0D76 /* sprite */,
+				BF0E30081B078933003AAFE5 /* util */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 			);
@@ -478,6 +483,15 @@
 				BF74CA781ADC82520062F242 /* DiceSprite.h */,
 			);
 			path = sprite;
+			sourceTree = "<group>";
+		};
+		BF0E30081B078933003AAFE5 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				BF0E30091B078947003AAFE5 /* CoordinateUtil.cpp */,
+				BF0E300A1B078947003AAFE5 /* CoordinateUtil.h */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 		BF5B4B311A8F75FA007636DE /* model */ = {
@@ -807,6 +821,7 @@
 				BF5B4BC01A94BA2C007636DE /* Player.cpp in Sources */,
 				BF5B4BCC1A94BA91007636DE /* Dungeon.cpp in Sources */,
 				BF5B4BDC1A94BC6B007636DE /* GameObject.cpp in Sources */,
+				BF0E300B1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */,
 				BFAA744C1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,
 				BFDFE2671ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */,
 				BFDFE26B1ADC2CAE00106124 /* ActionDiceStateSelected.cpp in Sources */,
@@ -841,6 +856,7 @@
 				BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */,
 				BF6D78D11AE416F3002D67C7 /* ActionDiceLayer.cpp in Sources */,
 				BF0E30031AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */,
+				BF0E300C1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */,
 				BFD36EE21AF66921003701EC /* MinorMonsterDice.cpp in Sources */,
 				BFD7AA321AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
 				BFAA744D1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,

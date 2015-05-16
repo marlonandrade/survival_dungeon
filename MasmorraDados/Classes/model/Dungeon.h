@@ -48,10 +48,6 @@ public:
   
   std::vector<cocos2d::Vec2> adjacentCoordinatesTo(cocos2d::Vec2 coordinate);
   
-  std::string nameForCoordinate(cocos2d::Vec2 coordinate);
-  int indexForCoordinate(cocos2d::Vec2 coordinate);
-  cocos2d::Vec2 coordinateForIndex(int index);
-  
   void setTopMostRoomCoordinate(cocos2d::Vec2 coordinate);
   cocos2d::Vec2 getTopMostRoomCoordinate();
   

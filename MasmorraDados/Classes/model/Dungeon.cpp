@@ -11,6 +11,7 @@
 #include "Definitions.h"
 #include "Events.h"
 
+#include "CoordinateUtil.h"
 #include "MonsterMoveData.h"
 
 USING_NS_CC;
@@ -88,7 +89,7 @@ void Dungeon::riseMonsters() {
 }
 
 void Dungeon::setRoomForCoordinate(DungeonRoom* room, Vec2 coordinate) {
-  auto index = this->indexForCoordinate(coordinate);
+  auto index = CoordinateUtil::indexForCoordinate(coordinate);
   
   if (coordinate.y > this->getTopMostRoomCoordinate().y) {
     this->setTopMostRoomCoordinate(coordinate);
@@ -110,7 +111,7 @@ void Dungeon::setRoomForCoordinate(DungeonRoom* room, Vec2 coordinate) {
 }
 
 DungeonRoom* Dungeon::getRoomForCoordinate(Vec2 coordinate) {
-  auto index = this->indexForCoordinate(coordinate);
+  auto index = CoordinateUtil::indexForCoordinate(coordinate);
   return _rooms.at(index);
 }
 
@@ -120,7 +121,7 @@ Vec2 Dungeon::getCoordinateForRoom(DungeonRoom *room) {
   auto indexes = _rooms.keys(room);
   if (indexes.size()) {
     auto index = indexes.at(0);
-    coordinate = this->coordinateForIndex(index);
+    coordinate = CoordinateUtil::coordinateForIndex(index);
   }
   
   return coordinate;
@@ -176,22 +177,6 @@ std::vector<Vec2> Dungeon::adjacentCoordinatesTo(Vec2 coordinate) {
   adjacentCoordinates.push_back(left);
   
   return adjacentCoordinates;
-}
-
-std::string Dungeon::nameForCoordinate(Vec2 coordinate) {
-  std::stringstream ss;
-  ss << this->indexForCoordinate(coordinate);
-  return ss.str();
-}
-
-int Dungeon::indexForCoordinate(Vec2 coordinate) {
-  return coordinate.x * DUNGEON_SIZE + coordinate.y;
-}
-
-Vec2 Dungeon::coordinateForIndex(int index) {
-  auto x = index / DUNGEON_SIZE;
-  auto y = index % DUNGEON_SIZE;
-  return Vec2(x, y);
 }
 
 void Dungeon::setTopMostRoomCoordinate(Vec2 coordinate) {

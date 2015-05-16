@@ -52,7 +52,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/scene/IntroScene.cpp \
 		   ../../Classes/sprite/ActionDiceSprite.cpp \
 		   ../../Classes/sprite/CharacterDiceSprite.cpp \
-		   ../../Classes/sprite/DiceSprite.cpp
+		   ../../Classes/sprite/DiceSprite.cpp \
+		   ../../Classes/util/CoordinateUtil.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/animation \
@@ -68,7 +69,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/model/room \
 		    $(LOCAL_PATH)/../../Classes/model/turn \
   		    $(LOCAL_PATH)/../../Classes/scene \
-  		    $(LOCAL_PATH)/../../Classes/sprite
+  		    $(LOCAL_PATH)/../../Classes/sprite \
+  		    $(LOCAL_PATH)/../../Classes/util
 
 # _COCOS_HEADER_ANDROID_BEGIN
 # _COCOS_HEADER_ANDROID_END

@@ -16,6 +16,7 @@
 #include "ActionDiceSprite.h"
 #include "BackgroundLayer.h"
 #include "CharacterDiceSprite.h"
+#include "CoordinateUtil.h"
 #include "MonsterMoveData.h"
 #include "MonsterRoomData.h"
 #include "PlayerSkillsLayer.h"
@@ -51,10 +52,7 @@ bool GameplayScene::init() {
 #pragma mark - Private Interface
 
 void GameplayScene::_adjustInitialLayers() {
-  auto center = this->_centerOfScene();
-  
   auto scrollableLayer = ScrollableLayer::createWithDungeon(this->getGame()->getDungeon());
-  
   scrollableLayer->addChild(BackgroundLayer::create(), -10);
   scrollableLayer->addChild(this->_createObjectsLayer(), 0);
   
@@ -104,7 +102,7 @@ Layer* GameplayScene::_createObjectsLayer() {
   auto initialCoordinate = INITIAL_COORDINATE;
   
   auto initialSprite = Sprite::create(initialRoom->getImagePath());
-  auto name = this->getGame()->getDungeon()->nameForCoordinate(initialCoordinate);
+  auto name = CoordinateUtil::nameForCoordinate(initialCoordinate);
   initialSprite->setName(name);
   initialSprite->setPosition(this->_positionForCoordinate(initialCoordinate));
   objectsLayer->addChild(initialSprite, DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
@@ -167,7 +165,7 @@ void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacementData*> placements) {
       auto coordinate = placement->getCoordinate();
       
       auto roomSprite = Sprite::create(room->getImagePath());
-      auto name = this->getGame()->getDungeon()->nameForCoordinate(coordinate);
+      auto name = CoordinateUtil::nameForCoordinate(coordinate);
       roomSprite->setName(name);
       
       auto size = Director::getInstance()->getVisibleSize();
@@ -421,7 +419,7 @@ Node* GameplayScene::_getNodeForCharacterCoordinate() {
 }
 
 Node* GameplayScene::_getNodeForCoordinate(Vec2 coordinate) {
-  auto name = this->getGame()->getDungeon()->nameForCoordinate(coordinate);
+  auto name = CoordinateUtil::nameForCoordinate(coordinate);
   return this->_getObjectsLayer()->getChildByName(name);
 }
 
@@ -437,7 +435,7 @@ Vector<Node*> GameplayScene::_getNodesForAdjacentCharacterCoordinate() {
   auto coordinate = this->getGame()->getCharacterCoordinate();
   auto adjacentCoordinates = this->getGame()->getDungeon()->adjacentCoordinatesTo(coordinate);
   for (auto adjacentCoordinate : adjacentCoordinates) {
-    auto name = this->getGame()->getDungeon()->nameForCoordinate(adjacentCoordinate);
+    auto name = CoordinateUtil::nameForCoordinate(adjacentCoordinate);
     auto node = activeLayer->getChildByName(name);
     
     if (node) {
