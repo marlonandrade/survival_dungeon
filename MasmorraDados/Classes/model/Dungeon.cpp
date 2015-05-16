@@ -114,6 +114,10 @@ DungeonRoom* Dungeon::getInitialRoom() {
   return this->getRoomForCoordinate(INITIAL_COORDINATE);
 }
 
+FarthestCoordinates Dungeon::getFarthestCoordinates() {
+  return _farthestCoordinates;
+}
+
 void Dungeon::placeRoomsAdjacentTo(Vec2 coordinate) {
   Vector<RoomPlacementData*> placements;
   
@@ -144,10 +148,6 @@ void Dungeon::calculateRoomDistanceToPlayer(Vec2 playerCoordinate) {
   this->_fillDistanceForAdjacentRooms(playerRoom);
 }
 
-FarthestCoordinates Dungeon::getFarthestCoordinates() {
-  return _farthestCoordinates;
-}
-
 #pragma mark - Private Interface
 
 void Dungeon::_adjustFarthestCoordinates(Vec2 newCoordinate) {
@@ -175,6 +175,15 @@ void Dungeon::_resetDistanceToPlayer() {
   }
 }
 
+/*
+ * Função recursiva que calcula a distância entre o jogador e a sala.
+ *
+ * Pega todas as salas adjacentes a sala passada como parâmetro e adiciona
+ * 1 na distância.
+ *
+ * O ponto de entrada é a sala onde o próprio jogador está.
+ * O ponto de fim é quando não há mais salas adjacentes posicionadas.
+ */
 void Dungeon::_fillDistanceForAdjacentRooms(DungeonRoom *room) {
   Vector<DungeonRoom*> visitedRooms;
   

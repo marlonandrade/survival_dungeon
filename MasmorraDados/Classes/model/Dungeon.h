@@ -29,10 +29,10 @@ struct FarthestCoordinates {
 class Dungeon : public GameObject {
 private:
   DungeonGrid _rooms;
+  FarthestCoordinates _farthestCoordinates;
   CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
   CC_SYNTHESIZE(NewRoomDataSource, _newRoomDataSource, NewRoomDataSource);
   
-  FarthestCoordinates _farthestCoordinates;
 public:
   virtual bool init();
   CREATE_FUNC(Dungeon);
@@ -45,11 +45,10 @@ public:
   cocos2d::Vec2 getCoordinateForRoom(DungeonRoom* room);
   
   DungeonRoom* getInitialRoom();
+  FarthestCoordinates getFarthestCoordinates();
   
   void placeRoomsAdjacentTo(cocos2d::Vec2 coordinate);
   void calculateRoomDistanceToPlayer(cocos2d::Vec2 playerCoordinate);
-  
-  FarthestCoordinates getFarthestCoordinates();
 private:
   void _adjustFarthestCoordinates(cocos2d::Vec2 newCoordinate);
   void _resetDistanceToPlayer();
