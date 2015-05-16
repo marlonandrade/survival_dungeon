@@ -10,6 +10,7 @@
 
 #include "Definitions.h"
 #include "Events.h"
+#include "Images.h"
 
 #include "DownstairsRoom.h"
 #include "InitialRoom.h"
@@ -85,6 +86,15 @@ bool Game::initWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
   this->_setupEventHandlers();
   
   return true;
+}
+
+void Game::setupCharacterInitialCoordinate() {
+  this->setCharacterCoordinate(INITIAL_COORDINATE);
+}
+
+void Game::characterMovedTo(Vec2 coordinate) {
+  this->setCharacterCoordinate(coordinate);
+  this->_dispatchDiceSpent();
 }
 
 Vector<ActionDice*> Game::getDockedDices() {
@@ -218,6 +228,25 @@ DungeonRoom* Game::_pickRandomRoom() {
   }
   
   return randomRoom;
+}
+
+void Game::_dispatchDiceSpent() {
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  
+  if (!this->getFreeBootUsed()) {
+    dispatcher->dispatchCustomEvent(EVT_ACTION_FREE_BOOT_SPENT);
+  } else {
+    auto dockedDices = this->getDockedDices();
+    ActionDice* usedDice;
+    for (auto dice : dockedDices) {
+      if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_BOOT && !dice->isSpent()) {
+        usedDice = dice;
+        break;
+      }
+    }
+    
+    dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_SPENT, usedDice);
+  }
 }
 
 #pragma mark - Event Handlers

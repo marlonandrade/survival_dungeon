@@ -35,14 +35,15 @@ bool GameplayScene::init() {
     return false;
   }
   
-  this->_enableInteractions();
-  
   auto game = Game::createWithRoomPlacedDelegate(CC_CALLBACK_1(GameplayScene::_roomsHasBeenPlaced, this));
-  
   this->setGame(game);
   
-  this->_setupEventHandlers();
   this->_adjustInitialLayers();
+  this->_setupEventHandlers();
+  
+  game->setupCharacterInitialCoordinate();
+  
+  this->_enableInteractions();
   
   return true;
 }
@@ -59,8 +60,6 @@ void GameplayScene::_adjustInitialLayers() {
   
   this->addChild(scrollableLayer, 0);
   this->addChild(this->_createControlsLayer(), 1);
-  
-  this->getGame()->setCharacterCoordinate(INITIAL_COORDINATE);
 }
 
 void GameplayScene::_setupEventHandlers() {
@@ -689,29 +688,12 @@ bool GameplayScene::canCharacterMoveToLocation(Vec2 location) {
 }
 
 void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 location) {
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  
-  if (!this->getGame()->getFreeBootUsed()) {
-    dispatcher->dispatchCustomEvent(EVT_ACTION_FREE_BOOT_SPENT);
-  } else {
-    auto dockedDices = this->getGame()->getDockedDices();
-    ActionDice* usedDice;
-    for (auto dice : dockedDices) {
-      if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_BOOT && !dice->isSpent()) {
-        usedDice = dice;
-        break;
-      }
-    }
-    
-    dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_SPENT, usedDice);
-  }
-  
   this->_resetCharacterMoveState();
   
   auto newCoordinate = this->_coordinateForPosition(location);
   auto oldCoordinate = this->getGame()->getCharacterCoordinate();
   
-  this->getGame()->setCharacterCoordinate(newCoordinate);
+  this->getGame()->characterMovedTo(newCoordinate);
   
   auto newRoom = this->getGame()->getDungeon()->getRoomForCoordinate(newCoordinate);
   auto oldRoom = this->getGame()->getDungeon()->getRoomForCoordinate(oldCoordinate);

@@ -47,7 +47,11 @@ public:
   virtual void setTurn(Turn* turn);
   
   virtual cocos2d::Vec2 getCharacterCoordinate(void) const { return _characterCoordinate; }
+private:
   virtual void setCharacterCoordinate(cocos2d::Vec2 coordinate);
+public:
+  void setupCharacterInitialCoordinate();
+  void characterMovedTo(cocos2d::Vec2 coordinate);
   
   virtual cocos2d::Vector<ActionDice*> getDockedDices();
   virtual cocos2d::ValueMap getAvailableSkills();
@@ -65,7 +69,8 @@ private:
   void _setupEventHandlers();
   
   DungeonRoom* _pickRandomRoom();
-  void _placeAdjacentTiles();
+  
+  void _dispatchDiceSpent();
   
 #pragma mark - Event Handlers
   void _handleActionFreeBootSpent(cocos2d::EventCustom* event);
