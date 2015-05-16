@@ -27,3 +27,21 @@ Vec2 CoordinateUtil::coordinateForIndex(int index) {
   auto y = index % DUNGEON_SIZE;
   return Vec2(x, y);
 }
+
+std::vector<Vec2> CoordinateUtil::adjacentCoordinatesTo(Vec2 coordinate) {
+  std::vector<Vec2> adjacentCoordinates;
+  
+  auto top = coordinate + Vec2::UNIT_Y;
+  adjacentCoordinates.push_back(top);
+  
+  auto right = coordinate + Vec2::UNIT_X;
+  adjacentCoordinates.push_back(right);
+  
+  auto bottom = coordinate - Vec2::UNIT_Y;
+  adjacentCoordinates.push_back(bottom);
+  
+  auto left = coordinate - Vec2::UNIT_X;
+  adjacentCoordinates.push_back(left);
+  
+  return adjacentCoordinates;
+}

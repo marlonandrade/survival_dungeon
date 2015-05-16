@@ -433,7 +433,7 @@ Vector<Node*> GameplayScene::_getNodesForAdjacentCharacterCoordinate() {
   Vector<Node*> nodes;
   
   auto coordinate = this->getGame()->getCharacterCoordinate();
-  auto adjacentCoordinates = this->getGame()->getDungeon()->adjacentCoordinatesTo(coordinate);
+  auto adjacentCoordinates = CoordinateUtil::adjacentCoordinatesTo(coordinate);
   for (auto adjacentCoordinate : adjacentCoordinates) {
     auto name = CoordinateUtil::nameForCoordinate(adjacentCoordinate);
     auto node = activeLayer->getChildByName(name);
@@ -622,7 +622,10 @@ void GameplayScene::_handleLastTileHasBeenPlaced(EventCustom* event) {
     auto node = this->_getNodeForCoordinate(coordinate);
     auto diceSprite = dice->getSprite();
     
-    diceSprite->setPosition(Vec2(node->getContentSize().width / 2, node->getContentSize().height / 2));
+    auto center = Vec2(node->getContentSize().width / 2,
+                       node->getContentSize().height / 2);
+    diceSprite->setPosition(center);
+    
     dice->roll();
     node->addChild(dice->getSprite());
   }

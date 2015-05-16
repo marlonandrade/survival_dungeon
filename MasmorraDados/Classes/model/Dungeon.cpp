@@ -23,10 +23,11 @@ bool Dungeon::init() {
     return false;
   }
   
-  this->setTopMostRoomCoordinate(INITIAL_COORDINATE);
-  this->setRightMostRoomCoordinate(INITIAL_COORDINATE);
-  this->setBottomMostRoomCoordinate(INITIAL_COORDINATE);
-  this->setLeftMostRoomCoordinate(INITIAL_COORDINATE);
+  auto initial = INITIAL_COORDINATE;
+  _farthestCoordinates.top = initial;
+  _farthestCoordinates.right = initial;
+  _farthestCoordinates.bottom = initial;
+  _farthestCoordinates.left = initial;
   
   return true;
 }
@@ -43,7 +44,7 @@ void Dungeon::moveMonsters() {
     auto monsters = origin->getMonsters();
     if (monsters.size()) {
       auto coordinate = origin->getCoordinate();
-      auto adjacentCoordinates = this->adjacentCoordinatesTo(coordinate);
+      auto adjacentCoordinates = CoordinateUtil::adjacentCoordinatesTo(coordinate);
       
       DungeonRoom* destination = origin;
       for (auto adjacentCoordinate : adjacentCoordinates) {
@@ -89,30 +90,12 @@ void Dungeon::riseMonsters() {
 }
 
 void Dungeon::setRoomForCoordinate(DungeonRoom* room, Vec2 coordinate) {
-  auto index = CoordinateUtil::indexForCoordinate(coordinate);
-  
-  if (coordinate.y > this->getTopMostRoomCoordinate().y) {
-    this->setTopMostRoomCoordinate(coordinate);
-  }
-  
-  if (coordinate.x > this->getRightMostRoomCoordinate().x) {
-    this->setRightMostRoomCoordinate(coordinate);
-  }
-  
-  if (coordinate.y < this->getBottomMostRoomCoordinate().y) {
-    this->setBottomMostRoomCoordinate(coordinate);
-  }
-  
-  if (coordinate.x < this->getLeftMostRoomCoordinate().x) {
-    this->setLeftMostRoomCoordinate(coordinate);
-  }
-  
-  _rooms.insert(index, room);
+  _rooms.insert(CoordinateUtil::indexForCoordinate(coordinate), room);
+  this->_adjustFarthestCoordinates(coordinate);
 }
 
 DungeonRoom* Dungeon::getRoomForCoordinate(Vec2 coordinate) {
-  auto index = CoordinateUtil::indexForCoordinate(coordinate);
-  return _rooms.at(index);
+  return _rooms.at(CoordinateUtil::indexForCoordinate(coordinate));
 }
 
 Vec2 Dungeon::getCoordinateForRoom(DungeonRoom *room) {
@@ -134,7 +117,7 @@ DungeonRoom* Dungeon::getInitialRoom() {
 void Dungeon::placeRoomsAdjacentTo(Vec2 coordinate) {
   Vector<RoomPlacementData*> placements;
   
-  for (Vec2 adjacentCoordinate : this->adjacentCoordinatesTo(coordinate)) {
+  for (Vec2 adjacentCoordinate : CoordinateUtil::adjacentCoordinatesTo(coordinate)) {
     auto placement = this->_placeNewRoomAtCoordinate(adjacentCoordinate);
     
     if (placement) {
@@ -161,57 +144,29 @@ void Dungeon::calculateRoomDistanceToPlayer(Vec2 playerCoordinate) {
   this->_fillDistanceForAdjacentRooms(playerRoom);
 }
 
-std::vector<Vec2> Dungeon::adjacentCoordinatesTo(Vec2 coordinate) {
-  std::vector<Vec2> adjacentCoordinates;
-  
-  auto top = coordinate + Vec2::UNIT_Y;
-  adjacentCoordinates.push_back(top);
-  
-  auto right = coordinate + Vec2::UNIT_X;
-  adjacentCoordinates.push_back(right);
-  
-  auto bottom = coordinate - Vec2::UNIT_Y;
-  adjacentCoordinates.push_back(bottom);
-  
-  auto left = coordinate - Vec2::UNIT_X;
-  adjacentCoordinates.push_back(left);
-  
-  return adjacentCoordinates;
-}
-
-void Dungeon::setTopMostRoomCoordinate(Vec2 coordinate) {
-  _topMostRoomCoordinate = coordinate;
-}
-
-Vec2 Dungeon::getTopMostRoomCoordinate() {
-  return _topMostRoomCoordinate;
-}
-
-void Dungeon::setRightMostRoomCoordinate(Vec2 coordinate) {
-  _rightMostRoomCoordinate = coordinate;
-}
-
-Vec2 Dungeon::getRightMostRoomCoordinate() {
-  return _rightMostRoomCoordinate;
-}
-
-void Dungeon::setBottomMostRoomCoordinate(Vec2 coordinate) {
-  _bottomMostRoomCoordinate = coordinate;
-}
-
-Vec2 Dungeon::getBottomMostRoomCoordinate() {
-  return _bottomMostRoomCoordinate;
-}
-
-void Dungeon::setLeftMostRoomCoordinate(Vec2 coordinate) {
-  _leftMostRoomCoordinate = coordinate;
-}
-
-Vec2 Dungeon::getLeftMostRoomCoordinate() {
-  return _leftMostRoomCoordinate;
+FarthestCoordinates Dungeon::getFarthestCoordinates() {
+  return _farthestCoordinates;
 }
 
 #pragma mark - Private Interface
+
+void Dungeon::_adjustFarthestCoordinates(Vec2 newCoordinate) {
+  if (newCoordinate.y > _farthestCoordinates.top.y) {
+    _farthestCoordinates.top = newCoordinate;
+  }
+  
+  if (newCoordinate.x > _farthestCoordinates.right.x) {
+    _farthestCoordinates.right = newCoordinate;
+  }
+  
+  if (newCoordinate.y < _farthestCoordinates.bottom.y) {
+    _farthestCoordinates.bottom = newCoordinate;
+  }
+  
+  if (newCoordinate.x < _farthestCoordinates.left.x) {
+    _farthestCoordinates.left = newCoordinate;
+  }
+}
 
 void Dungeon::_resetDistanceToPlayer() {
   for (auto room : this->_rooms) {
@@ -223,7 +178,7 @@ void Dungeon::_resetDistanceToPlayer() {
 void Dungeon::_fillDistanceForAdjacentRooms(DungeonRoom *room) {
   Vector<DungeonRoom*> visitedRooms;
   
-  auto coordinates = this->adjacentCoordinatesTo(room->getCoordinate());
+  auto coordinates = CoordinateUtil::adjacentCoordinatesTo(room->getCoordinate());
   for (auto coordinate : coordinates) {
     auto adjacentRoom = this->getRoomForCoordinate(coordinate);
     if (adjacentRoom != NULL &&

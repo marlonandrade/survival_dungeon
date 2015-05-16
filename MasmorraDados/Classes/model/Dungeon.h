@@ -19,17 +19,20 @@ typedef cocos2d::Map<int, DungeonRoom*> DungeonGrid;
 typedef std::function<void (cocos2d::Vector<RoomPlacementData*>)> RoomPlacedDelegate;
 typedef std::function<DungeonRoom* (void)> NewRoomDataSource;
 
+struct FarthestCoordinates {
+  cocos2d::Vec2 top;
+  cocos2d::Vec2 right;
+  cocos2d::Vec2 bottom;
+  cocos2d::Vec2 left;
+};
+
 class Dungeon : public GameObject {
 private:
   DungeonGrid _rooms;
   CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
   CC_SYNTHESIZE(NewRoomDataSource, _newRoomDataSource, NewRoomDataSource);
   
-  cocos2d::Vec2 _topMostRoomCoordinate;
-  cocos2d::Vec2 _rightMostRoomCoordinate;
-  cocos2d::Vec2 _bottomMostRoomCoordinate;
-  cocos2d::Vec2 _leftMostRoomCoordinate;
-  
+  FarthestCoordinates _farthestCoordinates;
 public:
   virtual bool init();
   CREATE_FUNC(Dungeon);
@@ -46,20 +49,9 @@ public:
   void placeRoomsAdjacentTo(cocos2d::Vec2 coordinate);
   void calculateRoomDistanceToPlayer(cocos2d::Vec2 playerCoordinate);
   
-  std::vector<cocos2d::Vec2> adjacentCoordinatesTo(cocos2d::Vec2 coordinate);
-  
-  void setTopMostRoomCoordinate(cocos2d::Vec2 coordinate);
-  cocos2d::Vec2 getTopMostRoomCoordinate();
-  
-  void setRightMostRoomCoordinate(cocos2d::Vec2 coordinate);
-  cocos2d::Vec2 getRightMostRoomCoordinate();
-  
-  void setBottomMostRoomCoordinate(cocos2d::Vec2 coordinate);
-  cocos2d::Vec2 getBottomMostRoomCoordinate();
-  
-  void setLeftMostRoomCoordinate(cocos2d::Vec2 coordinate);
-  cocos2d::Vec2 getLeftMostRoomCoordinate();
+  FarthestCoordinates getFarthestCoordinates();
 private:
+  void _adjustFarthestCoordinates(cocos2d::Vec2 newCoordinate);
   void _resetDistanceToPlayer();
   void _fillDistanceForAdjacentRooms(DungeonRoom* room);
   
