@@ -68,7 +68,8 @@ private:
   std::string _nameForGameCoordinate(cocos2d::Vec2 gameCoordinate);
   
   CharacterDiceSprite* _getCharacterDiceSprite();
-  void _adjustDiceSpritesForRoom(CharacterDiceSprite* charSprite, DungeonRoom* room);
+  
+  void _adjustSpritesForRoom(Node* roomNode);
   
   void _addOverlayWithVisibleNodes(cocos2d::Vector<Node*> visibleNodes);
   void _removeOverlay();
