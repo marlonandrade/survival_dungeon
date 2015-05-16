@@ -37,10 +37,11 @@ public:
   virtual bool init();
   CREATE_FUNC(Dungeon);
   
+  void placeInitialRoom();
+  
   void moveMonsters();
   void riseMonsters();
   
-  void setRoomForCoordinate(DungeonRoom* room, cocos2d::Vec2 coordinate);
   DungeonRoom* getRoomForCoordinate(cocos2d::Vec2 coordinate);
   cocos2d::Vec2 getCoordinateForRoom(DungeonRoom* room);
   
@@ -54,6 +55,7 @@ private:
   void _resetDistanceToPlayer();
   void _fillDistanceForAdjacentRooms(DungeonRoom* room);
   
+  RoomPlacementData* _placeRoomAtCoordinate(DungeonRoom* room, cocos2d::Vec2 coordinate);
   RoomPlacementData* _placeNewRoomAtCoordinate(cocos2d::Vec2 coordinate);
 };
 

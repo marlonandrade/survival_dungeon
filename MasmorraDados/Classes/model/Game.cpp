@@ -13,7 +13,6 @@
 #include "Images.h"
 
 #include "DownstairsRoom.h"
-#include "InitialRoom.h"
 #include "MinorMonsterRoom.h"
 #include "RuneRoom.h"
 #include "TreasureRoom.h"
@@ -151,15 +150,7 @@ void Game::_setupDungeon() {
   dungeon->setNewRoomDataSource([&]() -> DungeonRoom* {
     return this->_pickRandomRoom();
   });
-  
-  auto initialRoom = InitialRoom::create();
-  dungeon->setRoomForCoordinate(initialRoom, INITIAL_COORDINATE);
-  
-  auto placement = RoomPlacementData::create();
-  placement->setCoordinate(INITIAL_COORDINATE);
-  placement->setRoom(initialRoom);
-  
-  initialRoom->hasBeenPlaced(placement);
+  dungeon->placeInitialRoom();
   
   this->setDungeon(dungeon);
 }

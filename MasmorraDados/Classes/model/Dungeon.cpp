@@ -12,6 +12,7 @@
 #include "Events.h"
 
 #include "CoordinateUtil.h"
+#include "InitialRoom.h"
 #include "MonsterMoveData.h"
 
 USING_NS_CC;
@@ -30,6 +31,10 @@ bool Dungeon::init() {
   _farthestCoordinates.left = initial;
   
   return true;
+}
+
+void Dungeon::placeInitialRoom() {
+  this->_placeRoomAtCoordinate(InitialRoom::create(), INITIAL_COORDINATE);
 }
 
 void Dungeon::moveMonsters() {
@@ -89,11 +94,6 @@ void Dungeon::riseMonsters() {
   // - nasce primeiro nos mais perto dos player
 }
 
-void Dungeon::setRoomForCoordinate(DungeonRoom* room, Vec2 coordinate) {
-  _rooms.insert(CoordinateUtil::indexForCoordinate(coordinate), room);
-  this->_adjustFarthestCoordinates(coordinate);
-}
-
 DungeonRoom* Dungeon::getRoomForCoordinate(Vec2 coordinate) {
   return _rooms.at(CoordinateUtil::indexForCoordinate(coordinate));
 }
@@ -132,11 +132,6 @@ void Dungeon::placeRoomsAdjacentTo(Vec2 coordinate) {
   auto roomPlacedDelegate = this->getRoomPlacedDelegate();
   if (roomPlacedDelegate) {
     roomPlacedDelegate(placements);
-    
-    for (auto placement : placements) {
-      auto room = placement->getRoom();
-      room->hasBeenPlaced(placement);
-    }
   }
 }
 
@@ -203,6 +198,19 @@ void Dungeon::_fillDistanceForAdjacentRooms(DungeonRoom *room) {
   }
 }
 
+RoomPlacementData* Dungeon::_placeRoomAtCoordinate(DungeonRoom* room, Vec2 coordinate) {
+  _rooms.insert(CoordinateUtil::indexForCoordinate(coordinate), room);
+  this->_adjustFarthestCoordinates(coordinate);
+      
+  auto placement = RoomPlacementData::create();
+  placement->setCoordinate(coordinate);
+  placement->setRoom(room);
+  
+  room->hasBeenPlaced(placement);
+  
+  return placement;
+}
+
 RoomPlacementData* Dungeon::_placeNewRoomAtCoordinate(Vec2 coordinate) {
   RoomPlacementData* placement = nullptr;
   
@@ -213,11 +221,7 @@ RoomPlacementData* Dungeon::_placeNewRoomAtCoordinate(Vec2 coordinate) {
     DungeonRoom* room = newRoomDataSource();
     
     if (room) {
-      this->setRoomForCoordinate(room, coordinate);
-      
-      placement = RoomPlacementData::create();
-      placement->setCoordinate(coordinate);
-      placement->setRoom(room);
+      placement = this->_placeRoomAtCoordinate(room, coordinate);
     }
   }
   
