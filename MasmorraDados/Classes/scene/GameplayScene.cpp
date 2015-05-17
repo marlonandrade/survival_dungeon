@@ -20,6 +20,7 @@
 #include "MonsterMoveData.h"
 #include "MonsterRoomData.h"
 #include "PlayerSkillsLayer.h"
+#include "PositionUtil.h"
 #include "RoomPlacementData.h"
 #include "ScrollableLayer.h"
 
@@ -104,7 +105,7 @@ Layer* GameplayScene::_createObjectsLayer() {
   auto initialSprite = Sprite::create(initialRoom->getImagePath());
   auto name = CoordinateUtil::nameForCoordinate(initialCoordinate);
   initialSprite->setName(name);
-  initialSprite->setPosition(this->_positionForCoordinate(initialCoordinate));
+  initialSprite->setPosition(PositionUtil::positionForCoordinate(initialCoordinate));
   objectsLayer->addChild(initialSprite, DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
   
   auto characterSprite = this->_createCharacterDiceSprite();
@@ -180,7 +181,7 @@ void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacementData*> placements) {
       
       objectsLayer->addChild(roomSprite, zOrder + 1);
       
-      auto position = this->_positionForCoordinate(coordinate);
+      auto position = PositionUtil::positionForCoordinate(coordinate);
       
       auto delay = DelayTime::create(delayTime);
       auto animationStarted = CallFunc::create([=]() {
@@ -212,34 +213,6 @@ void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacementData*> placements) {
       zOrder--;
     }
   }
-}
-
-
-Vec2 GameplayScene::_positionForCoordinate(Vec2 coordinate) {
-  auto centerCoordinate = INITIAL_COORDINATE;
-  auto centerOfScene = this->_centerOfScene();
-  
-  auto offsetX = coordinate.x - centerCoordinate.x;
-  auto offsetY = coordinate.y - centerCoordinate.y;
-  
-  return Vec2(centerOfScene.x + offsetX * TILE_DIMENSION,
-              centerOfScene.y + offsetY * TILE_DIMENSION);
-}
-
-Vec2 GameplayScene::_coordinateForPosition(Vec2 scenePosition) {
-  auto centerCoordinate = INITIAL_COORDINATE;
-  auto centerOfScene = this->_centerOfScene();
-  
-  auto offsetX = scenePosition.x - centerOfScene.x;
-  auto offsetY = scenePosition.y - centerOfScene.y;
-  
-  auto halfTileDimension = TILE_DIMENSION / 2;
-  
-  offsetX > halfTileDimension ? offsetX += halfTileDimension : offsetX -= halfTileDimension;
-  offsetY > halfTileDimension ? offsetY += halfTileDimension : offsetY -= halfTileDimension;
-  
-  return Vec2(centerCoordinate.x + int(offsetX / TILE_DIMENSION),
-              centerCoordinate.y + int(offsetY / TILE_DIMENSION));
 }
 
 CharacterDiceSprite* GameplayScene::_getCharacterDiceSprite() {
@@ -392,14 +365,6 @@ void GameplayScene::_removeOverlay() {
   }
 }
 
-Vec2 GameplayScene::_centerOfScene() {
-  Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
-  Size visibleSize = Director::getInstance()->getVisibleSize();
-  
-  return Vec2(visibleSize.width / 2 + visibleOrigin.x,
-              visibleSize.height / 2 + visibleOrigin.y);
-}
-
 Node* GameplayScene::_getNodeForCharacterCoordinate() {
   auto coordinate = this->getGame()->getCharacterCoordinate();
   return this->_getNodeForCoordinate(coordinate);
@@ -466,7 +431,7 @@ void GameplayScene::_showTurnInfo(cocos2d::Sprite *infoSprite) {
   layer->setName(TURN_OVERLAY_LAYER_NAME);
   this->addChild(layer);
   
-  infoSprite->setPosition(this->_centerOfScene());
+  infoSprite->setPosition(PositionUtil::visibleCenter());
   infoSprite->setScale(0.5, 0.5);
   infoSprite->setOpacity(0);
   layer->addChild(infoSprite);
@@ -672,7 +637,7 @@ bool GameplayScene::canCharacterMoveToLocation(Vec2 location) {
 void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 location) {
   this->_resetCharacterMoveState();
   
-  auto newCoordinate = this->_coordinateForPosition(location);
+  auto newCoordinate = PositionUtil::coordinateForPosition(location);
   this->getGame()->characterMovedTo(newCoordinate);
   
   auto oldRoomSprite = sprite->getParent();

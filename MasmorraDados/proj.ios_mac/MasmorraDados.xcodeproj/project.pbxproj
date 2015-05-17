@@ -39,6 +39,8 @@
 		BF0E30071AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30041AFE4F41003AAFE5 /* DownstairsRoom.cpp */; };
 		BF0E300B1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30091B078947003AAFE5 /* CoordinateUtil.cpp */; };
 		BF0E300C1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30091B078947003AAFE5 /* CoordinateUtil.cpp */; };
+		BF0E300F1B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */; };
+		BF0E30101B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -199,6 +201,8 @@
 		BF0E30051AFE4F41003AAFE5 /* DownstairsRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownstairsRoom.h; sourceTree = "<group>"; };
 		BF0E30091B078947003AAFE5 /* CoordinateUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CoordinateUtil.cpp; sourceTree = "<group>"; };
 		BF0E300A1B078947003AAFE5 /* CoordinateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateUtil.h; sourceTree = "<group>"; };
+		BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PositionUtil.cpp; sourceTree = "<group>"; };
+		BF0E300E1B08FDF7003AAFE5 /* PositionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionUtil.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -490,6 +494,8 @@
 			children = (
 				BF0E30091B078947003AAFE5 /* CoordinateUtil.cpp */,
 				BF0E300A1B078947003AAFE5 /* CoordinateUtil.h */,
+				BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */,
+				BF0E300E1B08FDF7003AAFE5 /* PositionUtil.h */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -821,6 +827,7 @@
 				BF5B4BC01A94BA2C007636DE /* Player.cpp in Sources */,
 				BF5B4BCC1A94BA91007636DE /* Dungeon.cpp in Sources */,
 				BF5B4BDC1A94BC6B007636DE /* GameObject.cpp in Sources */,
+				BF0E300F1B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */,
 				BF0E300B1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */,
 				BFAA744C1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,
 				BFDFE2671ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */,
@@ -845,6 +852,7 @@
 				BFC5975B1AD43D19007C03A7 /* DungeonTurn.cpp in Sources */,
 				BF5B4BEC1A952E8D007636DE /* Dice.cpp in Sources */,
 				BFBE57AE1AE0143400D93530 /* Shake.cpp in Sources */,
+				BF0E30101B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */,
 				BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */,
 				BF7DB8601AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */,
 				BF3EDB481AF9279A002A2D7C /* RoomPlacementData.cpp in Sources */,

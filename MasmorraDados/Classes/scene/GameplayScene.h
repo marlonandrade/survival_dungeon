@@ -63,18 +63,12 @@ private:
   
   void _roomsHasBeenPlaced(cocos2d::Vector<RoomPlacementData*> placements);
   
-  cocos2d::Vec2 _positionForCoordinate(cocos2d::Vec2 coordinate);
-  cocos2d::Vec2 _coordinateForPosition(cocos2d::Vec2 position);
-  std::string _nameForGameCoordinate(cocos2d::Vec2 gameCoordinate);
-  
   CharacterDiceSprite* _getCharacterDiceSprite();
   
   void _adjustSpritesForRoom(Node* roomNode);
   
   void _addOverlayWithVisibleNodes(cocos2d::Vector<Node*> visibleNodes);
   void _removeOverlay();
-  
-  cocos2d::Vec2 _centerOfScene();
   
   cocos2d::Node* _getNodeForCharacterCoordinate();
   cocos2d::Node* _getNodeForCoordinate(cocos2d::Vec2 coordinate);

@@ -53,7 +53,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/sprite/ActionDiceSprite.cpp \
 		   ../../Classes/sprite/CharacterDiceSprite.cpp \
 		   ../../Classes/sprite/DiceSprite.cpp \
-		   ../../Classes/util/CoordinateUtil.cpp
+		   ../../Classes/util/CoordinateUtil.cpp \
+		   ../../Classes/util/PositionUtil.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/animation \
