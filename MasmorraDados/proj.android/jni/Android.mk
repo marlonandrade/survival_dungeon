@@ -17,8 +17,10 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/event_data/MonsterMoveData.cpp \
 		   ../../Classes/event_data/MonsterRoomData.cpp \
 		   ../../Classes/event_data/RoomPlacementData.cpp \
+		   ../../Classes/event_data/RoomsPlacementsData.cpp \
 		   ../../Classes/layer/ActionDiceLayer.cpp \
 		   ../../Classes/layer/BackgroundLayer.cpp \
+		   ../../Classes/layer/DungeonLayer.cpp \
 		   ../../Classes/layer/PlayerSkillsLayer.cpp \
 		   ../../Classes/layer/ScrollableLayer.cpp \
 		   ../../Classes/model/character/Character.cpp \

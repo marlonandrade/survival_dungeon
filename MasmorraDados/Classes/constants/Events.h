@@ -26,7 +26,7 @@
 #define EVT_ACTION_DICE_SPENT         "action_dice_spent"         // data -> ActionDice
 
 #define EVT_LAST_TILE_HAS_BEEN_PLACED "last_tile_has_been_placed" // data -> RoomPlacementData
-#define EVT_ROOM_HAS_BEEN_PLACED      "room_has_been_placed"      // data -> RoomPlacementData
+#define EVT_ROOMS_HAVE_BEEN_PLACED    "rooms_have_been_placed"    // data -> RoomsPlacementsData
 
 #define EVT_MONSTER_DICE_GENERATED    "monster_dice_generated"    // data -> MonsterRoomData
 

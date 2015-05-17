@@ -13,16 +13,18 @@
 #include "NodeNames.h"
 
 #include "ActionDiceLayer.h"
-#include "ActionDiceSprite.h"
 #include "BackgroundLayer.h"
-#include "CharacterDiceSprite.h"
-#include "CoordinateUtil.h"
-#include "MonsterMoveData.h"
-#include "MonsterRoomData.h"
+#include "DungeonLayer.h"
 #include "PlayerSkillsLayer.h"
-#include "PositionUtil.h"
-#include "RoomPlacementData.h"
 #include "ScrollableLayer.h"
+
+#include "ActionDiceSprite.h"
+#include "CharacterDiceSprite.h"
+
+#include "RoomPlacementData.h"
+
+#include "CoordinateUtil.h"
+#include "PositionUtil.h"
 
 #include "DungeonTurn.h"
 #include "InitialTurn.h"
@@ -37,15 +39,10 @@ bool GameplayScene::init() {
     return false;
   }
   
-  auto game = Game::createWithRoomPlacedDelegate(CC_CALLBACK_1(GameplayScene::_roomsHasBeenPlaced, this));
-  this->setGame(game);
-  
   this->_adjustInitialLayers();
   this->_setupEventHandlers();
   
-  game->setupCharacterInitialCoordinate();
-  
-  this->_enableInteractions();
+  Game::getInstance()->setupCharacterInitialCoordinate();
   
   return true;
 }
@@ -53,9 +50,12 @@ bool GameplayScene::init() {
 #pragma mark - Private Interface
 
 void GameplayScene::_adjustInitialLayers() {
-  auto scrollableLayer = ScrollableLayer::createWithDungeon(this->getGame()->getDungeon());
-  scrollableLayer->addChild(BackgroundLayer::create(), -10);
-  scrollableLayer->addChild(this->_createObjectsLayer(), 0);
+  auto dungeonLayer = DungeonLayer::create();
+  auto backgroundLayer = BackgroundLayer::create();
+  
+  auto scrollableLayer = ScrollableLayer::createWithDungeon(Game::getInstance()->getDungeon());
+  scrollableLayer->addChild(backgroundLayer, -10);
+  scrollableLayer->addChild(dungeonLayer, 0);
   
   this->addChild(scrollableLayer, 0);
   this->addChild(this->_createControlsLayer(), 1);
@@ -63,6 +63,11 @@ void GameplayScene::_adjustInitialLayers() {
 
 void GameplayScene::_setupEventHandlers() {
   auto dispatcher = Director::getInstance()->getEventDispatcher();
+  
+  auto actionDicesRolledCallback = CC_CALLBACK_1(GameplayScene::_handleActionDicesRolled, this);
+  this->setActionDicesRolledListener(
+    dispatcher->addCustomEventListener(EVT_ACTION_DICES_ROLLED, actionDicesRolledCallback)
+  );
   
   auto turnHasStartedCallback = CC_CALLBACK_1(GameplayScene::_handleTurnHasStarted, this);
   this->setTurnHasStartedListener(
@@ -73,48 +78,6 @@ void GameplayScene::_setupEventHandlers() {
   this->setTurnHasEndedListener(
     dispatcher->addCustomEventListener(EVT_TURN_HAS_ENDED, turnHasEndedCallback)
   );
-  
-  auto actionDicesRolledCallback = CC_CALLBACK_1(GameplayScene::_handleActionDicesRolled, this);
-  this->setActionDicesRolledListener(
-    dispatcher->addCustomEventListener(EVT_ACTION_DICES_ROLLED, actionDicesRolledCallback)
-  );
-  
-  auto monsterDiceGeneratedCallback = CC_CALLBACK_1(GameplayScene::_handleMonsterDiceGenerated, this);
-  this->setMonsterDiceGeneratedListener(
-    dispatcher->addCustomEventListener(EVT_MONSTER_DICE_GENERATED, monsterDiceGeneratedCallback)
-  );
-  
-  auto monsterMovedCallback = CC_CALLBACK_1(GameplayScene::_handleMonsterMoved, this);
-  this->setMonsterMovedListener(
-     dispatcher->addCustomEventListener(EVT_MONSTER_MOVED, monsterMovedCallback)
-  );
-  
-  auto lastTileHasBeenPlacedCallback = CC_CALLBACK_1(GameplayScene::_handleLastTileHasBeenPlaced, this);
-  this->setLastTileHasBeenPlacedListener(
-    dispatcher->addCustomEventListener(EVT_LAST_TILE_HAS_BEEN_PLACED, lastTileHasBeenPlacedCallback)
-  );
-}
-
-Layer* GameplayScene::_createObjectsLayer() {
-  auto objectsLayer = Layer::create();
-  objectsLayer->setName(OBJECTS_LAYER_NAME);
-  
-  auto initialRoom = this->getGame()->getDungeon()->getInitialRoom();
-  auto initialCoordinate = INITIAL_COORDINATE;
-  
-  auto initialSprite = Sprite::create(initialRoom->getImagePath());
-  auto name = CoordinateUtil::nameForCoordinate(initialCoordinate);
-  initialSprite->setName(name);
-  initialSprite->setPosition(PositionUtil::positionForCoordinate(initialCoordinate));
-  objectsLayer->addChild(initialSprite, DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
-  
-  auto characterSprite = this->_createCharacterDiceSprite();
-  characterSprite->setName(CHARACTER_DICE_SPRITE_NAME);
-  characterSprite->setPosition(Vec2(initialSprite->getContentSize().width / 2,
-                                    initialSprite->getContentSize().height / 2));
-  initialSprite->addChild(characterSprite);
-    
-  return objectsLayer;
 }
 
 Layer* GameplayScene::_createControlsLayer() {
@@ -122,7 +85,7 @@ Layer* GameplayScene::_createControlsLayer() {
   controlsLayer->setVisible(false);
   controlsLayer->setName(CONTROLS_LAYER_NAME);
   
-  auto actionDiceLayer = ActionDiceLayer::createWithDices(this->getGame()->getActionDices());
+  auto actionDiceLayer = ActionDiceLayer::createWithDices(Game::getInstance()->getActionDices());
   actionDiceLayer->setName(ACTION_DICE_LAYER_NAME);
   controlsLayer->addChild(actionDiceLayer);
   
@@ -134,288 +97,12 @@ Layer* GameplayScene::_createControlsLayer() {
   return controlsLayer;
 }
 
-Node* GameplayScene::_createCharacterDiceSprite() {
-  return CharacterDiceSprite::createWithDelegate(this);
-}
-
 Layer* GameplayScene::_getScrollableLayer() {
   return (Layer*) this->getChildByName(SCROLLABLE_LAYER_NAME);
 }
 
-Layer* GameplayScene::_getObjectsLayer() {
-  auto scrollableLayer = this->_getScrollableLayer();
-  return (Layer*) scrollableLayer->getChildByName(OBJECTS_LAYER_NAME);
-}
-
 Layer* GameplayScene::_getControlsLayer() {
   return (Layer*) this->getChildByName(CONTROLS_LAYER_NAME);
-}
-
-void GameplayScene::_roomsHasBeenPlaced(Vector<RoomPlacementData*> placements) {
-  auto objectsLayer = this->_getObjectsLayer();
-  int zOrder = placements.size();
-  
-  if (placements.size() > 0) {
-    this->_disableInteractions();
-    
-    float delayTime = 0;
-    auto lastPlacement = placements.at(placements.size() - 1);
-    
-    for (auto placement : placements) {
-      auto room = placement->getRoom();
-      auto coordinate = placement->getCoordinate();
-      
-      auto roomSprite = Sprite::create(room->getImagePath());
-      auto name = CoordinateUtil::nameForCoordinate(coordinate);
-      roomSprite->setName(name);
-      
-      auto size = Director::getInstance()->getVisibleSize();
-      auto origin = Director::getInstance()->getVisibleOrigin() - objectsLayer->getParent()->getPosition();
-      
-      auto initialSize = TILE_DIMENSION * TILE_PLACEMENT_SCALE;
-      
-      auto deckPosition = Vec2(origin.x + size.width - initialSize / 2 - 10,
-                               origin.y + size.height - initialSize / 2 - 10);
-      roomSprite->setScale(TILE_PLACEMENT_SCALE, TILE_PLACEMENT_SCALE);
-      roomSprite->setPosition(deckPosition);
-      
-      objectsLayer->addChild(roomSprite, zOrder + 1);
-      
-      auto position = PositionUtil::positionForCoordinate(coordinate);
-      
-      auto delay = DelayTime::create(delayTime);
-      auto animationStarted = CallFunc::create([=]() {
-        this->_disableInteractions();
-        roomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER + 10);
-      });
-      auto moveAndScale = Spawn::create(MoveTo::create(PLACE_ROOM_DURATION, position),
-                                        ScaleTo::create(PLACE_ROOM_DURATION, 1),
-                                        NULL);
-      auto easeMove = EaseBackIn::create(moveAndScale);
-      auto animationEnded = CallFunc::create([=]() {
-        this->_enableInteractions();
-        roomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
-        
-        if (placement == lastPlacement) {
-          auto dispatcher = Director::getInstance()->getEventDispatcher();
-          dispatcher->dispatchCustomEvent(EVT_LAST_TILE_HAS_BEEN_PLACED, placement);
-          
-          if (this->getGame()->isInitialTurn()) {
-            this->getGame()->finishCurrentTurn();
-          }
-        }
-      });
-      
-      roomSprite->runAction(Sequence::create(delay, animationStarted, easeMove,
-                                             animationEnded, NULL));
-      
-      delayTime += PLACE_ROOM_DURATION;
-      zOrder--;
-    }
-  }
-}
-
-CharacterDiceSprite* GameplayScene::_getCharacterDiceSprite() {
-  auto room = this->_getNodeForCharacterCoordinate();
-  return (CharacterDiceSprite*) room->getChildByName(CHARACTER_DICE_SPRITE_NAME);
-}
-
-void GameplayScene::_adjustSpritesForRoom(Node *roomNode) {
-  auto roomCenter = Vec2(roomNode->getContentSize().width / 2,
-                         roomNode->getContentSize().height / 2);
-  
-  auto sprites = roomNode->getChildren();
-  switch (sprites.size()) {
-    case 1: {
-      auto sprite1 = sprites.at(0);
-      auto moveSprite1 = MoveTo::create(MOVE_DICE_DURATION, roomCenter);
-      sprite1->runAction(moveSprite1);
-      break;
-    }
-    case 2: {
-      auto sprite1 = sprites.at(0);
-      
-      auto w = sprite1->getContentSize().width / 2;
-      
-      auto sprite1NewPosition = roomCenter + Vec2(-(w + 1), 0);
-      auto moveSprite1 = MoveTo::create(MOVE_DICE_DURATION, sprite1NewPosition);
-      sprite1->runAction(moveSprite1);
-      
-      auto sprite2 = sprites.at(1);
-      
-      w = sprite2->getContentSize().width / 2;
-      
-      auto sprite2NewPosition = roomCenter + Vec2(w + 1, 0);
-      auto moveSprite2 = MoveTo::create(MOVE_DICE_DURATION, sprite2NewPosition);
-      sprite2->runAction(moveSprite2);
-      break;
-    }
-    case 3: {
-      auto sprite1 = sprites.at(0);
-      
-      auto w = sprite1->getContentSize().width / 2;
-      auto h = sprite1->getContentSize().height / 2;
-      
-      auto sprite1NewPosition = roomCenter + Vec2(-(w + 1), h + 1);
-      auto moveSprite1 = MoveTo::create(MOVE_DICE_DURATION, sprite1NewPosition);
-      sprite1->runAction(moveSprite1);
-      
-      auto sprite2 = sprites.at(1);
-      
-      w = sprite2->getContentSize().height / 2;
-      h = sprite2->getContentSize().height / 2;
-      
-      auto sprite2NewPosition = roomCenter + Vec2(w + 1, h + 1);
-      auto moveSprite2 = MoveTo::create(MOVE_DICE_DURATION, sprite2NewPosition);
-      sprite2->runAction(moveSprite2);
-      
-      auto sprite3 = sprites.at(2);
-      
-      h = sprite3->getContentSize().height / 2;
-      
-      auto sprite3NewPosition = roomCenter + Vec2(0, -(h + 1));
-      auto moveSprite3 = MoveTo::create(MOVE_DICE_DURATION, sprite3NewPosition);
-      sprite3->runAction(moveSprite3);
-      break;
-    }
-    case 4: {
-      auto sprite1 = sprites.at(0);
-      
-      auto w = sprite1->getContentSize().width / 2;
-      auto h = sprite1->getContentSize().height / 2;
-      
-      auto sprite1NewPosition = roomCenter + Vec2(-(w + 1), h + 1);
-      auto moveSprite1 = MoveTo::create(MOVE_DICE_DURATION, sprite1NewPosition);
-      sprite1->runAction(moveSprite1);
-      
-      auto sprite2 = sprites.at(1);
-      
-      w = sprite2->getContentSize().width / 2;
-      h = sprite2->getContentSize().height / 2;
-      
-      auto sprite2NewPosition = roomCenter + Vec2(w + 1, h + 1);
-      auto moveSprite2 = MoveTo::create(MOVE_DICE_DURATION, sprite2NewPosition);
-      sprite2->runAction(moveSprite2);
-      
-      auto sprite3 = sprites.at(2);
-      
-      w = sprite3->getContentSize().width / 2;
-      h = sprite3->getContentSize().height / 2;
-      
-      auto sprite3NewPosition = roomCenter + Vec2(-(w + 1), -(h + 1));
-      auto moveSprite3 = MoveTo::create(MOVE_DICE_DURATION, sprite3NewPosition);
-      sprite3->runAction(moveSprite3);
-      
-      auto sprite4 = sprites.at(3);
-      
-      w = sprite4->getContentSize().width / 2;
-      h = sprite4->getContentSize().height / 2;
-      
-      auto sprite4NewPosition = roomCenter + Vec2(w + 1, -(h + 1));
-      auto moveSprite4 = MoveTo::create(MOVE_DICE_DURATION, sprite4NewPosition);
-      sprite4->runAction(moveSprite4);
-      break;
-    }
-  }
-}
-
-void GameplayScene::_addOverlayWithVisibleNodes(Vector<Node *> visibleNodes) {
-  auto objectsLayer = this->_getObjectsLayer();
-  auto scrollableLayer = this->_getScrollableLayer();
-  
-  if (!objectsLayer->getChildByName(OVERLAY_LAYER_NAME)) {
-    auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
-    overlayLayer->setName(OVERLAY_LAYER_NAME);
-    overlayLayer->setPosition(Vec2(-scrollableLayer->getPosition().x,
-                                   -scrollableLayer->getPosition().y));
-    
-    objectsLayer->addChild(overlayLayer, OVERLAY_Z_ORDER);
-    
-    auto fadeIn = FadeTo::create(OVERLAY_DURATION, OVERLAY_OPACITY);
-    overlayLayer->runAction(fadeIn);
-    
-    for (auto visibleNode : visibleNodes) {
-      auto newZOrder = visibleNode->getLocalZOrder() + OVERLAY_Z_ORDER;
-      visibleNode->setLocalZOrder(newZOrder);
-    }
-    
-    this->setInteractableNodes(visibleNodes);
-  }
-}
-
-void GameplayScene::_removeOverlay() {
-  auto overlayLayer = this->_getObjectsLayer()->getChildByName(OVERLAY_LAYER_NAME);
-  
-  if (overlayLayer) {
-    this->_disableInteractions();
-    
-    auto fadeOut = FadeOut::create(OVERLAY_DURATION);
-    auto changeLayer = CallFunc::create([=]() {
-      for (auto node : this->getInteractableNodes()) {
-        auto oldZOrder = node->getLocalZOrder() - OVERLAY_Z_ORDER;
-        node->setLocalZOrder(oldZOrder);
-      }
-    });
-    auto removeSelf = RemoveSelf::create();
-    auto animationEnded = CallFunc::create([=]() {
-      this->_enableInteractions();
-    });
-    
-    overlayLayer->runAction(Sequence::create(fadeOut, changeLayer, removeSelf, animationEnded, NULL));
-  }
-}
-
-Node* GameplayScene::_getNodeForCharacterCoordinate() {
-  auto coordinate = this->getGame()->getCharacterCoordinate();
-  return this->_getNodeForCoordinate(coordinate);
-}
-
-Node* GameplayScene::_getNodeForCoordinate(Vec2 coordinate) {
-  auto name = CoordinateUtil::nameForCoordinate(coordinate);
-  return this->_getObjectsLayer()->getChildByName(name);
-}
-
-Vector<Node*> GameplayScene::_getNodesForAdjacentCharacterCoordinate() {
-  Node* activeLayer = this->_getObjectsLayer();
-  auto overlayLayer = this->getChildByName(OVERLAY_LAYER_NAME);
-  if (overlayLayer) {
-    activeLayer = overlayLayer;
-  }
-  
-  Vector<Node*> nodes;
-  
-  auto coordinate = this->getGame()->getCharacterCoordinate();
-  auto adjacentCoordinates = CoordinateUtil::adjacentCoordinatesTo(coordinate);
-  for (auto adjacentCoordinate : adjacentCoordinates) {
-    auto name = CoordinateUtil::nameForCoordinate(adjacentCoordinate);
-    auto node = activeLayer->getChildByName(name);
-    
-    if (node) {
-      nodes.pushBack(activeLayer->getChildByName(name));
-    }
-  }
-  
-  return nodes;
-}
-
-bool GameplayScene::_isInteractionEnabled() {
-  return _userInteractionEnabled;
-}
-
-void GameplayScene::_disableInteractions() {
-  _userInteractionEnabled = false;
-}
-
-void GameplayScene::_enableInteractions() {
-  _userInteractionEnabled = true;
-}
-
-void GameplayScene::_resetCharacterMoveState() {
-  this->_removeOverlay();
-  
-  for (auto adjacentNode : this->_getNodesForAdjacentCharacterCoordinate()) {
-    adjacentNode->setColor(Color3B::WHITE);
-  }
 }
 
 void GameplayScene::_showPlayerTurnInfo() {
@@ -463,44 +150,6 @@ void GameplayScene::_showTurnInfo(cocos2d::Sprite *infoSprite) {
 
 #pragma mark - Event Handlers
 
-void GameplayScene::_handleTurnHasStarted(EventCustom* event) {
-  log("turn has started");
-  
-  auto turn = (Turn*) event->getUserData();
-  
-  if (IS(turn, PlayerTurn)) {
-    auto show = Show::create();
-    auto roll = CallFunc::create([&] {
-      for (auto dice : this->getGame()->getActionDices()) {
-        dice->roll();
-      }
-    });
-    auto showAndRoll = Sequence::create(show, roll, NULL);
-    
-    this->_getControlsLayer()->runAction(showAndRoll);
-    
-    this->_showPlayerTurnInfo();
-  } else if (IS(turn, DungeonTurn)) {
-    this->_showDungeonTurnInfo();
-    
-    auto delay = DelayTime::create(TURN_INFO_DURATION);
-    auto executeTurn = CallFunc::create([&] {
-      this->getGame()->executeCurrentTurn();
-    });
-    this->runAction(Sequence::create(delay, executeTurn, NULL));
-  }
-}
-
-void GameplayScene::_handleTurnHasEnded(EventCustom* event) {
-  log("turn has ended");
-  
-  auto turn = (Turn*) event->getUserData();
-  
-  if (IS(turn, PlayerTurn)) {
-    this->_getControlsLayer()->runAction(Hide::create());
-  }
-}
-
 void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
   auto actionDicesLayer = (ActionDiceLayer*) event->getUserData();
   auto playerSkillLayer = (PlayerSkillsLayer*)this->_getControlsLayer()->getChildByName(PLAYER_SKILL_LAYER_NAME);
@@ -523,144 +172,40 @@ void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
   playerSkillLayer->runAction(Show::create());
 }
 
-void GameplayScene::_handleMonsterDiceGenerated(EventCustom* event) {
-  auto data = (MonsterRoomData*) event->getUserData();
-  _monsterRoomDatas.pushBack(data);
-}
-
-void GameplayScene::_handleMonsterMoved(EventCustom* event) {
-  auto data = (MonsterMoveData*) event->getUserData();
+void GameplayScene::_handleTurnHasStarted(EventCustom* event) {
+  log("turn has started");
   
-  auto origin = data->getOrigin();
-  auto destination = data->getDestination();
+  auto turn = (Turn*) event->getUserData();
   
-  auto deltaCoordinate = origin->getCoordinate() - destination->getCoordinate();
-  auto deltaPosition = Vec2(deltaCoordinate.x * TILE_DIMENSION,
-                            deltaCoordinate.y * TILE_DIMENSION);
-  
-  auto destinationNode = this->_getNodeForCoordinate(destination->getCoordinate());
-  
-  for (auto monster : data->getMonsterDices()) {
-    auto monsterSprite = monster->getSprite();
+  if (IS(turn, PlayerTurn)) {
+    auto show = Show::create();
+    auto roll = CallFunc::create([&] {
+      for (auto dice : Game::getInstance()->getActionDices()) {
+        dice->roll();
+      }
+    });
+    auto showAndRoll = Sequence::create(show, roll, NULL);
     
-    monsterSprite->retain();
-    monsterSprite->removeFromParent();
-    destinationNode->addChild(monsterSprite);
-    monsterSprite->release();
+    this->_getControlsLayer()->runAction(showAndRoll);
     
-    monsterSprite->setPosition(monsterSprite->getPosition() + deltaPosition);
-  }
-  
-  this->_adjustSpritesForRoom(destinationNode);
-}
-
-void GameplayScene::_handleLastTileHasBeenPlaced(EventCustom* event) {
-  Vector<DungeonRoom*> rooms;
-  
-  for (auto data : _monsterRoomDatas) {
-    auto dice = data->getMonsterDice();
-    auto room = data->getRoom();
+    this->_showPlayerTurnInfo();
+  } else if (IS(turn, DungeonTurn)) {
+    this->_showDungeonTurnInfo();
     
-    if (!rooms.contains(room)) {
-      rooms.pushBack(room);
-    }
-    
-    auto coordinate = this->getGame()->getDungeon()->getCoordinateForRoom(room);
-    
-    auto node = this->_getNodeForCoordinate(coordinate);
-    auto diceSprite = dice->getSprite();
-    
-    auto center = Vec2(node->getContentSize().width / 2,
-                       node->getContentSize().height / 2);
-    diceSprite->setPosition(center);
-    
-    dice->roll();
-    node->addChild(dice->getSprite());
-    
-    this->_adjustSpritesForRoom(node);
-  }
-  
-  _monsterRoomDatas.clear();
-}
-
-#pragma mark - CharacterMoveDelegate Methods
-
-bool GameplayScene::canCharacterMove() {
-  bool canMove = false;
-  
-  if (this->getGame()->isPlayerTurn()) {
-    auto playerTurn = (PlayerTurn *) this->getGame()->getTurn();
-  
-    auto availableSkills = this->getGame()->getAvailableSkills();
-    
-    bool playerHasBoot = availableSkills[IMG_DICE_ACTION_BOOT].asInt() ||
-        !this->getGame()->getFreeBootUsed();
-    
-    canMove = playerTurn->isActionDicesRolled() && playerHasBoot;
-  }
-  
-  return canMove;
-}
-
-void GameplayScene::characterWillMove(CharacterDiceSprite* sprite) {
-  Vector<Node*> visibleNodes;
-  visibleNodes.pushBack(this->_getNodeForCharacterCoordinate());
-  visibleNodes.pushBack(this->_getNodesForAdjacentCharacterCoordinate());
-  this->_addOverlayWithVisibleNodes(visibleNodes);
-}
-
-void GameplayScene::characterIsMovingToLocation(Vec2 location) {
-  for (auto adjacentNode : this->_getNodesForAdjacentCharacterCoordinate()) {
-    Color3B color = Color3B::WHITE;
-    
-    if (adjacentNode->getBoundingBox().containsPoint(location)) {
-      color = Color3B(170, 255, 170);
-    }
-    
-    adjacentNode->setColor(color);
+    auto delay = DelayTime::create(TURN_INFO_DURATION);
+    auto executeTurn = CallFunc::create([&] {
+      Game::getInstance()->executeCurrentTurn();
+    });
+    this->runAction(Sequence::create(delay, executeTurn, NULL));
   }
 }
 
-bool GameplayScene::canCharacterMoveToLocation(Vec2 location) {
-  bool canMove = false;
+void GameplayScene::_handleTurnHasEnded(EventCustom* event) {
+  log("turn has ended");
   
-  for (auto adjacentNode : this->_getNodesForAdjacentCharacterCoordinate()) {
-    if (adjacentNode->getBoundingBox().containsPoint(location)) {
-      canMove = true;
-      break;
-    }
+  auto turn = (Turn*) event->getUserData();
+  
+  if (IS(turn, PlayerTurn)) {
+    this->_getControlsLayer()->runAction(Hide::create());
   }
-  
-  return canMove;
-}
-
-void GameplayScene::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 location) {
-  this->_resetCharacterMoveState();
-  
-  auto newCoordinate = PositionUtil::coordinateForPosition(location);
-  this->getGame()->characterMovedTo(newCoordinate);
-  
-  auto oldRoomSprite = sprite->getParent();
-  auto newRoomSprite = this->_getNodeForCharacterCoordinate();
-  
-  auto oldPosition = oldRoomSprite->convertToWorldSpace(sprite->getPosition());
-  auto newPosition = newRoomSprite->convertToNodeSpace(oldPosition);
-  
-  sprite->retain();
-  sprite->removeFromParent();
-  newRoomSprite->addChild(sprite);
-  sprite->release();
-  
-  newRoomSprite->setLocalZOrder(DUNGEON_ROOM_WITH_CHAR_Z_ORDER + OVERLAY_Z_ORDER);
-  oldRoomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER + OVERLAY_Z_ORDER);
- 
-  sprite->setPosition(newPosition);
-  
-  this->_adjustSpritesForRoom(oldRoomSprite);
-  this->_adjustSpritesForRoom(newRoomSprite);
-}
-
-void GameplayScene::characterDidNotMove(CharacterDiceSprite* sprite) {
-  this->_resetCharacterMoveState();
-  this->_adjustSpritesForRoom(sprite->getParent());
 }

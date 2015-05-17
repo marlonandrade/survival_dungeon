@@ -13,6 +13,7 @@
 
 class PositionUtil {
 public:
+  static cocos2d::Vec2 centerOfNode(cocos2d::Node* node);
   static cocos2d::Vec2 visibleCenter();
   static cocos2d::Vec2 positionForCoordinate(cocos2d::Vec2 coordinate);
   static cocos2d::Vec2 coordinateForPosition(cocos2d::Vec2 position);

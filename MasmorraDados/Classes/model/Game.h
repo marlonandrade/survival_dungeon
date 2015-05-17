@@ -31,7 +31,6 @@ class Game : public GameObject {
   
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _actionDices, ActionDices);
-  CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
   CC_SYNTHESIZE(bool, _freeBootUsed, FreeBootUsed);
   CC_PROPERTY(int, _level, Level);
 protected:
@@ -40,8 +39,9 @@ protected:
   cocos2d::Vec2 _characterCoordinate;
   
 public:
-  static Game* createWithRoomPlacedDelegate(RoomPlacedDelegate delegate);
-  virtual bool initWithRoomPlacedDelegate(RoomPlacedDelegate delegate);
+  static Game* getInstance();
+  
+  virtual bool init();
   
   virtual Turn* getTurn(void) const { return _turn; }
   virtual void setTurn(Turn* turn);

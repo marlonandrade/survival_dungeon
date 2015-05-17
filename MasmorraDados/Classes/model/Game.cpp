@@ -24,6 +24,28 @@
 
 USING_NS_CC;
 
+static Game *_game = nullptr;
+
+Game* Game::getInstance() {
+  if (!_game) {
+    _game = new (std::nothrow) Game();
+    _game->init();
+  }
+  
+  return _game;
+}
+
+bool Game::init() {
+  if (!GameObject::init()) {
+    return false;
+  }
+  
+  this->setLevel(1);
+  this->_setupEventHandlers();
+  
+  return true;
+}
+
 #pragma mark - Getter and Setter
 
 void Game::setTurn(Turn* turn) {
@@ -34,6 +56,7 @@ void Game::setTurn(Turn* turn) {
     dispatcher->dispatchCustomEvent(EVT_TURN_HAS_ENDED, _turn);
     
     CC_SAFE_RELEASE(_turn);
+    
     _turn = turn;
     
     dispatcher->dispatchCustomEvent(EVT_TURN_HAS_STARTED, _turn);
@@ -61,31 +84,6 @@ void Game::setLevel(int level) {
 }
 
 #pragma mark - Public Interface
-
-Game* Game::createWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
-  auto game = new (std::nothrow) Game();
-  
-  if (game && game->initWithRoomPlacedDelegate(delegate)) {
-    game->autorelease();
-  } else {
-    CC_SAFE_DELETE(game);
-  }
-  
-  return game;
-}
-
-bool Game::initWithRoomPlacedDelegate(RoomPlacedDelegate delegate) {
-  if (!GameObject::init()) {
-    return false;
-  }
-  
-  this->setRoomPlacedDelegate(delegate);
-  this->setLevel(1);
-  
-  this->_setupEventHandlers();
-  
-  return true;
-}
 
 void Game::setupCharacterInitialCoordinate() {
   this->setCharacterCoordinate(INITIAL_COORDINATE);
@@ -146,7 +144,6 @@ void Game::restoreFreeBoot() {
 
 void Game::_setupDungeon() {
   auto dungeon = Dungeon::create();
-  dungeon->setRoomPlacedDelegate(this->getRoomPlacedDelegate());
   dungeon->setNewRoomDataSource([&]() -> DungeonRoom* {
     return this->_pickRandomRoom();
   });

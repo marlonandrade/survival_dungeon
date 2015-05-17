@@ -12,6 +12,11 @@
 
 USING_NS_CC;
 
+Vec2 PositionUtil::centerOfNode(Node* node) {
+  auto halfSize = node->getContentSize() / 2;
+  return Vec2(halfSize.width, halfSize.height);
+}
+
 Vec2 PositionUtil::visibleCenter() {
   Vec2 visibleOrigin = Director::getInstance()->getVisibleOrigin();
   Size visibleSize = Director::getInstance()->getVisibleSize();

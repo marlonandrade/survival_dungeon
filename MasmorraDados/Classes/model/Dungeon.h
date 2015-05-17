@@ -16,7 +16,6 @@
 #include "RoomPlacementData.h"
 
 typedef cocos2d::Map<int, DungeonRoom*> DungeonGrid;
-typedef std::function<void (cocos2d::Vector<RoomPlacementData*>)> RoomPlacedDelegate;
 typedef std::function<DungeonRoom* (void)> NewRoomDataSource;
 
 struct FarthestCoordinates {
@@ -30,7 +29,6 @@ class Dungeon : public GameObject {
 private:
   DungeonGrid _rooms;
   FarthestCoordinates _farthestCoordinates;
-  CC_SYNTHESIZE(RoomPlacedDelegate, _roomPlacedDelegate, RoomPlacedDelegate);
   CC_SYNTHESIZE(NewRoomDataSource, _newRoomDataSource, NewRoomDataSource);
   
 public:

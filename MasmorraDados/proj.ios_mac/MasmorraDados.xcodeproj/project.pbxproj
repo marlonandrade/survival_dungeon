@@ -30,6 +30,8 @@
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
+		BF083B571B09059C00A6B39D /* RoomsPlacementsData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF083B551B09059C00A6B39D /* RoomsPlacementsData.cpp */; };
+		BF083B581B09059C00A6B39D /* RoomsPlacementsData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF083B551B09059C00A6B39D /* RoomsPlacementsData.cpp */; };
 		BF0840951A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */; };
 		BF0840961A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */; };
 		BF08409B1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */; };
@@ -41,6 +43,8 @@
 		BF0E300C1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30091B078947003AAFE5 /* CoordinateUtil.cpp */; };
 		BF0E300F1B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */; };
 		BF0E30101B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */; };
+		BF0E30171B0902A9003AAFE5 /* DungeonLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30151B0902A9003AAFE5 /* DungeonLayer.cpp */; };
+		BF0E30181B0902A9003AAFE5 /* DungeonLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30151B0902A9003AAFE5 /* DungeonLayer.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -191,6 +195,8 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		BF0712431AD2E68C002252A9 /* CharacterMoveDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterMoveDelegate.h; sourceTree = "<group>"; };
+		BF083B551B09059C00A6B39D /* RoomsPlacementsData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RoomsPlacementsData.cpp; sourceTree = "<group>"; };
+		BF083B561B09059C00A6B39D /* RoomsPlacementsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomsPlacementsData.h; sourceTree = "<group>"; };
 		BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroundLayer.cpp; sourceTree = "<group>"; };
 		BF0840941A9CD506003F0D76 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterDiceSprite.cpp; sourceTree = "<group>"; };
@@ -203,6 +209,8 @@
 		BF0E300A1B078947003AAFE5 /* CoordinateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateUtil.h; sourceTree = "<group>"; };
 		BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PositionUtil.cpp; sourceTree = "<group>"; };
 		BF0E300E1B08FDF7003AAFE5 /* PositionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionUtil.h; sourceTree = "<group>"; };
+		BF0E30151B0902A9003AAFE5 /* DungeonLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DungeonLayer.cpp; sourceTree = "<group>"; };
+		BF0E30161B0902A9003AAFE5 /* DungeonLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DungeonLayer.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -468,6 +476,8 @@
 				BF6D78CF1AE416F3002D67C7 /* ActionDiceLayer.h */,
 				BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */,
 				BF0840941A9CD506003F0D76 /* BackgroundLayer.h */,
+				BF0E30151B0902A9003AAFE5 /* DungeonLayer.cpp */,
+				BF0E30161B0902A9003AAFE5 /* DungeonLayer.h */,
 				BF6A4D571AEE9882001FDF44 /* PlayerSkillsLayer.cpp */,
 				BF6A4D581AEE9882001FDF44 /* PlayerSkillsLayer.h */,
 				BFBAE2A11AD171AC00A5FC9A /* ScrollableLayer.cpp */,
@@ -636,6 +646,8 @@
 				BF3EDB3E1AF92203002A2D7C /* MonsterRoomData.h */,
 				BF3EDB451AF9279A002A2D7C /* RoomPlacementData.cpp */,
 				BF3EDB461AF9279A002A2D7C /* RoomPlacementData.h */,
+				BF083B551B09059C00A6B39D /* RoomsPlacementsData.cpp */,
+				BF083B561B09059C00A6B39D /* RoomsPlacementsData.h */,
 			);
 			path = event_data;
 			sourceTree = "<group>";
@@ -800,10 +812,12 @@
 				BFD36F151AF85107003701EC /* MajorMonsterDice.cpp in Sources */,
 				BFAA74501A9E8A4100E45DF8 /* CharacterDiceSprite.cpp in Sources */,
 				BF6D78DA1AE44973002D67C7 /* ActionDiceStateDisabled.cpp in Sources */,
+				BF0E30171B0902A9003AAFE5 /* DungeonLayer.cpp in Sources */,
 				BFD7AA311AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
 				BFC33C211AE803D300934C34 /* InitialTurn.cpp in Sources */,
 				BF3EDB471AF9279A002A2D7C /* RoomPlacementData.cpp in Sources */,
 				BF0E30021AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */,
+				BF083B571B09059C00A6B39D /* RoomsPlacementsData.cpp in Sources */,
 				BF5B4BEB1A952E8D007636DE /* Dice.cpp in Sources */,
 				BF5B4C1E1A955DA4007636DE /* Monster.cpp in Sources */,
 				BF7DB85F1AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */,
@@ -862,6 +876,7 @@
 				BFC3739F1A9C02FA00520751 /* DiceFace.cpp in Sources */,
 				BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */,
+				BF083B581B09059C00A6B39D /* RoomsPlacementsData.cpp in Sources */,
 				BF6D78D11AE416F3002D67C7 /* ActionDiceLayer.cpp in Sources */,
 				BF0E30031AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */,
 				BF0E300C1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */,
@@ -875,6 +890,7 @@
 				BFD36F1A1AF8518A003701EC /* MonsterDice.cpp in Sources */,
 				BF08409B1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */,
 				BFBAE2A41AD171AD00A5FC9A /* ScrollableLayer.cpp in Sources */,
+				BF0E30181B0902A9003AAFE5 /* DungeonLayer.cpp in Sources */,
 				BFFA1F6C1AF7DA2F00A0BD9C /* DungeonRoom.cpp in Sources */,
 				BF0E30071AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */,
 				BFD36F161AF85107003701EC /* MajorMonsterDice.cpp in Sources */,

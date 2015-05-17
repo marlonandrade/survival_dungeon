@@ -12,8 +12,10 @@
 #include "Events.h"
 
 #include "CoordinateUtil.h"
+
 #include "InitialRoom.h"
 #include "MonsterMoveData.h"
+#include "RoomsPlacementsData.h"
 
 USING_NS_CC;
 
@@ -129,10 +131,11 @@ void Dungeon::placeRoomsAdjacentTo(Vec2 coordinate) {
     }
   }
   
-  auto roomPlacedDelegate = this->getRoomPlacedDelegate();
-  if (roomPlacedDelegate) {
-    roomPlacedDelegate(placements);
-  }
+  auto placementsData = RoomsPlacementsData::create();
+  placementsData->setPlacements(placements);
+  
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->dispatchCustomEvent(EVT_ROOMS_HAVE_BEEN_PLACED, placementsData);
 }
 
 void Dungeon::calculateRoomDistanceToPlayer(Vec2 playerCoordinate) {
