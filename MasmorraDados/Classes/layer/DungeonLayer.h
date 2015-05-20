@@ -24,8 +24,8 @@ class DungeonLayer : public cocos2d::Layer, CharacterMoveDelegate {
                        _monsterDiceGeneratedListener,
                        MonsterDiceGeneratedListener);
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
-                       _monsterMovedListener,
-                       MonsterMovedListener);
+                       _monstersMovedListener,
+                       MonstersMovedListener);
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _roomsPlacementsListener,
                        RoomsPlacementsListener);
@@ -59,7 +59,7 @@ private:
 #pragma mark - Event Handlers
   void _handleLastTileHasBeenPlaced(cocos2d::EventCustom* event);
   void _handleMonsterDiceGenerated(cocos2d::EventCustom* event);
-  void _handleMonsterMoved(cocos2d::EventCustom* event);
+  void _handleMonstersMoved(cocos2d::EventCustom* event);
   void _handleRoomsPlacements(cocos2d::EventCustom* event);
   
 };

@@ -13,6 +13,7 @@
 
 #include "CoordinateUtil.h"
 
+#include "Game.h"
 #include "InitialRoom.h"
 #include "MonsterMoveData.h"
 #include "RoomsPlacementsData.h"
@@ -42,47 +43,50 @@ void Dungeon::placeInitialRoom() {
 void Dungeon::moveMonsters() {
   log("move monsters");
   
-  Vector<MonsterMoveData*> movements;
+  auto playerCoordinate = Game::getInstance()->getCharacterCoordinate();
+  auto playerRoom = this->getRoomForCoordinate(playerCoordinate);
+  this->_moveMonstersForAdjacentRooms(playerRoom);
+
+  // disparar evento avisando que monstros terminaram de mover
   
-  
-  for (auto room : this->_rooms) {
-    auto origin = std::get<1>(room);
-    
-    auto monsters = origin->getMonsters();
-    if (monsters.size()) {
-      auto coordinate = origin->getCoordinate();
-      auto adjacentCoordinates = CoordinateUtil::adjacentCoordinatesTo(coordinate);
-      
-      DungeonRoom* destination = origin;
-      for (auto adjacentCoordinate : adjacentCoordinates) {
-        auto adjacent = this->getRoomForCoordinate(adjacentCoordinate);
-        
-        if (adjacent != NULL) {
-          if (adjacent->isCloserToPlayerThen(destination) && !adjacent->isFull()) {
-            destination = adjacent;
-          }
-        }
-      }
-      
-      if (destination != NULL && destination != origin) {
-        auto data = MonsterMoveData::create();
-        data->setOrigin(origin);
-        data->setDestination(destination);
-        data->setMonsterDices(origin->getMonsters());
-        movements.pushBack(data);
-      }
-    }
-  }
-  
-  for (auto movement : movements) {
-    for (auto monster : movement->getMonsterDices()) {
-      movement->getOrigin()->removeMonsterDice(monster);
-      movement->getDestination()->addMonsterDice(monster);
-    }
-    
-    auto dispatcher = Director::getInstance()->getEventDispatcher();
-    dispatcher->dispatchCustomEvent(EVT_MONSTER_MOVED, movement);
-  }
+//  Vector<MonsterMoveData*> movements;
+//  
+//  for (auto room : this->_rooms) {
+//    auto origin = std::get<1>(room);
+//    
+//    auto monsters = origin->getMonsters();
+//    if (monsters.size()) {
+//      auto coordinate = origin->getCoordinate();
+//      auto adjacentCoordinates = CoordinateUtil::adjacentCoordinatesTo(coordinate);
+//      
+//      DungeonRoom* destination = origin;
+//      for (auto adjacentCoordinate : adjacentCoordinates) {
+//        auto adjacent = this->getRoomForCoordinate(adjacentCoordinate);
+//        
+//        if (adjacent != NULL) {
+//          if (adjacent->isCloserToPlayerThen(destination) && !adjacent->isFull()) {
+//            destination = adjacent;
+//          }
+//        }
+//      }
+//      
+//      if (destination != NULL && destination != origin) {
+//        auto data = MonsterMoveData::create();
+//        data->setOrigin(origin);
+//        data->setDestination(destination);
+//        data->setMonsterDices(origin->getMonsters());
+//        movements.pushBack(data);
+//      }
+//    }
+//  }
+//  
+//  for (auto movement : movements) {
+//    for (auto monster : movement->getMonsterDices()) {
+//      movement->getOrigin()->removeMonsterDice(monster);
+//      movement->getDestination()->addMonsterDice(monster);
+//    }
+//    
+//  }
   // MOVER MONSTROS
   // - primeiro monstros que dão mais xp
   // - movem em direção ao jogador mais proximo
@@ -188,16 +192,42 @@ void Dungeon::_fillDistanceForAdjacentRooms(DungeonRoom *room) {
   auto coordinates = CoordinateUtil::adjacentCoordinatesTo(room->getCoordinate());
   for (auto coordinate : coordinates) {
     auto adjacentRoom = this->getRoomForCoordinate(coordinate);
-    if (adjacentRoom != NULL &&
-        adjacentRoom->getDistanceToPlayer() > room->getDistanceToPlayer()) {
+    if (adjacentRoom != NULL && room->isCloserToPlayerThen(adjacentRoom)) {
       adjacentRoom->setDistanceToPlayer(room->getDistanceToPlayer() + 1);
-      
       visitedRooms.pushBack(adjacentRoom);
     }
   }
   
   for (auto visitedRoom : visitedRooms) {
     this->_fillDistanceForAdjacentRooms(visitedRoom);
+  }
+}
+
+void Dungeon::_moveMonstersForAdjacentRooms(DungeonRoom *room) {
+  Vector<DungeonRoom*>visitedRooms;
+  
+  auto coordinates = CoordinateUtil::adjacentCoordinatesTo(room->getCoordinate());
+  for (auto coordinate : coordinates) {
+    auto adjacentRoom = this->getRoomForCoordinate(coordinate);
+    
+    if (adjacentRoom != NULL) {
+      if (room->isCloserToPlayerThen(adjacentRoom)) {
+        for (auto monster : adjacentRoom->getMonsters()) {
+          if (!room->isFull()) {
+            adjacentRoom->removeMonsterDice(monster);
+            room->addMonsterDice(monster);
+
+            // disparar evento que monstro moveu
+          }
+        }
+        
+        visitedRooms.pushBack(adjacentRoom);
+      }
+    }
+  }
+  
+  for (auto visitedRoom : visitedRooms) {
+    this->_moveMonstersForAdjacentRooms(visitedRoom);
   }
 }
 

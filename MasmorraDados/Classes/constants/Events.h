@@ -12,7 +12,7 @@
 #define EVT_TURN_HAS_ENDED            "turn_has_ended"           // data -> turn
 #define EVT_TURN_HAS_STARTED          "turn_has_started"         // data -> turn
 
-#define EVT_END_PLAYER_TURN           "end_player_turn"
+#define EVT_END_PLAYER_TURN           "end_player_turn"          // no data
 
 #define EVT_DICE_STATE_NEW            "state_changed_new"        // data -> new state
 #define EVT_DICE_STATE_OLD            "state_changed_old"        // data -> previous state
@@ -32,6 +32,6 @@
 
 #define EVT_MONSTER_ADDED_TO_ROOM     "monster_added_to_room"     // data -> MonsterRoomData
 #define EVT_MONSTER_REMOVED_FROM_ROOM "monster_removed_from_room" // data -> MonsterRoomData
-#define EVT_MONSTER_MOVED             "monster_moved"             // data -> MonsterMoveData
+#define EVT_MONSTERS_MOVED            "monsters_moved"            // no data
 
 #endif /* defined(__MasmorraDados__Events__) */

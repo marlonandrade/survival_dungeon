@@ -52,6 +52,7 @@ private:
   void _adjustFarthestCoordinates(cocos2d::Vec2 newCoordinate);
   void _resetDistanceToPlayer();
   void _fillDistanceForAdjacentRooms(DungeonRoom* room);
+  void _moveMonstersForAdjacentRooms(DungeonRoom* room);
   
   RoomPlacementData* _placeRoomAtCoordinate(DungeonRoom* room, cocos2d::Vec2 coordinate);
   RoomPlacementData* _placeNewRoomAtCoordinate(cocos2d::Vec2 coordinate);

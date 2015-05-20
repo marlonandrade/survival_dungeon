@@ -14,6 +14,7 @@
 class CoordinateUtil {
 public:
   static std::string nameForCoordinate(cocos2d::Vec2 coordinate);
+  
   static int indexForCoordinate(cocos2d::Vec2 coordinate);
   static cocos2d::Vec2 coordinateForIndex(int index);
   

@@ -151,9 +151,9 @@ void DungeonLayer::_setupEventHandlers() {
     dispatcher->addCustomEventListener(EVT_MONSTER_DICE_GENERATED, monsterDiceGeneratedCallback)
   );
   
-  auto monsterMovedCallback = CC_CALLBACK_1(DungeonLayer::_handleMonsterMoved, this);
-  this->setMonsterMovedListener(
-     dispatcher->addCustomEventListener(EVT_MONSTER_MOVED, monsterMovedCallback)
+  auto monstersMovedCallback = CC_CALLBACK_1(DungeonLayer::_handleMonstersMoved, this);
+  this->setMonstersMovedListener(
+     dispatcher->addCustomEventListener(EVT_MONSTERS_MOVED, monstersMovedCallback)
   );
   
   auto roomsPlacementsCallback = CC_CALLBACK_1(DungeonLayer::_handleRoomsPlacements, this);
@@ -355,30 +355,35 @@ void DungeonLayer::_handleMonsterDiceGenerated(EventCustom* event) {
   _monsterRoomDatas.pushBack(data);
 }
 
-void DungeonLayer::_handleMonsterMoved(EventCustom* event) {
-  auto data = (MonsterMoveData*) event->getUserData();
+void DungeonLayer::_handleMonstersMoved(EventCustom* event) {
   
-  auto origin = data->getOrigin();
-  auto destination = data->getDestination();
-  
-  auto deltaCoordinate = origin->getCoordinate() - destination->getCoordinate();
-  auto deltaPosition = Vec2(deltaCoordinate.x * TILE_DIMENSION,
-                            deltaCoordinate.y * TILE_DIMENSION);
-  
-  auto destinationNode = this->_getRoomNodeForCoordinate(destination->getCoordinate());
-  
-  for (auto monster : data->getMonsterDices()) {
-    auto monsterSprite = monster->getSprite();
-    
-    monsterSprite->retain();
-    monsterSprite->removeFromParent();
-    destinationNode->addChild(monsterSprite);
-    monsterSprite->release();
-    
-    monsterSprite->setPosition(monsterSprite->getPosition() + deltaPosition);
-  }
-  
-  this->_adjustSpritesForRoom(destinationNode);
+//  auto data = (MonsterMoveData*) event->getUserData();
+//  
+//  auto origin = data->getOrigin();
+//  auto destination = data->getDestination();
+//  
+//  auto deltaCoordinate = origin->getCoordinate() - destination->getCoordinate();
+//  auto deltaPosition = Vec2(deltaCoordinate.x * TILE_DIMENSION,
+//                            deltaCoordinate.y * TILE_DIMENSION);
+//  
+//  auto destinationNode = this->_getRoomNodeForCoordinate(destination->getCoordinate());
+//  
+//  for (auto monster : data->getMonsterDices()) {
+//    auto monsterSprite = monster->getSprite();
+//    
+//    auto delta = monsterSprite->getParent()->getPosition() - destinationNode->getPosition();
+//    
+//    monsterSprite->retain();
+//    monsterSprite->removeFromParent();
+//    destinationNode->addChild(monsterSprite);
+//    monsterSprite->release();
+//    
+//    log("(%f, %f) - (%f, %f)", deltaPosition.x, deltaPosition.y, delta.x, delta.y);
+//    
+//    monsterSprite->setPosition(monsterSprite->getPosition() + deltaPosition);
+//  }
+//  
+//  this->_adjustSpritesForRoom(destinationNode);
 }
 
 void DungeonLayer::_handleRoomsPlacements(EventCustom* event) {
