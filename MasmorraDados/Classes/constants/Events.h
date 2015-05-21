@@ -30,8 +30,7 @@
 
 #define EVT_MONSTER_DICE_GENERATED    "monster_dice_generated"    // data -> MonsterRoomData
 
-#define EVT_MONSTER_ADDED_TO_ROOM     "monster_added_to_room"     // data -> MonsterRoomData
-#define EVT_MONSTER_REMOVED_FROM_ROOM "monster_removed_from_room" // data -> MonsterRoomData
-#define EVT_MONSTERS_MOVED            "monsters_moved"            // no data
+#define EVT_MONSTER_MOVED             "monter_moved"              // data -> MonsterMoveData
+#define EVT_MONSTERS_FINISHED_MOVING  "monsters_finished_moving"  // no data
 
 #endif /* defined(__MasmorraDados__Events__) */

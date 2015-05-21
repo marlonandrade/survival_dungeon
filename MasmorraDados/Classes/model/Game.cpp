@@ -157,20 +157,21 @@ void Game::_setupAvaiableRooms() {
   
   int level = this->getLevel();
   
-  int numberOfRunes = level * (level * RUNE_COEFICIENT) + RUNE_CONSTANT;
-  for (int i = 0; i < numberOfRunes; i++) {
-    rooms.pushBack(RuneRoom::create());
-  }
+//  int numberOfRunes = level * (level * RUNE_COEFICIENT) + RUNE_CONSTANT;
+//  for (int i = 0; i < numberOfRunes; i++) {
+//    rooms.pushBack(RuneRoom::create());
+//  }
   
   int numberOfMonsters = level * (level * MINOR_MONSTER_COEFICIENT) + MINOR_MONSTER_CONSTANT;
+  numberOfMonsters += 100;
   for (int i = 0; i < numberOfMonsters; i++) {
     rooms.pushBack(MinorMonsterRoom::create());
   }
   
-  int numberOfTreasures = level * (level * TREASURE_COEFICIENT) + TREASURE_CONSTANT;
-  for (int i = 0; i < numberOfTreasures; i++) {
-    rooms.pushBack(TreasureRoom::create());
-  }
+//  int numberOfTreasures = level * (level * TREASURE_COEFICIENT) + TREASURE_CONSTANT;
+//  for (int i = 0; i < numberOfTreasures; i++) {
+//    rooms.pushBack(TreasureRoom::create());
+//  }
   
   rooms.pushBack(DownstairsRoom::create());
   

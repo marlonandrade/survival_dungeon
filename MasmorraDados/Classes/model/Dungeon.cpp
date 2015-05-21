@@ -47,6 +47,8 @@ void Dungeon::moveMonsters() {
   auto playerRoom = this->getRoomForCoordinate(playerCoordinate);
   this->_moveMonstersForAdjacentRooms(playerRoom);
 
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->dispatchCustomEvent(EVT_MONSTERS_FINISHED_MOVING);
   // disparar evento avisando que monstros terminaram de mover
   
 //  Vector<MonsterMoveData*> movements;
@@ -98,6 +100,16 @@ void Dungeon::riseMonsters() {
   // - somente nos andares que tiver jogador
   // - somente nos tiles de monstro vazios
   // - nasce primeiro nos mais perto dos player
+}
+
+void Dungeon::resetMonsterMovedState() {
+  for (auto room : _rooms) {
+    auto origin = std::get<1>(room);
+    
+    for (auto monster : origin->getMonsters()) {
+      monster->setMovedThisTurn(false);
+    }
+  }
 }
 
 DungeonRoom* Dungeon::getRoomForCoordinate(Vec2 coordinate) {
@@ -213,11 +225,19 @@ void Dungeon::_moveMonstersForAdjacentRooms(DungeonRoom *room) {
     if (adjacentRoom != NULL) {
       if (room->isCloserToPlayerThen(adjacentRoom)) {
         for (auto monster : adjacentRoom->getMonsters()) {
-          if (!room->isFull()) {
+          if (!monster->getMovedThisTurn() && !room->isFull()) {
             adjacentRoom->removeMonsterDice(monster);
             room->addMonsterDice(monster);
-
-            // disparar evento que monstro moveu
+            
+            monster->setMovedThisTurn(true);
+            
+            auto data = MonsterMoveData::create();
+            data->setOrigin(adjacentRoom);
+            data->setDestination(room);
+            data->setMonsterDice(monster);
+            
+            auto dispatcher = Director::getInstance()->getEventDispatcher();
+            dispatcher->dispatchCustomEvent(EVT_MONSTER_MOVED, data);
           }
         }
         

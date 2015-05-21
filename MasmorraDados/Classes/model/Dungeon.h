@@ -39,6 +39,7 @@ public:
   
   void moveMonsters();
   void riseMonsters();
+  void resetMonsterMovedState();
   
   DungeonRoom* getRoomForCoordinate(cocos2d::Vec2 coordinate);
   cocos2d::Vec2 getCoordinateForRoom(DungeonRoom* room);

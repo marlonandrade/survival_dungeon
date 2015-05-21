@@ -48,6 +48,7 @@
 #define MOVE_DICE_DURATION        0.2
 #define OVERLAY_DURATION          0.2
 #define TURN_INFO_DURATION        1.5
+#define ADJUST_CAMERA_DURATION    0.7
 
 #pragma mark - Colors / Alpha
 

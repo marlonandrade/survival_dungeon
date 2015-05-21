@@ -12,6 +12,7 @@
 #include "Dice.h"
 
 class MonsterDice : public Dice {
+  CC_SYNTHESIZE(bool, _movedThisTurn, MovedThisTurn);
 };
 
 #endif /* defined(__MasmorraDados__MonsterDice__) */

@@ -24,11 +24,14 @@ class DungeonLayer : public cocos2d::Layer, CharacterMoveDelegate {
                        _monsterDiceGeneratedListener,
                        MonsterDiceGeneratedListener);
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
-                       _monstersMovedListener,
-                       MonstersMovedListener);
-  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _roomsPlacementsListener,
                        RoomsPlacementsListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _monsterMovedListener,
+                       MonsterMovedListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _monstersFinishedMovingListener,
+                       MonstersFinishedMovingListener);
   
 public:
   CREATE_FUNC(DungeonLayer);
@@ -44,9 +47,12 @@ public:
   
 private:
   cocos2d::Vector<MonsterRoomData*> _monsterRoomDatas;
+  cocos2d::Vector<DungeonRoom*> _modifiedRooms;
   
   void _setupEventHandlers();
+  
   void _adjustSpritesForRoom(Node* roomNode);
+  void _moveMonsterSpriteToDestinationRoom(Node* monsterSprite, Node* destinationRoom);
   
   cocos2d::Node* _getRoomNodeForCharacterCoordinate();
   cocos2d::Node* _getRoomNodeForCoordinate(cocos2d::Vec2 coordinate);
@@ -59,8 +65,9 @@ private:
 #pragma mark - Event Handlers
   void _handleLastTileHasBeenPlaced(cocos2d::EventCustom* event);
   void _handleMonsterDiceGenerated(cocos2d::EventCustom* event);
-  void _handleMonstersMoved(cocos2d::EventCustom* event);
   void _handleRoomsPlacements(cocos2d::EventCustom* event);
+  void _handleMonsterMoved(cocos2d::EventCustom* event);
+  void _handleMonstersFinishedMoving(cocos2d::EventCustom* event);
   
 };
 

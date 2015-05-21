@@ -19,5 +19,6 @@ void DungeonTurn::execute(Game *game) {
 }
 
 void DungeonTurn::finish(Game *game) {
+  game->getDungeon()->resetMonsterMovedState();
   game->setTurn(PlayerTurn::create());
 }

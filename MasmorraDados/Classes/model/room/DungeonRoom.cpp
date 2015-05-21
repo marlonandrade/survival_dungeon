@@ -27,23 +27,9 @@ bool DungeonRoom::init() {
 
 void DungeonRoom::addMonsterDice(MonsterDice *monster) {
   _monsters.pushBack(monster);
-  
-  auto data = MonsterRoomData::create();
-  data->setRoom(this);
-  data->setMonsterDice(monster);
-  
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  dispatcher->dispatchCustomEvent(EVT_MONSTER_ADDED_TO_ROOM, data);
 }
 
 void DungeonRoom::removeMonsterDice(MonsterDice *monster) {
-  auto data = MonsterRoomData::create();
-  data->setRoom(this);
-  data->setMonsterDice(monster);
-  
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  dispatcher->dispatchCustomEvent(EVT_MONSTER_REMOVED_FROM_ROOM, data);
-  
   _monsters.eraseObject(monster);
 }
 
