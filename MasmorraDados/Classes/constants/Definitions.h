@@ -47,6 +47,7 @@
 #define PLACE_ROOM_DURATION       0.5
 #define MOVE_DICE_DURATION        0.2
 #define OVERLAY_DURATION          0.2
+#define MAGIC_DICE_DURATION       0.3
 #define TURN_INFO_DURATION        1.5
 #define ADJUST_CAMERA_DURATION    0.7
 

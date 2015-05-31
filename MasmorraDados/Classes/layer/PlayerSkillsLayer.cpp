@@ -137,6 +137,53 @@ Node* PlayerSkillsLayer::_getDockContainer() {
   return this->getChildByName(DOCK_CONTAINER_NODE_NAME);
 }
 
+void PlayerSkillsLayer::_triggerMagicDiceOnTargetDice(Dice *targetDice) {
+  log("permitir mudar a face do dado");
+  
+  auto sprite = targetDice->getSprite();
+  auto nodePosition = sprite->getPosition();
+  
+  Vector<Node*> targetNodes;
+  targetNodes.pushBack(sprite);
+  
+  std::vector<std::string> images;
+  
+  images.push_back(IMG_DICE_ACTION_BOOT);
+  images.push_back(IMG_DICE_ACTION_BOW);
+  images.push_back(IMG_DICE_ACTION_HEAL);
+  images.push_back(IMG_DICE_ACTION_SHIELD);
+  images.push_back(IMG_DICE_ACTION_SWORD);
+  
+  int position = 0;
+  for (auto image : images) {
+    if (image != targetDice->getSelectedFace()->getImagePath()) {
+      auto sprite = Sprite::create(image);
+      sprite->setPosition(nodePosition);
+      
+      this->addChild(sprite);
+      
+      targetNodes.pushBack(sprite);
+      
+      auto yOffset = (sprite->getContentSize().height + 2) * (position + 1);
+      auto newPosition = Vec2(nodePosition.x, nodePosition.y + yOffset);
+      
+      auto delay = DelayTime::create(MAGIC_DICE_DURATION * position);
+      auto adjustPosition = EaseOut::create(MoveTo::create(MAGIC_DICE_DURATION, newPosition), 5);
+      
+      sprite->runAction(Sequence::create(delay, adjustPosition, NULL));
+      
+      position++;
+    }
+  }
+  
+  auto delay = DelayTime::create(OVERLAY_DURATION);
+  auto callfunc = CallFunc::create([=] {
+    this->_addOverlay(targetNodes);
+  });
+  
+  this->runAction(Sequence::create(delay, callfunc, NULL));
+}
+
 void PlayerSkillsLayer::_addOverlay(Vector<Node*> targetNodes) {
   auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
   overlayLayer->setName(OVERLAY_LAYER_NAME);
@@ -231,7 +278,7 @@ void PlayerSkillsLayer::_handleActionDiceDragMoved(EventCustom* event) {
   auto dice = sprite->getDice();
   auto touch = data->getTouch();
   
-  auto touchLocation = this->convertTouchToNodeSpace(data->getTouch());
+  auto touchLocation = this->convertTouchToNodeSpace(touch);
   sprite->setPosition(touchLocation);
   
   if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_MAGIC) {
@@ -271,27 +318,46 @@ void PlayerSkillsLayer::_handleActionDiceDragMoved(EventCustom* event) {
 void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
   auto data = (ActionDiceDragData*) event->getUserData();
   auto sprite = data->getSprite();
+  auto dice = sprite->getDice();
+  auto touch = data->getTouch();
+  
+  this->_removeOverlay();
+  
   sprite->setLocalZOrder(sprite->getLocalZOrder() - DRAG_Z_ORDER_DELTA);
-  auto touchLocation = this->convertTouchToNodeSpace(data->getTouch());
-  
-  auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
-  auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
-  
-  auto position = Vec2::ZERO;
   
   bool moved = false;
-  for (auto node : this->getDockableNodes()) {
-    auto rect = node->getBoundingBox();
+  auto position = Vec2::ZERO;
+  
+  if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_MAGIC) {
+    for (auto node : this->getChildren()) {
+      if (IS(node, ActionDiceSprite) && node != sprite) {
+        auto targetDice = ((ActionDiceSprite*) node)->getDice();
+        auto rect = node->getBoundingBox();
+        
+        if (rect.containsPoint(touch->getLocation())) {
+          node->setColor(Color3B::WHITE);
+          this->_triggerMagicDiceOnTargetDice(targetDice);
+          break;
+        }
+      }
+    }
+  } else {
+    auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
+    auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(touch);
     
-    rect.origin -= Vec2(DOCKABLE_HIDDEN_MARGIN, 0);
-    rect.size = rect.size + Size(DOCKABLE_HIDDEN_MARGIN * 2, 0);
-    
-    if (node->getChildren().size() == 0 &&
-        rect.containsPoint(dockableLocation)) {
-      moved = true;
-      position = node->getPosition() + dockableContainer->getPosition();
-      node->addChild(Node::create());
-      break;
+    for (auto node : this->getDockableNodes()) {
+      auto rect = node->getBoundingBox();
+      
+      rect.origin -= Vec2(DOCKABLE_HIDDEN_MARGIN, 0);
+      rect.size = rect.size + Size(DOCKABLE_HIDDEN_MARGIN * 2, 0);
+      
+      if (node->getChildren().size() == 0 &&
+          rect.containsPoint(dockableLocation)) {
+        moved = true;
+        position = node->getPosition() + dockableContainer->getPosition();
+        node->addChild(Node::create());
+        break;
+      }
     }
   }
   
@@ -309,8 +375,6 @@ void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
     sprite->runAction(Spawn::create(move, scale, NULL));
     log("animate back");
   }
-  
-  this->_removeOverlay();
 }
 
 void PlayerSkillsLayer::_handleActionFreeBootSpent(EventCustom* event) {

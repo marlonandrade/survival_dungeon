@@ -12,6 +12,8 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 
+class Dice;
+
 class PlayerSkillsLayer : public cocos2d::Layer {
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _diceDragStartedListener,
@@ -37,6 +39,8 @@ private:
   void _setupEventHandlers();
   
   cocos2d::Node* _getDockContainer();
+  
+  void _triggerMagicDiceOnTargetDice(Dice* targetDice);
   
   void _addOverlay(cocos2d::Vector<Node*> targetNodes);
   void _removeOverlay();
