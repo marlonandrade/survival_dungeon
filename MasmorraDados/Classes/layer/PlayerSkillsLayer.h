@@ -38,7 +38,7 @@ private:
   
   cocos2d::Node* _getDockContainer();
   
-  void _addOverlay();
+  void _addOverlay(cocos2d::Vector<Node*> targetNodes);
   void _removeOverlay();
 #pragma mark - UI Events
   void _handleEndTurnTouched(cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType type);

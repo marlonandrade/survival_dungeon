@@ -137,11 +137,11 @@ Node* PlayerSkillsLayer::_getDockContainer() {
   return this->getChildByName(DOCK_CONTAINER_NODE_NAME);
 }
 
-void PlayerSkillsLayer::_addOverlay() {
+void PlayerSkillsLayer::_addOverlay(Vector<Node*> targetNodes) {
   auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
   overlayLayer->setName(OVERLAY_LAYER_NAME);
   
-  for (auto node : this->getChildren()) {
+  for (auto node : targetNodes) {
     auto newZOrder = node->getLocalZOrder() + OVERLAY_Z_ORDER;
     node->setLocalZOrder(newZOrder);
   }
@@ -158,8 +158,10 @@ void PlayerSkillsLayer::_removeOverlay() {
   auto fadeOut = FadeOut::create(OVERLAY_DURATION);
   auto changeLayer = CallFunc::create([=]() {
     for (auto node : this->getChildren()) {
-      auto oldZOrder = node->getLocalZOrder() - OVERLAY_Z_ORDER;
-      node->setLocalZOrder(oldZOrder);
+      if (node->getLocalZOrder() > overlayLayer->getLocalZOrder()) {
+        auto oldZOrder = node->getLocalZOrder() - OVERLAY_Z_ORDER;
+        node->setLocalZOrder(oldZOrder);
+      }
     }
   });
   auto removeSelf = RemoveSelf::create();
@@ -181,25 +183,46 @@ void PlayerSkillsLayer::_handleEndTurnTouched(Ref* sender, ui::Widget::TouchEven
 void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
   log("drag started");
   
-  auto dockableNodes = this->getDockableNodes();
-  this->_addOverlay();
-  
   auto data = (ActionDiceDragData*) event->getUserData();
   auto sprite = data->getSprite();
+  auto dice = sprite->getDice();
+  
   sprite->setLocalZOrder(sprite->getLocalZOrder() + DRAG_Z_ORDER_DELTA);
-  sprite->runAction(ScaleTo::create(0.2, 0.58));
   sprite->getDice()->setDocked(false);
   
-  auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
-  auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
+  Vector<Node*> targetNodes;
+  targetNodes.pushBack(sprite);
   
-  for (auto node : this->getDockableNodes()) {
-    if (node->getChildren().size() > 0 &&
-        node->getBoundingBox().containsPoint(dockableLocation)) {
-      node->removeAllChildren();
-      break;
+  if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_MAGIC) {
+    log("dragging magic");
+    for (auto node : this->getChildren()) {
+      if (IS(node, ActionDiceSprite) && node != sprite) {
+        log("dice");
+        targetNodes.pushBack(node);
+      }
+    }
+  } else {
+    log("dragging other dice");
+    sprite->runAction(ScaleTo::create(0.2, 0.58));
+    
+    auto dockableNodes = this->getDockableNodes();
+    auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
+    
+    targetNodes.pushBack(dockableNodes);
+    targetNodes.pushBack(dockableContainer);
+    
+    auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
+    
+    for (auto node : this->getDockableNodes()) {
+      if (node->getChildren().size() > 0 &&
+          node->getBoundingBox().containsPoint(dockableLocation)) {
+        node->removeAllChildren();
+        break;
+      }
     }
   }
+  
+  this->_addOverlay(targetNodes);
 }
 
 void PlayerSkillsLayer::_handleActionDiceDragMoved(EventCustom* event) {
