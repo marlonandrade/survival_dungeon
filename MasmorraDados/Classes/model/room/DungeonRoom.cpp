@@ -41,6 +41,10 @@ bool DungeonRoom::isExplorable() {
   return true;
 }
 
+bool DungeonRoom::isEmpty() {
+  return _monsters.size() == 0;
+}
+
 bool DungeonRoom::isFull() {
   return _monsters.size() == 3;
 }

@@ -15,6 +15,7 @@
 
 #include "Game.h"
 #include "InitialRoom.h"
+#include "MinorMonsterRoom.h"
 #include "MonsterMoveData.h"
 #include "RoomsPlacementsData.h"
 
@@ -49,62 +50,30 @@ void Dungeon::moveMonsters() {
 
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   dispatcher->dispatchCustomEvent(EVT_MONSTERS_FINISHED_MOVING);
-  // disparar evento avisando que monstros terminaram de mover
-  
-//  Vector<MonsterMoveData*> movements;
-//  
-//  for (auto room : this->_rooms) {
-//    auto origin = std::get<1>(room);
-//    
-//    auto monsters = origin->getMonsters();
-//    if (monsters.size()) {
-//      auto coordinate = origin->getCoordinate();
-//      auto adjacentCoordinates = CoordinateUtil::adjacentCoordinatesTo(coordinate);
-//      
-//      DungeonRoom* destination = origin;
-//      for (auto adjacentCoordinate : adjacentCoordinates) {
-//        auto adjacent = this->getRoomForCoordinate(adjacentCoordinate);
-//        
-//        if (adjacent != NULL) {
-//          if (adjacent->isCloserToPlayerThen(destination) && !adjacent->isFull()) {
-//            destination = adjacent;
-//          }
-//        }
-//      }
-//      
-//      if (destination != NULL && destination != origin) {
-//        auto data = MonsterMoveData::create();
-//        data->setOrigin(origin);
-//        data->setDestination(destination);
-//        data->setMonsterDices(origin->getMonsters());
-//        movements.pushBack(data);
-//      }
-//    }
-//  }
-//  
-//  for (auto movement : movements) {
-//    for (auto monster : movement->getMonsterDices()) {
-//      movement->getOrigin()->removeMonsterDice(monster);
-//      movement->getDestination()->addMonsterDice(monster);
-//    }
-//    
-//  }
-  // MOVER MONSTROS
-  // - primeiro monstros que dão mais xp
-  // - movem em direção ao jogador mais proximo
 }
 
 void Dungeon::riseMonsters() {
   log("rise monsters");
-  // NASCER MONSTROS
-  // - somente nos andares que tiver jogador
-  // - somente nos tiles de monstro vazios
-  // - nasce primeiro nos mais perto dos player
+  
+  for (auto roomData : _rooms) {
+    auto room = std::get<1>(roomData);
+    
+    if (IS(room, MinorMonsterRoom)) {
+      auto monsterRoom = (MinorMonsterRoom*) room;
+      
+      if (monsterRoom->isEmpty()) {
+        monsterRoom->riseMonster();
+      }
+    }
+  }
+  
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->dispatchCustomEvent(EVT_MONSTERS_FINISHED_RISING);
 }
 
 void Dungeon::resetMonsterMovedState() {
-  for (auto room : _rooms) {
-    auto origin = std::get<1>(room);
+  for (auto roomData : _rooms) {
+    auto origin = std::get<1>(roomData);
     
     for (auto monster : origin->getMonsters()) {
       monster->setMovedThisTurn(false);
@@ -183,9 +152,9 @@ void Dungeon::_adjustFarthestCoordinates(Vec2 newCoordinate) {
 }
 
 void Dungeon::_resetDistanceToPlayer() {
-  for (auto room : this->_rooms) {
-    auto dungeonRoom = std::get<1>(room);
-    dungeonRoom->setDistanceToPlayer(NOT_CALCULATED_DISTANCE);
+  for (auto roomData : this->_rooms) {
+    auto room = std::get<1>(roomData);
+    room->setDistanceToPlayer(NOT_CALCULATED_DISTANCE);
   }
 }
 

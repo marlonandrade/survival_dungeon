@@ -14,6 +14,8 @@
 #include "CharacterMoveDelegate.h"
 #include "MonsterRoomData.h"
 
+class DungeonRoomSprite;
+
 class DungeonLayer : public cocos2d::Layer, CharacterMoveDelegate {
   CC_SYNTHESIZE(cocos2d::Vector<cocos2d::Node*>, _interactableNodes, InteractableNodes);
   
@@ -32,6 +34,9 @@ class DungeonLayer : public cocos2d::Layer, CharacterMoveDelegate {
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _monstersFinishedMovingListener,
                        MonstersFinishedMovingListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _monstersFinishedRisingListener,
+                       MonstersFinishedRisingListener);
   
 public:
   CREATE_FUNC(DungeonLayer);
@@ -51,12 +56,13 @@ private:
   
   void _setupEventHandlers();
   
-  void _adjustSpritesForRoom(Node* roomNode);
-  void _moveMonsterSpriteToDestinationRoom(Node* monsterSprite, Node* destinationRoom);
+  void _consumeMonsterRoomDatas();
+  void _moveMonsterSpriteToDestinationRoom(Node* monsterSprite, DungeonRoomSprite* destinationRoom);
   
-  cocos2d::Node* _getRoomNodeForCharacterCoordinate();
-  cocos2d::Node* _getRoomNodeForCoordinate(cocos2d::Vec2 coordinate);
-  cocos2d::Vector<cocos2d::Node*> _getRoomsNodesForAdjacentCharacterCoordinate();
+  DungeonRoomSprite* _getRoomSpriteForCharacterCoordinate();
+  DungeonRoomSprite* _getRoomSpriteForCoordinate(cocos2d::Vec2 coordinate);
+  cocos2d::Vector<cocos2d::Node*> _getRoomSpritesForAdjacentCharacterCoordinate();
+  
   void _resetCharacterMoveState();
   
   void _addOverlayWithVisibleNodes(cocos2d::Vector<Node*> visibleNodes);
@@ -68,6 +74,7 @@ private:
   void _handleRoomsPlacements(cocos2d::EventCustom* event);
   void _handleMonsterMoved(cocos2d::EventCustom* event);
   void _handleMonstersFinishedMoving(cocos2d::EventCustom* event);
+  void _handleMonstersFinishedRising(cocos2d::EventCustom* event);
   
 };
 

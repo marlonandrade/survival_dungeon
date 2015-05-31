@@ -16,6 +16,7 @@
 #include "PositionUtil.h"
 
 #include "CharacterDiceSprite.h"
+#include "DungeonRoomSprite.h"
 
 #include "Game.h"
 #include "PlayerTurn.h"
@@ -37,14 +38,12 @@ bool DungeonLayer::init() {
   auto initialRoom = Game::getInstance()->getDungeon()->getInitialRoom();
   auto initialCoordinate = INITIAL_COORDINATE;
   
-  auto initialSprite = Sprite::create(initialRoom->getImagePath());
-  initialSprite->setName(CoordinateUtil::nameForCoordinate(initialCoordinate));
-  initialSprite->setPosition(PositionUtil::positionForCoordinate(initialCoordinate));
+  auto initialSprite = DungeonRoomSprite::createWithRoom(initialRoom);
+  initialSprite->setCoordinate(initialCoordinate);
   
   this->addChild(initialSprite, DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
   
   auto characterSprite = CharacterDiceSprite::createWithDelegate(this);
-  characterSprite->setName(CHARACTER_DICE_SPRITE_NAME);
   characterSprite->setPosition(PositionUtil::centerOfNode(initialSprite));
   
   initialSprite->addChild(characterSprite);
@@ -75,28 +74,29 @@ bool DungeonLayer::canCharacterMove() {
 
 void DungeonLayer::characterWillMove(CharacterDiceSprite* sprite) {
   Vector<Node*> visibleNodes;
-  visibleNodes.pushBack(this->_getRoomNodeForCharacterCoordinate());
-  visibleNodes.pushBack(this->_getRoomsNodesForAdjacentCharacterCoordinate());
+  visibleNodes.pushBack(this->_getRoomSpriteForCharacterCoordinate());
+  visibleNodes.pushBack(this->_getRoomSpritesForAdjacentCharacterCoordinate());
   this->_addOverlayWithVisibleNodes(visibleNodes);
 }
 
 void DungeonLayer::characterIsMovingToLocation(Vec2 location) {
-  for (auto adjacentRoomNode : this->_getRoomsNodesForAdjacentCharacterCoordinate()) {
+  for (auto adjacentRoomSprite : this->_getRoomSpritesForAdjacentCharacterCoordinate()) {
     Color3B color = Color3B::WHITE;
     
-    if (adjacentRoomNode->getBoundingBox().containsPoint(location)) {
+    if (adjacentRoomSprite->getBoundingBox().containsPoint(location)) {
       color = Color3B(170, 255, 170);
     }
     
-    adjacentRoomNode->setColor(color);
+    adjacentRoomSprite->setColor(color);
   }
 }
 
 bool DungeonLayer::canCharacterMoveToLocation(Vec2 location) {
   bool canMove = false;
   
-  for (auto adjacentRoomNode : this->_getRoomsNodesForAdjacentCharacterCoordinate()) {
-    if (adjacentRoomNode->getBoundingBox().containsPoint(location)) {
+  for (auto node : this->_getRoomSpritesForAdjacentCharacterCoordinate()) {
+    auto adjacentRoomSprite = (DungeonRoomSprite*) node;
+    if (adjacentRoomSprite->canCharacterMoveToLocation(location)) {
       canMove = true;
       break;
     }
@@ -111,8 +111,8 @@ void DungeonLayer::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 lo
   auto newCoordinate = PositionUtil::coordinateForPosition(location);
   Game::getInstance()->characterMovedTo(newCoordinate);
   
-  auto oldRoomSprite = sprite->getParent();
-  auto newRoomSprite = this->_getRoomNodeForCharacterCoordinate();
+  auto oldRoomSprite = (DungeonRoomSprite*) sprite->getParent();
+  auto newRoomSprite = (DungeonRoomSprite*) this->_getRoomSpriteForCharacterCoordinate();
   
   auto oldPosition = oldRoomSprite->convertToWorldSpace(sprite->getPosition());
   auto newPosition = newRoomSprite->convertToNodeSpace(oldPosition);
@@ -127,8 +127,8 @@ void DungeonLayer::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 lo
  
   sprite->setPosition(newPosition);
   
-  this->_adjustSpritesForRoom(oldRoomSprite);
-  this->_adjustSpritesForRoom(newRoomSprite);
+  oldRoomSprite->adjustChildren();
+  newRoomSprite->adjustChildren();
   
   auto delay = DelayTime::create(MOVE_DICE_DURATION);
   auto restoreZOrder = CallFunc::create([=]{
@@ -141,7 +141,8 @@ void DungeonLayer::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 lo
 
 void DungeonLayer::characterDidNotMove(CharacterDiceSprite* sprite) {
   this->_resetCharacterMoveState();
-  this->_adjustSpritesForRoom(sprite->getParent());
+  auto roomSprite = (DungeonRoomSprite*) sprite->getParent();
+  roomSprite->adjustChildren();
 }
 
 #pragma mark - Private Interface
@@ -173,103 +174,30 @@ void DungeonLayer::_setupEventHandlers() {
   this->setMonstersFinishedMovingListener(
      dispatcher->addCustomEventListener(EVT_MONSTERS_FINISHED_MOVING, monstersFinishedMovingCallback)
   );
-}
-
-void DungeonLayer::_adjustSpritesForRoom(Node *roomNode) {
-  auto roomCenter = PositionUtil::centerOfNode(roomNode);
   
-  auto sprites = roomNode->getChildren();
-  switch (sprites.size()) {
-    case 1: {
-      auto sprite1 = sprites.at(0);
-      auto moveSprite1 = MoveTo::create(MOVE_DICE_DURATION, roomCenter);
-      sprite1->runAction(moveSprite1);
-    } break;
-    case 2: {
-      auto sprite1 = sprites.at(0);
-      
-      auto w = sprite1->getContentSize().width / 2;
-      
-      auto sprite1NewPosition = roomCenter + Vec2(-(w + 1), 0);
-      auto moveSprite1 = MoveTo::create(MOVE_DICE_DURATION, sprite1NewPosition);
-      sprite1->runAction(moveSprite1);
-      
-      auto sprite2 = sprites.at(1);
-      
-      w = sprite2->getContentSize().width / 2;
-      
-      auto sprite2NewPosition = roomCenter + Vec2(w + 1, 0);
-      auto moveSprite2 = MoveTo::create(MOVE_DICE_DURATION, sprite2NewPosition);
-      sprite2->runAction(moveSprite2);
-    } break;
-    case 3: {
-      auto sprite1 = sprites.at(0);
-      
-      auto w = sprite1->getContentSize().width / 2;
-      auto h = sprite1->getContentSize().height / 2;
-      
-      auto sprite1NewPosition = roomCenter + Vec2(-(w + 1), h + 1);
-      auto moveSprite1 = MoveTo::create(MOVE_DICE_DURATION, sprite1NewPosition);
-      sprite1->runAction(moveSprite1);
-      
-      auto sprite2 = sprites.at(1);
-      
-      w = sprite2->getContentSize().width / 2;
-      h = sprite2->getContentSize().height / 2;
-      
-      auto sprite2NewPosition = roomCenter + Vec2(w + 1, h + 1);
-      auto moveSprite2 = MoveTo::create(MOVE_DICE_DURATION, sprite2NewPosition);
-      sprite2->runAction(moveSprite2);
-      
-      auto sprite3 = sprites.at(2);
-      
-      h = sprite3->getContentSize().height / 2;
-      
-      auto sprite3NewPosition = roomCenter + Vec2(0, -(h + 1));
-      auto moveSprite3 = MoveTo::create(MOVE_DICE_DURATION, sprite3NewPosition);
-      sprite3->runAction(moveSprite3);
-    } break;
-    case 4: {
-      auto sprite1 = sprites.at(0);
-      
-      auto w = sprite1->getContentSize().width / 2;
-      auto h = sprite1->getContentSize().height / 2;
-      
-      auto sprite1NewPosition = roomCenter + Vec2(-(w + 1), h + 1);
-      auto moveSprite1 = MoveTo::create(MOVE_DICE_DURATION, sprite1NewPosition);
-      sprite1->runAction(moveSprite1);
-      
-      auto sprite2 = sprites.at(1);
-      
-      w = sprite2->getContentSize().width / 2;
-      h = sprite2->getContentSize().height / 2;
-      
-      auto sprite2NewPosition = roomCenter + Vec2(w + 1, h + 1);
-      auto moveSprite2 = MoveTo::create(MOVE_DICE_DURATION, sprite2NewPosition);
-      sprite2->runAction(moveSprite2);
-      
-      auto sprite3 = sprites.at(2);
-      
-      w = sprite3->getContentSize().width / 2;
-      h = sprite3->getContentSize().height / 2;
-      
-      auto sprite3NewPosition = roomCenter + Vec2(-(w + 1), -(h + 1));
-      auto moveSprite3 = MoveTo::create(MOVE_DICE_DURATION, sprite3NewPosition);
-      sprite3->runAction(moveSprite3);
-      
-      auto sprite4 = sprites.at(3);
-      
-      w = sprite4->getContentSize().width / 2;
-      h = sprite4->getContentSize().height / 2;
-      
-      auto sprite4NewPosition = roomCenter + Vec2(w + 1, -(h + 1));
-      auto moveSprite4 = MoveTo::create(MOVE_DICE_DURATION, sprite4NewPosition);
-      sprite4->runAction(moveSprite4);
-    } break;
-  }
+  auto monstersFinishedRisingCallback = CC_CALLBACK_1(DungeonLayer::_handleMonstersFinishedRising, this);
+  this->setMonstersFinishedRisingListener(
+     dispatcher->addCustomEventListener(EVT_MONSTERS_FINISHED_RISING, monstersFinishedRisingCallback)
+  );
 }
 
-void DungeonLayer::_moveMonsterSpriteToDestinationRoom(Node* monsterSprite, Node* destinationRoom) {
+void DungeonLayer::_consumeMonsterRoomDatas() {
+  for (auto data : _monsterRoomDatas) {
+    auto dice = data->getMonsterDice();
+    auto room = data->getRoom();
+    
+    dice->roll();
+    
+    auto coordinate = Game::getInstance()->getDungeon()->getCoordinateForRoom(room);
+    auto roomSprite = this->_getRoomSpriteForCoordinate(coordinate);
+    roomSprite->addDice(dice);
+  }
+  
+  _monsterRoomDatas.clear();
+}
+
+void DungeonLayer::_moveMonsterSpriteToDestinationRoom(Node* monsterSprite,
+                                                       DungeonRoomSprite* destinationRoom) {
   auto originNode = monsterSprite->getParent();
   
   auto deltaPosition = originNode->getPosition() - destinationRoom->getPosition();
@@ -282,37 +210,37 @@ void DungeonLayer::_moveMonsterSpriteToDestinationRoom(Node* monsterSprite, Node
   monsterSprite->setPosition(monsterSprite->getPosition() + deltaPosition);
 }
 
-Node* DungeonLayer::_getRoomNodeForCharacterCoordinate() {
+DungeonRoomSprite* DungeonLayer::_getRoomSpriteForCharacterCoordinate() {
   auto coordinate = Game::getInstance()->getCharacterCoordinate();
-  return this->_getRoomNodeForCoordinate(coordinate);
+  return this->_getRoomSpriteForCoordinate(coordinate);
 }
 
-Node* DungeonLayer::_getRoomNodeForCoordinate(Vec2 coordinate) {
+DungeonRoomSprite* DungeonLayer::_getRoomSpriteForCoordinate(Vec2 coordinate) {
   auto name = CoordinateUtil::nameForCoordinate(coordinate);
-  return this->getChildByName(name);
+  return (DungeonRoomSprite*) this->getChildByName(name);
 }
 
-Vector<Node*> DungeonLayer::_getRoomsNodesForAdjacentCharacterCoordinate() {
-  Vector<Node*> roomNodes;
+Vector<Node*> DungeonLayer::_getRoomSpritesForAdjacentCharacterCoordinate() {
+  Vector<Node*> roomSprites;
   
   auto coordinate = Game::getInstance()->getCharacterCoordinate();
   auto adjacentCoordinates = CoordinateUtil::adjacentCoordinatesTo(coordinate);
   for (auto adjacentCoordinate : adjacentCoordinates) {
-    auto roomNode = this->_getRoomNodeForCoordinate(adjacentCoordinate);
+    auto roomSprite = this->_getRoomSpriteForCoordinate(adjacentCoordinate);
     
-    if (roomNode) {
-      roomNodes.pushBack(roomNode);
+    if (roomSprite) {
+      roomSprites.pushBack(roomSprite);
     }
   }
   
-  return roomNodes;
+  return roomSprites;
 }
 
 void DungeonLayer::_resetCharacterMoveState() {
   this->_removeOverlay();
   
-  for (auto adjacentRoomNode : this->_getRoomsNodesForAdjacentCharacterCoordinate()) {
-    adjacentRoomNode->setColor(Color3B::WHITE);
+  for (auto adjacentRoomSprite : this->_getRoomSpritesForAdjacentCharacterCoordinate()) {
+    adjacentRoomSprite->setColor(Color3B::WHITE);
   }
 }
 
@@ -355,24 +283,9 @@ void DungeonLayer::_removeOverlay() {
 
 #pragma mark - Event Handlers
 
+
 void DungeonLayer::_handleLastTileHasBeenPlaced(EventCustom* event) {
-  for (auto data : _monsterRoomDatas) {
-    auto dice = data->getMonsterDice();
-    auto room = data->getRoom();
-    
-    dice->roll();
-    
-    auto coordinate = Game::getInstance()->getDungeon()->getCoordinateForRoom(room);
-    auto roomNode = this->_getRoomNodeForCoordinate(coordinate);
-    
-    auto diceSprite = dice->getSprite();
-    diceSprite->setPosition(PositionUtil::centerOfNode(roomNode));
-    roomNode->addChild(diceSprite);
-    
-    this->_adjustSpritesForRoom(roomNode);
-  }
-  
-  _monsterRoomDatas.clear();
+  this->_consumeMonsterRoomDatas();
 }
 
 void DungeonLayer::_handleMonsterDiceGenerated(EventCustom* event) {
@@ -394,9 +307,8 @@ void DungeonLayer::_handleRoomsPlacements(EventCustom* event) {
       auto room = placement->getRoom();
       auto coordinate = placement->getCoordinate();
       
-      auto roomSprite = Sprite::create(room->getImagePath());
-      auto name = CoordinateUtil::nameForCoordinate(coordinate);
-      roomSprite->setName(name);
+      auto roomSprite = DungeonRoomSprite::createWithRoom(room);
+      roomSprite->setCoordinate(coordinate);
       
       auto size = Director::getInstance()->getVisibleSize();
       auto origin = Director::getInstance()->getVisibleOrigin() - this->getParent()->getPosition();
@@ -451,7 +363,7 @@ void DungeonLayer::_handleMonsterMoved(EventCustom* event) {
   
   this->_moveMonsterSpriteToDestinationRoom(
     monsterDice->getSprite(),
-    this->_getRoomNodeForCoordinate(destination->getCoordinate())
+    this->_getRoomSpriteForCoordinate(destination->getCoordinate())
   );
   
   if (origin->getMonsters().size() > 0 && !_modifiedRooms.contains(origin)) {
@@ -464,40 +376,57 @@ void DungeonLayer::_handleMonsterMoved(EventCustom* event) {
 }
 
 void DungeonLayer::_handleMonstersFinishedMoving(EventCustom* event) {
-  auto delay = 0.f;
-  
-  for (auto room : _modifiedRooms) {
-    auto coordinate = room->getCoordinate();
-    auto node = this->_getRoomNodeForCoordinate(coordinate);
+  if (_modifiedRooms.size() > 0) {
+    auto delay = 0.f;
+    auto lastModifiedRoom = _modifiedRooms.at(_modifiedRooms.size() - 1);
     
-    auto delayTime = DelayTime::create(delay);
-    auto callFunc = CallFunc::create([=]{
-      auto center = PositionUtil::visibleCenter();
-      auto cameraPosition = center - node->getPosition();
+    for (auto room : _modifiedRooms) {
+      auto coordinate = room->getCoordinate();
+      auto roomSprite = this->_getRoomSpriteForCoordinate(coordinate);
       
-      auto cameraMove = MoveTo::create(ADJUST_CAMERA_DURATION, cameraPosition);
-      auto adjustCamera = EaseOut::create(cameraMove, 2.f);
-      auto delayToMove = DelayTime::create(ADJUST_CAMERA_DURATION - 0.2);
-      auto showMonsterAnimation = CallFunc::create([=]{
-        this->_adjustSpritesForRoom(node);
+      auto delayTime = DelayTime::create(delay);
+      auto callFunc = CallFunc::create([=]{
+        auto center = PositionUtil::visibleCenter();
+        auto cameraPosition = center - roomSprite->getPosition();
+        
+        auto cameraMove = MoveTo::create(ADJUST_CAMERA_DURATION, cameraPosition);
+        auto adjustCamera = EaseOut::create(cameraMove, 2.f);
+        auto delayToMove = DelayTime::create(ADJUST_CAMERA_DURATION - 0.2);
+        auto showMonsterAnimation = CallFunc::create([=]{
+          roomSprite->adjustChildren();
+          
+          if (room == lastModifiedRoom) {
+            auto delayAfterAdjust = DelayTime::create(MOVE_DICE_DURATION);
+            auto notififyLastRoomAdjusted = CallFunc::create([=]{
+              this->_consumeMonsterRoomDatas();
+            });
+            
+            this->runAction(Sequence::create(delayAfterAdjust, notififyLastRoomAdjusted, NULL));
+          }
+        });
+        
+        auto waitAndMoveMonster = Sequence::create(delayToMove, showMonsterAnimation, NULL);
+        
+        this->getParent()->runAction(Spawn::create(adjustCamera, waitAndMoveMonster, NULL));
       });
       
-      auto waitAndMoveMonster = Sequence::create(delayToMove, showMonsterAnimation, NULL);
+      this->runAction(Sequence::create(delayTime, callFunc, NULL));
       
-      this->getParent()->runAction(Spawn::create(adjustCamera, waitAndMoveMonster, NULL));
-    });
+      delay += MOVE_DICE_DURATION + ADJUST_CAMERA_DURATION;
+    }
     
-    this->runAction(Sequence::create(delayTime, callFunc, NULL));
+    _modifiedRooms.clear();
     
-    delay += MOVE_DICE_DURATION + ADJUST_CAMERA_DURATION;
+    for (auto child : this->getChildren()) {
+      child->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
+    }
+    
+    auto characterRoomSprite = this->_getRoomSpriteForCharacterCoordinate();
+    characterRoomSprite->setLocalZOrder(DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
   }
-  
-  _modifiedRooms.clear();
-  
-  for (auto child : this->getChildren()) {
-    child->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
-  }
-  
-  auto characterNode = this->_getRoomNodeForCharacterCoordinate();
-  characterNode->setLocalZOrder(DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
+}
+
+void DungeonLayer::_handleMonstersFinishedRising(EventCustom* event) {
+  // TODO: tem que esperar acabar a animação de
+  //this->_consumeMonsterRoomDatas();
 }

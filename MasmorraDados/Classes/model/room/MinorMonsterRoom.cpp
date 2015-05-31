@@ -23,9 +23,7 @@ std::string MinorMonsterRoom::getImagePath() {
   return IMG_ROOM_MINOR_MONSTER;
 }
 
-void MinorMonsterRoom::hasBeenPlaced(RoomPlacementData *placementData) {
-  DungeonRoom::hasBeenPlaced(placementData);
-  
+void MinorMonsterRoom::riseMonster() {
   auto dice = MinorMonsterDice::create();
   this->addMonsterDice(dice);
   
@@ -35,4 +33,9 @@ void MinorMonsterRoom::hasBeenPlaced(RoomPlacementData *placementData) {
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   dispatcher->dispatchCustomEvent(EVT_MONSTER_DICE_GENERATED, data);
+}
+
+void MinorMonsterRoom::hasBeenPlaced(RoomPlacementData *placementData) {
+  DungeonRoom::hasBeenPlaced(placementData);
+  this->riseMonster();
 }

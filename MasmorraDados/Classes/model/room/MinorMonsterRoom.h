@@ -21,6 +21,7 @@ public:
   
   virtual std::string getImagePath();
   
+  virtual void riseMonster();
   virtual void hasBeenPlaced(RoomPlacementData* placement);
 };
 

@@ -27,7 +27,9 @@ public:
   
   virtual std::string getImagePath();
   virtual bool isExplorable();
-  virtual bool isFull();
+  
+  bool isEmpty();
+  bool isFull();
   
   bool isCloserToPlayerThen(DungeonRoom* other);
   

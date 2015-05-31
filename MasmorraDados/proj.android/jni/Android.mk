@@ -55,6 +55,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/sprite/ActionDiceSprite.cpp \
 		   ../../Classes/sprite/CharacterDiceSprite.cpp \
 		   ../../Classes/sprite/DiceSprite.cpp \
+		   ../../Classes/sprite/DungeonRoomSprite.cpp \
 		   ../../Classes/util/CoordinateUtil.cpp \
 		   ../../Classes/util/PositionUtil.cpp
 

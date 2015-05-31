@@ -32,5 +32,6 @@
 
 #define EVT_MONSTER_MOVED             "monter_moved"              // data -> MonsterMoveData
 #define EVT_MONSTERS_FINISHED_MOVING  "monsters_finished_moving"  // no data
+#define EVT_MONSTERS_FINISHED_RISING  "monsters_finished_rising"  // no data
 
 #endif /* defined(__MasmorraDados__Events__) */
