@@ -189,6 +189,7 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
   
   sprite->setLocalZOrder(sprite->getLocalZOrder() + DRAG_Z_ORDER_DELTA);
   sprite->getDice()->setDocked(false);
+  sprite->runAction(ScaleTo::create(0.2, 0.58));
   
   Vector<Node*> targetNodes;
   targetNodes.pushBack(sprite);
@@ -203,7 +204,6 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
     }
   } else {
     log("dragging other dice");
-    sprite->runAction(ScaleTo::create(0.2, 0.58));
     
     auto dockableNodes = this->getDockableNodes();
     auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
@@ -227,27 +227,44 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
 
 void PlayerSkillsLayer::_handleActionDiceDragMoved(EventCustom* event) {
   auto data = (ActionDiceDragData*) event->getUserData();
+  auto sprite = data->getSprite();
+  auto dice = sprite->getDice();
+  auto touch = data->getTouch();
   
   auto touchLocation = this->convertTouchToNodeSpace(data->getTouch());
-  data->getSprite()->setPosition(touchLocation);
+  sprite->setPosition(touchLocation);
   
-  auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
-  auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
-  
-  for (auto node : this->getDockableNodes()) {
-    auto color = Color3B::WHITE;
-    
-    auto rect = node->getBoundingBox();
-    
-    rect.origin -= Vec2(DOCKABLE_HIDDEN_MARGIN, 0);
-    rect.size = rect.size + Size(DOCKABLE_HIDDEN_MARGIN * 2, 0);
-    
-    if (node->getChildren().size() == 0 &&
-        rect.containsPoint(dockableLocation)) {
-      color = Color3B(177, 255, 170);
+  if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_MAGIC) {
+    for (auto node : this->getChildren()) {
+      if (IS(node, ActionDiceSprite) && node != sprite) {
+        auto color = Color3B::WHITE;
+        auto rect = node->getBoundingBox();
+        
+        if (rect.containsPoint(touch->getLocation())) {
+          color = OK_COLOR;
+        }
+        
+        node->setColor(color);
+      }
     }
+  } else {
+    auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
+    auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(touch);
     
-    node->setColor(color);
+    for (auto node : this->getDockableNodes()) {
+      auto color = Color3B::WHITE;
+      auto rect = node->getBoundingBox();
+      
+      rect.origin -= Vec2(DOCKABLE_HIDDEN_MARGIN, 0);
+      rect.size = rect.size + Size(DOCKABLE_HIDDEN_MARGIN * 2, 0);
+      
+      if (node->getChildren().size() == 0 &&
+          rect.containsPoint(dockableLocation)) {
+        color = OK_COLOR;
+      }
+      
+      node->setColor(color);
+    }
   }
 }
 

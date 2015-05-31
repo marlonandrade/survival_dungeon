@@ -84,7 +84,7 @@ void DungeonLayer::characterIsMovingToLocation(Vec2 location) {
     Color3B color = Color3B::WHITE;
     
     if (adjacentRoomSprite->getBoundingBox().containsPoint(location)) {
-      color = Color3B(170, 255, 170);
+      color = OK_COLOR;
     }
     
     adjacentRoomSprite->setColor(color);
