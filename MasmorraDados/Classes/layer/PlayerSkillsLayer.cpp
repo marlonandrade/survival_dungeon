@@ -32,6 +32,18 @@ bool PlayerSkillsLayer::init() {
   return true;
 }
 
+void PlayerSkillsLayer::resetFreeBootUsed() {
+  auto freeBootSprite = this->getChildByName(FREE_BOOT_SPRITE_NAME);
+  freeBootSprite->removeAllChildren();
+}
+
+void PlayerSkillsLayer::resetDockableNodes() {
+  for (auto dockableNode : this->getDockableNodes()) {
+    dockableNode->removeAllChildren();
+    dockableNode->setColor(Color3B::WHITE);
+  }
+}
+
 Vector<Node*> PlayerSkillsLayer::getDockableNodes() {
   return this->_getDockContainer()->getChildren();
 }
@@ -232,6 +244,7 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
   
   auto data = (ActionDiceDragData*) event->getUserData();
   auto sprite = data->getSprite();
+  auto touch = data->getTouch();
   auto dice = sprite->getDice();
   
   sprite->setLocalZOrder(sprite->getLocalZOrder() + DRAG_Z_ORDER_DELTA);
@@ -258,7 +271,13 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
     targetNodes.pushBack(dockableNodes);
     targetNodes.pushBack(dockableContainer);
     
-    auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
+    for (auto child : this->getChildren()) {
+      if (child->getScale() != 1) {
+        targetNodes.pushBack(child);
+      }
+    }
+    
+    auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(touch);
     
     for (auto node : this->getDockableNodes()) {
       if (node->getChildren().size() > 0 &&
@@ -275,8 +294,8 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
 void PlayerSkillsLayer::_handleActionDiceDragMoved(EventCustom* event) {
   auto data = (ActionDiceDragData*) event->getUserData();
   auto sprite = data->getSprite();
-  auto dice = sprite->getDice();
   auto touch = data->getTouch();
+  auto dice = sprite->getDice();
   
   auto touchLocation = this->convertTouchToNodeSpace(touch);
   sprite->setPosition(touchLocation);
@@ -318,8 +337,8 @@ void PlayerSkillsLayer::_handleActionDiceDragMoved(EventCustom* event) {
 void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
   auto data = (ActionDiceDragData*) event->getUserData();
   auto sprite = data->getSprite();
-  auto dice = sprite->getDice();
   auto touch = data->getTouch();
+  auto dice = sprite->getDice();
   
   this->_removeOverlay();
   
@@ -355,6 +374,7 @@ void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
           rect.containsPoint(dockableLocation)) {
         moved = true;
         position = node->getPosition() + dockableContainer->getPosition();
+        node->setColor(Color3B::WHITE);
         node->addChild(Node::create());
         break;
       }

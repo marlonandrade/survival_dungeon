@@ -148,11 +148,40 @@ void GameplayScene::_showTurnInfo(cocos2d::Sprite *infoSprite) {
                                          fadeOutTurnInfo, NULL));
 }
 
-#pragma mark - Event Handlers
+void GameplayScene::_showActionDicesLayer() {
+  auto controlsLayer = this->_getControlsLayer();
+  
+  auto actionDicesLayer = (ActionDiceLayer*) controlsLayer->getChildByName(ACTION_DICE_LAYER_NAME);
+  auto playerSkillsLayer = (PlayerSkillsLayer*) controlsLayer->getChildByName(PLAYER_SKILL_LAYER_NAME);
+  
+  for (auto dice : actionDicesLayer->getDices()) {
+    auto sprite = (ActionDiceSprite*) dice->getSprite();
+    CC_SAFE_RETAIN(sprite);
+    auto position = sprite->getParent()->getPosition();
+    sprite->removeFromParent();
+    
+    auto spritePosition = sprite->getPosition();
+    if (sprite->getOriginalPosition() != Vec2::ZERO) {
+      spritePosition = sprite->getOriginalPosition();
+    }
+    
+    auto newPosition = spritePosition + position;
+    sprite->setPosition(newPosition);
+    sprite->setScale(1);
+    
+    actionDicesLayer->addChild(sprite);
+    CC_SAFE_RELEASE(sprite);
+  }
+  
+  actionDicesLayer->setVisible(Show::create());
+  playerSkillsLayer->setVisible(false);
+}
 
-void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
-  auto actionDicesLayer = (ActionDiceLayer*) event->getUserData();
-  auto playerSkillLayer = (PlayerSkillsLayer*)this->_getControlsLayer()->getChildByName(PLAYER_SKILL_LAYER_NAME);
+void GameplayScene::_showPlayerSkillsLayer() {
+  auto controlsLayer = this->_getControlsLayer();
+  
+  auto actionDicesLayer = (ActionDiceLayer*) controlsLayer->getChildByName(ACTION_DICE_LAYER_NAME);
+  auto playerSkillsLayer = (PlayerSkillsLayer*) controlsLayer->getChildByName(PLAYER_SKILL_LAYER_NAME);
   
   for (auto dice : actionDicesLayer->getDices()) {
     auto sprite = (ActionDiceSprite*) dice->getSprite();
@@ -164,12 +193,18 @@ void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
     sprite->setPosition(newPosition);
     sprite->setOriginalPosition(newPosition);
     
-    playerSkillLayer->addChild(sprite);
+    playerSkillsLayer->addChild(sprite);
     CC_SAFE_RELEASE(sprite);
   }
   
   actionDicesLayer->setVisible(false);
-  playerSkillLayer->runAction(Show::create());
+  playerSkillsLayer->runAction(Show::create());
+}
+
+#pragma mark - Event Handlers
+
+void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
+  this->_showPlayerSkillsLayer();
 }
 
 void GameplayScene::_handleTurnHasStarted(EventCustom* event) {
@@ -178,6 +213,16 @@ void GameplayScene::_handleTurnHasStarted(EventCustom* event) {
   auto turn = (Turn*) event->getUserData();
   
   if (IS(turn, PlayerTurn)) {
+    auto controlsLayer = this->_getControlsLayer();
+    auto playerSkillsLayer = (PlayerSkillsLayer*) controlsLayer->getChildByName(PLAYER_SKILL_LAYER_NAME);
+    
+    Game::getInstance()->setFreeBootUsed(false);
+    playerSkillsLayer->resetFreeBootUsed();
+    playerSkillsLayer->resetDockableNodes();
+    
+    // TODO: adjust reroll count
+    // TODO: adjust reroll button based on new count
+    
     auto show = Show::create();
     auto roll = CallFunc::create([&] {
       for (auto dice : Game::getInstance()->getActionDices()) {
@@ -186,7 +231,9 @@ void GameplayScene::_handleTurnHasStarted(EventCustom* event) {
     });
     auto showAndRoll = Sequence::create(show, roll, NULL);
     
-    this->_getControlsLayer()->runAction(showAndRoll);
+    controlsLayer->runAction(showAndRoll);
+    
+    this->_showActionDicesLayer();
     
     this->_showPlayerTurnInfo();
   } else if (IS(turn, DungeonTurn)) {

@@ -31,6 +31,8 @@ public:
   CREATE_FUNC(PlayerSkillsLayer);
   virtual bool init();
   
+  void resetFreeBootUsed();
+  void resetDockableNodes();
   cocos2d::Vector<Node*> getDockableNodes();
 private:
   void _setupFreeBootSymbol();

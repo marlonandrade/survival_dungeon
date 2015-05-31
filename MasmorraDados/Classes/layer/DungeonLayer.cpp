@@ -429,4 +429,6 @@ void DungeonLayer::_handleMonstersFinishedMoving(EventCustom* event) {
 void DungeonLayer::_handleMonstersFinishedRising(EventCustom* event) {
   // TODO: tem que esperar acabar a animação de
   //this->_consumeMonsterRoomDatas();
+  
+  Game::getInstance()->finishCurrentTurn();
 }

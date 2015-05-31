@@ -45,6 +45,9 @@ private:
   void _showDungeonTurnInfo();
   void _showTurnInfo(cocos2d::Sprite* infoSprite);
   
+  void _showActionDicesLayer();
+  void _showPlayerSkillsLayer();
+  
 #pragma mark - Events
   void _handleActionDicesRolled(cocos2d::EventCustom* event);
   void _handleTurnHasStarted(cocos2d::EventCustom* event);
