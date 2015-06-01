@@ -276,7 +276,6 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
     
     targetNodes.pushBack(dockableNodes);
     targetNodes.pushBack(dockableContainer);
-    targetNodes.pushBack(sprite);
     
     auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(touch);
     
@@ -287,10 +286,6 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
         break;
       }
     }
-  }
-  
-  for (auto bla : this->getChildren()) {
-    log("%d", bla->getLocalZOrder());
   }
   
   this->_addOverlay(targetNodes);

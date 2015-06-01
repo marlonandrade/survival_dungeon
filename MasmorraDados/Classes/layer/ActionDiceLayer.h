@@ -23,7 +23,9 @@ class ActionDiceLayer : public cocos2d::Layer {
 public:
   static ActionDiceLayer* createWithDices(cocos2d::Vector<ActionDice*> dices);
   virtual bool initWithDices(cocos2d::Vector<ActionDice*> dices);
+  
   void resetRollCount();
+  void resetActionDicesZIndex();
   
 private:
   int _rollCount;

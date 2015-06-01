@@ -48,6 +48,13 @@ void ActionDiceLayer::resetRollCount() {
   this->_adjustRerollButtonTextures();
 }
 
+void ActionDiceLayer::resetActionDicesZIndex() {
+  for (auto dice : this->getDices()) {
+    auto sprite = dice->getSprite();
+    sprite->setLocalZOrder(ACTION_DICE_Z_ORDER);
+  }
+}
+
 #pragma mark - Private Interface
 
 void ActionDiceLayer::_setupChilds(Vector<ActionDice *> dices) {
@@ -79,6 +86,8 @@ void ActionDiceLayer::_setupChilds(Vector<ActionDice *> dices) {
   auto okX = width - (actionDices->getPosition().x / 2);
   auto okY = height / 2;
   okButton->setPosition(Vec2(okX, okY));
+  
+  this->resetActionDicesZIndex();
 }
 
 Node* ActionDiceLayer::_createActionDices(Vector<ActionDice*> dices) {

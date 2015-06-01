@@ -33,6 +33,7 @@ public:
   
   void resetFreeBootUsed();
   void resetDockableNodes();
+  
   cocos2d::Vector<Node*> getDockableNodes();
 private:
   void _setupFreeBootSymbol();

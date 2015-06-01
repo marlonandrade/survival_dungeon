@@ -214,14 +214,15 @@ void GameplayScene::_handleTurnHasStarted(EventCustom* event) {
   
   if (IS(turn, PlayerTurn)) {
     auto controlsLayer = this->_getControlsLayer();
+    auto actionDiceLayer = (ActionDiceLayer*) controlsLayer->getChildByName(ACTION_DICE_LAYER_NAME);
     auto playerSkillsLayer = (PlayerSkillsLayer*) controlsLayer->getChildByName(PLAYER_SKILL_LAYER_NAME);
     
     Game::getInstance()->setFreeBootUsed(false);
     playerSkillsLayer->resetFreeBootUsed();
     playerSkillsLayer->resetDockableNodes();
     
-    // TODO: adjust reroll count
-    // TODO: adjust reroll button based on new count
+    actionDiceLayer->resetRollCount();
+    actionDiceLayer->resetActionDicesZIndex();
     
     auto show = Show::create();
     auto roll = CallFunc::create([&] {
