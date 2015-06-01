@@ -399,6 +399,7 @@ void DungeonLayer::_handleMonstersFinishedMoving(EventCustom* event) {
             auto delayAfterAdjust = DelayTime::create(MOVE_DICE_DURATION);
             auto notififyLastRoomAdjusted = CallFunc::create([=]{
               this->_consumeMonsterRoomDatas();
+              Game::getInstance()->finishCurrentTurn();
             });
             
             this->runAction(Sequence::create(delayAfterAdjust, notififyLastRoomAdjusted, NULL));
@@ -429,6 +430,4 @@ void DungeonLayer::_handleMonstersFinishedMoving(EventCustom* event) {
 void DungeonLayer::_handleMonstersFinishedRising(EventCustom* event) {
   // TODO: tem que esperar acabar a animação de
   //this->_consumeMonsterRoomDatas();
-  
-  Game::getInstance()->finishCurrentTurn();
 }
