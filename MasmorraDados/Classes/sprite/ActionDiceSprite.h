@@ -19,6 +19,8 @@ public:
   static ActionDiceSprite* createWithDice(Dice* dice);
   virtual bool initWithDice(Dice* dice);
   
+  void dockOnNode(cocos2d::Node* node);
+  void undock(cocos2d::Layer* layer);
 private:
   void _setupTouchListener();
   

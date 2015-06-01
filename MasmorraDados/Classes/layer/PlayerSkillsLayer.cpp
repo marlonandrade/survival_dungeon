@@ -15,6 +15,8 @@
 
 #include "ActionDiceDragData.h"
 
+#include "PositionUtil.h"
+
 USING_NS_CC;
 
 #pragma mark - Public Interface
@@ -39,7 +41,11 @@ void PlayerSkillsLayer::resetFreeBootUsed() {
 
 void PlayerSkillsLayer::resetDockableNodes() {
   for (auto dockableNode : this->getDockableNodes()) {
-    dockableNode->removeAllChildren();
+    if (dockableNode->getChildren().size()) {
+      auto sprite = (ActionDiceSprite*) dockableNode->getChildren().at(0);
+      sprite->undock(this);
+    }
+    
     dockableNode->setColor(Color3B::WHITE);
   }
 }
@@ -270,22 +276,21 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
     
     targetNodes.pushBack(dockableNodes);
     targetNodes.pushBack(dockableContainer);
-    
-    for (auto child : this->getChildren()) {
-      if (child->getScale() != 1) {
-        targetNodes.pushBack(child);
-      }
-    }
+    targetNodes.pushBack(sprite);
     
     auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(touch);
     
     for (auto node : this->getDockableNodes()) {
       if (node->getChildren().size() > 0 &&
           node->getBoundingBox().containsPoint(dockableLocation)) {
-        node->removeAllChildren();
+        sprite->undock(this);
         break;
       }
     }
+  }
+  
+  for (auto bla : this->getChildren()) {
+    log("%d", bla->getLocalZOrder());
   }
   
   this->_addOverlay(targetNodes);
@@ -340,9 +345,9 @@ void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
   auto touch = data->getTouch();
   auto dice = sprite->getDice();
   
-  this->_removeOverlay();
-  
   sprite->setLocalZOrder(sprite->getLocalZOrder() - DRAG_Z_ORDER_DELTA);
+  
+  this->_removeOverlay();
   
   bool moved = false;
   auto position = Vec2::ZERO;
@@ -373,9 +378,12 @@ void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
       if (node->getChildren().size() == 0 &&
           rect.containsPoint(dockableLocation)) {
         moved = true;
-        position = node->getPosition() + dockableContainer->getPosition();
         node->setColor(Color3B::WHITE);
-        node->addChild(Node::create());
+        
+        sprite->dockOnNode(node);
+        
+        position = PositionUtil::centerOfNode(node);
+        
         break;
       }
     }

@@ -40,6 +40,24 @@ bool ActionDiceSprite::initWithDice(Dice *dice) {
   return true;
 }
 
+void ActionDiceSprite::dockOnNode(Node* node) {
+  this->retain();
+  this->removeFromParent();
+  node->addChild(this);
+  this->setPosition(node->convertToNodeSpace(this->getPosition()));
+  this->release();
+}
+
+void ActionDiceSprite::undock(Layer* layer) {
+  auto parent = this->getParent();
+  
+  this->retain();
+  this->removeFromParent();
+  layer->addChild(this);
+  this->setPosition(parent->convertToWorldSpace(this->getPosition()));
+  this->release();
+}
+
 #pragma mark - Private Interface
 
 void ActionDiceSprite::_setupTouchListener() {
