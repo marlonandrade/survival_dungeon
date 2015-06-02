@@ -14,6 +14,9 @@
 #include "Game.h"
 #include "Turn.h"
 
+class BackgroundLayer;
+class ControlsLayer;
+
 class GameplayScene : public cocos2d::Scene {
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _actionDicesRolledListener,
@@ -34,10 +37,8 @@ private:
   
   void _setupEventHandlers();
   
-  cocos2d::Layer* _createControlsLayer();
-  
-  cocos2d::Layer* _getScrollableLayer();
-  cocos2d::Layer* _getControlsLayer();
+  BackgroundLayer* _getScrollableLayer();
+  ControlsLayer* _getControlsLayer();
   
   void _roomsHasBeenPlaced(cocos2d::Vector<RoomPlacementData*> placements);
   

@@ -17,6 +17,8 @@
 
 #include "PositionUtil.h"
 
+#include "Game.h"
+
 USING_NS_CC;
 
 #pragma mark - Public Interface
@@ -26,12 +28,33 @@ bool PlayerSkillsLayer::init() {
     return false;
   }
   
+  this->setName(PLAYER_SKILL_LAYER_NAME);
+  this->setVisible(false);
+  
   this->_setupFreeBootSymbol();
   this->_setupDockableDice();
   this->_setupFinalizarButton();
   this->_setupEventHandlers();
   
   return true;
+}
+
+void PlayerSkillsLayer::migrateDicesAndShow() {
+  for (auto dice : Game::getInstance()->getActionDices()) {
+    auto sprite = (ActionDiceSprite*) dice->getSprite();
+    CC_SAFE_RETAIN(sprite);
+    auto position = sprite->getParent()->getPosition();
+    sprite->removeFromParent();
+    
+    auto newPosition = sprite->getPosition() + position;
+    sprite->setPosition(newPosition);
+    sprite->setOriginalPosition(newPosition);
+    
+    this->addChild(sprite);
+    CC_SAFE_RELEASE(sprite);
+  }
+  
+  this->runAction(Show::create());
 }
 
 void PlayerSkillsLayer::resetFreeBootUsed() {
@@ -384,7 +407,6 @@ void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
     }
   }
   
-  log("drag ended");
   if (moved) {
     auto move = MoveTo::create(0.1, position);
     sprite->runAction(move);

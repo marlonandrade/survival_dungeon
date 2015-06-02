@@ -42,6 +42,9 @@ public:
   static Game* getInstance();
   
   virtual bool init();
+  virtual void resetForPlayerTurn();
+  
+  virtual void advanceLevel();
   
   virtual Turn* getTurn(void) const { return _turn; }
   virtual void setTurn(Turn* turn);

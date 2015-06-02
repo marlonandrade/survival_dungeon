@@ -21,8 +21,10 @@ class ActionDiceLayer : public cocos2d::Layer {
   
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _dices, Dices);
 public:
-  static ActionDiceLayer* createWithDices(cocos2d::Vector<ActionDice*> dices);
-  virtual bool initWithDices(cocos2d::Vector<ActionDice*> dices);
+  CREATE_FUNC(ActionDiceLayer);
+  virtual bool init();
+  
+  void showDices();
   
   void resetRollCount();
   void resetActionDicesZIndex();

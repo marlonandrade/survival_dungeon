@@ -31,6 +31,8 @@ public:
   CREATE_FUNC(PlayerSkillsLayer);
   virtual bool init();
   
+  void migrateDicesAndShow();
+  
   void resetFreeBootUsed();
   void resetDockableNodes();
   

@@ -13,34 +13,54 @@
 #include "Images.h"
 #include "NodeNames.h"
 
+#include "ActionDiceSprite.h"
+
 #include "ActionDiceStateNormal.h"
 #include "ActionDiceStateSelected.h"
+
+#include "Game.h"
 
 USING_NS_CC;
 
 #pragma mark - Public Interface
 
-ActionDiceLayer* ActionDiceLayer::createWithDices(Vector<ActionDice *> dices) {
-  auto layer = new (std::nothrow) ActionDiceLayer();
-  if (layer && layer->initWithDices(dices)) {
-    layer->autorelease();
-  } else {
-    CC_SAFE_DELETE(layer);
-  }
-  return layer;
-}
-
-bool ActionDiceLayer::initWithDices(Vector<ActionDice *> dices) {
+bool ActionDiceLayer::init() {
   if (!Layer::init()) {
     return false;
   }
   
+  this->setName(ACTION_DICE_LAYER_NAME);
+  
+  auto dices = Game::getInstance()->getActionDices();
   this->setDices(dices);
   this->_setupChilds(dices);
   this->resetRollCount();
   this->_setupEventHandlers();
   
   return true;
+}
+
+void ActionDiceLayer::showDices() {
+  for (auto dice : Game::getInstance()->getActionDices()) {
+    auto sprite = (ActionDiceSprite*) dice->getSprite();
+    CC_SAFE_RETAIN(sprite);
+    auto position = sprite->getParent()->getPosition();
+    sprite->removeFromParent();
+    
+    auto spritePosition = sprite->getPosition();
+    if (sprite->getOriginalPosition() != Vec2::ZERO) {
+      spritePosition = sprite->getOriginalPosition();
+    }
+    
+    auto newPosition = spritePosition + position;
+    sprite->setPosition(newPosition);
+    sprite->setScale(1);
+    
+    this->addChild(sprite);
+    CC_SAFE_RELEASE(sprite);
+  }
+  
+  this->runAction(Show::create());
 }
 
 void ActionDiceLayer::resetRollCount() {

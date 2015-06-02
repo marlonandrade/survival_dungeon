@@ -9,6 +9,8 @@
 #ifndef __MasmorraDados__Events__
 #define __MasmorraDados__Events__
 
+#define EVT_LEVEL_ADVANCED            "level_advanced"           // no data
+
 #define EVT_TURN_HAS_ENDED            "turn_has_ended"           // data -> turn
 #define EVT_TURN_HAS_STARTED          "turn_has_started"         // data -> turn
 
