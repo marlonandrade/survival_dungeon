@@ -18,10 +18,10 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/event_data/MonsterRoomData.cpp \
 		   ../../Classes/event_data/RoomPlacementData.cpp \
 		   ../../Classes/event_data/RoomsPlacementsData.cpp \
-		   ../../Classes/layer/BackgroundLayer.cpp \
-		   ../../Classes/layer/DungeonLayer.cpp \
-		   ../../Classes/layer/ScrollableLayer.cpp \
 		   ../../Classes/layer/TurnChangeLayer.cpp \
+		   ../../Classes/layer/dungeon/BackgroundLayer.cpp \
+		   ../../Classes/layer/dungeon/DungeonLayer.cpp \
+		   ../../Classes/layer/dungeon/ScrollableDungeonLayer.cpp \
 		   ../../Classes/layer/player_turn/DiceSelectLayer.cpp \
 		   ../../Classes/layer/player_turn/GameplayLayer.cpp \
 		   ../../Classes/layer/player_turn/PlayerTurnLayer.cpp \
@@ -67,6 +67,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/delegate \
 		    $(LOCAL_PATH)/../../Classes/event_data \
 		    $(LOCAL_PATH)/../../Classes/layer \
+		    $(LOCAL_PATH)/../../Classes/layer/dungeon \
 		    $(LOCAL_PATH)/../../Classes/layer/player_turn \
 		    $(LOCAL_PATH)/../../Classes/model \
 		    $(LOCAL_PATH)/../../Classes/model/character \

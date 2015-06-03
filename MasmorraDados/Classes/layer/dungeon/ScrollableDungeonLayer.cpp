@@ -1,56 +1,54 @@
 //
-//  ScrollableLayer.cpp
+//  ScrollableDungeonLayer.cpp
 //  MasmorraDados
 //
 //  Created by Marlon Andrade on 4/5/15.
 //
 //
 
-#include "ScrollableLayer.h"
+#include "ScrollableDungeonLayer.h"
 
 #include "NodeNames.h"
 
+#include "BackgroundLayer.h"
+#include "DungeonLayer.h"
+
+#include "Game.h"
+
 USING_NS_CC;
 
-ScrollableLayer* ScrollableLayer::createWithDungeon(Dungeon* dungeon) {
-  auto layer = new (std::nothrow) ScrollableLayer();
-  
-  if (layer && layer->initWithDungeon(dungeon)) {
-    layer->autorelease();
-  } else {
-    CC_SAFE_DELETE(layer);
-  }
-  
-  return layer;
-}
-
-bool ScrollableLayer::initWithDungeon(Dungeon *dungeon) {
+bool ScrollableDungeonLayer::init() {
   if (!Layer::init()) {
     return false;
   }
   
-  this->setDungeon(dungeon);
+  this->_setupChildren();
   this->_setupTouchListener();
   
   return true;
 }
 
-void ScrollableLayer::_setupTouchListener() {
+void ScrollableDungeonLayer::_setupChildren() {
+  this->addChild(BackgroundLayer::create(), -10);
+  this->addChild(DungeonLayer::create(), 0);
+}
+
+void ScrollableDungeonLayer::_setupTouchListener() {
   this->setName(SCROLLABLE_LAYER_NAME);
   
   auto touchListener = EventListenerTouchOneByOne::create();
-  touchListener->onTouchBegan = CC_CALLBACK_2(ScrollableLayer::_onTouchBegan, this);
-  touchListener->onTouchMoved = CC_CALLBACK_2(ScrollableLayer::_onTouchMoved, this);
+  touchListener->onTouchBegan = CC_CALLBACK_2(ScrollableDungeonLayer::_onTouchBegan, this);
+  touchListener->onTouchMoved = CC_CALLBACK_2(ScrollableDungeonLayer::_onTouchMoved, this);
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   dispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 }
 
-bool ScrollableLayer::_onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event) {
+bool ScrollableDungeonLayer::_onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event) {
   return true;
 }
 
-void ScrollableLayer::_onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event) {
+void ScrollableDungeonLayer::_onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event) {
   auto delta = touch->getDelta();
   
   auto currentPosition = this->getPosition();
@@ -63,7 +61,8 @@ void ScrollableLayer::_onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event
   auto visibleOrigin = Director::getInstance()->getVisibleOrigin();
   auto visibleSize = Director::getInstance()->getVisibleSize();
   
-  auto farthestCoordinates = this->getDungeon()->getFarthestCoordinates();
+  auto dungeon = Game::getInstance()->getDungeon();
+  auto farthestCoordinates = dungeon->getFarthestCoordinates();
   
   auto initial = INITIAL_COORDINATE;
   

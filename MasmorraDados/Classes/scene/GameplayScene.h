@@ -33,7 +33,7 @@ public:
   CREATE_FUNC(GameplayScene);
   
 private:
-  void _adjustInitialLayers();
+  void _setupChildren();
   
   void _setupEventHandlers();
   

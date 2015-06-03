@@ -11,11 +11,9 @@
 #include "Events.h"
 #include "NodeNames.h"
 
-#include "BackgroundLayer.h"
 #include "PlayerTurnLayer.h"
-#include "DungeonLayer.h"
 #include "TurnChangeLayer.h"
-#include "ScrollableLayer.h"
+#include "ScrollableDungeonLayer.h"
 
 #include "DungeonTurn.h"
 #include "PlayerTurn.h"
@@ -29,7 +27,7 @@ bool GameplayScene::init() {
     return false;
   }
   
-  this->_adjustInitialLayers();
+  this->_setupChildren();
   this->_setupEventHandlers();
   
   Game::getInstance()->setupCharacterInitialCoordinate();
@@ -39,12 +37,8 @@ bool GameplayScene::init() {
 
 #pragma mark - Private Interface
 
-void GameplayScene::_adjustInitialLayers() {
-  auto scrollableLayer = ScrollableLayer::createWithDungeon(Game::getInstance()->getDungeon());
-  scrollableLayer->addChild(BackgroundLayer::create(), -10);
-  scrollableLayer->addChild(DungeonLayer::create(), 0);
-  
-  this->addChild(scrollableLayer, 0);
+void GameplayScene::_setupChildren() {
+  this->addChild(ScrollableDungeonLayer::create(), 0);
   this->addChild(PlayerTurnLayer::create(), 1);
   this->addChild(TurnChangeLayer::create(), 2);
 }

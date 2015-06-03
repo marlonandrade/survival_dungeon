@@ -32,8 +32,6 @@
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		BF083B571B09059C00A6B39D /* RoomsPlacementsData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF083B551B09059C00A6B39D /* RoomsPlacementsData.cpp */; };
 		BF083B581B09059C00A6B39D /* RoomsPlacementsData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF083B551B09059C00A6B39D /* RoomsPlacementsData.cpp */; };
-		BF0840951A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */; };
-		BF0840961A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */; };
 		BF08409B1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */; };
 		BF0E30021AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30001AFE4F32003AAFE5 /* TreasureRoom.cpp */; };
 		BF0E30031AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30001AFE4F32003AAFE5 /* TreasureRoom.cpp */; };
@@ -43,8 +41,6 @@
 		BF0E300C1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30091B078947003AAFE5 /* CoordinateUtil.cpp */; };
 		BF0E300F1B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */; };
 		BF0E30101B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */; };
-		BF0E30171B0902A9003AAFE5 /* DungeonLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30151B0902A9003AAFE5 /* DungeonLayer.cpp */; };
-		BF0E30181B0902A9003AAFE5 /* DungeonLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0E30151B0902A9003AAFE5 /* DungeonLayer.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -97,8 +93,6 @@
 		BFAA744C1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA744A1A9D37E400E45DF8 /* MinorMonsterRoom.cpp */; };
 		BFAA744D1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA744A1A9D37E400E45DF8 /* MinorMonsterRoom.cpp */; };
 		BFAA74501A9E8A4100E45DF8 /* CharacterDiceSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */; };
-		BFBAE2A31AD171AD00A5FC9A /* ScrollableLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBAE2A11AD171AC00A5FC9A /* ScrollableLayer.cpp */; };
-		BFBAE2A41AD171AD00A5FC9A /* ScrollableLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBAE2A11AD171AC00A5FC9A /* ScrollableLayer.cpp */; };
 		BFBE57AD1AE0143400D93530 /* Shake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBE57AB1AE0143400D93530 /* Shake.cpp */; };
 		BFBE57AE1AE0143400D93530 /* Shake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBE57AB1AE0143400D93530 /* Shake.cpp */; };
 		BFC33C211AE803D300934C34 /* InitialTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC33C1F1AE803D300934C34 /* InitialTurn.cpp */; };
@@ -135,6 +129,12 @@
 		BFE451441B1F607800424C09 /* GameplayLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE4513F1B1F607800424C09 /* GameplayLayer.cpp */; };
 		BFE451471B1F60C200424C09 /* PlayerTurnLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE451451B1F60C200424C09 /* PlayerTurnLayer.cpp */; };
 		BFE451481B1F60C200424C09 /* PlayerTurnLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE451451B1F60C200424C09 /* PlayerTurnLayer.cpp */; };
+		BFE451501B1F67BD00424C09 /* BackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE4514A1B1F67BD00424C09 /* BackgroundLayer.cpp */; };
+		BFE451511B1F67BD00424C09 /* BackgroundLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE4514A1B1F67BD00424C09 /* BackgroundLayer.cpp */; };
+		BFE451521B1F67BD00424C09 /* DungeonLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE4514C1B1F67BD00424C09 /* DungeonLayer.cpp */; };
+		BFE451531B1F67BD00424C09 /* DungeonLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE4514C1B1F67BD00424C09 /* DungeonLayer.cpp */; };
+		BFE451541B1F67BD00424C09 /* ScrollableDungeonLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE4514E1B1F67BD00424C09 /* ScrollableDungeonLayer.cpp */; };
+		BFE451551B1F67BD00424C09 /* ScrollableDungeonLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE4514E1B1F67BD00424C09 /* ScrollableDungeonLayer.cpp */; };
 		BFE583A91AD6E41400A4E194 /* ActionDiceSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE583A71AD6E41400A4E194 /* ActionDiceSprite.cpp */; };
 		BFE583AA1AD6E41400A4E194 /* ActionDiceSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE583A71AD6E41400A4E194 /* ActionDiceSprite.cpp */; };
 		BFFA1F6C1AF7DA2F00A0BD9C /* DungeonRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC373931A9BFDDA00520751 /* DungeonRoom.cpp */; };
@@ -203,8 +203,6 @@
 		BF0712431AD2E68C002252A9 /* CharacterMoveDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterMoveDelegate.h; sourceTree = "<group>"; };
 		BF083B551B09059C00A6B39D /* RoomsPlacementsData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RoomsPlacementsData.cpp; sourceTree = "<group>"; };
 		BF083B561B09059C00A6B39D /* RoomsPlacementsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomsPlacementsData.h; sourceTree = "<group>"; };
-		BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroundLayer.cpp; sourceTree = "<group>"; };
-		BF0840941A9CD506003F0D76 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
 		BF0840981A9CD84D003F0D76 /* CharacterDiceSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterDiceSprite.cpp; sourceTree = "<group>"; };
 		BF0840991A9CD84D003F0D76 /* CharacterDiceSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDiceSprite.h; sourceTree = "<group>"; };
 		BF0E30001AFE4F32003AAFE5 /* TreasureRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TreasureRoom.cpp; sourceTree = "<group>"; };
@@ -215,8 +213,6 @@
 		BF0E300A1B078947003AAFE5 /* CoordinateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateUtil.h; sourceTree = "<group>"; };
 		BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PositionUtil.cpp; sourceTree = "<group>"; };
 		BF0E300E1B08FDF7003AAFE5 /* PositionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionUtil.h; sourceTree = "<group>"; };
-		BF0E30151B0902A9003AAFE5 /* DungeonLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DungeonLayer.cpp; sourceTree = "<group>"; };
-		BF0E30161B0902A9003AAFE5 /* DungeonLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DungeonLayer.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -265,8 +261,6 @@
 		BFAA74471A9D37DA00E45DF8 /* RuneRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuneRoom.h; sourceTree = "<group>"; };
 		BFAA744A1A9D37E400E45DF8 /* MinorMonsterRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MinorMonsterRoom.cpp; sourceTree = "<group>"; };
 		BFAA744B1A9D37E400E45DF8 /* MinorMonsterRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinorMonsterRoom.h; sourceTree = "<group>"; };
-		BFBAE2A11AD171AC00A5FC9A /* ScrollableLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScrollableLayer.cpp; sourceTree = "<group>"; };
-		BFBAE2A21AD171AD00A5FC9A /* ScrollableLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableLayer.h; sourceTree = "<group>"; };
 		BFBE57AB1AE0143400D93530 /* Shake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shake.cpp; sourceTree = "<group>"; };
 		BFBE57AC1AE0143400D93530 /* Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shake.h; sourceTree = "<group>"; };
 		BFC33C1F1AE803D300934C34 /* InitialTurn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitialTurn.cpp; sourceTree = "<group>"; };
@@ -311,6 +305,12 @@
 		BFE451401B1F607800424C09 /* GameplayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayLayer.h; sourceTree = "<group>"; };
 		BFE451451B1F60C200424C09 /* PlayerTurnLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerTurnLayer.cpp; sourceTree = "<group>"; };
 		BFE451461B1F60C200424C09 /* PlayerTurnLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTurnLayer.h; sourceTree = "<group>"; };
+		BFE4514A1B1F67BD00424C09 /* BackgroundLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroundLayer.cpp; sourceTree = "<group>"; };
+		BFE4514B1B1F67BD00424C09 /* BackgroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundLayer.h; sourceTree = "<group>"; };
+		BFE4514C1B1F67BD00424C09 /* DungeonLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DungeonLayer.cpp; sourceTree = "<group>"; };
+		BFE4514D1B1F67BD00424C09 /* DungeonLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DungeonLayer.h; sourceTree = "<group>"; };
+		BFE4514E1B1F67BD00424C09 /* ScrollableDungeonLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScrollableDungeonLayer.cpp; sourceTree = "<group>"; };
+		BFE4514F1B1F67BD00424C09 /* ScrollableDungeonLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableDungeonLayer.h; sourceTree = "<group>"; };
 		BFE583A71AD6E41400A4E194 /* ActionDiceSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceSprite.cpp; sourceTree = "<group>"; };
 		BFE583A81AD6E41400A4E194 /* ActionDiceSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceSprite.h; sourceTree = "<group>"; };
 		D44C620B132DFF330009C878 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -484,13 +484,8 @@
 		BF0840921A9CD506003F0D76 /* layer */ = {
 			isa = PBXGroup;
 			children = (
+				BFE451491B1F67A400424C09 /* dungeon */,
 				BFE4513C1B1F605300424C09 /* player_turn */,
-				BF0840931A9CD506003F0D76 /* BackgroundLayer.cpp */,
-				BF0840941A9CD506003F0D76 /* BackgroundLayer.h */,
-				BF0E30151B0902A9003AAFE5 /* DungeonLayer.cpp */,
-				BF0E30161B0902A9003AAFE5 /* DungeonLayer.h */,
-				BFBAE2A11AD171AC00A5FC9A /* ScrollableLayer.cpp */,
-				BFBAE2A21AD171AD00A5FC9A /* ScrollableLayer.h */,
 				BF6304DF1B1E855000A4CD0D /* TurnChangeLayer.cpp */,
 				BF6304E01B1E855000A4CD0D /* TurnChangeLayer.h */,
 			);
@@ -695,6 +690,19 @@
 			path = player_turn;
 			sourceTree = "<group>";
 		};
+		BFE451491B1F67A400424C09 /* dungeon */ = {
+			isa = PBXGroup;
+			children = (
+				BFE4514A1B1F67BD00424C09 /* BackgroundLayer.cpp */,
+				BFE4514B1B1F67BD00424C09 /* BackgroundLayer.h */,
+				BFE4514C1B1F67BD00424C09 /* DungeonLayer.cpp */,
+				BFE4514D1B1F67BD00424C09 /* DungeonLayer.h */,
+				BFE4514E1B1F67BD00424C09 /* ScrollableDungeonLayer.cpp */,
+				BFE4514F1B1F67BD00424C09 /* ScrollableDungeonLayer.h */,
+			);
+			path = dungeon;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -839,7 +847,6 @@
 				BFD36F151AF85107003701EC /* MajorMonsterDice.cpp in Sources */,
 				BFAA74501A9E8A4100E45DF8 /* CharacterDiceSprite.cpp in Sources */,
 				BF6D78DA1AE44973002D67C7 /* ActionDiceStateDisabled.cpp in Sources */,
-				BF0E30171B0902A9003AAFE5 /* DungeonLayer.cpp in Sources */,
 				BFD7AA311AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
 				BFC33C211AE803D300934C34 /* InitialTurn.cpp in Sources */,
 				BF3EDB471AF9279A002A2D7C /* RoomPlacementData.cpp in Sources */,
@@ -851,7 +858,6 @@
 				BF7DB85F1AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */,
 				BF74CA7C1ADC834A0062F242 /* DiceSprite.cpp in Sources */,
 				BFBE57AD1AE0143400D93530 /* Shake.cpp in Sources */,
-				BFBAE2A31AD171AD00A5FC9A /* ScrollableLayer.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				BFC5975A1AD43D19007C03A7 /* DungeonTurn.cpp in Sources */,
 				BFC3739E1A9C02FA00520751 /* DiceFace.cpp in Sources */,
@@ -862,8 +868,8 @@
 				BFD36EE11AF66921003701EC /* MinorMonsterDice.cpp in Sources */,
 				BF5B4B7F1A90E77A007636DE /* Game.cpp in Sources */,
 				BFD7AA351AF060170079C68E /* ActionDiceStateSpent.cpp in Sources */,
-				BF0840951A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */,
 				BFD7AA2B1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */,
+				BFE451501B1F67BD00424C09 /* BackgroundLayer.cpp in Sources */,
 				BF3EDB3F1AF92203002A2D7C /* MonsterRoomData.cpp in Sources */,
 				BF0E30061AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */,
 				BF5B4BC01A94BA2C007636DE /* Player.cpp in Sources */,
@@ -873,6 +879,8 @@
 				BF0E300B1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */,
 				BFAA744C1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,
 				BFE451431B1F607800424C09 /* GameplayLayer.cpp in Sources */,
+				BFE451541B1F67BD00424C09 /* ScrollableDungeonLayer.cpp in Sources */,
+				BFE451521B1F67BD00424C09 /* DungeonLayer.cpp in Sources */,
 				BFDFE2671ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */,
 				BFDFE26B1ADC2CAE00106124 /* ActionDiceStateSelected.cpp in Sources */,
 				BFD36F191AF8518A003701EC /* MonsterDice.cpp in Sources */,
@@ -897,20 +905,22 @@
 				BF5B4BEC1A952E8D007636DE /* Dice.cpp in Sources */,
 				BFBE57AE1AE0143400D93530 /* Shake.cpp in Sources */,
 				BF0E30101B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */,
+				BFE451531B1F67BD00424C09 /* DungeonLayer.cpp in Sources */,
 				BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */,
 				BF6304E21B1E855000A4CD0D /* TurnChangeLayer.cpp in Sources */,
 				BF7DB8601AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */,
 				BFE451481B1F60C200424C09 /* PlayerTurnLayer.cpp in Sources */,
 				BF3EDB481AF9279A002A2D7C /* RoomPlacementData.cpp in Sources */,
 				BFD7AA361AF060170079C68E /* ActionDiceStateSpent.cpp in Sources */,
-				BF0840961A9CD506003F0D76 /* BackgroundLayer.cpp in Sources */,
 				BF74CA7D1ADC834A0062F242 /* DiceSprite.cpp in Sources */,
 				BFC3739F1A9C02FA00520751 /* DiceFace.cpp in Sources */,
+				BFE451511B1F67BD00424C09 /* BackgroundLayer.cpp in Sources */,
 				BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */,
 				BF083B581B09059C00A6B39D /* RoomsPlacementsData.cpp in Sources */,
 				BF0E30031AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */,
 				BF0E300C1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */,
+				BFE451551B1F67BD00424C09 /* ScrollableDungeonLayer.cpp in Sources */,
 				BFD36EE21AF66921003701EC /* MinorMonsterDice.cpp in Sources */,
 				BFD7AA321AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
 				BFAA744D1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,
@@ -920,8 +930,6 @@
 				BF5B4BCD1A94BA91007636DE /* Dungeon.cpp in Sources */,
 				BFD36F1A1AF8518A003701EC /* MonsterDice.cpp in Sources */,
 				BF08409B1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */,
-				BFBAE2A41AD171AD00A5FC9A /* ScrollableLayer.cpp in Sources */,
-				BF0E30181B0902A9003AAFE5 /* DungeonLayer.cpp in Sources */,
 				BFE451421B1F607800424C09 /* DiceSelectLayer.cpp in Sources */,
 				BFFA1F6C1AF7DA2F00A0BD9C /* DungeonRoom.cpp in Sources */,
 				BF0E30071AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */,
