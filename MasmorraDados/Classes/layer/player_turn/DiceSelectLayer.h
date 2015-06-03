@@ -1,27 +1,27 @@
 //
-//  ActionDiceLayer.h
+//  DiceSelectLayer.h
 //  MasmorraDados
 //
 //  Created by Marlon Andrade on 4/19/15.
 //
 //
 
-#ifndef __MasmorraDados__ActionDiceLayer__
-#define __MasmorraDados__ActionDiceLayer__
+#ifndef __MasmorraDados__DiceSelectLayer__
+#define __MasmorraDados__DiceSelectLayer__
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 
 #include "ActionDice.h"
 
-class ActionDiceLayer : public cocos2d::Layer {
+class DiceSelectLayer : public cocos2d::Layer {
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _diceStateNewListener,
                        DiceStateNewListener);
   
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _dices, Dices);
 public:
-  CREATE_FUNC(ActionDiceLayer);
+  CREATE_FUNC(DiceSelectLayer);
   virtual bool init();
   
   void showDices();
@@ -49,4 +49,4 @@ private:
   void _handleDiceStateNew(cocos2d::EventCustom* event);
 };
 
-#endif /* defined(__MasmorraDados__ActionDiceLayer__) */
+#endif /* defined(__MasmorraDados__DiceSelectLayer__) */

@@ -14,7 +14,7 @@
 #include "Game.h"
 #include "Turn.h"
 
-class ControlsLayer;
+class PlayerTurnLayer;
 class TurnChangeLayer;
 
 class GameplayScene : public cocos2d::Scene {
@@ -37,7 +37,7 @@ private:
   
   void _setupEventHandlers();
   
-  ControlsLayer* _getControlsLayer();
+  PlayerTurnLayer* _getPlayerTurnLayer();
   TurnChangeLayer* _getTurnChangeLayer();
   
   void _roomsHasBeenPlaced(cocos2d::Vector<RoomPlacementData*> placements);

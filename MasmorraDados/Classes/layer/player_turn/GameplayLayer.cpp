@@ -1,12 +1,12 @@
 //
-//  PlayerSkillsLayer.cpp
+//  GameplayLayer.cpp
 //  MasmorraDados
 //
 //  Created by Marlon Andrade on 4/27/15.
 //
 //
 
-#include "PlayerSkillsLayer.h"
+#include "GameplayLayer.h"
 
 #include "Definitions.h"
 #include "Events.h"
@@ -23,12 +23,12 @@ USING_NS_CC;
 
 #pragma mark - Public Interface
 
-bool PlayerSkillsLayer::init() {
+bool GameplayLayer::init() {
   if (!Layer::init()) {
     return false;
   }
   
-  this->setName(PLAYER_SKILL_LAYER_NAME);
+  this->setName(PLAYER_TURN_GAMEPLAY_LAYER);
   this->setVisible(false);
   
   this->_setupFreeBootSymbol();
@@ -39,7 +39,7 @@ bool PlayerSkillsLayer::init() {
   return true;
 }
 
-void PlayerSkillsLayer::migrateDicesAndShow() {
+void GameplayLayer::migrateDicesAndShow() {
   for (auto dice : Game::getInstance()->getActionDices()) {
     auto sprite = (ActionDiceSprite*) dice->getSprite();
     CC_SAFE_RETAIN(sprite);
@@ -57,12 +57,12 @@ void PlayerSkillsLayer::migrateDicesAndShow() {
   this->runAction(Show::create());
 }
 
-void PlayerSkillsLayer::resetFreeBootUsed() {
+void GameplayLayer::resetFreeBootUsed() {
   auto freeBootSprite = this->getChildByName(FREE_BOOT_SPRITE_NAME);
   freeBootSprite->removeAllChildren();
 }
 
-void PlayerSkillsLayer::resetDockableNodes() {
+void GameplayLayer::resetDockableNodes() {
   for (auto dockableNode : this->getDockableNodes()) {
     if (dockableNode->getChildren().size()) {
       auto sprite = (ActionDiceSprite*) dockableNode->getChildren().at(0);
@@ -73,13 +73,13 @@ void PlayerSkillsLayer::resetDockableNodes() {
   }
 }
 
-Vector<Node*> PlayerSkillsLayer::getDockableNodes() {
+Vector<Node*> GameplayLayer::getDockableNodes() {
   return this->_getDockContainer()->getChildren();
 }
 
 #pragma mark - Private Interface
 
-void PlayerSkillsLayer::_setupFreeBootSymbol() {
+void GameplayLayer::_setupFreeBootSymbol() {
   auto sprite = Sprite::create(IMG_DICE_ACTION_FREE_BOOT);
   sprite->setName(FREE_BOOT_SPRITE_NAME);
   
@@ -92,7 +92,7 @@ void PlayerSkillsLayer::_setupFreeBootSymbol() {
   this->addChild(sprite);
 }
 
-void PlayerSkillsLayer::_setupDockableDice() {
+void GameplayLayer::_setupDockableDice() {
   auto dockContainer = Node::create();
   dockContainer->setName(DOCK_CONTAINER_NODE_NAME);
   
@@ -134,12 +134,12 @@ void PlayerSkillsLayer::_setupDockableDice() {
   dockContainer->setContentSize(Size(totalWidth, totalHeight));
 }
 
-void PlayerSkillsLayer::_setupFinalizarButton() {
+void GameplayLayer::_setupFinalizarButton() {
   auto button = ui::Button::create(IMG_BUTTON_END_TURN_NORMAL,
                                    IMG_BUTTON_END_TURN_SELECTED,
                                    IMG_BUTTON_END_TURN_DISABLED);
   button->setName(END_TURN_BUTTON_NAME);
-  button->addTouchEventListener(CC_CALLBACK_2(PlayerSkillsLayer::_handleEndTurnTouched, this));
+  button->addTouchEventListener(CC_CALLBACK_2(GameplayLayer::_handleEndTurnTouched, this));
   
   auto size = button->getContentSize() / 2;
   auto x = this->getContentSize().width - (END_TURN_MARGIN + size.width);
@@ -150,35 +150,35 @@ void PlayerSkillsLayer::_setupFinalizarButton() {
   this->addChild(button);
 }
 
-void PlayerSkillsLayer::_setupEventHandlers() {
+void GameplayLayer::_setupEventHandlers() {
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   
-  auto diceDragStartedCallback = CC_CALLBACK_1(PlayerSkillsLayer::_handleActionDiceDragStarted, this);
+  auto diceDragStartedCallback = CC_CALLBACK_1(GameplayLayer::_handleActionDiceDragStarted, this);
   this->setDiceDragStartedListener(
     dispatcher->addCustomEventListener(EVT_ACTION_DICE_DRAG_STARTED, diceDragStartedCallback)
   );
   
-  auto diceDragMovedCallback = CC_CALLBACK_1(PlayerSkillsLayer::_handleActionDiceDragMoved, this);
+  auto diceDragMovedCallback = CC_CALLBACK_1(GameplayLayer::_handleActionDiceDragMoved, this);
   this->setDiceDragMovedListener(
     dispatcher->addCustomEventListener(EVT_ACTION_DICE_DRAG_MOVED, diceDragMovedCallback)
   );
   
-  auto diceDragEndedCallback = CC_CALLBACK_1(PlayerSkillsLayer::_handleActionDiceDragEnded, this);
+  auto diceDragEndedCallback = CC_CALLBACK_1(GameplayLayer::_handleActionDiceDragEnded, this);
   this->setDiceDragEndedListener(
     dispatcher->addCustomEventListener(EVT_ACTION_DICE_DRAG_ENDED, diceDragEndedCallback)
   );
   
-  auto freeBootSpentCallback = CC_CALLBACK_1(PlayerSkillsLayer::_handleActionFreeBootSpent, this);
+  auto freeBootSpentCallback = CC_CALLBACK_1(GameplayLayer::_handleActionFreeBootSpent, this);
   this->setFreeBootSpentListener(
     dispatcher->addCustomEventListener(EVT_ACTION_FREE_BOOT_SPENT, freeBootSpentCallback)
   );
 }
 
-Node* PlayerSkillsLayer::_getDockContainer() {
+Node* GameplayLayer::_getDockContainer() {
   return this->getChildByName(DOCK_CONTAINER_NODE_NAME);
 }
 
-void PlayerSkillsLayer::_triggerMagicDiceOnTargetDice(Dice *targetDice) {
+void GameplayLayer::_triggerMagicDiceOnTargetDice(Dice *targetDice) {
   log("permitir mudar a face do dado");
   
   auto sprite = targetDice->getSprite();
@@ -225,7 +225,7 @@ void PlayerSkillsLayer::_triggerMagicDiceOnTargetDice(Dice *targetDice) {
   this->runAction(Sequence::create(delay, callfunc, NULL));
 }
 
-void PlayerSkillsLayer::_addOverlay(Vector<Node*> targetNodes) {
+void GameplayLayer::_addOverlay(Vector<Node*> targetNodes) {
   auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
   overlayLayer->setName(OVERLAY_LAYER_NAME);
   
@@ -240,7 +240,7 @@ void PlayerSkillsLayer::_addOverlay(Vector<Node*> targetNodes) {
   overlayLayer->runAction(fadeIn);
 }
 
-void PlayerSkillsLayer::_removeOverlay() {
+void GameplayLayer::_removeOverlay() {
   auto overlayLayer = this->getChildByName(OVERLAY_LAYER_NAME);
   
   auto fadeOut = FadeOut::create(OVERLAY_DURATION);
@@ -259,7 +259,7 @@ void PlayerSkillsLayer::_removeOverlay() {
 
 #pragma mark - UI Event Handlers
 
-void PlayerSkillsLayer::_handleEndTurnTouched(Ref* sender, ui::Widget::TouchEventType type) {
+void GameplayLayer::_handleEndTurnTouched(Ref* sender, ui::Widget::TouchEventType type) {
   if (type == ui::Widget::TouchEventType::ENDED) {
     auto dispatcher = Director::getInstance()->getEventDispatcher();
     dispatcher->dispatchCustomEvent(EVT_END_PLAYER_TURN, this);
@@ -268,7 +268,7 @@ void PlayerSkillsLayer::_handleEndTurnTouched(Ref* sender, ui::Widget::TouchEven
 
 #pragma mark - Event Handlers
 
-void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
+void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
   log("drag started");
   
   auto data = (ActionDiceDragData*) event->getUserData();
@@ -314,7 +314,7 @@ void PlayerSkillsLayer::_handleActionDiceDragStarted(EventCustom* event) {
   this->_addOverlay(targetNodes);
 }
 
-void PlayerSkillsLayer::_handleActionDiceDragMoved(EventCustom* event) {
+void GameplayLayer::_handleActionDiceDragMoved(EventCustom* event) {
   auto data = (ActionDiceDragData*) event->getUserData();
   auto sprite = data->getSprite();
   auto touch = data->getTouch();
@@ -357,7 +357,7 @@ void PlayerSkillsLayer::_handleActionDiceDragMoved(EventCustom* event) {
   }
 }
 
-void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
+void GameplayLayer::_handleActionDiceDragEnded(EventCustom* event) {
   auto data = (ActionDiceDragData*) event->getUserData();
   auto sprite = data->getSprite();
   auto touch = data->getTouch();
@@ -422,7 +422,7 @@ void PlayerSkillsLayer::_handleActionDiceDragEnded(EventCustom* event) {
   }
 }
 
-void PlayerSkillsLayer::_handleActionFreeBootSpent(EventCustom* event) {
+void GameplayLayer::_handleActionFreeBootSpent(EventCustom* event) {
   auto freeBootSprite = this->getChildByName(FREE_BOOT_SPRITE_NAME);
   auto spentActionSprite = Sprite::create(IMG_DICE_ACTION_SPENT);
   spentActionSprite->setPosition(Vec2(freeBootSprite->getContentSize().width / 2,

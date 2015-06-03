@@ -12,7 +12,7 @@
 #include "NodeNames.h"
 
 #include "BackgroundLayer.h"
-#include "ControlsLayer.h"
+#include "PlayerTurnLayer.h"
 #include "DungeonLayer.h"
 #include "TurnChangeLayer.h"
 #include "ScrollableLayer.h"
@@ -45,7 +45,7 @@ void GameplayScene::_adjustInitialLayers() {
   scrollableLayer->addChild(DungeonLayer::create(), 0);
   
   this->addChild(scrollableLayer, 0);
-  this->addChild(ControlsLayer::create(), 1);
+  this->addChild(PlayerTurnLayer::create(), 1);
   this->addChild(TurnChangeLayer::create(), 2);
 }
 
@@ -68,8 +68,8 @@ void GameplayScene::_setupEventHandlers() {
   );
 }
 
-ControlsLayer* GameplayScene::_getControlsLayer() {
-  return (ControlsLayer*) this->getChildByName(CONTROLS_LAYER_NAME);
+PlayerTurnLayer* GameplayScene::_getPlayerTurnLayer() {
+  return (PlayerTurnLayer*) this->getChildByName(PLAYER_TURN_LAYER);
 }
 
 TurnChangeLayer* GameplayScene::_getTurnChangeLayer() {
@@ -79,7 +79,7 @@ TurnChangeLayer* GameplayScene::_getTurnChangeLayer() {
 #pragma mark - Event Handlers
 
 void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
-  this->_getControlsLayer()->showPlayerSkillsLayer();
+  this->_getPlayerTurnLayer()->showGameplayLayer();
 }
 
 void GameplayScene::_handleTurnHasStarted(EventCustom* event) {
@@ -90,7 +90,7 @@ void GameplayScene::_handleTurnHasStarted(EventCustom* event) {
   if (IS(turn, PlayerTurn)) {
     Game::getInstance()->resetForPlayerTurn();
     
-    this->_getControlsLayer()->playerTurnHasStarted();
+    this->_getPlayerTurnLayer()->playerTurnHasStarted();
     this->_getTurnChangeLayer()->showPlayerTurnInfo();
   } else if (IS(turn, DungeonTurn)) {
     this->_getTurnChangeLayer()->showDungeonTurnInfo();
@@ -109,6 +109,6 @@ void GameplayScene::_handleTurnHasEnded(EventCustom* event) {
   auto turn = (Turn*) event->getUserData();
   
   if (IS(turn, PlayerTurn)) {
-    this->_getControlsLayer()->runAction(Hide::create());
+    this->_getPlayerTurnLayer()->runAction(Hide::create());
   }
 }

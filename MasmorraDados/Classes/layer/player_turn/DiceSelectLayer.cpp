@@ -1,12 +1,12 @@
 //
-//  ActionDiceLayer.cpp
+//  DiceSelectLayer.cpp
 //  MasmorraDados
 //
 //  Created by Marlon Andrade on 4/19/15.
 //
 //
 
-#include "ActionDiceLayer.h"
+#include "DiceSelectLayer.h"
 
 #include "Definitions.h"
 #include "Events.h"
@@ -24,12 +24,12 @@ USING_NS_CC;
 
 #pragma mark - Public Interface
 
-bool ActionDiceLayer::init() {
+bool DiceSelectLayer::init() {
   if (!Layer::init()) {
     return false;
   }
   
-  this->setName(ACTION_DICE_LAYER_NAME);
+  this->setName(PLAYER_TURN_DICE_SELECT_LAYER);
   
   auto dices = Game::getInstance()->getActionDices();
   this->setDices(dices);
@@ -40,7 +40,7 @@ bool ActionDiceLayer::init() {
   return true;
 }
 
-void ActionDiceLayer::showDices() {
+void DiceSelectLayer::showDices() {
   for (auto dice : Game::getInstance()->getActionDices()) {
     auto sprite = (ActionDiceSprite*) dice->getSprite();
     CC_SAFE_RETAIN(sprite);
@@ -63,12 +63,12 @@ void ActionDiceLayer::showDices() {
   this->runAction(Show::create());
 }
 
-void ActionDiceLayer::resetRollCount() {
+void DiceSelectLayer::resetRollCount() {
   this->_rollCount = 1;
   this->_adjustRerollButtonTextures();
 }
 
-void ActionDiceLayer::resetActionDicesZIndex() {
+void DiceSelectLayer::resetActionDicesZIndex() {
   for (auto dice : this->getDices()) {
     auto sprite = dice->getSprite();
     sprite->setLocalZOrder(ACTION_DICE_Z_ORDER);
@@ -77,7 +77,7 @@ void ActionDiceLayer::resetActionDicesZIndex() {
 
 #pragma mark - Private Interface
 
-void ActionDiceLayer::_setupChilds(Vector<ActionDice *> dices) {
+void DiceSelectLayer::_setupChilds(Vector<ActionDice *> dices) {
   auto backgroundLayer = LayerColor::create(Color4B(0, 0, 0, 100));
   
   auto diceSprite = dices.at(0)->getSprite();
@@ -110,7 +110,7 @@ void ActionDiceLayer::_setupChilds(Vector<ActionDice *> dices) {
   this->resetActionDicesZIndex();
 }
 
-Node* ActionDiceLayer::_createActionDices(Vector<ActionDice*> dices) {
+Node* DiceSelectLayer::_createActionDices(Vector<ActionDice*> dices) {
   auto actionDices = Node::create();
   
   auto marginPerDice = ACTION_DICE_MARGIN_PER_DICE;
@@ -140,34 +140,34 @@ Node* ActionDiceLayer::_createActionDices(Vector<ActionDice*> dices) {
   return actionDices;
 }
 
-Node* ActionDiceLayer::_createRerollButton() {
+Node* DiceSelectLayer::_createRerollButton() {
   auto rerollButton = ui::Button::create();
   rerollButton->setName(DICE_REROLL_BUTTON_NAME);
-  rerollButton->addTouchEventListener(CC_CALLBACK_2(ActionDiceLayer::_handleRerollTouched, this));
+  rerollButton->addTouchEventListener(CC_CALLBACK_2(DiceSelectLayer::_handleRerollTouched, this));
   
   return rerollButton;
 }
 
-Node* ActionDiceLayer::_createOkButton() {
+Node* DiceSelectLayer::_createOkButton() {
   auto okButton = ui::Button::create(IMG_BUTTON_OK_NORMAL,
                                      IMG_BUTTON_OK_SELECTED,
                                      IMG_BUTTON_OK_DISABLED);
   okButton->setName(DICE_OK_BUTTON_NAME);
-  okButton->addTouchEventListener(CC_CALLBACK_2(ActionDiceLayer::_handleOkTouched, this));
+  okButton->addTouchEventListener(CC_CALLBACK_2(DiceSelectLayer::_handleOkTouched, this));
   
   return okButton;
 }
 
-void ActionDiceLayer::_setupEventHandlers() {
+void DiceSelectLayer::_setupEventHandlers() {
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   
-  auto diceStateNewCallback = CC_CALLBACK_1(ActionDiceLayer::_handleDiceStateNew, this);
+  auto diceStateNewCallback = CC_CALLBACK_1(DiceSelectLayer::_handleDiceStateNew, this);
   this->setDiceStateNewListener(
     dispatcher->addCustomEventListener(EVT_DICE_STATE_NEW, diceStateNewCallback)
   );
 }
 
-void ActionDiceLayer::_setRerollButtonEnabled(bool enabled) {
+void DiceSelectLayer::_setRerollButtonEnabled(bool enabled) {
   if (this->_rollCount > 3) {
     enabled = false;
   }
@@ -177,7 +177,7 @@ void ActionDiceLayer::_setRerollButtonEnabled(bool enabled) {
   rerollButton->setBright(enabled);
 }
 
-void ActionDiceLayer::_adjustRerollButtonTextures() {
+void DiceSelectLayer::_adjustRerollButtonTextures() {
   auto rerollButton = this->_getRerollButton();
   
   std::string normalTexture = IMG_BUTTON_REROLL_NORMAL;
@@ -200,13 +200,13 @@ void ActionDiceLayer::_adjustRerollButtonTextures() {
   rerollButton->loadTextureDisabled(disabledTexture);
 }
 
-ui::Button* ActionDiceLayer::_getRerollButton() {
+ui::Button* DiceSelectLayer::_getRerollButton() {
   return (ui::Button*) this->getChildByName(DICE_REROLL_BUTTON_NAME);
 }
 
 #pragma mark - Event Handlers
 
-void ActionDiceLayer::_handleRerollTouched(Ref* sender, ui::Widget::TouchEventType type) {
+void DiceSelectLayer::_handleRerollTouched(Ref* sender, ui::Widget::TouchEventType type) {
   if (type == ui::Widget::TouchEventType::ENDED) {
     this->_rollCount++;
     
@@ -222,7 +222,7 @@ void ActionDiceLayer::_handleRerollTouched(Ref* sender, ui::Widget::TouchEventTy
   }
 }
 
-void ActionDiceLayer::_handleOkTouched(Ref* sender, ui::Widget::TouchEventType type) {
+void DiceSelectLayer::_handleOkTouched(Ref* sender, ui::Widget::TouchEventType type) {
   for (auto dice : this->getDices()) {
     dice->setRolled();
   }
@@ -233,7 +233,7 @@ void ActionDiceLayer::_handleOkTouched(Ref* sender, ui::Widget::TouchEventType t
   }
 }
 
-void ActionDiceLayer::_handleDiceStateNew(EventCustom* event) {
+void DiceSelectLayer::_handleDiceStateNew(EventCustom* event) {
   bool anyDiceSelected = false;
   for (auto dice : this->getDices()) {
     if (dice->isSelected()) {

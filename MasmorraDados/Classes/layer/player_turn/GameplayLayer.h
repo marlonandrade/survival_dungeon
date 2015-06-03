@@ -1,20 +1,20 @@
 //
-//  PlayerSkillsLayer.h
+//  GameplayLayer.h
 //  MasmorraDados
 //
 //  Created by Marlon Andrade on 4/27/15.
 //
 //
 
-#ifndef __MasmorraDados__PlayerSkillsLayer__
-#define __MasmorraDados__PlayerSkillsLayer__
+#ifndef __MasmorraDados__GameplayLayer__
+#define __MasmorraDados__GameplayLayer__
 
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 
 class Dice;
 
-class PlayerSkillsLayer : public cocos2d::Layer {
+class GameplayLayer : public cocos2d::Layer {
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _diceDragStartedListener,
                        DiceDragStartedListener);
@@ -28,7 +28,7 @@ class PlayerSkillsLayer : public cocos2d::Layer {
                        _freeBootSpentListener,
                        FreeBootSpentListener);
 public:
-  CREATE_FUNC(PlayerSkillsLayer);
+  CREATE_FUNC(GameplayLayer);
   virtual bool init();
   
   void migrateDicesAndShow();
@@ -59,4 +59,4 @@ private:
   void _handleActionFreeBootSpent(cocos2d::EventCustom* event);
 };
 
-#endif /* defined(__MasmorraDados__PlayerSkillsLayer__) */
+#endif /* defined(__MasmorraDados__GameplayLayer__) */

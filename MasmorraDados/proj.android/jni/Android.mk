@@ -18,20 +18,26 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/event_data/MonsterRoomData.cpp \
 		   ../../Classes/event_data/RoomPlacementData.cpp \
 		   ../../Classes/event_data/RoomsPlacementsData.cpp \
-		   ../../Classes/layer/ActionDiceLayer.cpp \
 		   ../../Classes/layer/BackgroundLayer.cpp \
-		   ../../Classes/layer/ControlsLayer.cpp \
 		   ../../Classes/layer/DungeonLayer.cpp \
-		   ../../Classes/layer/PlayerSkillsLayer.cpp \
 		   ../../Classes/layer/ScrollableLayer.cpp \
 		   ../../Classes/layer/TurnChangeLayer.cpp \
+		   ../../Classes/layer/player_turn/DiceSelectLayer.cpp \
+		   ../../Classes/layer/player_turn/GameplayLayer.cpp \
+		   ../../Classes/layer/player_turn/PlayerTurnLayer.cpp \
+		   ../../Classes/model/Dungeon.cpp \
+		   ../../Classes/model/Game.cpp \
+		   ../../Classes/model/GameObject.cpp \
+		   ../../Classes/model/Monster.cpp \
+		   ../../Classes/model/Player.cpp \
+		   ../../Classes/model/Skill.cpp \
 		   ../../Classes/model/character/Character.cpp \
-		   ../../Classes/model/dice/face/DiceFace.cpp \
 		   ../../Classes/model/dice/ActionDice.cpp \
 		   ../../Classes/model/dice/Dice.cpp \
 		   ../../Classes/model/dice/MonsterDice.cpp \
 		   ../../Classes/model/dice/MinorMonsterDice.cpp \
 		   ../../Classes/model/dice/MajorMonsterDice.cpp \
+		   ../../Classes/model/dice/face/DiceFace.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateDisabled.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateNormal.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateRolled.cpp \
@@ -46,12 +52,6 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/turn/DungeonTurn.cpp \
 		   ../../Classes/model/turn/InitialTurn.cpp \
 		   ../../Classes/model/turn/PlayerTurn.cpp \
-		   ../../Classes/model/Dungeon.cpp \
-		   ../../Classes/model/Game.cpp \
-		   ../../Classes/model/GameObject.cpp \
-		   ../../Classes/model/Monster.cpp \
-		   ../../Classes/model/Player.cpp \
-		   ../../Classes/model/Skill.cpp \
 		   ../../Classes/scene/GameplayScene.cpp \
 		   ../../Classes/scene/IntroScene.cpp \
 		   ../../Classes/sprite/ActionDiceSprite.cpp \
@@ -67,6 +67,7 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/delegate \
 		    $(LOCAL_PATH)/../../Classes/event_data \
 		    $(LOCAL_PATH)/../../Classes/layer \
+		    $(LOCAL_PATH)/../../Classes/layer/player_turn \
 		    $(LOCAL_PATH)/../../Classes/model \
 		    $(LOCAL_PATH)/../../Classes/model/character \
 		    $(LOCAL_PATH)/../../Classes/model/dice \
