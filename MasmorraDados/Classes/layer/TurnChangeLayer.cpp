@@ -60,7 +60,6 @@ Sprite* TurnChangeLayer::_getSprite() {
   return (Sprite*) this->getChildByName(TURN_CHANGE_SPRITE_NAME);
 }
 
-
 void TurnChangeLayer::_showInfo(const std::string &filename) {
   auto overlay = this->_getOverlayLayer();
   auto sprite = this->_getSprite();

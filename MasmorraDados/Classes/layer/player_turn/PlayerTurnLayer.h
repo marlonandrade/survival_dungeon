@@ -29,7 +29,6 @@ private:
   GameplayLayer* _getGameplayLayer();
   
   void _setupChildren();
-  void _setupEventHandlers();
 };
 
 #endif /* defined(__MasmorraDados__PlayerTurnLayer__) */

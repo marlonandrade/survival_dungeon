@@ -28,7 +28,6 @@ bool PlayerTurnLayer::init() {
   this->setName(PLAYER_TURN_LAYER);
   
   this->_setupChildren();
-  this->_setupEventHandlers();
   
   return true;
 }
@@ -79,8 +78,4 @@ GameplayLayer* PlayerTurnLayer::_getGameplayLayer() {
 void PlayerTurnLayer::_setupChildren() {
   this->addChild(DiceSelectLayer::create());
   this->addChild(GameplayLayer::create());
-}
-
-void PlayerTurnLayer::_setupEventHandlers() {
-  // TODO: implementar
 }
