@@ -76,6 +76,8 @@
 		BF5B4C011A953981007636DE /* ActionDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BFE1A953981007636DE /* ActionDice.cpp */; };
 		BF5B4C1E1A955DA4007636DE /* Monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4C1C1A955DA4007636DE /* Monster.cpp */; };
 		BF5B4C1F1A955DA4007636DE /* Monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4C1C1A955DA4007636DE /* Monster.cpp */; };
+		BF6304E11B1E855000A4CD0D /* TurnChangeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6304DF1B1E855000A4CD0D /* TurnChangeLayer.cpp */; };
+		BF6304E21B1E855000A4CD0D /* TurnChangeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6304DF1B1E855000A4CD0D /* TurnChangeLayer.cpp */; };
 		BF6A4D591AEE9882001FDF44 /* PlayerSkillsLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6A4D571AEE9882001FDF44 /* PlayerSkillsLayer.cpp */; };
 		BF6A4D5A1AEE9882001FDF44 /* PlayerSkillsLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6A4D571AEE9882001FDF44 /* PlayerSkillsLayer.cpp */; };
 		BF6D78D01AE416F3002D67C7 /* ActionDiceLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6D78CE1AE416F3002D67C7 /* ActionDiceLayer.cpp */; };
@@ -247,6 +249,8 @@
 		BF5B4BFF1A953981007636DE /* ActionDice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDice.h; sourceTree = "<group>"; };
 		BF5B4C1C1A955DA4007636DE /* Monster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Monster.cpp; sourceTree = "<group>"; };
 		BF5B4C1D1A955DA4007636DE /* Monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
+		BF6304DF1B1E855000A4CD0D /* TurnChangeLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TurnChangeLayer.cpp; sourceTree = "<group>"; };
+		BF6304E01B1E855000A4CD0D /* TurnChangeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurnChangeLayer.h; sourceTree = "<group>"; };
 		BF6A4D571AEE9882001FDF44 /* PlayerSkillsLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerSkillsLayer.cpp; sourceTree = "<group>"; };
 		BF6A4D581AEE9882001FDF44 /* PlayerSkillsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSkillsLayer.h; sourceTree = "<group>"; };
 		BF6D78CE1AE416F3002D67C7 /* ActionDiceLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceLayer.cpp; sourceTree = "<group>"; };
@@ -492,6 +496,8 @@
 				BF6A4D581AEE9882001FDF44 /* PlayerSkillsLayer.h */,
 				BFBAE2A11AD171AC00A5FC9A /* ScrollableLayer.cpp */,
 				BFBAE2A21AD171AD00A5FC9A /* ScrollableLayer.h */,
+				BF6304DF1B1E855000A4CD0D /* TurnChangeLayer.cpp */,
+				BF6304E01B1E855000A4CD0D /* TurnChangeLayer.h */,
 			);
 			path = layer;
 			sourceTree = "<group>";
@@ -810,6 +816,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF6304E11B1E855000A4CD0D /* TurnChangeLayer.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				BFC5975C1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */,
 				BF5B4C001A953981007636DE /* ActionDice.cpp in Sources */,
@@ -883,6 +890,7 @@
 				BFBE57AE1AE0143400D93530 /* Shake.cpp in Sources */,
 				BF0E30101B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */,
 				BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */,
+				BF6304E21B1E855000A4CD0D /* TurnChangeLayer.cpp in Sources */,
 				BF7DB8601AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */,
 				BF3EDB481AF9279A002A2D7C /* RoomPlacementData.cpp in Sources */,
 				BFD7AA361AF060170079C68E /* ActionDiceStateSpent.cpp in Sources */,

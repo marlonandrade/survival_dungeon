@@ -13,6 +13,8 @@
 
 #include "NodeNames.h"
 
+#include "Game.h"
+
 USING_NS_CC;
 
 #pragma mark - Public Interface
@@ -40,8 +42,6 @@ void ControlsLayer::playerTurnHasStarted() {
   
   actionDiceLayer->resetRollCount();
   actionDiceLayer->resetActionDicesZIndex();
-  
-  // TODO: implementar
   
   auto show = Show::create();
   auto roll = CallFunc::create([&] {

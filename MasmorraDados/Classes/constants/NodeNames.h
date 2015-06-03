@@ -15,7 +15,7 @@
 #define OVERLAY_LAYER_NAME         "OverlayLayer"
 #define PLAYER_SKILL_LAYER_NAME    "PlayerSkillLayerName"
 #define SCROLLABLE_LAYER_NAME      "ScrollableLayer"
-#define TURN_OVERLAY_LAYER_NAME    "TurnOverlayLayer"
+#define TURN_CHANGE_LAYER_NAME     "TurnChangeLayer"
 
 #define DICE_OK_BUTTON_NAME        "DiceOkButton"
 #define DICE_REROLL_BUTTON_NAME    "DiceRerollButton"
@@ -23,6 +23,7 @@
 
 #define CHARACTER_DICE_SPRITE_NAME "CharacterDiceSprite"
 #define FREE_BOOT_SPRITE_NAME      "FreeBootSprite"
+#define TURN_CHANGE_SPRITE_NAME    "TurnChangeLayer"
 
 #define DOCK_CONTAINER_NODE_NAME   "DockContainerNodeName"
 

@@ -14,8 +14,8 @@
 #include "Game.h"
 #include "Turn.h"
 
-class BackgroundLayer;
 class ControlsLayer;
+class TurnChangeLayer;
 
 class GameplayScene : public cocos2d::Scene {
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
@@ -37,17 +37,10 @@ private:
   
   void _setupEventHandlers();
   
-  BackgroundLayer* _getScrollableLayer();
   ControlsLayer* _getControlsLayer();
+  TurnChangeLayer* _getTurnChangeLayer();
   
   void _roomsHasBeenPlaced(cocos2d::Vector<RoomPlacementData*> placements);
-  
-  void _showPlayerTurnInfo();
-  void _showDungeonTurnInfo();
-  void _showTurnInfo(cocos2d::Sprite* infoSprite);
-  
-  void _showActionDicesLayer();
-  void _showPlayerSkillsLayer();
   
 #pragma mark - Events
   void _handleActionDicesRolled(cocos2d::EventCustom* event);
