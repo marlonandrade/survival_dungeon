@@ -9,7 +9,6 @@
 #include "GameplayScene.h"
 
 #include "Events.h"
-#include "Images.h"
 #include "NodeNames.h"
 
 #include "BackgroundLayer.h"
@@ -18,16 +17,7 @@
 #include "TurnChangeLayer.h"
 #include "ScrollableLayer.h"
 
-#include "ActionDiceSprite.h"
-#include "CharacterDiceSprite.h"
-
-#include "RoomPlacementData.h"
-
-#include "CoordinateUtil.h"
-#include "PositionUtil.h"
-
 #include "DungeonTurn.h"
-#include "InitialTurn.h"
 #include "PlayerTurn.h"
 
 USING_NS_CC;
