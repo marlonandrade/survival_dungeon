@@ -13,6 +13,9 @@
 #include "Images.h"
 #include "NodeNames.h"
 
+#include "DockableContainer.h"
+#include "FreeBootSprite.h"
+
 #include "ActionDiceDragData.h"
 
 #include "DiceUtil.h"
@@ -32,9 +35,7 @@ bool GameplayLayer::init() {
   this->setName(PLAYER_TURN_GAMEPLAY_LAYER);
   this->setVisible(false);
   
-  this->_setupFreeBootSymbol();
-  this->_setupDockableDice();
-  this->_setupFinalizarButton();
+  this->_setupChildren();
   this->_setupEventHandlers();
   
   return true;
@@ -59,96 +60,19 @@ void GameplayLayer::migrateDicesAndShow() {
 }
 
 void GameplayLayer::resetFreeBootUsed() {
-  auto freeBootSprite = this->getChildByName(FREE_BOOT_SPRITE_NAME);
-  freeBootSprite->removeAllChildren();
+  this->_getFreeBootSprite()->resetFreeBootUsed();
 }
 
 void GameplayLayer::resetDockableNodes() {
-  for (auto dockableNode : this->getDockableNodes()) {
-    if (dockableNode->getChildren().size()) {
-      auto sprite = (ActionDiceSprite*) dockableNode->getChildren().at(0);
-      sprite->undock(this);
-    }
-    
-    dockableNode->setColor(Color3B::WHITE);
-  }
-}
-
-Vector<Node*> GameplayLayer::getDockableNodes() {
-  return this->_getDockContainer()->getChildren();
+  this->_getDockableContainer()->resetDockableNodes();
 }
 
 #pragma mark - Private Interface
 
-void GameplayLayer::_setupFreeBootSymbol() {
-  auto sprite = Sprite::create(IMG_DICE_ACTION_FREE_BOOT);
-  sprite->setName(FREE_BOOT_SPRITE_NAME);
-  
-  auto size = sprite->getContentSize() / 2;
-  auto x = DOCK_MARGIN + size.width;
-  auto y = this->getContentSize().height - (DOCK_MARGIN + size.height);
-  
-  sprite->setPosition(Vec2(x, y));
-  
-  this->addChild(sprite);
-}
-
-void GameplayLayer::_setupDockableDice() {
-  auto dockContainer = Node::create();
-  dockContainer->setName(DOCK_CONTAINER_NODE_NAME);
-  
-  auto bootSprite = this->getChildByName(FREE_BOOT_SPRITE_NAME);
-  
-  this->addChild(dockContainer);
-  
-  int dockableSpaces = 6;
-  
-  auto height = 0;
-  auto width = 0;
-  auto marginBetweenSpaces = 1;
-  
-  for (int i = 0; i < dockableSpaces; i++) {
-    auto sprite = Sprite::create(IMG_DICE_ACTION_DOCK);
-    
-    width = sprite->getContentSize().width;
-    height = sprite->getContentSize().height;
-    
-    auto x = 0.f;
-    auto y = height * i + (i * marginBetweenSpaces);
-    
-    sprite->setPosition(Vec2(x, y));
-    
-    dockContainer->addChild(sprite);
-  }
-  
-  auto bootSize = bootSprite->getContentSize();
-  
-  auto dockX = DOCK_MARGIN + bootSize.width / 2;
-  auto dockY = this->getContentSize().height -
-      (DOCK_MARGIN + (dockableSpaces - 0.5) * height +
-       bootSize.height + dockableSpaces * marginBetweenSpaces);
-  
-  auto totalWidth = width;
-  auto totalHeight = height * dockableSpaces + (dockableSpaces - 1) * marginBetweenSpaces;
-  
-  dockContainer->setPosition(Vec2(dockX, dockY));
-  dockContainer->setContentSize(Size(totalWidth, totalHeight));
-}
-
-void GameplayLayer::_setupFinalizarButton() {
-  auto button = ui::Button::create(IMG_BUTTON_END_TURN_NORMAL,
-                                   IMG_BUTTON_END_TURN_SELECTED,
-                                   IMG_BUTTON_END_TURN_DISABLED);
-  button->setName(END_TURN_BUTTON_NAME);
-  button->addTouchEventListener(CC_CALLBACK_2(GameplayLayer::_handleEndTurnTouched, this));
-  
-  auto size = button->getContentSize() / 2;
-  auto x = this->getContentSize().width - (END_TURN_MARGIN + size.width);
-  auto y = this->getContentSize().height - (END_TURN_MARGIN + size.height);
-  
-  button->setPosition(Vec2(x, y));
-  
-  this->addChild(button);
+void GameplayLayer::_setupChildren() {
+  this->addChild(this->_createFreeBootSprite());
+  this->addChild(this->_createDockableContainer());
+  this->addChild(this->_createFinalizarButton());
 }
 
 void GameplayLayer::_setupEventHandlers() {
@@ -168,15 +92,56 @@ void GameplayLayer::_setupEventHandlers() {
   this->setDiceDragEndedListener(
     dispatcher->addCustomEventListener(EVT_ACTION_DICE_DRAG_ENDED, diceDragEndedCallback)
   );
-  
-  auto freeBootSpentCallback = CC_CALLBACK_1(GameplayLayer::_handleActionFreeBootSpent, this);
-  this->setFreeBootSpentListener(
-    dispatcher->addCustomEventListener(EVT_ACTION_FREE_BOOT_SPENT, freeBootSpentCallback)
-  );
 }
 
-Node* GameplayLayer::_getDockContainer() {
-  return this->getChildByName(DOCK_CONTAINER_NODE_NAME);
+Sprite* GameplayLayer::_createFreeBootSprite() {
+  auto sprite = FreeBootSprite::create();
+  
+  auto size = sprite->getContentSize() / 2;
+  auto x = DOCK_MARGIN + size.width;
+  auto y = this->getContentSize().height - (DOCK_MARGIN + size.height);
+  
+  sprite->setPosition(Vec2(x, y));
+  
+  return sprite;
+}
+
+DockableContainer* GameplayLayer::_createDockableContainer() {
+  auto dockableContainer = DockableContainer::create();
+  
+  auto bootSprite = this->getChildByName(FREE_BOOT_SPRITE_NAME);
+  auto bootSize = bootSprite->getContentSize();
+  
+  auto dockX = bootSprite->getPosition().x;
+  auto dockY = bootSprite->getPosition().y - dockableContainer->getContentSize().height;
+  
+  dockableContainer->setPosition(Vec2(dockX, dockY));
+  
+  return dockableContainer;
+}
+                 
+Node* GameplayLayer::_createFinalizarButton() {
+  auto button = ui::Button::create(IMG_BUTTON_END_TURN_NORMAL,
+                                   IMG_BUTTON_END_TURN_SELECTED,
+                                   IMG_BUTTON_END_TURN_DISABLED);
+  button->setName(END_TURN_BUTTON_NAME);
+  button->addTouchEventListener(CC_CALLBACK_2(GameplayLayer::_handleEndTurnTouched, this));
+  
+  auto size = button->getContentSize() / 2;
+  auto x = this->getContentSize().width - (END_TURN_MARGIN + size.width);
+  auto y = this->getContentSize().height - (END_TURN_MARGIN + size.height);
+  
+  button->setPosition(Vec2(x, y));
+  
+  return button;
+}
+
+FreeBootSprite* GameplayLayer::_getFreeBootSprite() {
+  return (FreeBootSprite*) this->getChildByName(FREE_BOOT_SPRITE_NAME);
+}
+
+DockableContainer* GameplayLayer::_getDockableContainer() {
+  return (DockableContainer*) this->getChildByName(DOCK_CONTAINER_NODE_NAME);
 }
 
 void GameplayLayer::_triggerMagicDiceOnTargetDice(Dice *targetDice) {
@@ -270,8 +235,6 @@ void GameplayLayer::_handleEndTurnTouched(Ref* sender, ui::Widget::TouchEventTyp
 #pragma mark - Event Handlers
 
 void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
-  log("drag started");
-  
   auto data = (ActionDiceDragData*) event->getUserData();
   auto sprite = data->getSprite();
   auto touch = data->getTouch();
@@ -285,25 +248,22 @@ void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
   targetNodes.pushBack(sprite);
   
   if (DiceUtil::isMagicDice(dice)) {
-    log("dragging magic");
     for (auto node : this->getChildren()) {
       if (IS(node, ActionDiceSprite) && node != sprite) {
-        log("dice");
         targetNodes.pushBack(node);
       }
     }
   } else {
     log("dragging other dice");
     
-    auto dockableNodes = this->getDockableNodes();
-    auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
+    auto dockableContainer = this->_getDockableContainer();
+    auto dockableNodes = dockableContainer->getDockableNodes();
+    auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(touch);
     
     targetNodes.pushBack(dockableNodes);
     targetNodes.pushBack(dockableContainer);
     
-    auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(touch);
-    
-    for (auto node : this->getDockableNodes()) {
+    for (auto node : dockableNodes) {
       if (node->getChildren().size() > 0 &&
           node->getBoundingBox().containsPoint(dockableLocation)) {
         sprite->undock(this);
@@ -338,10 +298,11 @@ void GameplayLayer::_handleActionDiceDragMoved(EventCustom* event) {
       }
     }
   } else {
-    auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
+    auto dockableContainer = this->_getDockableContainer();
+    auto dockableNodes = dockableContainer->getDockableNodes();
     auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(touch);
     
-    for (auto node : this->getDockableNodes()) {
+    for (auto node : dockableNodes) {
       auto color = Color3B::WHITE;
       auto rect = node->getBoundingBox();
       
@@ -385,10 +346,11 @@ void GameplayLayer::_handleActionDiceDragEnded(EventCustom* event) {
       }
     }
   } else {
-    auto dockableContainer = this->getChildByName(DOCK_CONTAINER_NODE_NAME);
+    auto dockableContainer = this->_getDockableContainer();
+    auto dockableNodes = dockableContainer->getDockableNodes();
     auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(touch);
     
-    for (auto node : this->getDockableNodes()) {
+    for (auto node : dockableNodes) {
       auto rect = node->getBoundingBox();
       
       rect.origin -= Vec2(DOCKABLE_HIDDEN_MARGIN, 0);
@@ -421,12 +383,4 @@ void GameplayLayer::_handleActionDiceDragEnded(EventCustom* event) {
     sprite->runAction(Spawn::create(move, scale, NULL));
     log("animate back");
   }
-}
-
-void GameplayLayer::_handleActionFreeBootSpent(EventCustom* event) {
-  auto freeBootSprite = this->getChildByName(FREE_BOOT_SPRITE_NAME);
-  auto spentActionSprite = Sprite::create(IMG_DICE_ACTION_SPENT);
-  spentActionSprite->setPosition(Vec2(freeBootSprite->getContentSize().width / 2,
-                                      freeBootSprite->getContentSize().height / 2));
-  freeBootSprite->addChild(spentActionSprite);
 }

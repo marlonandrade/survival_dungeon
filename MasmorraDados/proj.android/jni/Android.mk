@@ -54,10 +54,12 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/turn/PlayerTurn.cpp \
 		   ../../Classes/scene/GameplayScene.cpp \
 		   ../../Classes/scene/IntroScene.cpp \
-		   ../../Classes/sprite/ActionDiceSprite.cpp \
-		   ../../Classes/sprite/CharacterDiceSprite.cpp \
-		   ../../Classes/sprite/DiceSprite.cpp \
-		   ../../Classes/sprite/DungeonRoomSprite.cpp \
+		   ../../Classes/node/ActionDiceSprite.cpp \
+		   ../../Classes/node/CharacterDiceSprite.cpp \
+		   ../../Classes/node/DiceSprite.cpp \
+		   ../../Classes/node/DockableContainer.cpp \
+		   ../../Classes/node/DungeonRoomSprite.cpp \
+		   ../../Classes/node/FreeBootSprite.cpp \
 		   ../../Classes/util/CoordinateUtil.cpp \
 		   ../../Classes/util/DiceUtil.cpp \
 		   ../../Classes/util/PositionUtil.cpp
@@ -77,8 +79,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/model/dice/state \
 		    $(LOCAL_PATH)/../../Classes/model/room \
 		    $(LOCAL_PATH)/../../Classes/model/turn \
+  		    $(LOCAL_PATH)/../../Classes/node \
   		    $(LOCAL_PATH)/../../Classes/scene \
-  		    $(LOCAL_PATH)/../../Classes/sprite \
   		    $(LOCAL_PATH)/../../Classes/util
 
 # _COCOS_HEADER_ANDROID_BEGIN

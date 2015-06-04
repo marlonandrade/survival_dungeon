@@ -13,6 +13,8 @@
 #include "ui/CocosGUI.h"
 
 class Dice;
+class DockableContainer;
+class FreeBootSprite;
 
 class GameplayLayer : public cocos2d::Layer {
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
@@ -24,9 +26,7 @@ class GameplayLayer : public cocos2d::Layer {
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _diceDragEndedListener,
                        DiceDragEndedListener);
-  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
-                       _freeBootSpentListener,
-                       FreeBootSpentListener);
+  
 public:
   CREATE_FUNC(GameplayLayer);
   virtual bool init();
@@ -36,14 +36,16 @@ public:
   void resetFreeBootUsed();
   void resetDockableNodes();
   
-  cocos2d::Vector<Node*> getDockableNodes();
 private:
-  void _setupFreeBootSymbol();
-  void _setupDockableDice();
-  void _setupFinalizarButton();
+  void _setupChildren();
   void _setupEventHandlers();
   
-  cocos2d::Node* _getDockContainer();
+  cocos2d::Sprite* _createFreeBootSprite();
+  DockableContainer* _createDockableContainer();
+  cocos2d::Node* _createFinalizarButton();
+  
+  FreeBootSprite* _getFreeBootSprite();
+  DockableContainer* _getDockableContainer();
   
   void _triggerMagicDiceOnTargetDice(Dice* targetDice);
   
@@ -56,7 +58,6 @@ private:
   void _handleActionDiceDragStarted(cocos2d::EventCustom* event);
   void _handleActionDiceDragMoved(cocos2d::EventCustom* event);
   void _handleActionDiceDragEnded(cocos2d::EventCustom* event);
-  void _handleActionFreeBootSpent(cocos2d::EventCustom* event);
 };
 
 #endif /* defined(__MasmorraDados__GameplayLayer__) */
