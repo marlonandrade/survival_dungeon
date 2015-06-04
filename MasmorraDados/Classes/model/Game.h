@@ -42,30 +42,31 @@ public:
   static Game* getInstance();
   
   virtual bool init();
-  virtual void resetForPlayerTurn();
+  void resetForPlayerTurn();
   
-  virtual void advanceLevel();
+  void advanceLevel();
   
-  virtual bool canCharacterMove();
+  bool canCharacterMove();
   
-  virtual Turn* getTurn(void) const { return _turn; }
-  virtual void setTurn(Turn* turn);
+  Turn* getTurn(void) const { return _turn; }
+  void setTurn(Turn* turn);
   
-  virtual cocos2d::Vec2 getCharacterCoordinate(void) const { return _characterCoordinate; }
-private:
-  virtual void setCharacterCoordinate(cocos2d::Vec2 coordinate);
-public:
+  cocos2d::Vec2 getCharacterCoordinate(void) const { return _characterCoordinate; }
+  void setCharacterCoordinate(cocos2d::Vec2 coordinate);
+  
   void setupCharacterInitialCoordinate();
   void characterMovedTo(cocos2d::Vec2 coordinate);
   
-  virtual cocos2d::Vector<ActionDice*> getDockedDices();
-  virtual cocos2d::ValueMap getAvailableSkills();
+  cocos2d::Vector<ActionDice*> getDockedDices();
+  cocos2d::ValueMap getAvailableSkills();
   
-  virtual bool isInitialTurn();
-  virtual bool isPlayerTurn();
-  virtual void executeCurrentTurn();
-  virtual void finishCurrentTurn();
-  virtual void restoreFreeBoot();
+  bool isInitialTurn();
+  bool isPlayerTurn();
+  void executeCurrentTurn();
+  void finishCurrentTurn();
+  void restoreFreeBoot();
+  
+  DungeonRoom* getRoomForCharacterCoordinate();
   
 private:
   void _setupDungeon();

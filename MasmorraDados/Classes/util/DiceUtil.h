@@ -17,6 +17,10 @@ class DiceUtil {
 public:
   static bool isBootDice(Dice* dice);
   static bool isMagicDice(Dice* dice);
+  static bool isSwordDice(Dice* dice);
+  static bool isShieldDice(Dice* dice);
+  static bool isBowDice(Dice* dice);
+  static bool isHealDice(Dice* dice);
   
 private:
   static bool _isWhatDice(Dice* dice, std::string imagePath);

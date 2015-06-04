@@ -175,6 +175,10 @@ void Game::restoreFreeBoot() {
   this->setFreeBootUsed(false);
 }
 
+DungeonRoom* Game::getRoomForCharacterCoordinate() {
+  return this->getDungeon()->getRoomForCoordinate(this->getCharacterCoordinate());
+}
+
 #pragma mark - Private Interface
 
 void Game::_setupDungeon() {

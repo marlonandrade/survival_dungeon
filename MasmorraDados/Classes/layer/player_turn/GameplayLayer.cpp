@@ -159,8 +159,15 @@ void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
   Vector<Node*> targetNodes;
   targetNodes.pushBack(sprite);
   
+  auto room = Game::getInstance()->getRoomForCharacterCoordinate();
+  auto hasMonstersInRoom = room->getMonsters().size() > 0;
+  
   if (DiceUtil::isMagicDice(dice)) {
     MagicDiceDragHandler::create()->dragStarted(data, this);
+  } else if ((DiceUtil::isSwordDice(dice) ||
+              DiceUtil::isBowDice(dice) ||
+              DiceUtil::isShieldDice(dice)) && hasMonstersInRoom) {
+    log("TEM MONSTRO NA SALA!!!!!!");
   } else {
     log("dragging other dice");
     
