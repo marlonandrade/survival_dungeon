@@ -48,9 +48,6 @@ private:
   
   void _triggerMagicDiceOnTargetDice(Dice* targetDice);
   
-  void _addOverlay(cocos2d::Vector<Node*> targetNodes);
-  void _removeOverlay();
-  
 #pragma mark - Event Handlers
   void _handleActionDiceDragStarted(cocos2d::EventCustom* event);
   void _handleActionDiceDragMoved(cocos2d::EventCustom* event);

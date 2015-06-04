@@ -13,6 +13,7 @@
 #include "NodeNames.h"
 
 #include "CoordinateUtil.h"
+#include "OverlayUtil.h"
 #include "PositionUtil.h"
 
 #include "CharacterDiceSprite.h"
@@ -76,7 +77,7 @@ void DungeonLayer::characterWillMove(CharacterDiceSprite* sprite) {
   Vector<Node*> visibleNodes;
   visibleNodes.pushBack(this->_getRoomSpriteForCharacterCoordinate());
   visibleNodes.pushBack(this->_getRoomSpritesForAdjacentCharacterCoordinate());
-  this->_addOverlayWithVisibleNodes(visibleNodes);
+  OverlayUtil::addOverlay(visibleNodes, this, -this->getParent()->getPosition());
 }
 
 void DungeonLayer::characterIsMovingToLocation(Vec2 location) {
@@ -237,52 +238,14 @@ Vector<Node*> DungeonLayer::_getRoomSpritesForAdjacentCharacterCoordinate() {
 }
 
 void DungeonLayer::_resetCharacterMoveState() {
-  this->_removeOverlay();
+  OverlayUtil::removeOverlay(this);
   
   for (auto adjacentRoomSprite : this->_getRoomSpritesForAdjacentCharacterCoordinate()) {
     adjacentRoomSprite->setColor(Color3B::WHITE);
   }
 }
 
-void DungeonLayer::_addOverlayWithVisibleNodes(Vector<Node *> visibleNodes) {
-  if (!this->getChildByName(OVERLAY_LAYER_NAME)) {
-    auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
-    overlayLayer->setName(OVERLAY_LAYER_NAME);
-    overlayLayer->setPosition(-this->getParent()->getPosition());
-    
-    this->addChild(overlayLayer, OVERLAY_Z_ORDER);
-    
-    auto fadeIn = FadeTo::create(OVERLAY_DURATION, OVERLAY_OPACITY);
-    overlayLayer->runAction(fadeIn);
-    
-    for (auto visibleNode : visibleNodes) {
-      auto newZOrder = visibleNode->getLocalZOrder() + OVERLAY_Z_ORDER;
-      visibleNode->setLocalZOrder(newZOrder);
-    }
-    
-    this->setInteractableNodes(visibleNodes);
-  }
-}
-
-void DungeonLayer::_removeOverlay() {
-  auto overlayLayer = this->getChildByName(OVERLAY_LAYER_NAME);
-  
-  if (overlayLayer) {
-    auto fadeOut = FadeOut::create(OVERLAY_DURATION);
-    auto changeLayer = CallFunc::create([=]() {
-      for (auto node : this->getInteractableNodes()) {
-        auto oldZOrder = node->getLocalZOrder() - OVERLAY_Z_ORDER;
-        node->setLocalZOrder(oldZOrder);
-      }
-    });
-    auto removeSelf = RemoveSelf::create();
-    
-    overlayLayer->runAction(Sequence::create(fadeOut, changeLayer, removeSelf, NULL));
-  }
-}
-
 #pragma mark - Event Handlers
-
 
 void DungeonLayer::_handleLastTileHasBeenPlaced(EventCustom* event) {
   this->_consumeMonsterRoomDatas();

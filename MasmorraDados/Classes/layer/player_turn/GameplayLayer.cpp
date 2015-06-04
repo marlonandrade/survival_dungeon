@@ -20,6 +20,7 @@
 #include "ActionDiceDragData.h"
 
 #include "DiceUtil.h"
+#include "OverlayUtil.h"
 #include "PositionUtil.h"
 
 #include "Game.h"
@@ -182,42 +183,10 @@ void GameplayLayer::_triggerMagicDiceOnTargetDice(Dice *targetDice) {
   
   auto delay = DelayTime::create(OVERLAY_DURATION);
   auto callfunc = CallFunc::create([=] {
-    this->_addOverlay(targetNodes);
+    OverlayUtil::addOverlay(targetNodes, this);
   });
   
   this->runAction(Sequence::create(delay, callfunc, NULL));
-}
-
-void GameplayLayer::_addOverlay(Vector<Node*> targetNodes) {
-  auto overlayLayer = LayerColor::create(Color4B(0, 0, 0, 0));
-  overlayLayer->setName(OVERLAY_LAYER_NAME);
-  
-  for (auto node : targetNodes) {
-    auto newZOrder = node->getLocalZOrder() + OVERLAY_Z_ORDER;
-    node->setLocalZOrder(newZOrder);
-  }
-  
-  this->addChild(overlayLayer, OVERLAY_Z_ORDER - 1);
-  
-  auto fadeIn = FadeTo::create(OVERLAY_DURATION, OVERLAY_OPACITY);
-  overlayLayer->runAction(fadeIn);
-}
-
-void GameplayLayer::_removeOverlay() {
-  auto overlayLayer = this->getChildByName(OVERLAY_LAYER_NAME);
-  
-  auto fadeOut = FadeOut::create(OVERLAY_DURATION);
-  auto changeLayer = CallFunc::create([=]() {
-    for (auto node : this->getChildren()) {
-      if (node->getLocalZOrder() > overlayLayer->getLocalZOrder()) {
-        auto oldZOrder = node->getLocalZOrder() - OVERLAY_Z_ORDER;
-        node->setLocalZOrder(oldZOrder);
-      }
-    }
-  });
-  auto removeSelf = RemoveSelf::create();
-  
-  overlayLayer->runAction(Sequence::create(fadeOut, changeLayer, removeSelf, NULL));
 }
 
 #pragma mark - Event Handlers
@@ -260,7 +229,7 @@ void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
     }
   }
   
-  this->_addOverlay(targetNodes);
+  OverlayUtil::addOverlay(targetNodes, this);
 }
 
 void GameplayLayer::_handleActionDiceDragMoved(EventCustom* event) {
@@ -315,7 +284,7 @@ void GameplayLayer::_handleActionDiceDragEnded(EventCustom* event) {
   
   sprite->setLocalZOrder(sprite->getLocalZOrder() - DRAG_Z_ORDER_DELTA);
   
-  this->_removeOverlay();
+  OverlayUtil::removeOverlay(this);
   
   bool moved = false;
   auto position = Vec2::ZERO;

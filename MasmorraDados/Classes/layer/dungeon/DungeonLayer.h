@@ -65,9 +65,6 @@ private:
   
   void _resetCharacterMoveState();
   
-  void _addOverlayWithVisibleNodes(cocos2d::Vector<Node*> visibleNodes);
-  void _removeOverlay();
-  
 #pragma mark - Event Handlers
   void _handleLastTileHasBeenPlaced(cocos2d::EventCustom* event);
   void _handleMonsterDiceGenerated(cocos2d::EventCustom* event);

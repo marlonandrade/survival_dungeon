@@ -63,6 +63,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/node/FreeBootSprite.cpp \
 		   ../../Classes/util/CoordinateUtil.cpp \
 		   ../../Classes/util/DiceUtil.cpp \
+		   ../../Classes/util/OverlayUtil.cpp \
 		   ../../Classes/util/PositionUtil.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \

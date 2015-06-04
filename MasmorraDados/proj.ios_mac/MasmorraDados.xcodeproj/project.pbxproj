@@ -94,6 +94,8 @@
 		BF9F12D81B20ADDB00C58035 /* FreeBootSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12D51B20ADDB00C58035 /* FreeBootSprite.cpp */; };
 		BF9F12DB1B20CAD700C58035 /* EndTurnButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12D91B20CAD700C58035 /* EndTurnButton.cpp */; };
 		BF9F12DC1B20CAD700C58035 /* EndTurnButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12D91B20CAD700C58035 /* EndTurnButton.cpp */; };
+		BF9F12DF1B20CD2700C58035 /* OverlayUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12DD1B20CD2700C58035 /* OverlayUtil.cpp */; };
+		BF9F12E01B20CD2800C58035 /* OverlayUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12DD1B20CD2700C58035 /* OverlayUtil.cpp */; };
 		BFAA74431A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */; };
@@ -271,6 +273,8 @@
 		BF9F12D61B20ADDB00C58035 /* FreeBootSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeBootSprite.h; sourceTree = "<group>"; };
 		BF9F12D91B20CAD700C58035 /* EndTurnButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EndTurnButton.cpp; sourceTree = "<group>"; };
 		BF9F12DA1B20CAD700C58035 /* EndTurnButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndTurnButton.h; sourceTree = "<group>"; };
+		BF9F12DD1B20CD2700C58035 /* OverlayUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OverlayUtil.cpp; sourceTree = "<group>"; };
+		BF9F12DE1B20CD2700C58035 /* OverlayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayUtil.h; sourceTree = "<group>"; };
 		BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitialRoom.cpp; sourceTree = "<group>"; };
 		BFAA74421A9C0E1D00E45DF8 /* InitialRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialRoom.h; sourceTree = "<group>"; };
 		BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuneRoom.cpp; sourceTree = "<group>"; };
@@ -536,6 +540,8 @@
 				BF0E300A1B078947003AAFE5 /* CoordinateUtil.h */,
 				BF9F12CD1B20A54100C58035 /* DiceUtil.cpp */,
 				BF9F12CE1B20A54100C58035 /* DiceUtil.h */,
+				BF9F12DD1B20CD2700C58035 /* OverlayUtil.cpp */,
+				BF9F12DE1B20CD2700C58035 /* OverlayUtil.h */,
 				BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */,
 				BF0E300E1B08FDF7003AAFE5 /* PositionUtil.h */,
 			);
@@ -887,6 +893,7 @@
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				BFC5975A1AD43D19007C03A7 /* DungeonTurn.cpp in Sources */,
 				BFC3739E1A9C02FA00520751 /* DiceFace.cpp in Sources */,
+				BF9F12DF1B20CD2700C58035 /* OverlayUtil.cpp in Sources */,
 				BFE451471B1F60C200424C09 /* PlayerTurnLayer.cpp in Sources */,
 				BF5B4BC81A94BA51007636DE /* Skill.cpp in Sources */,
 				BFE451411B1F607800424C09 /* DiceSelectLayer.cpp in Sources */,
@@ -950,6 +957,7 @@
 				BF0E300C1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */,
 				BFE451551B1F67BD00424C09 /* ScrollableDungeonLayer.cpp in Sources */,
 				BF9F12D41B20A81700C58035 /* DockableContainer.cpp in Sources */,
+				BF9F12E01B20CD2800C58035 /* OverlayUtil.cpp in Sources */,
 				BFD36EE21AF66921003701EC /* MinorMonsterDice.cpp in Sources */,
 				BFD7AA321AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
 				BFAA744D1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,

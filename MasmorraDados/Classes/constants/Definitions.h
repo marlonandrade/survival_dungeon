@@ -55,7 +55,7 @@
 
 #define OK_COLOR                  cocos2d::Color3B(120, 255, 120)
 #define OVERLAY_COLOR             cocos2d::Color4B(0, 0, 0, 0)
-#define OVERLAY_OPACITY           150 // 255 -> fully opaque | 0 -> transparent
+#define OVERLAY_OPACITY           180 // 255 -> fully opaque | 0 -> transparent
 
 #pragma mark - Z Order
 
