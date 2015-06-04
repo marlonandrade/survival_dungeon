@@ -86,6 +86,8 @@
 		BF778C271AD8326C0009D168 /* ud in Resources */ = {isa = PBXBuildFile; fileRef = BF778C1F1AD8326C0009D168 /* ud */; };
 		BF7DB85F1AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */; };
 		BF7DB8601AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */; };
+		BF9F12CF1B20A54100C58035 /* DiceUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12CD1B20A54100C58035 /* DiceUtil.cpp */; };
+		BF9F12D01B20A54100C58035 /* DiceUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12CD1B20A54100C58035 /* DiceUtil.cpp */; };
 		BFAA74431A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */; };
@@ -255,6 +257,8 @@
 		BF778C1F1AD8326C0009D168 /* ud */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ud; sourceTree = "<group>"; };
 		BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterMoveData.cpp; sourceTree = "<group>"; };
 		BF7DB85E1AFBD0A200CD5C6E /* MonsterMoveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterMoveData.h; sourceTree = "<group>"; };
+		BF9F12CD1B20A54100C58035 /* DiceUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiceUtil.cpp; sourceTree = "<group>"; };
+		BF9F12CE1B20A54100C58035 /* DiceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceUtil.h; sourceTree = "<group>"; };
 		BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitialRoom.cpp; sourceTree = "<group>"; };
 		BFAA74421A9C0E1D00E45DF8 /* InitialRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialRoom.h; sourceTree = "<group>"; };
 		BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuneRoom.cpp; sourceTree = "<group>"; };
@@ -512,6 +516,8 @@
 			children = (
 				BF0E30091B078947003AAFE5 /* CoordinateUtil.cpp */,
 				BF0E300A1B078947003AAFE5 /* CoordinateUtil.h */,
+				BF9F12CD1B20A54100C58035 /* DiceUtil.cpp */,
+				BF9F12CE1B20A54100C58035 /* DiceUtil.h */,
 				BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */,
 				BF0E300E1B08FDF7003AAFE5 /* PositionUtil.h */,
 			);
@@ -851,6 +857,7 @@
 				BFC33C211AE803D300934C34 /* InitialTurn.cpp in Sources */,
 				BF3EDB471AF9279A002A2D7C /* RoomPlacementData.cpp in Sources */,
 				BFCB45531B1B57030008427D /* DungeonRoomSprite.cpp in Sources */,
+				BF9F12CF1B20A54100C58035 /* DiceUtil.cpp in Sources */,
 				BF0E30021AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */,
 				BF083B571B09059C00A6B39D /* RoomsPlacementsData.cpp in Sources */,
 				BF5B4BEB1A952E8D007636DE /* Dice.cpp in Sources */,
@@ -931,6 +938,7 @@
 				BFD36F1A1AF8518A003701EC /* MonsterDice.cpp in Sources */,
 				BF08409B1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */,
 				BFE451421B1F607800424C09 /* DiceSelectLayer.cpp in Sources */,
+				BF9F12D01B20A54100C58035 /* DiceUtil.cpp in Sources */,
 				BFFA1F6C1AF7DA2F00A0BD9C /* DungeonRoom.cpp in Sources */,
 				BF0E30071AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */,
 				BFD36F161AF85107003701EC /* MajorMonsterDice.cpp in Sources */,

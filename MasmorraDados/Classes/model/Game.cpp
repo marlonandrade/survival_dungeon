@@ -22,6 +22,8 @@
 #include "PlayerTurn.h"
 #include "Turn.h"
 
+#include "DiceUtil.h"
+
 USING_NS_CC;
 
 static Game *_game = nullptr;
@@ -242,7 +244,7 @@ void Game::_dispatchDiceSpent() {
     auto dockedDices = this->getDockedDices();
     ActionDice* usedDice;
     for (auto dice : dockedDices) {
-      if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_BOOT && !dice->isSpent()) {
+      if (DiceUtil::isBootDice(dice) && !dice->isSpent()) {
         usedDice = dice;
         break;
       }

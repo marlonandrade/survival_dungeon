@@ -15,6 +15,7 @@
 
 #include "ActionDiceDragData.h"
 
+#include "DiceUtil.h"
 #include "PositionUtil.h"
 
 #include "Game.h"
@@ -283,7 +284,7 @@ void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
   Vector<Node*> targetNodes;
   targetNodes.pushBack(sprite);
   
-  if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_MAGIC) {
+  if (DiceUtil::isMagicDice(dice)) {
     log("dragging magic");
     for (auto node : this->getChildren()) {
       if (IS(node, ActionDiceSprite) && node != sprite) {
@@ -323,7 +324,7 @@ void GameplayLayer::_handleActionDiceDragMoved(EventCustom* event) {
   auto touchLocation = this->convertTouchToNodeSpace(touch);
   sprite->setPosition(touchLocation);
   
-  if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_MAGIC) {
+  if (DiceUtil::isMagicDice(dice)) {
     for (auto node : this->getChildren()) {
       if (IS(node, ActionDiceSprite) && node != sprite) {
         auto color = Color3B::WHITE;
@@ -370,7 +371,7 @@ void GameplayLayer::_handleActionDiceDragEnded(EventCustom* event) {
   bool moved = false;
   auto position = Vec2::ZERO;
   
-  if (dice->getSelectedFace()->getImagePath() == IMG_DICE_ACTION_MAGIC) {
+  if (DiceUtil::isMagicDice(dice)) {
     for (auto node : this->getChildren()) {
       if (IS(node, ActionDiceSprite) && node != sprite) {
         auto targetDice = ((ActionDiceSprite*) node)->getDice();

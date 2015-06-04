@@ -59,6 +59,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/sprite/DiceSprite.cpp \
 		   ../../Classes/sprite/DungeonRoomSprite.cpp \
 		   ../../Classes/util/CoordinateUtil.cpp \
+		   ../../Classes/util/DiceUtil.cpp \
 		   ../../Classes/util/PositionUtil.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
