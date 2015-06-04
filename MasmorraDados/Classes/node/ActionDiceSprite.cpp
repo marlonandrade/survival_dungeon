@@ -15,6 +15,8 @@
 #include "ActionDiceDragData.h"
 #include "ActionDiceStateRolled.h"
 
+#include "MagicDiceEffectLayer.h"
+
 USING_NS_CC;
 
 #pragma mark - Public Interface
@@ -80,7 +82,8 @@ bool ActionDiceSprite::_onTouchBegan(Touch* touch, Event* event) {
   auto bounds = target->getBoundingBox();
   auto touchLocation = layer->convertTouchToNodeSpace(touch);
   
-  auto touchedOnSprite = bounds.containsPoint(touchLocation);
+  auto touchedOnSprite = bounds.containsPoint(touchLocation) &&
+      !(IS(this->getParent(), MagicDiceEffectLayer));
   
   if (touchedOnSprite &&
       IS(this->getDice()->getState(), ActionDiceStateRolled)) {

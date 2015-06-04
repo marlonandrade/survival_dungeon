@@ -21,9 +21,6 @@ public:
   void dragStarted(ActionDiceDragData* data, cocos2d::Layer* layer);
   void dragMoved(ActionDiceDragData* data, cocos2d::Layer* layer);
   void dragEnded(ActionDiceDragData* data, cocos2d::Layer* layer);
-  
-private:
-  void _triggerEffectOnTarget(Dice* dice, cocos2d::Layer* layer);
 };
 
 #endif /* defined(__MasmorraDados__MagicDiceDragHandler__) */

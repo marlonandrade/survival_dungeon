@@ -24,6 +24,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/layer/dungeon/ScrollableDungeonLayer.cpp \
 		   ../../Classes/layer/player_turn/DiceSelectLayer.cpp \
 		   ../../Classes/layer/player_turn/GameplayLayer.cpp \
+		   ../../Classes/layer/player_turn/MagicDiceEffectLayer.cpp \
 		   ../../Classes/layer/player_turn/PlayerTurnLayer.cpp \
 		   ../../Classes/model/Dungeon.cpp \
 		   ../../Classes/model/Game.cpp \

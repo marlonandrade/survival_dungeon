@@ -9,13 +9,13 @@
 #include "MagicDiceDragHandler.h"
 
 #include "Definitions.h"
-#include "Images.h"
 
 #include "OverlayUtil.h"
 
 #include "ActionDiceDragData.h"
 
 #include "ActionDiceSprite.h"
+#include "MagicDiceEffectLayer.h"
 
 #include "Dice.h"
 
@@ -63,56 +63,9 @@ void MagicDiceDragHandler::dragEnded(ActionDiceDragData* data, Layer* layer) {
       
       if (rect.containsPoint(touch->getLocation())) {
         node->setColor(Color3B::WHITE);
-        this->_triggerEffectOnTarget(targetDice, layer);
+        MagicDiceEffectLayer::create()->triggerEffectOnTarget(targetDice, layer);
         break;
       }
     }
   }
-}
-
-#pragma mark - Private Interface
-
-void MagicDiceDragHandler::_triggerEffectOnTarget(Dice* targetDice, Layer* layer) {
-  auto sprite = targetDice->getSprite();
-  auto nodePosition = sprite->getPosition();
-  
-  Vector<Node*> targetNodes;
-  targetNodes.pushBack(sprite);
-  
-  std::vector<std::string> images;
-  
-  images.push_back(IMG_DICE_ACTION_BOOT);
-  images.push_back(IMG_DICE_ACTION_BOW);
-  images.push_back(IMG_DICE_ACTION_HEAL);
-  images.push_back(IMG_DICE_ACTION_SHIELD);
-  images.push_back(IMG_DICE_ACTION_SWORD);
-  
-  int position = 0;
-  for (auto image : images) {
-    if (image != targetDice->getSelectedFace()->getImagePath()) {
-      auto sprite = Sprite::create(image);
-      sprite->setPosition(nodePosition);
-      
-      layer->addChild(sprite);
-      
-      targetNodes.pushBack(sprite);
-      
-      auto yOffset = (sprite->getContentSize().height + 2) * (position + 1);
-      auto newPosition = Vec2(nodePosition.x, nodePosition.y + yOffset);
-      
-      auto delay = DelayTime::create(MAGIC_DICE_DURATION * position);
-      auto adjustPosition = EaseOut::create(MoveTo::create(MAGIC_DICE_DURATION, newPosition), 5);
-      
-      sprite->runAction(Sequence::create(delay, adjustPosition, NULL));
-      
-      position++;
-    }
-  }
-  
-  auto delay = DelayTime::create(OVERLAY_DURATION);
-  auto callfunc = CallFunc::create([=] {
-    OverlayUtil::addOverlay(targetNodes, layer);
-  });
-  
-  layer->runAction(Sequence::create(delay, callfunc, NULL));
 }
