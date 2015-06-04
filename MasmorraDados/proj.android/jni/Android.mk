@@ -64,7 +64,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/util/CoordinateUtil.cpp \
 		   ../../Classes/util/DiceUtil.cpp \
 		   ../../Classes/util/OverlayUtil.cpp \
-		   ../../Classes/util/PositionUtil.cpp
+		   ../../Classes/util/PositionUtil.cpp \
+		   ../../Classes/util/drag_handler/MagicDiceDragHandler.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/animation \
@@ -83,7 +84,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
 		    $(LOCAL_PATH)/../../Classes/model/turn \
   		    $(LOCAL_PATH)/../../Classes/node \
   		    $(LOCAL_PATH)/../../Classes/scene \
-  		    $(LOCAL_PATH)/../../Classes/util
+  		    $(LOCAL_PATH)/../../Classes/util \
+  		    $(LOCAL_PATH)/../../Classes/util/drag_handler
 
 # _COCOS_HEADER_ANDROID_BEGIN
 # _COCOS_HEADER_ANDROID_END

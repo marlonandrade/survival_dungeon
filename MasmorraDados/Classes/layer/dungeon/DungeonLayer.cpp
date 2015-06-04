@@ -57,20 +57,7 @@ bool DungeonLayer::init() {
 #pragma mark - CharacterMoveDelegate Methods
 
 bool DungeonLayer::canCharacterMove() {
-  bool canMove = false;
-  
-  if (Game::getInstance()->isPlayerTurn()) {
-    auto playerTurn = (PlayerTurn *) Game::getInstance()->getTurn();
-  
-    auto availableSkills = Game::getInstance()->getAvailableSkills();
-    
-    bool playerHasBoot = availableSkills[IMG_DICE_ACTION_BOOT].asInt() ||
-        !Game::getInstance()->getFreeBootUsed();
-    
-    canMove = playerTurn->isActionDicesRolled() && playerHasBoot;
-  }
-  
-  return canMove;
+  return Game::getInstance()->canCharacterMove();
 }
 
 void DungeonLayer::characterWillMove(CharacterDiceSprite* sprite) {

@@ -46,6 +46,8 @@ public:
   
   virtual void advanceLevel();
   
+  virtual bool canCharacterMove();
+  
   virtual Turn* getTurn(void) const { return _turn; }
   virtual void setTurn(Turn* turn);
   

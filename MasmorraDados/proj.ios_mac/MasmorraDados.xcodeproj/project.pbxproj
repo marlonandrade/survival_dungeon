@@ -96,6 +96,8 @@
 		BF9F12DC1B20CAD700C58035 /* EndTurnButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12D91B20CAD700C58035 /* EndTurnButton.cpp */; };
 		BF9F12DF1B20CD2700C58035 /* OverlayUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12DD1B20CD2700C58035 /* OverlayUtil.cpp */; };
 		BF9F12E01B20CD2800C58035 /* OverlayUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12DD1B20CD2700C58035 /* OverlayUtil.cpp */; };
+		BF9F12E41B20D8DD00C58035 /* MagicDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12E21B20D8DD00C58035 /* MagicDiceDragHandler.cpp */; };
+		BF9F12E51B20D8DD00C58035 /* MagicDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12E21B20D8DD00C58035 /* MagicDiceDragHandler.cpp */; };
 		BFAA74431A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */; };
@@ -275,6 +277,8 @@
 		BF9F12DA1B20CAD700C58035 /* EndTurnButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndTurnButton.h; sourceTree = "<group>"; };
 		BF9F12DD1B20CD2700C58035 /* OverlayUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OverlayUtil.cpp; sourceTree = "<group>"; };
 		BF9F12DE1B20CD2700C58035 /* OverlayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayUtil.h; sourceTree = "<group>"; };
+		BF9F12E21B20D8DD00C58035 /* MagicDiceDragHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MagicDiceDragHandler.cpp; sourceTree = "<group>"; };
+		BF9F12E31B20D8DD00C58035 /* MagicDiceDragHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicDiceDragHandler.h; sourceTree = "<group>"; };
 		BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitialRoom.cpp; sourceTree = "<group>"; };
 		BFAA74421A9C0E1D00E45DF8 /* InitialRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialRoom.h; sourceTree = "<group>"; };
 		BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuneRoom.cpp; sourceTree = "<group>"; };
@@ -536,6 +540,7 @@
 		BF0E30081B078933003AAFE5 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				BF9F12E11B20D8C200C58035 /* drag_handler */,
 				BF0E30091B078947003AAFE5 /* CoordinateUtil.cpp */,
 				BF0E300A1B078947003AAFE5 /* CoordinateUtil.h */,
 				BF9F12CD1B20A54100C58035 /* DiceUtil.cpp */,
@@ -600,6 +605,15 @@
 				BFD36F181AF8518A003701EC /* MonsterDice.h */,
 			);
 			path = dice;
+			sourceTree = "<group>";
+		};
+		BF9F12E11B20D8C200C58035 /* drag_handler */ = {
+			isa = PBXGroup;
+			children = (
+				BF9F12E21B20D8DD00C58035 /* MagicDiceDragHandler.cpp */,
+				BF9F12E31B20D8DD00C58035 /* MagicDiceDragHandler.h */,
+			);
+			path = drag_handler;
 			sourceTree = "<group>";
 		};
 		BFBE57AA1AE0142500D93530 /* animation */ = {
@@ -917,6 +931,7 @@
 				BFE451541B1F67BD00424C09 /* ScrollableDungeonLayer.cpp in Sources */,
 				BFE451521B1F67BD00424C09 /* DungeonLayer.cpp in Sources */,
 				BFDFE2671ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */,
+				BF9F12E41B20D8DD00C58035 /* MagicDiceDragHandler.cpp in Sources */,
 				BFDFE26B1ADC2CAE00106124 /* ActionDiceStateSelected.cpp in Sources */,
 				BFD36F191AF8518A003701EC /* MonsterDice.cpp in Sources */,
 			);
@@ -941,6 +956,7 @@
 				BFBE57AE1AE0143400D93530 /* Shake.cpp in Sources */,
 				BF0E30101B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */,
 				BFE451531B1F67BD00424C09 /* DungeonLayer.cpp in Sources */,
+				BF9F12E51B20D8DD00C58035 /* MagicDiceDragHandler.cpp in Sources */,
 				BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */,
 				BF6304E21B1E855000A4CD0D /* TurnChangeLayer.cpp in Sources */,
 				BF7DB8601AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */,

@@ -64,6 +64,23 @@ void Game::advanceLevel() {
   dispatcher->dispatchCustomEvent(EVT_LEVEL_ADVANCED);
 }
 
+bool Game::canCharacterMove() {
+  bool canMove = false;
+  
+  if (this->isPlayerTurn()) {
+    auto playerTurn = (PlayerTurn *) this->getTurn();
+
+    auto availableSkills = this->getAvailableSkills();
+    
+    bool playerHasBoot = availableSkills[IMG_DICE_ACTION_BOOT].asInt() ||
+        !this->getFreeBootUsed();
+    
+    canMove = playerTurn->isActionDicesRolled() && playerHasBoot;
+  }
+  
+  return canMove;
+}
+
 #pragma mark - Getter and Setter
 
 void Game::setTurn(Turn* turn) {

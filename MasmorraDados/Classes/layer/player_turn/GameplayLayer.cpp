@@ -23,6 +23,8 @@
 #include "OverlayUtil.h"
 #include "PositionUtil.h"
 
+#include "MagicDiceDragHandler.h"
+
 #include "Game.h"
 
 USING_NS_CC;
@@ -142,53 +144,6 @@ DockableContainer* GameplayLayer::_getDockableContainer() {
   return (DockableContainer*) this->getChildByName(DOCK_CONTAINER_NODE_NAME);
 }
 
-void GameplayLayer::_triggerMagicDiceOnTargetDice(Dice *targetDice) {
-  log("permitir mudar a face do dado");
-  
-  auto sprite = targetDice->getSprite();
-  auto nodePosition = sprite->getPosition();
-  
-  Vector<Node*> targetNodes;
-  targetNodes.pushBack(sprite);
-  
-  std::vector<std::string> images;
-  
-  images.push_back(IMG_DICE_ACTION_BOOT);
-  images.push_back(IMG_DICE_ACTION_BOW);
-  images.push_back(IMG_DICE_ACTION_HEAL);
-  images.push_back(IMG_DICE_ACTION_SHIELD);
-  images.push_back(IMG_DICE_ACTION_SWORD);
-  
-  int position = 0;
-  for (auto image : images) {
-    if (image != targetDice->getSelectedFace()->getImagePath()) {
-      auto sprite = Sprite::create(image);
-      sprite->setPosition(nodePosition);
-      
-      this->addChild(sprite);
-      
-      targetNodes.pushBack(sprite);
-      
-      auto yOffset = (sprite->getContentSize().height + 2) * (position + 1);
-      auto newPosition = Vec2(nodePosition.x, nodePosition.y + yOffset);
-      
-      auto delay = DelayTime::create(MAGIC_DICE_DURATION * position);
-      auto adjustPosition = EaseOut::create(MoveTo::create(MAGIC_DICE_DURATION, newPosition), 5);
-      
-      sprite->runAction(Sequence::create(delay, adjustPosition, NULL));
-      
-      position++;
-    }
-  }
-  
-  auto delay = DelayTime::create(OVERLAY_DURATION);
-  auto callfunc = CallFunc::create([=] {
-    OverlayUtil::addOverlay(targetNodes, this);
-  });
-  
-  this->runAction(Sequence::create(delay, callfunc, NULL));
-}
-
 #pragma mark - Event Handlers
 
 void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
@@ -205,11 +160,7 @@ void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
   targetNodes.pushBack(sprite);
   
   if (DiceUtil::isMagicDice(dice)) {
-    for (auto node : this->getChildren()) {
-      if (IS(node, ActionDiceSprite) && node != sprite) {
-        targetNodes.pushBack(node);
-      }
-    }
+    MagicDiceDragHandler::create()->dragStarted(data, this);
   } else {
     log("dragging other dice");
     
@@ -227,9 +178,9 @@ void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
         break;
       }
     }
+    
+    OverlayUtil::addOverlay(targetNodes, this);
   }
-  
-  OverlayUtil::addOverlay(targetNodes, this);
 }
 
 void GameplayLayer::_handleActionDiceDragMoved(EventCustom* event) {
@@ -242,18 +193,7 @@ void GameplayLayer::_handleActionDiceDragMoved(EventCustom* event) {
   sprite->setPosition(touchLocation);
   
   if (DiceUtil::isMagicDice(dice)) {
-    for (auto node : this->getChildren()) {
-      if (IS(node, ActionDiceSprite) && node != sprite) {
-        auto color = Color3B::WHITE;
-        auto rect = node->getBoundingBox();
-        
-        if (rect.containsPoint(touch->getLocation())) {
-          color = OK_COLOR;
-        }
-        
-        node->setColor(color);
-      }
-    }
+    MagicDiceDragHandler::create()->dragMoved(data, this);
   } else {
     auto dockableContainer = this->_getDockableContainer();
     auto dockableNodes = dockableContainer->getDockableNodes();
@@ -290,18 +230,7 @@ void GameplayLayer::_handleActionDiceDragEnded(EventCustom* event) {
   auto position = Vec2::ZERO;
   
   if (DiceUtil::isMagicDice(dice)) {
-    for (auto node : this->getChildren()) {
-      if (IS(node, ActionDiceSprite) && node != sprite) {
-        auto targetDice = ((ActionDiceSprite*) node)->getDice();
-        auto rect = node->getBoundingBox();
-        
-        if (rect.containsPoint(touch->getLocation())) {
-          node->setColor(Color3B::WHITE);
-          this->_triggerMagicDiceOnTargetDice(targetDice);
-          break;
-        }
-      }
-    }
+    MagicDiceDragHandler::create()->dragEnded(data, this);
   } else {
     auto dockableContainer = this->_getDockableContainer();
     auto dockableNodes = dockableContainer->getDockableNodes();
