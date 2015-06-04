@@ -14,6 +14,7 @@
 #include "NodeNames.h"
 
 #include "DockableContainer.h"
+#include "EndTurnButton.h"
 #include "FreeBootSprite.h"
 
 #include "ActionDiceDragData.h"
@@ -121,11 +122,7 @@ DockableContainer* GameplayLayer::_createDockableContainer() {
 }
                  
 Node* GameplayLayer::_createFinalizarButton() {
-  auto button = ui::Button::create(IMG_BUTTON_END_TURN_NORMAL,
-                                   IMG_BUTTON_END_TURN_SELECTED,
-                                   IMG_BUTTON_END_TURN_DISABLED);
-  button->setName(END_TURN_BUTTON_NAME);
-  button->addTouchEventListener(CC_CALLBACK_2(GameplayLayer::_handleEndTurnTouched, this));
+  auto button = EndTurnButton::create();
   
   auto size = button->getContentSize() / 2;
   auto x = this->getContentSize().width - (END_TURN_MARGIN + size.width);
@@ -221,15 +218,6 @@ void GameplayLayer::_removeOverlay() {
   auto removeSelf = RemoveSelf::create();
   
   overlayLayer->runAction(Sequence::create(fadeOut, changeLayer, removeSelf, NULL));
-}
-
-#pragma mark - UI Event Handlers
-
-void GameplayLayer::_handleEndTurnTouched(Ref* sender, ui::Widget::TouchEventType type) {
-  if (type == ui::Widget::TouchEventType::ENDED) {
-    auto dispatcher = Director::getInstance()->getEventDispatcher();
-    dispatcher->dispatchCustomEvent(EVT_END_PLAYER_TURN, this);
-  }
 }
 
 #pragma mark - Event Handlers

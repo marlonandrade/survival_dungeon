@@ -59,6 +59,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/node/DiceSprite.cpp \
 		   ../../Classes/node/DockableContainer.cpp \
 		   ../../Classes/node/DungeonRoomSprite.cpp \
+		   ../../Classes/node/EndTurnButton.cpp \
 		   ../../Classes/node/FreeBootSprite.cpp \
 		   ../../Classes/util/CoordinateUtil.cpp \
 		   ../../Classes/util/DiceUtil.cpp \

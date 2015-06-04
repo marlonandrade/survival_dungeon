@@ -10,7 +10,6 @@
 #define __MasmorraDados__GameplayLayer__
 
 #include "cocos2d.h"
-#include "ui/CocosGUI.h"
 
 class Dice;
 class DockableContainer;
@@ -51,8 +50,6 @@ private:
   
   void _addOverlay(cocos2d::Vector<Node*> targetNodes);
   void _removeOverlay();
-#pragma mark - UI Events
-  void _handleEndTurnTouched(cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType type);
   
 #pragma mark - Event Handlers
   void _handleActionDiceDragStarted(cocos2d::EventCustom* event);

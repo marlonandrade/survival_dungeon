@@ -92,6 +92,8 @@
 		BF9F12D41B20A81700C58035 /* DockableContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12D11B20A81700C58035 /* DockableContainer.cpp */; };
 		BF9F12D71B20ADDB00C58035 /* FreeBootSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12D51B20ADDB00C58035 /* FreeBootSprite.cpp */; };
 		BF9F12D81B20ADDB00C58035 /* FreeBootSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12D51B20ADDB00C58035 /* FreeBootSprite.cpp */; };
+		BF9F12DB1B20CAD700C58035 /* EndTurnButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12D91B20CAD700C58035 /* EndTurnButton.cpp */; };
+		BF9F12DC1B20CAD700C58035 /* EndTurnButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12D91B20CAD700C58035 /* EndTurnButton.cpp */; };
 		BFAA74431A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */; };
@@ -267,6 +269,8 @@
 		BF9F12D21B20A81700C58035 /* DockableContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DockableContainer.h; sourceTree = "<group>"; };
 		BF9F12D51B20ADDB00C58035 /* FreeBootSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreeBootSprite.cpp; sourceTree = "<group>"; };
 		BF9F12D61B20ADDB00C58035 /* FreeBootSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeBootSprite.h; sourceTree = "<group>"; };
+		BF9F12D91B20CAD700C58035 /* EndTurnButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EndTurnButton.cpp; sourceTree = "<group>"; };
+		BF9F12DA1B20CAD700C58035 /* EndTurnButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndTurnButton.h; sourceTree = "<group>"; };
 		BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitialRoom.cpp; sourceTree = "<group>"; };
 		BFAA74421A9C0E1D00E45DF8 /* InitialRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialRoom.h; sourceTree = "<group>"; };
 		BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuneRoom.cpp; sourceTree = "<group>"; };
@@ -517,6 +521,8 @@
 				BF9F12D21B20A81700C58035 /* DockableContainer.h */,
 				BFCB45511B1B57030008427D /* DungeonRoomSprite.cpp */,
 				BFCB45521B1B57030008427D /* DungeonRoomSprite.h */,
+				BF9F12D91B20CAD700C58035 /* EndTurnButton.cpp */,
+				BF9F12DA1B20CAD700C58035 /* EndTurnButton.h */,
 				BF9F12D51B20ADDB00C58035 /* FreeBootSprite.cpp */,
 				BF9F12D61B20ADDB00C58035 /* FreeBootSprite.h */,
 			);
@@ -888,6 +894,7 @@
 				BFD36EE11AF66921003701EC /* MinorMonsterDice.cpp in Sources */,
 				BF5B4B7F1A90E77A007636DE /* Game.cpp in Sources */,
 				BF9F12D31B20A81700C58035 /* DockableContainer.cpp in Sources */,
+				BF9F12DB1B20CAD700C58035 /* EndTurnButton.cpp in Sources */,
 				BFD7AA351AF060170079C68E /* ActionDiceStateSpent.cpp in Sources */,
 				BFD7AA2B1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */,
 				BFE451501B1F67BD00424C09 /* BackgroundLayer.cpp in Sources */,
@@ -947,6 +954,7 @@
 				BFD7AA321AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
 				BFAA744D1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,
 				BF3EDB401AF92203002A2D7C /* MonsterRoomData.cpp in Sources */,
+				BF9F12DC1B20CAD700C58035 /* EndTurnButton.cpp in Sources */,
 				BFDFE2681ADC2B8A00106124 /* ActionDiceStateNormal.cpp in Sources */,
 				BF9F12D81B20ADDB00C58035 /* FreeBootSprite.cpp in Sources */,
 				BF5B4C011A953981007636DE /* ActionDice.cpp in Sources */,
