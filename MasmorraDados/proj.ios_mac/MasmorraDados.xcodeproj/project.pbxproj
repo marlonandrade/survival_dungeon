@@ -100,6 +100,8 @@
 		BF9F12E51B20D8DD00C58035 /* MagicDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12E21B20D8DD00C58035 /* MagicDiceDragHandler.cpp */; };
 		BF9F12E81B20F8FE00C58035 /* MagicDiceEffectLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12E61B20F8FE00C58035 /* MagicDiceEffectLayer.cpp */; };
 		BF9F12E91B20F8FE00C58035 /* MagicDiceEffectLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12E61B20F8FE00C58035 /* MagicDiceEffectLayer.cpp */; };
+		BF9F12EC1B21258B00C58035 /* CommonDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12EA1B21258B00C58035 /* CommonDiceDragHandler.cpp */; };
+		BF9F12ED1B21258B00C58035 /* CommonDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12EA1B21258B00C58035 /* CommonDiceDragHandler.cpp */; };
 		BFAA74431A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */; };
@@ -283,6 +285,8 @@
 		BF9F12E31B20D8DD00C58035 /* MagicDiceDragHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicDiceDragHandler.h; sourceTree = "<group>"; };
 		BF9F12E61B20F8FE00C58035 /* MagicDiceEffectLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MagicDiceEffectLayer.cpp; sourceTree = "<group>"; };
 		BF9F12E71B20F8FE00C58035 /* MagicDiceEffectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicDiceEffectLayer.h; sourceTree = "<group>"; };
+		BF9F12EA1B21258B00C58035 /* CommonDiceDragHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommonDiceDragHandler.cpp; sourceTree = "<group>"; };
+		BF9F12EB1B21258B00C58035 /* CommonDiceDragHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDiceDragHandler.h; sourceTree = "<group>"; };
 		BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitialRoom.cpp; sourceTree = "<group>"; };
 		BFAA74421A9C0E1D00E45DF8 /* InitialRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialRoom.h; sourceTree = "<group>"; };
 		BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuneRoom.cpp; sourceTree = "<group>"; };
@@ -614,6 +618,8 @@
 		BF9F12E11B20D8C200C58035 /* drag_handler */ = {
 			isa = PBXGroup;
 			children = (
+				BF9F12EA1B21258B00C58035 /* CommonDiceDragHandler.cpp */,
+				BF9F12EB1B21258B00C58035 /* CommonDiceDragHandler.h */,
 				BF9F12E21B20D8DD00C58035 /* MagicDiceDragHandler.cpp */,
 				BF9F12E31B20D8DD00C58035 /* MagicDiceDragHandler.h */,
 			);
@@ -894,6 +900,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				BFE583A91AD6E41400A4E194 /* ActionDiceSprite.cpp in Sources */,
 				BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */,
+				BF9F12EC1B21258B00C58035 /* CommonDiceDragHandler.cpp in Sources */,
 				BFD36F151AF85107003701EC /* MajorMonsterDice.cpp in Sources */,
 				BFAA74501A9E8A4100E45DF8 /* CharacterDiceSprite.cpp in Sources */,
 				BF6D78DA1AE44973002D67C7 /* ActionDiceStateDisabled.cpp in Sources */,
@@ -972,6 +979,7 @@
 				BFD7AA361AF060170079C68E /* ActionDiceStateSpent.cpp in Sources */,
 				BF74CA7D1ADC834A0062F242 /* DiceSprite.cpp in Sources */,
 				BFC3739F1A9C02FA00520751 /* DiceFace.cpp in Sources */,
+				BF9F12ED1B21258B00C58035 /* CommonDiceDragHandler.cpp in Sources */,
 				BFE451511B1F67BD00424C09 /* BackgroundLayer.cpp in Sources */,
 				BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */,

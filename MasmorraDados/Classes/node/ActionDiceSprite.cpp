@@ -17,6 +17,8 @@
 
 #include "MagicDiceEffectLayer.h"
 
+#include "PositionUtil.h"
+
 USING_NS_CC;
 
 #pragma mark - Public Interface
@@ -48,6 +50,11 @@ void ActionDiceSprite::dockOnNode(Node* node) {
   node->addChild(this);
   this->setPosition(node->convertToNodeSpace(this->getPosition()));
   this->release();
+  
+  auto position = PositionUtil::centerOfNode(node);
+  auto move = MoveTo::create(0.1, position);
+  this->runAction(move);
+  this->getDice()->setDocked(true);
 }
 
 void ActionDiceSprite::undock(Layer* layer) {
@@ -58,6 +65,19 @@ void ActionDiceSprite::undock(Layer* layer) {
   layer->addChild(this);
   this->setPosition(parent->convertToWorldSpace(this->getPosition()));
   this->release();
+}
+
+void ActionDiceSprite::startDragging() {
+  this->setLocalZOrder(this->getLocalZOrder() + DRAG_Z_ORDER_DELTA);
+  this->getDice()->setDocked(false);
+  this->runAction(ScaleTo::create(0.2, 0.58));
+}
+
+void ActionDiceSprite::restoreOriginalPosition() {
+  auto move = MoveTo::create(0.2, this->getOriginalPosition());
+  auto scale = ScaleTo::create(0.2, 1);
+  
+  this->runAction(Spawn::create(move, scale, NULL));
 }
 
 #pragma mark - Private Interface

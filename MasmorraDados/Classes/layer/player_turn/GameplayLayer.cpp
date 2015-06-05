@@ -23,6 +23,7 @@
 #include "OverlayUtil.h"
 #include "PositionUtil.h"
 
+#include "CommonDiceDragHandler.h"
 #include "MagicDiceDragHandler.h"
 
 #include "Game.h"
@@ -149,15 +150,9 @@ DockableContainer* GameplayLayer::_getDockableContainer() {
 void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
   auto data = (ActionDiceDragData*) event->getUserData();
   auto sprite = data->getSprite();
-  auto touch = data->getTouch();
   auto dice = sprite->getDice();
   
-  sprite->setLocalZOrder(sprite->getLocalZOrder() + DRAG_Z_ORDER_DELTA);
-  sprite->getDice()->setDocked(false);
-  sprite->runAction(ScaleTo::create(0.2, 0.58));
-  
-  Vector<Node*> targetNodes;
-  targetNodes.pushBack(sprite);
+  sprite->startDragging();
   
   auto room = Game::getInstance()->getRoomForCharacterCoordinate();
   auto hasMonstersInRoom = room->getMonsters().size() > 0;
@@ -169,24 +164,9 @@ void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
               DiceUtil::isShieldDice(dice)) && hasMonstersInRoom) {
     log("TEM MONSTRO NA SALA!!!!!!");
   } else {
-    log("dragging other dice");
-    
     auto dockableContainer = this->_getDockableContainer();
     auto dockableNodes = dockableContainer->getDockableNodes();
-    auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(touch);
-    
-    targetNodes.pushBack(dockableNodes);
-    targetNodes.pushBack(dockableContainer);
-    
-    for (auto node : dockableNodes) {
-      if (node->getChildren().size() > 0 &&
-          node->getBoundingBox().containsPoint(dockableLocation)) {
-        sprite->undock(this);
-        break;
-      }
-    }
-    
-    OverlayUtil::addOverlay(targetNodes, this);
+    CommonDiceDragHandler::create()->dragStarted(data, this, dockableContainer, dockableNodes);
   }
 }
 
@@ -204,76 +184,30 @@ void GameplayLayer::_handleActionDiceDragMoved(EventCustom* event) {
   } else {
     auto dockableContainer = this->_getDockableContainer();
     auto dockableNodes = dockableContainer->getDockableNodes();
-    auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(touch);
-    
-    for (auto node : dockableNodes) {
-      auto color = Color3B::WHITE;
-      auto rect = node->getBoundingBox();
-      
-      rect.origin -= Vec2(DOCKABLE_HIDDEN_MARGIN, 0);
-      rect.size = rect.size + Size(DOCKABLE_HIDDEN_MARGIN * 2, 0);
-      
-      if (node->getChildren().size() == 0 &&
-          rect.containsPoint(dockableLocation)) {
-        color = OK_COLOR;
-      }
-      
-      node->setColor(color);
-    }
+    CommonDiceDragHandler::create()->dragMoved(data, this, dockableContainer, dockableNodes);
   }
 }
 
 void GameplayLayer::_handleActionDiceDragEnded(EventCustom* event) {
   auto data = (ActionDiceDragData*) event->getUserData();
   auto sprite = data->getSprite();
-  auto touch = data->getTouch();
   auto dice = sprite->getDice();
   
   sprite->setLocalZOrder(sprite->getLocalZOrder() - DRAG_Z_ORDER_DELTA);
   
   OverlayUtil::removeOverlay(this);
   
-  bool moved = false;
-  auto position = Vec2::ZERO;
+  bool docked = false;
   
   if (DiceUtil::isMagicDice(dice)) {
-    MagicDiceDragHandler::create()->dragEnded(data, this);
+    docked = MagicDiceDragHandler::create()->dragEnded(data, this);
   } else {
     auto dockableContainer = this->_getDockableContainer();
     auto dockableNodes = dockableContainer->getDockableNodes();
-    auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(touch);
-    
-    for (auto node : dockableNodes) {
-      auto rect = node->getBoundingBox();
-      
-      rect.origin -= Vec2(DOCKABLE_HIDDEN_MARGIN, 0);
-      rect.size = rect.size + Size(DOCKABLE_HIDDEN_MARGIN * 2, 0);
-      
-      if (node->getChildren().size() == 0 &&
-          rect.containsPoint(dockableLocation)) {
-        moved = true;
-        node->setColor(Color3B::WHITE);
-        
-        sprite->dockOnNode(node);
-        
-        position = PositionUtil::centerOfNode(node);
-        
-        break;
-      }
-    }
+    docked = CommonDiceDragHandler::create()->dragEnded(data, this, dockableContainer, dockableNodes);
   }
   
-  if (moved) {
-    auto move = MoveTo::create(0.1, position);
-    sprite->runAction(move);
-    sprite->getDice()->setDocked(true);
-    
-    log("animate move");
-  } else {
-    auto move = MoveTo::create(0.2, sprite->getOriginalPosition());
-    auto scale = ScaleTo::create(0.2, 1);
-    
-    sprite->runAction(Spawn::create(move, scale, NULL));
-    log("animate back");
+  if (!docked) {
+    sprite->restoreOriginalPosition();
   }
 }

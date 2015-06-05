@@ -66,6 +66,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/util/DiceUtil.cpp \
 		   ../../Classes/util/OverlayUtil.cpp \
 		   ../../Classes/util/PositionUtil.cpp \
+		   ../../Classes/util/drag_handler/CommonDiceDragHandler.cpp
 		   ../../Classes/util/drag_handler/MagicDiceDragHandler.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \

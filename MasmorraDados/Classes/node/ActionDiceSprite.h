@@ -21,6 +21,10 @@ public:
   
   void dockOnNode(cocos2d::Node* node);
   void undock(cocos2d::Layer* layer);
+  
+  void startDragging();
+  
+  void restoreOriginalPosition();
 private:
   void _setupTouchListener();
   

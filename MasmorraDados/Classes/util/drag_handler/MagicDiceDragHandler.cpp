@@ -52,7 +52,9 @@ void MagicDiceDragHandler::dragMoved(ActionDiceDragData* data, Layer* layer) {
   }
 }
 
-void MagicDiceDragHandler::dragEnded(ActionDiceDragData* data, Layer* layer) {
+bool MagicDiceDragHandler::dragEnded(ActionDiceDragData* data, Layer* layer) {
+  auto docked = false;
+  
   auto sprite = data->getSprite();
   auto touch = data->getTouch();
   
@@ -64,8 +66,11 @@ void MagicDiceDragHandler::dragEnded(ActionDiceDragData* data, Layer* layer) {
       if (rect.containsPoint(touch->getLocation())) {
         node->setColor(Color3B::WHITE);
         MagicDiceEffectLayer::create()->triggerEffectOnTarget(targetDice, layer);
+        docked = true;
         break;
       }
     }
   }
+  
+  return docked;
 }
