@@ -11,20 +11,21 @@
 
 #include "cocos2d.h"
 
-class Dice;
+#include "ActionDice.h"
 
 class MagicDiceEffectLayer : public cocos2d::Layer {
+  CC_SYNTHESIZE_RETAIN(ActionDice*, _magicDice, MagicDice);
+  CC_SYNTHESIZE_RETAIN(ActionDice*, _targetDice, TargetDice);
 public:
   CREATE_FUNC(MagicDiceEffectLayer);
   virtual bool init();
   
-  void triggerEffectOnTarget(Dice* targetDice, cocos2d::Layer* layer);
+  void triggerEffect(ActionDice* magicDice, ActionDice* targetDice, cocos2d::Layer* layer);
   
 private:
   void _setupTouchListener();
   
   bool _onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
-  void _onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
   void _onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 };
 

@@ -60,12 +60,17 @@ bool MagicDiceDragHandler::dragEnded(ActionDiceDragData* data, Layer* layer) {
   
   for (auto node : layer->getChildren()) {
     if (IS(node, ActionDiceSprite) && node != sprite) {
-      auto targetDice = ((ActionDiceSprite*) node)->getDice();
+      auto actionSprite = (ActionDiceSprite*) node;
       auto rect = node->getBoundingBox();
       
       if (rect.containsPoint(touch->getLocation())) {
         node->setColor(Color3B::WHITE);
-        MagicDiceEffectLayer::create()->triggerEffectOnTarget(targetDice, layer);
+        
+        auto magicDice = (ActionDice*) sprite->getDice();
+        auto targetDice = (ActionDice*) actionSprite->getDice();
+        
+        MagicDiceEffectLayer::create()->triggerEffect(magicDice, targetDice, layer);
+        
         docked = true;
         break;
       }

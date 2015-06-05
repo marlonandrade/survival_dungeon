@@ -12,6 +12,9 @@
 #include "Images.h"
 
 #include "Dice.h"
+#include "ActionDice.h"
+
+#include "ActionDiceSprite.h"
 
 #include "OverlayUtil.h"
 
@@ -29,11 +32,14 @@ bool MagicDiceEffectLayer::init() {
   return true;
 }
 
-void MagicDiceEffectLayer::triggerEffectOnTarget(Dice* dice, Layer* layer) {
+void MagicDiceEffectLayer::triggerEffect(ActionDice* magicDice, ActionDice* targetDice, Layer* layer) {
+  this->setMagicDice(magicDice);
+  this->setTargetDice(targetDice);
+  
   layer->addChild(this);
   this->setLocalZOrder(MAX_Z_ORDER);
   
-  auto sprite = dice->getSprite();
+  auto sprite = targetDice->getSprite();
   auto nodePosition = sprite->getPosition();
   
   sprite->retain();
@@ -54,7 +60,7 @@ void MagicDiceEffectLayer::triggerEffectOnTarget(Dice* dice, Layer* layer) {
   
   int position = 0;
   for (auto image : images) {
-    if (image != dice->getSelectedFace()->getImagePath()) {
+    if (image != targetDice->getSelectedFace()->getImagePath()) {
       auto sprite = Sprite::create(image);
       sprite->setPosition(nodePosition);
       
@@ -88,7 +94,6 @@ void MagicDiceEffectLayer::_setupTouchListener() {
   auto touchListener = EventListenerTouchOneByOne::create();
   touchListener->setSwallowTouches(true);
   touchListener->onTouchBegan = CC_CALLBACK_2(MagicDiceEffectLayer::_onTouchBegan, this);
-  touchListener->onTouchMoved = CC_CALLBACK_2(MagicDiceEffectLayer::_onTouchMoved, this);
   touchListener->onTouchEnded = CC_CALLBACK_2(MagicDiceEffectLayer::_onTouchEnded, this);
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
@@ -97,10 +102,6 @@ void MagicDiceEffectLayer::_setupTouchListener() {
 
 bool MagicDiceEffectLayer::_onTouchBegan(Touch* touch, Event* event) {
   return true;
-}
-
-void MagicDiceEffectLayer::_onTouchMoved(Touch* touch, Event* event) {
-  
 }
 
 void MagicDiceEffectLayer::_onTouchEnded(Touch* touch, Event* event) {
@@ -119,6 +120,42 @@ void MagicDiceEffectLayer::_onTouchEnded(Touch* touch, Event* event) {
   if (selectedDice) {
     log("modificar dado selecionado e 'gastar' magia");
   } else {
-    log("desfazer e voltar magia pro lugar inicial");
+    auto sprite = this->getTargetDice()->getSprite();
+    sprite->setLocalZOrder(sprite->getLocalZOrder() + 100);
+    
+    auto position = 0;
+    auto children = this->getChildren();
+    children.reverse();
+    for (auto child : children) {
+      if (IS(child, Sprite)) {
+        auto delay = DelayTime::create(MAGIC_DICE_DURATION * position);
+        auto moveBack = EaseOut::create(MoveTo::create(MAGIC_DICE_DURATION, sprite->getPosition()), 5);
+        
+        child->runAction(Sequence::create(delay, moveBack, NULL));
+        
+        position++;
+      }
+    }
+    
+    auto delay = DelayTime::create(MAGIC_DICE_DURATION * (position - 1));
+    auto fadeOut = FadeOut::create(MAGIC_DICE_DURATION);
+    auto restoreMagicPosition = CallFunc::create([=]{
+      auto magicSprite = (ActionDiceSprite*) this->getMagicDice()->getSprite();
+      magicSprite->restoreOriginalPosition();
+    });
+    
+    auto fadeAndRestoreMagicDice = Spawn::create(fadeOut, restoreMagicPosition, NULL);
+    
+    auto removeFromParent = CallFunc::create([=]{
+      sprite->setLocalZOrder(sprite->getLocalZOrder() - 100);
+      sprite->retain();
+      sprite->removeFromParent();
+      this->getParent()->addChild(sprite);
+      sprite->release();
+    
+      this->removeFromParent();
+    });
+    
+    this->runAction(Sequence::create(delay, fadeAndRestoreMagicDice, removeFromParent, NULL));
   }
 }
