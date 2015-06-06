@@ -15,6 +15,8 @@
 #include "ActionDice.h"
 
 #include "ActionDiceSprite.h"
+#include "DockableContainer.h"
+#include "GameplayLayer.h"
 
 #include "OverlayUtil.h"
 
@@ -63,6 +65,7 @@ void MagicDiceEffectLayer::triggerEffect(ActionDice* magicDice, ActionDice* targ
     if (image != targetDice->getSelectedFace()->getImagePath()) {
       auto sprite = Sprite::create(image);
       sprite->setPosition(nodePosition);
+      sprite->setName(image);
       
       this->addChild(sprite);
       
@@ -117,15 +120,58 @@ void MagicDiceEffectLayer::_onTouchEnded(Touch* touch, Event* event) {
     }
   }
   
+  auto sprite = this->getTargetDice()->getSprite();
+  sprite->setLocalZOrder(sprite->getLocalZOrder() + 100);
+  
+  auto position = 0;
+  auto children = this->getChildren();
+  children.reverse();
+  
   if (selectedDice) {
-    log("modificar dado selecionado e 'gastar' magia");
-  } else {
-    auto sprite = this->getTargetDice()->getSprite();
-    sprite->setLocalZOrder(sprite->getLocalZOrder() + 100);
+    for (auto child : children) {
+      if (IS(child, Sprite) && child != selectedDice) {
+        auto delay = DelayTime::create(MAGIC_DICE_DURATION * position);
+        auto moveBack = EaseOut::create(MoveTo::create(MAGIC_DICE_DURATION, sprite->getPosition()), 5);
+        
+        child->runAction(Sequence::create(delay, moveBack, NULL));
+        
+        position++;
+      }
+    }
     
-    auto position = 0;
-    auto children = this->getChildren();
-    children.reverse();
+    auto delay = DelayTime::create(MAGIC_DICE_DURATION * (position - 1));
+    auto fadeOut = FadeOut::create(MAGIC_DICE_DURATION);
+    auto dockMagicDice = CallFunc::create([=]{
+      auto magicSprite = (ActionDiceSprite*) this->getMagicDice()->getSprite();
+      auto gameplayLayer = (GameplayLayer*) this->getParent();
+      
+      gameplayLayer->dockActionDice(magicSprite);
+    });
+    auto fadeAndDockMagicDice = Spawn::create(fadeOut, dockMagicDice, NULL);
+    
+    auto removeFromParent = CallFunc::create([=]{
+      OverlayUtil::removeOverlay(this);
+      
+      sprite->setLocalZOrder(ACTION_DICE_Z_ORDER);
+      sprite->retain();
+      sprite->removeFromParent();
+      this->getParent()->addChild(sprite);
+      sprite->release();
+      
+      DiceFace* choosenFace;
+      for (auto face : this->getTargetDice()->getFaces()) {
+        if (face->getImagePath() == selectedDice->getName()) {
+          choosenFace = face;
+        }
+      }
+      this->getTargetDice()->setSelectedFace(choosenFace, false);
+      
+      this->removeFromParent();
+    });
+    
+    this->runAction(Sequence::create(delay, fadeAndDockMagicDice, removeFromParent, NULL));
+    log("todos dados animados exceto o selecionado!");
+  } else {
     for (auto child : children) {
       if (IS(child, Sprite)) {
         auto delay = DelayTime::create(MAGIC_DICE_DURATION * position);
@@ -147,12 +193,14 @@ void MagicDiceEffectLayer::_onTouchEnded(Touch* touch, Event* event) {
     auto fadeAndRestoreMagicDice = Spawn::create(fadeOut, restoreMagicPosition, NULL);
     
     auto removeFromParent = CallFunc::create([=]{
-      sprite->setLocalZOrder(sprite->getLocalZOrder() - 100);
+      OverlayUtil::removeOverlay(this);
+      
+      sprite->setLocalZOrder(ACTION_DICE_Z_ORDER);
       sprite->retain();
       sprite->removeFromParent();
       this->getParent()->addChild(sprite);
       sprite->release();
-    
+      
       this->removeFromParent();
     });
     

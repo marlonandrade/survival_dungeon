@@ -38,16 +38,18 @@ void OverlayUtil::addOverlay(Vector<Node*> nodes, Node* parentNode, Vec2 positio
 void OverlayUtil::removeOverlay(Node* parentNode) {
   auto overlayLayer = parentNode->getChildByName(OVERLAY_LAYER_NAME);
   
-  auto fadeOut = FadeOut::create(OVERLAY_DURATION);
-  auto changeLayer = CallFunc::create([=]() {
-    for (auto node : parentNode->getChildren()) {
-      if (node->getLocalZOrder() > overlayLayer->getLocalZOrder()) {
-        auto oldZOrder = node->getLocalZOrder() - OVERLAY_Z_ORDER;
-        node->setLocalZOrder(oldZOrder);
+  if (overlayLayer) {
+    auto fadeOut = FadeOut::create(OVERLAY_DURATION);
+    auto changeLayer = CallFunc::create([=]() {
+      for (auto node : parentNode->getChildren()) {
+        if (node->getLocalZOrder() > overlayLayer->getLocalZOrder()) {
+          auto oldZOrder = node->getLocalZOrder() - OVERLAY_Z_ORDER;
+          node->setLocalZOrder(oldZOrder);
+        }
       }
-    }
-  });
-  auto removeSelf = RemoveSelf::create();
-  
-  overlayLayer->runAction(Sequence::create(fadeOut, changeLayer, removeSelf, NULL));
+    });
+    auto removeSelf = RemoveSelf::create();
+    
+    overlayLayer->runAction(Sequence::create(fadeOut, changeLayer, removeSelf, NULL));
+  }
 }

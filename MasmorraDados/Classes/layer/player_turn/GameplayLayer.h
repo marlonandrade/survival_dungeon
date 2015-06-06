@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 
+class ActionDiceSprite;
 class DockableContainer;
 class FreeBootSprite;
 
@@ -33,6 +34,8 @@ public:
   
   void resetFreeBootUsed();
   void resetDockableNodes();
+  
+  void dockActionDice(ActionDiceSprite* actionDiceSprite);
   
 private:
   void _setupChildren();

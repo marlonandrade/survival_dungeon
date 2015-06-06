@@ -29,6 +29,8 @@ public:
   static Dice* createWithFaces(DiceFaces faces);
   virtual bool initWithFaces(DiceFaces faces);
   
+  void setSelectedFace(DiceFace* selectedFace, bool animated);
+  
   virtual void roll();
   
   bool canChangeState();

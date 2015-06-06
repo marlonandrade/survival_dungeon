@@ -21,6 +21,10 @@ DiceFace* Dice::getSelectedFace() {
 }
 
 void Dice::setSelectedFace(DiceFace *selectedFace) {
+  this->setSelectedFace(selectedFace, true);
+}
+
+void Dice::setSelectedFace(DiceFace* selectedFace, bool animated) {
   CC_SAFE_RETAIN(selectedFace);
   CC_SAFE_RELEASE(_selectedFace);
   _selectedFace = selectedFace;
@@ -28,15 +32,17 @@ void Dice::setSelectedFace(DiceFace *selectedFace) {
   auto sprite = this->getSprite();
   sprite->setTexture(selectedFace->getImagePath());
   
-  auto blurSprite = CallFunc::create([=]() {
-    sprite->setTexture(selectedFace->getDice()->getBlurImagePath());
-  });
-  auto shake = Shake::create(0.3, Vec2(3, 3));
-  auto finalSprite = CallFunc::create([=]() {
-    sprite->setTexture(selectedFace->getImagePath());
-  });
-  
-  sprite->runAction(Sequence::create(blurSprite, shake, finalSprite, NULL));
+  if (animated) {
+    auto blurSprite = CallFunc::create([=]() {
+      sprite->setTexture(selectedFace->getDice()->getBlurImagePath());
+    });
+    auto shake = Shake::create(0.3, Vec2(3, 3));
+    auto finalSprite = CallFunc::create([=]() {
+      sprite->setTexture(selectedFace->getImagePath());
+    });
+    
+    sprite->runAction(Sequence::create(blurSprite, shake, finalSprite, NULL));
+  }
 }
 
 DiceFaces Dice::getFaces() {

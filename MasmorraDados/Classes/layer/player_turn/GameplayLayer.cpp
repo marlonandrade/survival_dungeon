@@ -72,6 +72,19 @@ void GameplayLayer::resetDockableNodes() {
   this->_getDockableContainer()->resetDockableNodes();
 }
 
+void GameplayLayer::dockActionDice(ActionDiceSprite *actionDiceSprite) {
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  
+  auto dockableNodes = this->_getDockableContainer()->getDockableNodes();
+  for (auto node : dockableNodes) {
+    if (node->getChildren().size() == 0) {
+      actionDiceSprite->dockOnNode(node);
+      dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_SPENT, actionDiceSprite->getDice());
+      break;
+    }
+  }
+}
+
 #pragma mark - Private Interface
 
 void GameplayLayer::_setupChildren() {
