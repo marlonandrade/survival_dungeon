@@ -76,7 +76,10 @@ void GameplayLayer::resetDockableNodes() {
 void GameplayLayer::dockActionDice(ActionDiceSprite *actionDiceSprite) {
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   
+  actionDiceSprite->runAction(ScaleTo::create(0.1, 0.58));
+  
   auto dockableNodes = this->_getDockableContainer()->getDockableNodes();
+  dockableNodes.reverse();
   for (auto node : dockableNodes) {
     if (node->getChildren().size() == 0) {
       actionDiceSprite->dockOnNode(node);
