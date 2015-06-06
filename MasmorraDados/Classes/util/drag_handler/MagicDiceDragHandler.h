@@ -9,18 +9,23 @@
 #ifndef __MasmorraDados__MagicDiceDragHandler__
 #define __MasmorraDados__MagicDiceDragHandler__
 
-#include "GameObject.h"
+#include "CommonDiceDragHandler.h"
 
-class ActionDiceDragData;
-class Dice;
-
-class MagicDiceDragHandler : public GameObject {
+class MagicDiceDragHandler : public CommonDiceDragHandler {
 public:
   CREATE_FUNC(MagicDiceDragHandler);
   
-  void dragStarted(ActionDiceDragData* data, cocos2d::Layer* layer);
-  void dragMoved(ActionDiceDragData* data, cocos2d::Layer* layer);
-  bool dragEnded(ActionDiceDragData* data, cocos2d::Layer* layer);
+  virtual void dragStarted(ActionDiceDragData* data,
+                           cocos2d::Layer* layer,
+                           DockableContainer* dockableContainer);
+  
+  virtual void dragMoved(ActionDiceDragData* data,
+                         cocos2d::Layer* layer,
+                         DockableContainer* dockableContainer);
+  
+  virtual bool dragEnded(ActionDiceDragData* data,
+                         cocos2d::Layer* layer,
+                         DockableContainer* dockableContainer);
 };
 
 #endif /* defined(__MasmorraDados__MagicDiceDragHandler__) */

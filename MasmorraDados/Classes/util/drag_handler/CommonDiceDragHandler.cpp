@@ -12,6 +12,8 @@
 
 #include "ActionDiceDragData.h"
 
+#include "DockableContainer.h"
+
 #include "OverlayUtil.h"
 
 USING_NS_CC;
@@ -19,15 +21,16 @@ USING_NS_CC;
 #pragma mark - Public Interface
 
 void CommonDiceDragHandler::dragStarted(ActionDiceDragData* data, Layer* layer,
-                                        Node* dockableContainer, Vector<Node*> dockableNodes) {
+                                        DockableContainer* dockableContainer) {
   auto sprite = data->getSprite();
   Vector<Node*> targetNodes;
   targetNodes.pushBack(sprite);
   
   auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
+  auto dockableNodes = dockableContainer->getDockableNodes();
   
-  targetNodes.pushBack(dockableNodes);
   targetNodes.pushBack(dockableContainer);
+  targetNodes.pushBack(dockableNodes);
   
   for (auto node : dockableNodes) {
     if (node->getChildren().size() > 0 &&
@@ -41,8 +44,9 @@ void CommonDiceDragHandler::dragStarted(ActionDiceDragData* data, Layer* layer,
 }
 
 void CommonDiceDragHandler::dragMoved(ActionDiceDragData* data, Layer* layer,
-                                      Node* dockableContainer, Vector<Node*> dockableNodes) {
+                                      DockableContainer* dockableContainer) {
   auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
+  auto dockableNodes = dockableContainer->getDockableNodes();
   
   for (auto node : dockableNodes) {
     auto color = Color3B::WHITE;
@@ -61,12 +65,13 @@ void CommonDiceDragHandler::dragMoved(ActionDiceDragData* data, Layer* layer,
 }
 
 bool CommonDiceDragHandler::dragEnded(ActionDiceDragData* data, Layer* layer,
-                                      Node* dockableContainer, Vector<Node*> dockableNodes) {
+                                      DockableContainer* dockableContainer) {
   auto docked = false;
   
   auto sprite = data->getSprite();
   
   auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
+  auto dockableNodes = dockableContainer->getDockableNodes();
   
   for (auto node : dockableNodes) {
     auto rect = node->getBoundingBox();

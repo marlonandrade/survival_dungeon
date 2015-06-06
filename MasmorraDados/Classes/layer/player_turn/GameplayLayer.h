@@ -12,6 +12,8 @@
 #include "cocos2d.h"
 
 class ActionDiceSprite;
+class CommonDiceDragHandler;
+class Dice;
 class DockableContainer;
 class FreeBootSprite;
 
@@ -47,6 +49,8 @@ private:
   
   FreeBootSprite* _getFreeBootSprite();
   DockableContainer* _getDockableContainer();
+  
+  CommonDiceDragHandler* _getDragHandler(Dice* dice);
   
 #pragma mark - Event Handlers
   void _handleActionDiceDragStarted(cocos2d::EventCustom* event);

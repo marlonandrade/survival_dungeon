@@ -158,6 +158,18 @@ DockableContainer* GameplayLayer::_getDockableContainer() {
   return (DockableContainer*) this->getChildByName(DOCK_CONTAINER_NODE_NAME);
 }
 
+CommonDiceDragHandler* GameplayLayer::_getDragHandler(Dice* dice) {
+  CommonDiceDragHandler* dragHandler;
+  
+  if (DiceUtil::isMagicDice(dice)) {
+    dragHandler = MagicDiceDragHandler::create();
+  } else {
+    dragHandler = CommonDiceDragHandler::create();
+  }
+  
+  return dragHandler;
+}
+
 #pragma mark - Event Handlers
 
 void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
@@ -170,17 +182,8 @@ void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
   auto room = Game::getInstance()->getRoomForCharacterCoordinate();
   auto hasMonstersInRoom = room->getMonsters().size() > 0;
   
-  if (DiceUtil::isMagicDice(dice)) {
-    MagicDiceDragHandler::create()->dragStarted(data, this);
-  } else if ((DiceUtil::isSwordDice(dice) ||
-              DiceUtil::isBowDice(dice) ||
-              DiceUtil::isShieldDice(dice)) && hasMonstersInRoom) {
-    log("TEM MONSTRO NA SALA!!!!!!");
-  } else {
-    auto dockableContainer = this->_getDockableContainer();
-    auto dockableNodes = dockableContainer->getDockableNodes();
-    CommonDiceDragHandler::create()->dragStarted(data, this, dockableContainer, dockableNodes);
-  }
+  CommonDiceDragHandler* dragHandler = this->_getDragHandler(dice);
+  dragHandler->dragStarted(data, this, this->_getDockableContainer());
 }
 
 void GameplayLayer::_handleActionDiceDragMoved(EventCustom* event) {
@@ -192,13 +195,8 @@ void GameplayLayer::_handleActionDiceDragMoved(EventCustom* event) {
   auto touchLocation = this->convertTouchToNodeSpace(touch);
   sprite->setPosition(touchLocation);
   
-  if (DiceUtil::isMagicDice(dice)) {
-    MagicDiceDragHandler::create()->dragMoved(data, this);
-  } else {
-    auto dockableContainer = this->_getDockableContainer();
-    auto dockableNodes = dockableContainer->getDockableNodes();
-    CommonDiceDragHandler::create()->dragMoved(data, this, dockableContainer, dockableNodes);
-  }
+  CommonDiceDragHandler* dragHandler = this->_getDragHandler(dice);
+  dragHandler->dragMoved(data, this, this->_getDockableContainer());
 }
 
 void GameplayLayer::_handleActionDiceDragEnded(EventCustom* event) {
@@ -210,15 +208,8 @@ void GameplayLayer::_handleActionDiceDragEnded(EventCustom* event) {
   
   OverlayUtil::removeOverlay(this);
   
-  bool docked = false;
-  
-  if (DiceUtil::isMagicDice(dice)) {
-    docked = MagicDiceDragHandler::create()->dragEnded(data, this);
-  } else {
-    auto dockableContainer = this->_getDockableContainer();
-    auto dockableNodes = dockableContainer->getDockableNodes();
-    docked = CommonDiceDragHandler::create()->dragEnded(data, this, dockableContainer, dockableNodes);
-  }
+  CommonDiceDragHandler* dragHandler = this->_getDragHandler(dice);
+  bool docked = dragHandler->dragEnded(data, this, this->_getDockableContainer());
   
   if (!docked) {
     sprite->restoreOriginalPosition();

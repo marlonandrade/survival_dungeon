@@ -11,6 +11,7 @@
 
 class ActionDiceDragData;
 class Dice;
+class DockableContainer;
 
 #include "GameObject.h"
 
@@ -18,17 +19,17 @@ class CommonDiceDragHandler : public GameObject {
 public:
   CREATE_FUNC(CommonDiceDragHandler);
   
-  void dragStarted(ActionDiceDragData* data, cocos2d::Layer* layer,
-                   cocos2d::Node* dockableContainer,
-                   cocos2d::Vector<cocos2d::Node*> dockableNodes);
+  virtual void dragStarted(ActionDiceDragData* data,
+                           cocos2d::Layer* layer,
+                           DockableContainer* dockableContainer);
   
-  void dragMoved(ActionDiceDragData* data, cocos2d::Layer* layer,
-                 cocos2d::Node* dockableContainer,
-                 cocos2d::Vector<cocos2d::Node*> dockableNodes);
+  virtual void dragMoved(ActionDiceDragData* data,
+                         cocos2d::Layer* layer,
+                         DockableContainer* dockableContainer);
   
-  bool dragEnded(ActionDiceDragData* data, cocos2d::Layer* layer,
-                 cocos2d::Node* dockableContainer,
-                 cocos2d::Vector<cocos2d::Node*> dockableNodes);
+  virtual bool dragEnded(ActionDiceDragData* data,
+                         cocos2d::Layer* layer,
+                         DockableContainer* dockableContainer);
 };
 
 #endif /* defined(__MasmorraDados__CommonDiceDragHandler__) */
