@@ -113,7 +113,8 @@ void MagicDiceEffectLayer::_onTouchEnded(Touch* touch, Event* event) {
   auto touchLocation = touch->getLocation();
   for (auto child : this->getChildren()) {
     if (!(IS(child, Layer))) {
-      if (child->getBoundingBox().containsPoint(touchLocation)) {
+      if (child != this->getTargetDice()->getSprite() &&
+          child->getBoundingBox().containsPoint(touchLocation)) {
         selectedDice = child;
         break;
       }
