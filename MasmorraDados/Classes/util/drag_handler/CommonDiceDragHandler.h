@@ -12,6 +12,7 @@
 class ActionDiceDragData;
 class Dice;
 class DockableContainer;
+class GameplayLayer;
 
 #include "GameObject.h"
 
@@ -20,15 +21,15 @@ public:
   CREATE_FUNC(CommonDiceDragHandler);
   
   virtual void dragStarted(ActionDiceDragData* data,
-                           cocos2d::Layer* layer,
+                           GameplayLayer* layer,
                            DockableContainer* dockableContainer);
   
   virtual void dragMoved(ActionDiceDragData* data,
-                         cocos2d::Layer* layer,
+                         GameplayLayer* layer,
                          DockableContainer* dockableContainer);
   
   virtual bool dragEnded(ActionDiceDragData* data,
-                         cocos2d::Layer* layer,
+                         GameplayLayer* layer,
                          DockableContainer* dockableContainer);
 };
 

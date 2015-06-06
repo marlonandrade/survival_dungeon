@@ -53,6 +53,8 @@
         "dice/action/shield.png"
 #define IMG_DICE_ACTION_SWORD \
         "dice/action/sword.png"
+#define IMG_DICE_ACTION_SWORD_AND_SHIELD \
+        "dice/action/sword_and_shield.png"
 
 #define IMG_DICE_ACTION_FREE_BOOT \
         "dice/action/free_boot.png"

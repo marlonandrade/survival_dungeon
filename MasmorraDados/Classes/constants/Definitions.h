@@ -64,7 +64,7 @@
 #define ACTION_DICE_Z_ORDER            2
 #define DUNGEON_ROOM_WITH_CHAR_Z_ORDER 5
 #define OVERLAY_Z_ORDER                10
-#define DRAG_Z_ORDER_DELTA             10
+#define DRAG_Z_ORDER_DELTA             50
 #define MAX_Z_ORDER                    999
 
 #pragma mark - Errors

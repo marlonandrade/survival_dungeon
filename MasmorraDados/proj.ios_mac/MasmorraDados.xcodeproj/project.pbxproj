@@ -102,6 +102,8 @@
 		BF9F12E91B20F8FE00C58035 /* MagicDiceEffectLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12E61B20F8FE00C58035 /* MagicDiceEffectLayer.cpp */; };
 		BF9F12EC1B21258B00C58035 /* CommonDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12EA1B21258B00C58035 /* CommonDiceDragHandler.cpp */; };
 		BF9F12ED1B21258B00C58035 /* CommonDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12EA1B21258B00C58035 /* CommonDiceDragHandler.cpp */; };
+		BF9F12F11B23A40C00C58035 /* ShieldDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12EF1B23A40C00C58035 /* ShieldDiceDragHandler.cpp */; };
+		BF9F12F21B23A40C00C58035 /* ShieldDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12EF1B23A40C00C58035 /* ShieldDiceDragHandler.cpp */; };
 		BFAA74431A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */; };
@@ -287,6 +289,8 @@
 		BF9F12E71B20F8FE00C58035 /* MagicDiceEffectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicDiceEffectLayer.h; sourceTree = "<group>"; };
 		BF9F12EA1B21258B00C58035 /* CommonDiceDragHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommonDiceDragHandler.cpp; sourceTree = "<group>"; };
 		BF9F12EB1B21258B00C58035 /* CommonDiceDragHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDiceDragHandler.h; sourceTree = "<group>"; };
+		BF9F12EF1B23A40C00C58035 /* ShieldDiceDragHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShieldDiceDragHandler.cpp; sourceTree = "<group>"; };
+		BF9F12F01B23A40C00C58035 /* ShieldDiceDragHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShieldDiceDragHandler.h; sourceTree = "<group>"; };
 		BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitialRoom.cpp; sourceTree = "<group>"; };
 		BFAA74421A9C0E1D00E45DF8 /* InitialRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialRoom.h; sourceTree = "<group>"; };
 		BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuneRoom.cpp; sourceTree = "<group>"; };
@@ -622,6 +626,8 @@
 				BF9F12EB1B21258B00C58035 /* CommonDiceDragHandler.h */,
 				BF9F12E21B20D8DD00C58035 /* MagicDiceDragHandler.cpp */,
 				BF9F12E31B20D8DD00C58035 /* MagicDiceDragHandler.h */,
+				BF9F12EF1B23A40C00C58035 /* ShieldDiceDragHandler.cpp */,
+				BF9F12F01B23A40C00C58035 /* ShieldDiceDragHandler.h */,
 			);
 			path = drag_handler;
 			sourceTree = "<group>";
@@ -895,6 +901,7 @@
 				BFC373951A9BFDDA00520751 /* DungeonRoom.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				BFC373991A9BFF7700520751 /* Character.cpp in Sources */,
+				BF9F12F11B23A40C00C58035 /* ShieldDiceDragHandler.cpp in Sources */,
 				BF5B4B351A8F7616007636DE /* IntroScene.cpp in Sources */,
 				BF5B4B971A9214EC007636DE /* GameplayScene.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
@@ -1005,6 +1012,7 @@
 				BF9F12D01B20A54100C58035 /* DiceUtil.cpp in Sources */,
 				BFFA1F6C1AF7DA2F00A0BD9C /* DungeonRoom.cpp in Sources */,
 				BF0E30071AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */,
+				BF9F12F21B23A40C00C58035 /* ShieldDiceDragHandler.cpp in Sources */,
 				BFD36F161AF85107003701EC /* MajorMonsterDice.cpp in Sources */,
 				BF5B4BC91A94BA51007636DE /* Skill.cpp in Sources */,
 				BFC33C221AE803D300934C34 /* InitialTurn.cpp in Sources */,

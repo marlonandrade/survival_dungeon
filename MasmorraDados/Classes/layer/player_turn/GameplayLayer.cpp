@@ -25,6 +25,7 @@
 
 #include "CommonDiceDragHandler.h"
 #include "MagicDiceDragHandler.h"
+#include "ShieldDiceDragHandler.h"
 
 #include "Game.h"
 
@@ -163,6 +164,8 @@ CommonDiceDragHandler* GameplayLayer::_getDragHandler(Dice* dice) {
   
   if (DiceUtil::isMagicDice(dice)) {
     dragHandler = MagicDiceDragHandler::create();
+  } else if (DiceUtil::isShieldDice(dice)) {
+    dragHandler = ShieldDiceDragHandler::create();
   } else {
     dragHandler = CommonDiceDragHandler::create();
   }

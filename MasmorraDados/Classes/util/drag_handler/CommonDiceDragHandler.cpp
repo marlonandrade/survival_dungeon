@@ -13,6 +13,7 @@
 #include "ActionDiceDragData.h"
 
 #include "DockableContainer.h"
+#include "GameplayLayer.h"
 
 #include "OverlayUtil.h"
 
@@ -20,7 +21,8 @@ USING_NS_CC;
 
 #pragma mark - Public Interface
 
-void CommonDiceDragHandler::dragStarted(ActionDiceDragData* data, Layer* layer,
+void CommonDiceDragHandler::dragStarted(ActionDiceDragData* data,
+                                        GameplayLayer* layer,
                                         DockableContainer* dockableContainer) {
   auto sprite = data->getSprite();
   Vector<Node*> targetNodes;
@@ -43,7 +45,8 @@ void CommonDiceDragHandler::dragStarted(ActionDiceDragData* data, Layer* layer,
   OverlayUtil::addOverlay(targetNodes, layer);
 }
 
-void CommonDiceDragHandler::dragMoved(ActionDiceDragData* data, Layer* layer,
+void CommonDiceDragHandler::dragMoved(ActionDiceDragData* data,
+                                      GameplayLayer* layer,
                                       DockableContainer* dockableContainer) {
   auto dockableLocation = dockableContainer->convertTouchToNodeSpaceAR(data->getTouch());
   auto dockableNodes = dockableContainer->getDockableNodes();
@@ -64,7 +67,8 @@ void CommonDiceDragHandler::dragMoved(ActionDiceDragData* data, Layer* layer,
   }
 }
 
-bool CommonDiceDragHandler::dragEnded(ActionDiceDragData* data, Layer* layer,
+bool CommonDiceDragHandler::dragEnded(ActionDiceDragData* data,
+                                      GameplayLayer* layer,
                                       DockableContainer* dockableContainer) {
   auto docked = false;
   

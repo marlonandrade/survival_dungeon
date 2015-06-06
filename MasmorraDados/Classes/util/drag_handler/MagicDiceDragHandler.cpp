@@ -16,6 +16,7 @@
 
 #include "ActionDiceSprite.h"
 #include "DockableContainer.h"
+#include "GameplayLayer.h"
 #include "MagicDiceEffectLayer.h"
 
 #include "Dice.h"
@@ -25,7 +26,7 @@ USING_NS_CC;
 #pragma mark - Public Interface
 
 void MagicDiceDragHandler::dragStarted(ActionDiceDragData* data,
-                                       Layer* layer,
+                                       GameplayLayer* layer,
                                        DockableContainer* dockableContainer) {
   Vector<Node*> targetNodes;
   for (auto node : layer->getChildren()) {
@@ -38,7 +39,7 @@ void MagicDiceDragHandler::dragStarted(ActionDiceDragData* data,
 }
 
 void MagicDiceDragHandler::dragMoved(ActionDiceDragData* data,
-                                     Layer* layer,
+                                     GameplayLayer* layer,
                                      DockableContainer* dockableContainer) {
   auto sprite = data->getSprite();
   auto touch = data->getTouch();
@@ -58,7 +59,7 @@ void MagicDiceDragHandler::dragMoved(ActionDiceDragData* data,
 }
 
 bool MagicDiceDragHandler::dragEnded(ActionDiceDragData* data,
-                                     Layer* layer,
+                                     GameplayLayer* layer,
                                      DockableContainer* dockableContainer) {
   auto docked = false;
   

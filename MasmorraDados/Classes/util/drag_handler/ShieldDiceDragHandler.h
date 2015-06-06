@@ -1,19 +1,19 @@
 //
-//  MagicDiceDragHandler.h
+//  ShieldDiceDragHandler.h
 //  MasmorraDados
 //
-//  Created by Marlon Andrade on 6/4/15.
+//  Created by Marlon Andrade on 6/6/15.
 //
 //
 
-#ifndef __MasmorraDados__MagicDiceDragHandler__
-#define __MasmorraDados__MagicDiceDragHandler__
+#ifndef __MasmorraDados__ShieldDiceDragHandler__
+#define __MasmorraDados__ShieldDiceDragHandler__
 
 #include "CommonDiceDragHandler.h"
 
-class MagicDiceDragHandler : public CommonDiceDragHandler {
+class ShieldDiceDragHandler : public CommonDiceDragHandler {
 public:
-  CREATE_FUNC(MagicDiceDragHandler);
+  CREATE_FUNC(ShieldDiceDragHandler);
   
   virtual void dragStarted(ActionDiceDragData* data,
                            GameplayLayer* layer,
@@ -28,4 +28,4 @@ public:
                          DockableContainer* dockableContainer);
 };
 
-#endif /* defined(__MasmorraDados__MagicDiceDragHandler__) */
+#endif /* defined(__MasmorraDados__ShieldDiceDragHandler__) */
