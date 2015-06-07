@@ -62,7 +62,7 @@ bool DungeonLayer::canCharacterMove() {
 
 void DungeonLayer::characterWillMove(CharacterDiceSprite* sprite) {
   Vector<Node*> visibleNodes;
-  visibleNodes.pushBack(this->_getRoomSpriteForCharacterCoordinate());
+  visibleNodes.pushBack(this->getRoomSpriteForCharacterCoordinate());
   visibleNodes.pushBack(this->_getRoomSpritesForAdjacentCharacterCoordinate());
   OverlayUtil::addOverlay(visibleNodes, this, -this->getParent()->getPosition());
 }
@@ -100,7 +100,7 @@ void DungeonLayer::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 lo
   Game::getInstance()->characterMovedTo(newCoordinate);
   
   auto oldRoomSprite = (DungeonRoomSprite*) sprite->getParent();
-  auto newRoomSprite = (DungeonRoomSprite*) this->_getRoomSpriteForCharacterCoordinate();
+  auto newRoomSprite = (DungeonRoomSprite*) this->getRoomSpriteForCharacterCoordinate();
   
   auto oldPosition = oldRoomSprite->convertToWorldSpace(sprite->getPosition());
   auto newPosition = newRoomSprite->convertToNodeSpace(oldPosition);
@@ -131,6 +131,11 @@ void DungeonLayer::characterDidNotMove(CharacterDiceSprite* sprite) {
   this->_resetCharacterMoveState();
   auto roomSprite = (DungeonRoomSprite*) sprite->getParent();
   roomSprite->adjustChildren();
+}
+
+DungeonRoomSprite* DungeonLayer::getRoomSpriteForCharacterCoordinate() {
+  auto coordinate = Game::getInstance()->getCharacterCoordinate();
+  return this->_getRoomSpriteForCoordinate(coordinate);
 }
 
 #pragma mark - Private Interface
@@ -198,14 +203,9 @@ void DungeonLayer::_moveMonsterSpriteToDestinationRoom(Node* monsterSprite,
   monsterSprite->setPosition(monsterSprite->getPosition() + deltaPosition);
 }
 
-DungeonRoomSprite* DungeonLayer::_getRoomSpriteForCharacterCoordinate() {
-  auto coordinate = Game::getInstance()->getCharacterCoordinate();
-  return this->_getRoomSpriteForCoordinate(coordinate);
-}
-
 DungeonRoomSprite* DungeonLayer::_getRoomSpriteForCoordinate(Vec2 coordinate) {
   auto name = CoordinateUtil::nameForCoordinate(coordinate);
-  return (DungeonRoomSprite*) this->getChildByName(name);
+  return this->getChildByName<DungeonRoomSprite*>(name);
 }
 
 Vector<Node*> DungeonLayer::_getRoomSpritesForAdjacentCharacterCoordinate() {
@@ -372,7 +372,7 @@ void DungeonLayer::_handleMonstersFinishedMoving(EventCustom* event) {
       child->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
     }
     
-    auto characterRoomSprite = this->_getRoomSpriteForCharacterCoordinate();
+    auto characterRoomSprite = this->getRoomSpriteForCharacterCoordinate();
     characterRoomSprite->setLocalZOrder(DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
   }
 }

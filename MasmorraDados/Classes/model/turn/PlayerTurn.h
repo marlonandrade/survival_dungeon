@@ -16,6 +16,7 @@ class PlayerTurn : public Turn {
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _actionDicesRolledListener,
                        ActionDicesRolledListener);
+  CC_PROPERTY(int, _damageProtected, DamageProtected);
 protected:
   bool _actionDicesRolled;
 public:

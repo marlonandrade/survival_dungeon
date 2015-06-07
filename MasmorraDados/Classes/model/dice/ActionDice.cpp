@@ -26,12 +26,12 @@ USING_NS_CC;
 bool ActionDice::init() {
   DiceFaces faces;
   
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_BOOT));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_BOW));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_HEAL));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_MAGIC));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_SHIELD));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_ACTION_SWORD));
+  faces.pushBack(DiceFace::create(IMG_DICE_ACTION_BOOT));
+  faces.pushBack(DiceFace::create(IMG_DICE_ACTION_BOW));
+  faces.pushBack(DiceFace::create(IMG_DICE_ACTION_HEAL));
+  faces.pushBack(DiceFace::create(IMG_DICE_ACTION_MAGIC));
+  faces.pushBack(DiceFace::create(IMG_DICE_ACTION_SHIELD));
+  faces.pushBack(DiceFace::create(IMG_DICE_ACTION_SWORD));
   
   if (!Dice::initWithFaces(faces)) {
     return false;

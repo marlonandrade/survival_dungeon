@@ -12,9 +12,9 @@ USING_NS_CC;
 
 #pragma mark - Public Interface
 
-DiceFace* DiceFace::createWithImagePath(std::string imagePath) {
+DiceFace* DiceFace::create(std::string imagePath) {
   auto face = new (std::nothrow) DiceFace();
-  if (face && face->initWithImagePath(imagePath)) {
+  if (face && face->init(imagePath)) {
     face->autorelease();
   } else {
     CC_SAFE_DELETE(face);
@@ -22,7 +22,7 @@ DiceFace* DiceFace::createWithImagePath(std::string imagePath) {
   return face;
 }
 
-bool DiceFace::initWithImagePath(std::string imagePath) {
+bool DiceFace::init(std::string imagePath) {
   if (!GameObject::init()) {
     return false;
   }

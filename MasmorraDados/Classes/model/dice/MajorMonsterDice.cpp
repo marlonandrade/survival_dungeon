@@ -19,12 +19,12 @@ USING_NS_CC;
 bool MajorMonsterDice::init() {
   DiceFaces faces;
   
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_MONSTER_MAJOR_OGRO));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_MONSTER_MAJOR_MORCEGO_GIGANTE));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_MONSTER_MAJOR_CUBO_GELATINOSO));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_MONSTER_MAJOR_APARICAO));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_MONSTER_MAJOR_OBSERVADOR_SOMBRIO));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_MONSTER_MAJOR_DRAGAO_JOVEM));
+  faces.pushBack(DiceFace::create(IMG_DICE_MONSTER_MAJOR_OGRO));
+  faces.pushBack(DiceFace::create(IMG_DICE_MONSTER_MAJOR_MORCEGO_GIGANTE));
+  faces.pushBack(DiceFace::create(IMG_DICE_MONSTER_MAJOR_CUBO_GELATINOSO));
+  faces.pushBack(DiceFace::create(IMG_DICE_MONSTER_MAJOR_APARICAO));
+  faces.pushBack(DiceFace::create(IMG_DICE_MONSTER_MAJOR_OBSERVADOR_SOMBRIO));
+  faces.pushBack(DiceFace::create(IMG_DICE_MONSTER_MAJOR_DRAGAO_JOVEM));
   
   if (!MonsterDice::initWithFaces(faces)) {
     return false;

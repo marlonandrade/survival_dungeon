@@ -14,6 +14,7 @@
 #include "Game.h"
 #include "Turn.h"
 
+class DungeonLayer;
 class PlayerTurnLayer;
 class TurnChangeLayer;
 
@@ -31,6 +32,8 @@ class GameplayScene : public cocos2d::Scene {
 public:
   virtual bool init();
   CREATE_FUNC(GameplayScene);
+  
+  DungeonLayer* getDungeonLayer();
   
 private:
   void _setupChildren();

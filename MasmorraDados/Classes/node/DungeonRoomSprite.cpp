@@ -9,6 +9,9 @@
 #include "DungeonRoomSprite.h"
 
 #include "Definitions.h"
+#include "NodeNames.h"
+
+#include "CharacterDiceSprite.h"
 
 #include "DungeonRoom.h"
 
@@ -37,6 +40,10 @@ bool DungeonRoomSprite::initWithRoom(DungeonRoom *room) {
   this->setTexture(room->getImagePath());
   
   return true;
+}
+
+CharacterDiceSprite* DungeonRoomSprite::getCharacterDiceSprite() {
+  return this->getChildByName<CharacterDiceSprite*>(CHARACTER_DICE_SPRITE_NAME);
 }
 
 void DungeonRoomSprite::setCoordinate(Vec2 coordinate) {

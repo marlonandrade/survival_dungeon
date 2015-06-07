@@ -42,6 +42,8 @@ public:
   CREATE_FUNC(DungeonLayer);
   virtual bool init();
   
+  DungeonRoomSprite* getRoomSpriteForCharacterCoordinate();
+  
 #pragma mark - CharacterMoveDelegate Methods
   virtual bool canCharacterMove();
   virtual void characterWillMove(CharacterDiceSprite* sprite);
@@ -59,7 +61,6 @@ private:
   void _consumeMonsterRoomDatas();
   void _moveMonsterSpriteToDestinationRoom(Node* monsterSprite, DungeonRoomSprite* destinationRoom);
   
-  DungeonRoomSprite* _getRoomSpriteForCharacterCoordinate();
   DungeonRoomSprite* _getRoomSpriteForCoordinate(cocos2d::Vec2 coordinate);
   cocos2d::Vector<cocos2d::Node*> _getRoomSpritesForAdjacentCharacterCoordinate();
   

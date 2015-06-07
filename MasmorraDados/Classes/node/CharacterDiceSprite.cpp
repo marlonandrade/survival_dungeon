@@ -9,8 +9,11 @@
 #include "CharacterDiceSprite.h"
 
 #include "Definitions.h"
+#include "Events.h"
 #include "Images.h"
 #include "NodeNames.h"
+
+#include "DamageTakenData.h"
 
 USING_NS_CC;
 
@@ -36,6 +39,8 @@ bool CharacterDiceSprite::initWithDelegate(CharacterMoveDelegate *delegate) {
   this->setDelegate(delegate);
   this->setName(CHARACTER_DICE_SPRITE_NAME);
   this->setHitpoints(CHARACTER_INITIAL_HP);
+  
+  this->_setupEventHandlers();
   this->_setupTouchListener();
   
   return true;
@@ -49,6 +54,15 @@ void CharacterDiceSprite::setHitpoints(int hitpoints) {
 }
 
 #pragma mark - Private Interface
+
+void CharacterDiceSprite::_setupEventHandlers() {
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  
+  auto damageTakenCallback = CC_CALLBACK_1(CharacterDiceSprite::_handleDamageTaken, this);
+  this->setDamageTakenListener(
+    dispatcher->addCustomEventListener(EVT_DAMAGE_TAKEN, damageTakenCallback)
+  );
+}
 
 void CharacterDiceSprite::_setupTouchListener() {
   auto touchListener = EventListenerTouchOneByOne::create();
@@ -73,7 +87,39 @@ std::string CharacterDiceSprite::_getFileNameForHitpoints(int hitpoints) {
   return fileName.replace(xxPos, 2, hp);
 }
 
-#pragma mark Touch Events
+std::string CharacterDiceSprite::_getFileNameForDamage(int damage) {
+  std::string fileName = IMG_DAMAGE_TAKEN;
+  
+  auto xxPos = fileName.find("xx");
+  
+  std::stringstream stream;
+  stream << damage;
+  auto damageString = stream.str();
+  
+  return fileName.replace(xxPos, 2, damageString);
+}
+
+#pragma mark - Event Handlers
+
+void CharacterDiceSprite::_handleDamageTaken(EventCustom* event) {
+  auto damageTaken = (DamageTakenData*) event->getUserData();
+  
+  this->removeChildByName(DAMAGE_TAKEN_SPRITE_NAME);
+  
+  int damage = damageTaken->getDamage();
+  if (damage > 0) {
+    auto fileName = this->_getFileNameForDamage(damage);
+    auto sprite = Sprite::create(fileName);
+    sprite->setName(DAMAGE_TAKEN_SPRITE_NAME);
+    
+    auto size = this->getContentSize() - Size(2, 2);
+    sprite->setPosition(Vec2(size));
+    
+    this->addChild(sprite);
+  }
+}
+
+#pragma mark - Touch Events
 
 bool CharacterDiceSprite::_onTouchBegan(Touch *touch, Event *event) {
   auto target = event->getCurrentTarget();

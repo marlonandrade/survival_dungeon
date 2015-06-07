@@ -17,6 +17,10 @@
 #include "RuneRoom.h"
 #include "TreasureRoom.h"
 
+#include "MonsterDiceFace.h"
+
+#include "DamageTakenData.h"
+
 #include "DungeonTurn.h"
 #include "InitialTurn.h"
 #include "PlayerTurn.h"
@@ -101,6 +105,7 @@ void Game::setTurn(Turn* turn) {
 void Game::setCharacterCoordinate(Vec2 coordinate) {
   _characterCoordinate = coordinate;
   
+  this->calculateDamageTaken();
   this->getDungeon()->placeRoomsAdjacentTo(coordinate);
   this->getDungeon()->calculateRoomDistanceToPlayer(coordinate);
 }
@@ -116,6 +121,20 @@ void Game::setLevel(int level) {
   this->_setupAvaiableRooms();
   this->_setupDungeon();
   this->_setupActionDices();
+}
+
+int Game::getDamageTaken() {
+  return _damageTaken;
+}
+
+void Game::setDamageTaken(int damageTaken) {
+  _damageTaken = damageTaken;
+  
+  auto data = DamageTakenData::create();
+  data->setDamage(damageTaken);
+  
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->dispatchCustomEvent(EVT_DAMAGE_TAKEN, data);
 }
 
 #pragma mark - Public Interface
@@ -173,6 +192,22 @@ void Game::finishCurrentTurn() {
 
 void Game::restoreFreeBoot() {
   this->setFreeBootUsed(false);
+}
+
+void Game::calculateDamageTaken() {
+  auto room = this->getRoomForCharacterCoordinate();
+  int damage = 0;
+  for (auto monster : room->getMonsters()) {
+    auto face = (MonsterDiceFace*) monster->getSelectedFace();
+    damage += face->getAttack();
+  }
+  
+  if (this->isPlayerTurn()) {
+    auto playerTurn = (PlayerTurn*) this->getTurn();
+    damage -= playerTurn->getDamageProtected();
+  }
+  
+  this->setDamageTaken(damage);
 }
 
 DungeonRoom* Game::getRoomForCharacterCoordinate() {

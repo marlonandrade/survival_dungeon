@@ -15,6 +15,16 @@
 
 USING_NS_CC;
 
+int PlayerTurn::getDamageProtected() {
+  return _damageProtected;
+}
+
+void PlayerTurn::setDamageProtected(int damageProtected) {
+  _damageProtected = damageProtected;
+  
+  Game::getInstance()->calculateDamageTaken();
+}
+
 #pragma mark - Public Interface
 
 bool PlayerTurn::init() {
@@ -23,6 +33,8 @@ bool PlayerTurn::init() {
   }
   
   this->_actionDicesRolled = false;
+  this->_damageProtected = 0;
+  Game::getInstance()->calculateDamageTaken();
   this->_setupEventHandlers();
   
   return true;

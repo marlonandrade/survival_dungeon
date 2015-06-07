@@ -10,6 +10,7 @@
 
 #include "Definitions.h"
 
+#include "HighlightUtil.h"
 #include "OverlayUtil.h"
 
 #include "ActionDiceDragData.h"
@@ -46,14 +47,7 @@ void MagicDiceDragHandler::dragMoved(ActionDiceDragData* data,
   
   for (auto node : layer->getChildren()) {
     if (IS(node, ActionDiceSprite) && node != sprite) {
-      auto color = Color3B::WHITE;
-      auto rect = node->getBoundingBox();
-      
-      if (rect.containsPoint(touch->getLocation())) {
-        color = OK_COLOR;
-      }
-      
-      node->setColor(color);
+      HighlightUtil::highlighNode(node, touch);
     }
   }
 }

@@ -9,8 +9,9 @@
 #include "MinorMonsterDice.h"
 
 #include "Images.h"
+#include "Monsters.h"
 
-#include "DiceFace.h"
+#include "MonsterDiceFace.h"
 
 USING_NS_CC;
 
@@ -19,12 +20,24 @@ USING_NS_CC;
 bool MinorMonsterDice::init() {
   DiceFaces faces;
   
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_MONSTER_MINOR_GOBLIN));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_MONSTER_MINOR_CULTISTA));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_MONSTER_MINOR_ESQUELETO));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_MONSTER_MINOR_ORC));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_MONSTER_MINOR_ARANHA));
-  faces.pushBack(DiceFace::createWithImagePath(IMG_DICE_MONSTER_MINOR_CARNICAL));
+  faces.pushBack(MonsterDiceFace::create(IMG_DICE_MONSTER_MINOR_GOBLIN,
+                                         ATTACK_MONSTER_MINOR_GOBLIN,
+                                         DEFENSE_MONSTER_MINOR_GOBLIN));
+  faces.pushBack(MonsterDiceFace::create(IMG_DICE_MONSTER_MINOR_CULTISTA,
+                                         ATTACK_MONSTER_MINOR_CULTISTA,
+                                         DEFENSE_MONSTER_MINOR_CULTISTA));
+  faces.pushBack(MonsterDiceFace::create(IMG_DICE_MONSTER_MINOR_ESQUELETO,
+                                         ATTACK_MONSTER_MINOR_ESQUELETO,
+                                         DEFENSE_MONSTER_MINOR_ESQUELETO));
+  faces.pushBack(MonsterDiceFace::create(IMG_DICE_MONSTER_MINOR_ORC,
+                                         ATTACK_MONSTER_MINOR_ORC,
+                                         DEFENSE_MONSTER_MINOR_ORC));
+  faces.pushBack(MonsterDiceFace::create(IMG_DICE_MONSTER_MINOR_ARANHA,
+                                         ATTACK_MONSTER_MINOR_ARANHA,
+                                         DEFENSE_MONSTER_MINOR_ARANHA));
+  faces.pushBack(MonsterDiceFace::create(IMG_DICE_MONSTER_MINOR_CARNICAL,
+                                         ATTACK_MONSTER_MINOR_CARNICAL,
+                                         DEFENSE_MONSTER_MINOR_CARNICAL));
   
   if (!MonsterDice::initWithFaces(faces)) {
     return false;

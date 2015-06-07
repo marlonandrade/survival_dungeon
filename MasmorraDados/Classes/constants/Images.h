@@ -66,6 +66,11 @@
 #define IMG_DICE_CHAR \
         "dice/char/xx.png"
 
+#define IMG_DAMAGE_DEALT \
+        "damage/dealt/xx.png"
+#define IMG_DAMAGE_TAKEN \
+        "damage/taken/xx.png"
+
 #define IMG_DICE_MONSTER_MINOR_BLUR \
         "dice/monster/minor/blur.png"
 #define IMG_DICE_MONSTER_MINOR_GOBLIN \

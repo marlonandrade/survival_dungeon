@@ -26,6 +26,8 @@
 #define FREE_BOOT_SPRITE_NAME         "FreeBootSprite"
 #define TURN_CHANGE_SPRITE_NAME       "TurnChangeLayer"
 
+#define DAMAGE_TAKEN_SPRITE_NAME      "DamageTakenSprite"
+
 #define DOCK_CONTAINER_NODE_NAME      "DockContainerNodeName"
 
 #endif /* defined(__MasmorraDados__NodeNames__) */

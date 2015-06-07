@@ -22,6 +22,8 @@ bool ScrollableDungeonLayer::init() {
     return false;
   }
   
+  this->setName(SCROLLABLE_LAYER_NAME);
+  
   this->_setupChildren();
   this->_setupTouchListener();
   
@@ -34,8 +36,6 @@ void ScrollableDungeonLayer::_setupChildren() {
 }
 
 void ScrollableDungeonLayer::_setupTouchListener() {
-  this->setName(SCROLLABLE_LAYER_NAME);
-  
   auto touchListener = EventListenerTouchOneByOne::create();
   touchListener->onTouchBegan = CC_CALLBACK_2(ScrollableDungeonLayer::_onTouchBegan, this);
   touchListener->onTouchMoved = CC_CALLBACK_2(ScrollableDungeonLayer::_onTouchMoved, this);

@@ -14,6 +14,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
 		   ../../Classes/animation/Shake.cpp \
 		   ../../Classes/event_data/ActionDiceDragData.cpp \
+		   ../../Classes/event_data/DamageTakenData.cpp \
 		   ../../Classes/event_data/MonsterMoveData.cpp \
 		   ../../Classes/event_data/MonsterRoomData.cpp \
 		   ../../Classes/event_data/RoomPlacementData.cpp \
@@ -39,6 +40,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/dice/MinorMonsterDice.cpp \
 		   ../../Classes/model/dice/MajorMonsterDice.cpp \
 		   ../../Classes/model/dice/face/DiceFace.cpp \
+		   ../../Classes/model/dice/face/MonsterDiceFace.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateDisabled.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateNormal.cpp \
 		   ../../Classes/model/dice/state/ActionDiceStateRolled.cpp \
@@ -64,6 +66,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/node/FreeBootSprite.cpp \
 		   ../../Classes/util/CoordinateUtil.cpp \
 		   ../../Classes/util/DiceUtil.cpp \
+		   ../../Classes/util/HighlightUtil.cpp \
 		   ../../Classes/util/OverlayUtil.cpp \
 		   ../../Classes/util/PositionUtil.cpp \
 		   ../../Classes/util/drag_handler/CommonDiceDragHandler.cpp \

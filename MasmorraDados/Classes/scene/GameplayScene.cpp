@@ -11,9 +11,10 @@
 #include "Events.h"
 #include "NodeNames.h"
 
+#include "DungeonLayer.h"
 #include "PlayerTurnLayer.h"
-#include "TurnChangeLayer.h"
 #include "ScrollableDungeonLayer.h"
+#include "TurnChangeLayer.h"
 
 #include "DungeonTurn.h"
 #include "PlayerTurn.h"
@@ -33,6 +34,11 @@ bool GameplayScene::init() {
   Game::getInstance()->setupCharacterInitialCoordinate();
   
   return true;
+}
+
+DungeonLayer* GameplayScene::getDungeonLayer() {
+  auto layer = this->getChildByName<ScrollableDungeonLayer*>(SCROLLABLE_LAYER_NAME);
+  return layer->getChildByName<DungeonLayer*>(DUNGEON_LAYER_NAME);
 }
 
 #pragma mark - Private Interface

@@ -104,6 +104,12 @@
 		BF9F12ED1B21258B00C58035 /* CommonDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12EA1B21258B00C58035 /* CommonDiceDragHandler.cpp */; };
 		BF9F12F11B23A40C00C58035 /* ShieldDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12EF1B23A40C00C58035 /* ShieldDiceDragHandler.cpp */; };
 		BF9F12F21B23A40C00C58035 /* ShieldDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12EF1B23A40C00C58035 /* ShieldDiceDragHandler.cpp */; };
+		BF9F12F51B24836700C58035 /* MonsterDiceFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12F31B24836700C58035 /* MonsterDiceFace.cpp */; };
+		BF9F12F61B24836700C58035 /* MonsterDiceFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12F31B24836700C58035 /* MonsterDiceFace.cpp */; };
+		BF9F12FA1B24881700C58035 /* DamageTakenData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12F81B24881700C58035 /* DamageTakenData.cpp */; };
+		BF9F12FB1B24881700C58035 /* DamageTakenData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12F81B24881700C58035 /* DamageTakenData.cpp */; };
+		BF9F12FE1B24DB7300C58035 /* HighlightUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12FC1B24DB7300C58035 /* HighlightUtil.cpp */; };
+		BF9F12FF1B24DB7300C58035 /* HighlightUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12FC1B24DB7300C58035 /* HighlightUtil.cpp */; };
 		BFAA74431A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74441A9C0E1D00E45DF8 /* InitialRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */; };
 		BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */; };
@@ -291,6 +297,13 @@
 		BF9F12EB1B21258B00C58035 /* CommonDiceDragHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonDiceDragHandler.h; sourceTree = "<group>"; };
 		BF9F12EF1B23A40C00C58035 /* ShieldDiceDragHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShieldDiceDragHandler.cpp; sourceTree = "<group>"; };
 		BF9F12F01B23A40C00C58035 /* ShieldDiceDragHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShieldDiceDragHandler.h; sourceTree = "<group>"; };
+		BF9F12F31B24836700C58035 /* MonsterDiceFace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterDiceFace.cpp; sourceTree = "<group>"; };
+		BF9F12F41B24836700C58035 /* MonsterDiceFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterDiceFace.h; sourceTree = "<group>"; };
+		BF9F12F71B24851F00C58035 /* Monsters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monsters.h; sourceTree = "<group>"; };
+		BF9F12F81B24881700C58035 /* DamageTakenData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DamageTakenData.cpp; sourceTree = "<group>"; };
+		BF9F12F91B24881700C58035 /* DamageTakenData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DamageTakenData.h; sourceTree = "<group>"; };
+		BF9F12FC1B24DB7300C58035 /* HighlightUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HighlightUtil.cpp; sourceTree = "<group>"; };
+		BF9F12FD1B24DB7300C58035 /* HighlightUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightUtil.h; sourceTree = "<group>"; };
 		BFAA74411A9C0E1D00E45DF8 /* InitialRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InitialRoom.cpp; sourceTree = "<group>"; };
 		BFAA74421A9C0E1D00E45DF8 /* InitialRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialRoom.h; sourceTree = "<group>"; };
 		BFAA74461A9D37DA00E45DF8 /* RuneRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuneRoom.cpp; sourceTree = "<group>"; };
@@ -557,6 +570,8 @@
 				BF0E300A1B078947003AAFE5 /* CoordinateUtil.h */,
 				BF9F12CD1B20A54100C58035 /* DiceUtil.cpp */,
 				BF9F12CE1B20A54100C58035 /* DiceUtil.h */,
+				BF9F12FC1B24DB7300C58035 /* HighlightUtil.cpp */,
+				BF9F12FD1B24DB7300C58035 /* HighlightUtil.h */,
 				BF9F12DD1B20CD2700C58035 /* OverlayUtil.cpp */,
 				BF9F12DE1B20CD2700C58035 /* OverlayUtil.h */,
 				BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */,
@@ -674,6 +689,8 @@
 			children = (
 				BFC3739C1A9C02FA00520751 /* DiceFace.cpp */,
 				BFC3739D1A9C02FA00520751 /* DiceFace.h */,
+				BF9F12F31B24836700C58035 /* MonsterDiceFace.cpp */,
+				BF9F12F41B24836700C58035 /* MonsterDiceFace.h */,
 			);
 			path = face;
 			sourceTree = "<group>";
@@ -698,6 +715,7 @@
 				BFD36EDE1AF54C32003701EC /* Definitions.h */,
 				BFD36EDB1AF54BBE003701EC /* Events.h */,
 				BFD36EDC1AF54BBE003701EC /* Images.h */,
+				BF9F12F71B24851F00C58035 /* Monsters.h */,
 				BFD36EDD1AF54C0B003701EC /* NodeNames.h */,
 			);
 			path = constants;
@@ -708,6 +726,8 @@
 			children = (
 				BFD7AA2F1AEF0CCF0079C68E /* ActionDiceDragData.cpp */,
 				BFD7AA301AEF0CCF0079C68E /* ActionDiceDragData.h */,
+				BF9F12F81B24881700C58035 /* DamageTakenData.cpp */,
+				BF9F12F91B24881700C58035 /* DamageTakenData.h */,
 				BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */,
 				BF7DB85E1AFBD0A200CD5C6E /* MonsterMoveData.h */,
 				BF3EDB3D1AF92203002A2D7C /* MonsterRoomData.cpp */,
@@ -922,8 +942,10 @@
 				BF5B4BEB1A952E8D007636DE /* Dice.cpp in Sources */,
 				BF5B4C1E1A955DA4007636DE /* Monster.cpp in Sources */,
 				BF7DB85F1AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */,
+				BF9F12F51B24836700C58035 /* MonsterDiceFace.cpp in Sources */,
 				BF74CA7C1ADC834A0062F242 /* DiceSprite.cpp in Sources */,
 				BFBE57AD1AE0143400D93530 /* Shake.cpp in Sources */,
+				BF9F12FA1B24881700C58035 /* DamageTakenData.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				BFC5975A1AD43D19007C03A7 /* DungeonTurn.cpp in Sources */,
 				BF9F12E81B20F8FE00C58035 /* MagicDiceEffectLayer.cpp in Sources */,
@@ -948,6 +970,7 @@
 				BF0E300F1B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */,
 				BF0E300B1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */,
 				BFAA744C1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,
+				BF9F12FE1B24DB7300C58035 /* HighlightUtil.cpp in Sources */,
 				BFE451431B1F607800424C09 /* GameplayLayer.cpp in Sources */,
 				BFE451541B1F67BD00424C09 /* ScrollableDungeonLayer.cpp in Sources */,
 				BFE451521B1F67BD00424C09 /* DungeonLayer.cpp in Sources */,
@@ -984,11 +1007,13 @@
 				BFE451481B1F60C200424C09 /* PlayerTurnLayer.cpp in Sources */,
 				BF3EDB481AF9279A002A2D7C /* RoomPlacementData.cpp in Sources */,
 				BFD7AA361AF060170079C68E /* ActionDiceStateSpent.cpp in Sources */,
+				BF9F12F61B24836700C58035 /* MonsterDiceFace.cpp in Sources */,
 				BF74CA7D1ADC834A0062F242 /* DiceSprite.cpp in Sources */,
 				BFC3739F1A9C02FA00520751 /* DiceFace.cpp in Sources */,
 				BF9F12ED1B21258B00C58035 /* CommonDiceDragHandler.cpp in Sources */,
 				BFE451511B1F67BD00424C09 /* BackgroundLayer.cpp in Sources */,
 				BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */,
+				BF9F12FB1B24881700C58035 /* DamageTakenData.cpp in Sources */,
 				BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */,
 				BF083B581B09059C00A6B39D /* RoomsPlacementsData.cpp in Sources */,
 				BF0E30031AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */,
@@ -1016,6 +1041,7 @@
 				BFD36F161AF85107003701EC /* MajorMonsterDice.cpp in Sources */,
 				BF5B4BC91A94BA51007636DE /* Skill.cpp in Sources */,
 				BFC33C221AE803D300934C34 /* InitialTurn.cpp in Sources */,
+				BF9F12FF1B24DB7300C58035 /* HighlightUtil.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				BF5B4BDD1A94BC6B007636DE /* GameObject.cpp in Sources */,
 				BFE583AA1AD6E41400A4E194 /* ActionDiceSprite.cpp in Sources */,

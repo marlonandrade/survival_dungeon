@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 
+class CharacterDiceSprite;
 class Dice;
 class DungeonRoom;
 
@@ -18,6 +19,8 @@ class DungeonRoomSprite : public cocos2d::Sprite {
 public:
   static DungeonRoomSprite* createWithRoom(DungeonRoom* room);
   virtual bool initWithRoom(DungeonRoom* room);
+  
+  CharacterDiceSprite* getCharacterDiceSprite();
   
   void setCoordinate(cocos2d::Vec2 coordinate);
   void addDice(Dice* dice);
