@@ -53,14 +53,12 @@ void ShieldDiceDragHandler::dragStarted(ActionDiceDragData* data,
     auto scene = (GameplayScene*) layer->getScene();
     auto dungeonLayer = scene->getDungeonLayer();
     
-    auto dungeonRoom = dungeonLayer->getRoomSpriteForCharacterCoordinate();
-    auto characterSprite = dungeonRoom->getCharacterDiceSprite();
-    
-    log("%d", characterSprite->getLocalZOrder());
+    auto character = game->getPlayer()->getCharacter();
+    auto characterSprite = character->getSprite();
     
     auto position = characterSprite->getPosition() -
         Vec2(TILE_DIMENSION / 2, TILE_DIMENSION / 2) +
-        dungeonRoom->getPosition() +
+        characterSprite->getParent()->getPosition() +
         dungeonLayer->getParent()->getPosition();
     characterSprite->setPosition(position);
     
@@ -82,7 +80,7 @@ void ShieldDiceDragHandler::dragMoved(ActionDiceDragData* data,
   
   auto game = Game::getInstance();
   if (game->getDamageTaken() > 0) {
-    auto characterSprite = layer->getChildByName<CharacterDiceSprite*>(CHARACTER_DICE_SPRITE_NAME);
+    auto characterSprite = game->getPlayer()->getCharacter()->getSprite();
     HighlightUtil::highlighNode(characterSprite, touch);
   }
   
@@ -106,29 +104,6 @@ bool ShieldDiceDragHandler::dragEnded(ActionDiceDragData* data,
   auto sprite = data->getSprite();
   auto touch = data->getTouch();
   
-  auto game = Game::getInstance();
-  if (game->getDamageTaken() > 0) {
-    auto scene = (GameplayScene*) layer->getScene();
-    auto dungeonLayer = scene->getDungeonLayer();
-    
-    auto dungeonRoom = dungeonLayer->getRoomSpriteForCharacterCoordinate();
-    auto characterSprite = layer->getChildByName<CharacterDiceSprite*>(CHARACTER_DICE_SPRITE_NAME);
-    
-    characterSprite->setLocalZOrder(CHARACTER_DICE_Z_ORDER);
-    characterSprite->setColor(Color3B::WHITE);
-    
-    auto position = characterSprite->getPosition() +
-        Vec2(TILE_DIMENSION / 2, TILE_DIMENSION / 2) -
-        dungeonRoom->getPosition() -
-        dungeonLayer->getParent()->getPosition();
-    characterSprite->setPosition(position);
-    
-    characterSprite->retain();
-    characterSprite->removeFromParent();
-    dungeonRoom->addChild(characterSprite);
-    characterSprite->release();
-  }
-  
   for (auto node : layer->getChildren()) {
     if (IS(node, ActionDiceSprite)) {
       auto diceSprite = (ActionDiceSprite*) node;
@@ -149,6 +124,31 @@ bool ShieldDiceDragHandler::dragEnded(ActionDiceDragData* data,
         }
       }
     }
+  }
+  
+  auto game = Game::getInstance();
+  if (game->getDamageTaken() > 0) {
+    auto scene = (GameplayScene*) layer->getScene();
+    auto dungeonLayer = scene->getDungeonLayer();
+    
+    auto dungeonRoom = dungeonLayer->getRoomSpriteForCharacterCoordinate();
+    
+    auto character = game->getPlayer()->getCharacter();
+    auto characterSprite = character->getSprite();
+    
+    characterSprite->setLocalZOrder(CHARACTER_DICE_Z_ORDER);
+    characterSprite->setColor(Color3B::WHITE);
+    
+    auto position = characterSprite->getPosition() +
+        Vec2(TILE_DIMENSION / 2, TILE_DIMENSION / 2) -
+        dungeonRoom->getPosition() -
+        dungeonLayer->getParent()->getPosition();
+    characterSprite->setPosition(position);
+    
+    characterSprite->retain();
+    characterSprite->removeFromParent();
+    dungeonRoom->addChild(characterSprite);
+    characterSprite->release();
   }
   
   return docked;
