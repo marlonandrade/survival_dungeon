@@ -15,6 +15,7 @@
 #include "Dungeon.h"
 #include "DungeonRoom.h"
 #include "GameObject.h"
+#include "Player.h"
 
 class Turn;
 
@@ -30,6 +31,8 @@ class Game : public GameObject {
                        EndPlayerTurnListener);
   
   CC_SYNTHESIZE_RETAIN(Dungeon*, _dungeon, Dungeon);
+  CC_SYNTHESIZE_RETAIN(Player*, _player, Player);
+  
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _actionDices, ActionDices);
   CC_SYNTHESIZE(bool, _freeBootUsed, FreeBootUsed);
   CC_PROPERTY(int, _damageTaken, DamageTaken);

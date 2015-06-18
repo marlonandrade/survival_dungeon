@@ -30,8 +30,8 @@
 
 #pragma mark - Game Mechanics
 
-#define MAX_ACTION_REROLLS   2
-#define CHARACTER_INITIAL_HP 6
+#define MAX_ACTION_REROLLS 2
+#define CHARACTER_MAX_HP   6
 
 #pragma mark - Room Coeficients
 

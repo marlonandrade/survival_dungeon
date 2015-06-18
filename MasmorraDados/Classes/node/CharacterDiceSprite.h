@@ -14,24 +14,18 @@
 #include "CharacterMoveDelegate.h"
 
 class CharacterDiceSprite : public cocos2d::Sprite {
-  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
-                       _damageTakenListener,
-                       DamageTakenListener);
   CC_SYNTHESIZE(CharacterMoveDelegate*, _delegate, Delegate);
   
 public:
-  static CharacterDiceSprite* createWithDelegate(CharacterMoveDelegate* delegate);
-  virtual bool initWithDelegate(CharacterMoveDelegate* delegate);
+  CREATE_FUNC(CharacterDiceSprite);
+  bool init();
   
-  void setHitpoints(int hitpoints);
+  void setHitPoints(int hitPoints);
+  void resetDamageTaken();
+  void takeDamage(int damage);
+  
 private:
-  void _setupEventHandlers();
   void _setupTouchListener();
-  
-  std::string _getFileNameForHitpoints(int hitpoints);
-  std::string _getFileNameForDamage(int damage);
-  
-  void _handleDamageTaken(cocos2d::EventCustom* event);
   
   bool _onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
   void _onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);

@@ -66,10 +66,13 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/node/FreeBootSprite.cpp \
 		   ../../Classes/util/CoordinateUtil.cpp \
 		   ../../Classes/util/DiceUtil.cpp \
+		   ../../Classes/util/FileUtil.cpp \
 		   ../../Classes/util/HighlightUtil.cpp \
 		   ../../Classes/util/OverlayUtil.cpp \
 		   ../../Classes/util/PositionUtil.cpp \
 		   ../../Classes/util/drag_handler/CommonDiceDragHandler.cpp \
+		   ../../Classes/util/drag_handler/DiceDragHandlerFactory.cpp \
+		   ../../Classes/util/drag_handler/HealDiceDragHandler.cpp \
 		   ../../Classes/util/drag_handler/MagicDiceDragHandler.cpp \
 		   ../../Classes/util/drag_handler/ShieldDiceDragHandler.cpp
 

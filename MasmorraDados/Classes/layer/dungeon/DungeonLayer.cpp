@@ -44,8 +44,13 @@ bool DungeonLayer::init() {
   
   this->addChild(initialSprite, DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
   
-  auto characterSprite = CharacterDiceSprite::createWithDelegate(this);
+  auto characterSprite = CharacterDiceSprite::create();
+  characterSprite->setDelegate(this);
   characterSprite->setPosition(PositionUtil::centerOfNode(initialSprite));
+  
+  auto character = Game::getInstance()->getPlayer()->getCharacter();
+  character->setSprite(characterSprite);
+  character->resetLife();
   
   initialSprite->addChild(characterSprite);
   

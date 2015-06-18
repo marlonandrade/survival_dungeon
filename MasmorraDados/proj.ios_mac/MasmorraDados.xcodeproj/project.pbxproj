@@ -44,6 +44,13 @@
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
+		BF3B212B1B33232700114445 /* DiceDragHandlerFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3B21291B33232700114445 /* DiceDragHandlerFactory.cpp */; };
+		BF3B212C1B33232700114445 /* DiceDragHandlerFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3B21291B33232700114445 /* DiceDragHandlerFactory.cpp */; };
+		BF3B212F1B3323FB00114445 /* HealDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3B212D1B3323FB00114445 /* HealDiceDragHandler.cpp */; };
+		BF3B21301B3323FB00114445 /* HealDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3B212D1B3323FB00114445 /* HealDiceDragHandler.cpp */; };
+		BF3B21331B33295400114445 /* FileUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3B21311B33295400114445 /* FileUtil.cpp */; };
+		BF3B21341B33295400114445 /* FileUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3B21311B33295400114445 /* FileUtil.cpp */; };
+		BF3B21351B332E6600114445 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC373971A9BFF7700520751 /* Character.cpp */; };
 		BF3EDB3F1AF92203002A2D7C /* MonsterRoomData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3EDB3D1AF92203002A2D7C /* MonsterRoomData.cpp */; };
 		BF3EDB401AF92203002A2D7C /* MonsterRoomData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3EDB3D1AF92203002A2D7C /* MonsterRoomData.cpp */; };
 		BF3EDB471AF9279A002A2D7C /* RoomPlacementData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3EDB451AF9279A002A2D7C /* RoomPlacementData.cpp */; };
@@ -240,6 +247,12 @@
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BF3B21291B33232700114445 /* DiceDragHandlerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiceDragHandlerFactory.cpp; sourceTree = "<group>"; };
+		BF3B212A1B33232700114445 /* DiceDragHandlerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceDragHandlerFactory.h; sourceTree = "<group>"; };
+		BF3B212D1B3323FB00114445 /* HealDiceDragHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HealDiceDragHandler.cpp; sourceTree = "<group>"; };
+		BF3B212E1B3323FB00114445 /* HealDiceDragHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealDiceDragHandler.h; sourceTree = "<group>"; };
+		BF3B21311B33295400114445 /* FileUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileUtil.cpp; sourceTree = "<group>"; };
+		BF3B21321B33295400114445 /* FileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtil.h; sourceTree = "<group>"; };
 		BF3EDB3D1AF92203002A2D7C /* MonsterRoomData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterRoomData.cpp; sourceTree = "<group>"; };
 		BF3EDB3E1AF92203002A2D7C /* MonsterRoomData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterRoomData.h; sourceTree = "<group>"; };
 		BF3EDB451AF9279A002A2D7C /* RoomPlacementData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RoomPlacementData.cpp; sourceTree = "<group>"; };
@@ -570,6 +583,8 @@
 				BF0E300A1B078947003AAFE5 /* CoordinateUtil.h */,
 				BF9F12CD1B20A54100C58035 /* DiceUtil.cpp */,
 				BF9F12CE1B20A54100C58035 /* DiceUtil.h */,
+				BF3B21311B33295400114445 /* FileUtil.cpp */,
+				BF3B21321B33295400114445 /* FileUtil.h */,
 				BF9F12FC1B24DB7300C58035 /* HighlightUtil.cpp */,
 				BF9F12FD1B24DB7300C58035 /* HighlightUtil.h */,
 				BF9F12DD1B20CD2700C58035 /* OverlayUtil.cpp */,
@@ -639,10 +654,14 @@
 			children = (
 				BF9F12EA1B21258B00C58035 /* CommonDiceDragHandler.cpp */,
 				BF9F12EB1B21258B00C58035 /* CommonDiceDragHandler.h */,
+				BF3B21291B33232700114445 /* DiceDragHandlerFactory.cpp */,
+				BF3B212A1B33232700114445 /* DiceDragHandlerFactory.h */,
 				BF9F12E21B20D8DD00C58035 /* MagicDiceDragHandler.cpp */,
 				BF9F12E31B20D8DD00C58035 /* MagicDiceDragHandler.h */,
 				BF9F12EF1B23A40C00C58035 /* ShieldDiceDragHandler.cpp */,
 				BF9F12F01B23A40C00C58035 /* ShieldDiceDragHandler.h */,
+				BF3B212D1B3323FB00114445 /* HealDiceDragHandler.cpp */,
+				BF3B212E1B3323FB00114445 /* HealDiceDragHandler.h */,
 			);
 			path = drag_handler;
 			sourceTree = "<group>";
@@ -927,6 +946,8 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				BFE583A91AD6E41400A4E194 /* ActionDiceSprite.cpp in Sources */,
 				BFAA74481A9D37DA00E45DF8 /* RuneRoom.cpp in Sources */,
+				BF3B212F1B3323FB00114445 /* HealDiceDragHandler.cpp in Sources */,
+				BF3B21331B33295400114445 /* FileUtil.cpp in Sources */,
 				BF9F12EC1B21258B00C58035 /* CommonDiceDragHandler.cpp in Sources */,
 				BFD36F151AF85107003701EC /* MajorMonsterDice.cpp in Sources */,
 				BFAA74501A9E8A4100E45DF8 /* CharacterDiceSprite.cpp in Sources */,
@@ -965,6 +986,7 @@
 				BF3EDB3F1AF92203002A2D7C /* MonsterRoomData.cpp in Sources */,
 				BF0E30061AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */,
 				BF5B4BC01A94BA2C007636DE /* Player.cpp in Sources */,
+				BF3B212B1B33232700114445 /* DiceDragHandlerFactory.cpp in Sources */,
 				BF5B4BCC1A94BA91007636DE /* Dungeon.cpp in Sources */,
 				BF5B4BDC1A94BC6B007636DE /* GameObject.cpp in Sources */,
 				BF0E300F1B08FDF8003AAFE5 /* PositionUtil.cpp in Sources */,
@@ -1012,7 +1034,10 @@
 				BFC3739F1A9C02FA00520751 /* DiceFace.cpp in Sources */,
 				BF9F12ED1B21258B00C58035 /* CommonDiceDragHandler.cpp in Sources */,
 				BFE451511B1F67BD00424C09 /* BackgroundLayer.cpp in Sources */,
+				BF3B21341B33295400114445 /* FileUtil.cpp in Sources */,
 				BF5B4B981A9214EC007636DE /* GameplayScene.cpp in Sources */,
+				BF3B21301B3323FB00114445 /* HealDiceDragHandler.cpp in Sources */,
+				BF3B212C1B33232700114445 /* DiceDragHandlerFactory.cpp in Sources */,
 				BF9F12FB1B24881700C58035 /* DamageTakenData.cpp in Sources */,
 				BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */,
 				BF083B581B09059C00A6B39D /* RoomsPlacementsData.cpp in Sources */,
@@ -1020,6 +1045,7 @@
 				BF0E300C1B078947003AAFE5 /* CoordinateUtil.cpp in Sources */,
 				BFE451551B1F67BD00424C09 /* ScrollableDungeonLayer.cpp in Sources */,
 				BF9F12D41B20A81700C58035 /* DockableContainer.cpp in Sources */,
+				BF3B21351B332E6600114445 /* Character.cpp in Sources */,
 				BF9F12E01B20CD2800C58035 /* OverlayUtil.cpp in Sources */,
 				BFD36EE21AF66921003701EC /* MinorMonsterDice.cpp in Sources */,
 				BFD7AA321AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,

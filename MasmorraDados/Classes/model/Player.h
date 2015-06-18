@@ -11,10 +11,12 @@
 
 #include "GameObject.h"
 
-class Character;
+#include "Character.h"
 
 class Player : public GameObject {
-  CC_SYNTHESIZE(Character*, _character, Character);
+  CC_SYNTHESIZE_RETAIN(Character*, _character, Character);
+  CREATE_FUNC(Player);
+  virtual bool init();
 };
 
 #endif /* defined(__MasmorraDados__Player__) */

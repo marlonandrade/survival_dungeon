@@ -19,13 +19,11 @@
 
 #include "ActionDiceDragData.h"
 
-#include "DiceUtil.h"
+#include "CommonDiceDragHandler.h"
+#include "DiceDragHandlerFactory.h"
+
 #include "OverlayUtil.h"
 #include "PositionUtil.h"
-
-#include "CommonDiceDragHandler.h"
-#include "MagicDiceDragHandler.h"
-#include "ShieldDiceDragHandler.h"
 
 #include "Game.h"
 
@@ -162,20 +160,6 @@ DockableContainer* GameplayLayer::_getDockableContainer() {
   return (DockableContainer*) this->getChildByName(DOCK_CONTAINER_NODE_NAME);
 }
 
-CommonDiceDragHandler* GameplayLayer::_getDragHandler(Dice* dice) {
-  CommonDiceDragHandler* dragHandler;
-  
-  if (DiceUtil::isMagicDice(dice)) {
-    dragHandler = MagicDiceDragHandler::create();
-  } else if (DiceUtil::isShieldDice(dice)) {
-    dragHandler = ShieldDiceDragHandler::create();
-  } else {
-    dragHandler = CommonDiceDragHandler::create();
-  }
-  
-  return dragHandler;
-}
-
 #pragma mark - Event Handlers
 
 void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
@@ -188,8 +172,8 @@ void GameplayLayer::_handleActionDiceDragStarted(EventCustom* event) {
   auto room = Game::getInstance()->getRoomForCharacterCoordinate();
   auto hasMonstersInRoom = room->getMonsters().size() > 0;
   
-  CommonDiceDragHandler* dragHandler = this->_getDragHandler(dice);
-  dragHandler->dragStarted(data, this, this->_getDockableContainer());
+  auto handler = DiceDragHandlerFactory::getHandler(dice);
+  handler->dragStarted(data, this, this->_getDockableContainer());
 }
 
 void GameplayLayer::_handleActionDiceDragMoved(EventCustom* event) {
@@ -201,8 +185,8 @@ void GameplayLayer::_handleActionDiceDragMoved(EventCustom* event) {
   auto touchLocation = this->convertTouchToNodeSpace(touch);
   sprite->setPosition(touchLocation);
   
-  CommonDiceDragHandler* dragHandler = this->_getDragHandler(dice);
-  dragHandler->dragMoved(data, this, this->_getDockableContainer());
+  auto handler = DiceDragHandlerFactory::getHandler(dice);
+  handler->dragMoved(data, this, this->_getDockableContainer());
 }
 
 void GameplayLayer::_handleActionDiceDragEnded(EventCustom* event) {
@@ -214,8 +198,8 @@ void GameplayLayer::_handleActionDiceDragEnded(EventCustom* event) {
   
   OverlayUtil::removeOverlay(this);
   
-  CommonDiceDragHandler* dragHandler = this->_getDragHandler(dice);
-  bool docked = dragHandler->dragEnded(data, this, this->_getDockableContainer());
+  auto handler = DiceDragHandlerFactory::getHandler(dice);
+  bool docked = handler->dragEnded(data, this, this->_getDockableContainer());
   
   if (!docked) {
     sprite->restoreOriginalPosition();

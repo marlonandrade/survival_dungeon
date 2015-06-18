@@ -10,59 +10,50 @@
 
 #include "Definitions.h"
 #include "Events.h"
-#include "Images.h"
 #include "NodeNames.h"
 
-#include "DamageTakenData.h"
+#include "FileUtil.h"
 
 USING_NS_CC;
 
 #pragma mark - Public Interface
 
-CharacterDiceSprite* CharacterDiceSprite::createWithDelegate(CharacterMoveDelegate* delegate) {
-  auto character = new (std::nothrow) CharacterDiceSprite();
-  if (character && character->initWithDelegate(delegate)) {
-    character->autorelease();
-  } else {
-    CC_SAFE_DELETE(character);
-  }
-
-  return character;
-}
-
-
-bool CharacterDiceSprite::initWithDelegate(CharacterMoveDelegate *delegate) {
+bool CharacterDiceSprite::init() {
   if (!Sprite::init()) {
     return false;
   }
   
-  this->setDelegate(delegate);
   this->setName(CHARACTER_DICE_SPRITE_NAME);
-  this->setHitpoints(CHARACTER_INITIAL_HP);
   
-  this->_setupEventHandlers();
   this->_setupTouchListener();
   
   return true;
 }
 
-void CharacterDiceSprite::setHitpoints(int hitpoints) {
-  if (hitpoints > 6) hitpoints = 6;
-  if (hitpoints < 1) hitpoints = 1;
+void CharacterDiceSprite::setHitPoints(int hitPoints) {
+  auto imageName = FileUtil::characterFileName(hitPoints);
+  this->setTexture(imageName);
+}
+
+void CharacterDiceSprite::resetDamageTaken() {
+  auto damageTaken = this->getChildByName(DAMAGE_TAKEN_SPRITE_NAME);
+  if (damageTaken) {
+    damageTaken->removeFromParent();
+  }
+}
+
+void CharacterDiceSprite::takeDamage(int damage) {
+  auto fileName = FileUtil::damageFileName(damage);
+  auto sprite = Sprite::create(fileName);
+  sprite->setName(DAMAGE_TAKEN_SPRITE_NAME);
   
-  this->setTexture(this->_getFileNameForHitpoints(hitpoints));
+  auto size = this->getContentSize() - Size(2, 2);
+  sprite->setPosition(Vec2(size));
+  
+  this->addChild(sprite);
 }
 
 #pragma mark - Private Interface
-
-void CharacterDiceSprite::_setupEventHandlers() {
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  
-  auto damageTakenCallback = CC_CALLBACK_1(CharacterDiceSprite::_handleDamageTaken, this);
-  this->setDamageTakenListener(
-    dispatcher->addCustomEventListener(EVT_DAMAGE_TAKEN, damageTakenCallback)
-  );
-}
 
 void CharacterDiceSprite::_setupTouchListener() {
   auto touchListener = EventListenerTouchOneByOne::create();
@@ -73,50 +64,6 @@ void CharacterDiceSprite::_setupTouchListener() {
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   dispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
-}
-
-std::string CharacterDiceSprite::_getFileNameForHitpoints(int hitpoints) {
-  std::string fileName = IMG_DICE_CHAR;
-  
-  auto xxPos = fileName.find("xx");
-  
-  std::stringstream stream;
-  stream << hitpoints;
-  auto hp = stream.str();
-  
-  return fileName.replace(xxPos, 2, hp);
-}
-
-std::string CharacterDiceSprite::_getFileNameForDamage(int damage) {
-  std::string fileName = IMG_DAMAGE_TAKEN;
-  
-  auto xxPos = fileName.find("xx");
-  
-  std::stringstream stream;
-  stream << damage;
-  auto damageString = stream.str();
-  
-  return fileName.replace(xxPos, 2, damageString);
-}
-
-#pragma mark - Event Handlers
-
-void CharacterDiceSprite::_handleDamageTaken(EventCustom* event) {
-  auto damageTaken = (DamageTakenData*) event->getUserData();
-  
-  this->removeChildByName(DAMAGE_TAKEN_SPRITE_NAME);
-  
-  int damage = damageTaken->getDamage();
-  if (damage > 0) {
-    auto fileName = this->_getFileNameForDamage(damage);
-    auto sprite = Sprite::create(fileName);
-    sprite->setName(DAMAGE_TAKEN_SPRITE_NAME);
-    
-    auto size = this->getContentSize() - Size(2, 2);
-    sprite->setPosition(Vec2(size));
-    
-    this->addChild(sprite);
-  }
 }
 
 #pragma mark - Touch Events

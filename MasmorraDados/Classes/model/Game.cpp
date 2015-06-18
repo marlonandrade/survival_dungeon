@@ -46,6 +46,7 @@ bool Game::init() {
     return false;
   }
   
+  this->setPlayer(Player::create());
   this->setLevel(0);
   this->advanceLevel();
   

@@ -11,12 +11,29 @@
 
 #include "GameObject.h"
 
+#include "CharacterDiceSprite.h"
+
 class Character : public GameObject {
-public:
-  Character();
+  CC_SYNTHESIZE_RETAIN(CharacterDiceSprite*, _sprite, Sprite);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _damageTakenListener,
+                       DamageTakenListener);
   
-  virtual std::string getName() = 0;
-  virtual std::string getImagePath() = 0;
+  CC_PROPERTY(int, _hitPoints, HitPoints);
+  
+  CREATE_FUNC(Character);
+  bool init();
+  
+  void takeDamage(int damage);
+  void heal(int amount);
+  
+  void resetLife();
+  bool isLifeFull();
+  
+private:
+  void _setupEventHandlers();
+  
+  void _handleDamageTaken(cocos2d::EventCustom* event);
 };
 
 #endif /* defined(__MasmorraDados__Character__) */
