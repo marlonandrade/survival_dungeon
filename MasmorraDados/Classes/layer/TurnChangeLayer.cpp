@@ -30,11 +30,11 @@ bool TurnChangeLayer::init() {
 }
 
 void TurnChangeLayer::showPlayerTurnInfo() {
-  this->_showInfo(IMG_TURN_PLAYER);
+  this->_showInfo(this->getPlayerInfo());
 }
 
 void TurnChangeLayer::showDungeonTurnInfo() {
-  this->_showInfo(IMG_TURN_DUNGEON);
+  this->_showInfo(this->getDungeonInfo());
 }
 
 #pragma mark - Private Interface
@@ -50,21 +50,25 @@ void TurnChangeLayer::_setupChildren() {
   sprite->setScale(0.5, 0.5);
   sprite->setOpacity(0);
   this->addChild(sprite);
+  
+  this->setPlayerInfo(Sprite::create(IMG_TURN_PLAYER));
+  this->setDungeonInfo(Sprite::create(IMG_TURN_DUNGEON));
 }
 
 LayerColor* TurnChangeLayer::_getOverlayLayer() {
   return (LayerColor*) this->getChildByName(OVERLAY_LAYER_NAME);
 }
 
-Sprite* TurnChangeLayer::_getSprite() {
-  return (Sprite*) this->getChildByName(TURN_CHANGE_SPRITE_NAME);
+Node* TurnChangeLayer::_getInfo() {
+  return (Node*) this->getChildByName(TURN_CHANGE_SPRITE_NAME);
 }
 
-void TurnChangeLayer::_showInfo(const std::string &filename) {
+void TurnChangeLayer::_showInfo(Sprite* infoSprite) {
   auto overlay = this->_getOverlayLayer();
-  auto sprite = this->_getSprite();
+  auto info = this->_getInfo();
   
-  sprite->setTexture(filename);
+  info->removeAllChildren();
+  info->addChild(infoSprite);
   
   auto overlayFadeDuration = 0.2;
   auto overlayDelayDuration = TURN_INFO_DURATION - overlayFadeDuration * 2;
@@ -83,7 +87,7 @@ void TurnChangeLayer::_showInfo(const std::string &filename) {
                                        EaseBackIn::create(ScaleTo::create(infoFadeOutDuration + 0.2, 0)), NULL);
   
   overlay->runAction(delayAndFadeOut);
-  sprite->runAction(Sequence::create(fadeInTurnInfo,
-                                     DelayTime::create(infoDelayDuration),
-                                     fadeOutTurnInfo, NULL));
+  info->runAction(Sequence::create(fadeInTurnInfo,
+                                   DelayTime::create(infoDelayDuration),
+                                   fadeOutTurnInfo, NULL));
 }

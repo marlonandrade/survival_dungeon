@@ -12,6 +12,8 @@
 #include "cocos2d.h"
 
 class TurnChangeLayer : public cocos2d::Layer {
+  CC_SYNTHESIZE_RETAIN(cocos2d::Sprite*, _dungeonInfo, DungeonInfo);
+  CC_SYNTHESIZE_RETAIN(cocos2d::Sprite*, _playerInfo, PlayerInfo);
 public:
   CREATE_FUNC(TurnChangeLayer);
   virtual bool init();
@@ -23,9 +25,9 @@ private:
   void _setupChildren();
   
   cocos2d::LayerColor* _getOverlayLayer();
-  cocos2d::Sprite* _getSprite();
+  cocos2d::Node* _getInfo();
   
-  void _showInfo(const std::string &filename);
+  void _showInfo(cocos2d::Sprite* infoSprite);
 };
 
 #endif /* defined(__MasmorraDados__TurnChangeLayer__) */
