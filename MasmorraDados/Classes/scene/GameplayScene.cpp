@@ -19,6 +19,8 @@
 #include "DungeonTurn.h"
 #include "PlayerTurn.h"
 
+#include "PositionUtil.h"
+
 USING_NS_CC;
 
 #pragma mark - Public Interface
@@ -31,7 +33,7 @@ bool GameplayScene::init() {
   this->_setupChildren();
   this->_setupEventHandlers();
   
-  Game::getInstance()->setupCharacterInitialCoordinate();
+  Game::getInstance()->start();
   
   return true;
 }
@@ -57,6 +59,11 @@ void GameplayScene::_setupEventHandlers() {
     dispatcher->addCustomEventListener(EVT_ACTION_DICES_ROLLED, actionDicesRolledCallback)
   );
   
+  auto levelAdvancedCallback = CC_CALLBACK_1(GameplayScene::_handleLevelAdvanced, this);
+  this->setLevelAdvancedListener(
+    dispatcher->addCustomEventListener(EVT_LEVEL_ADVANCED, levelAdvancedCallback)
+  );
+  
   auto turnHasStartedCallback = CC_CALLBACK_1(GameplayScene::_handleTurnHasStarted, this);
   this->setTurnHasStartedListener(
     dispatcher->addCustomEventListener(EVT_TURN_HAS_STARTED, turnHasStartedCallback)
@@ -80,6 +87,18 @@ TurnChangeLayer* GameplayScene::_getTurnChangeLayer() {
 
 void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
   this->_getPlayerTurnLayer()->showGameplayLayer();
+}
+
+void GameplayScene::_handleLevelAdvanced(EventCustom* event) {
+  auto game = Game::getInstance();
+  
+  std::stringstream ss;
+  ss << "Andar ";
+  ss << game->getLevel();
+  
+  auto label = Label::createWithTTF(ss.str(), "fonts/DOWNCOME.TTF", 15);
+  label->setPosition(Vec2(62, this->getContentSize().height - 12));
+  this->addChild(label);
 }
 
 void GameplayScene::_handleTurnHasStarted(EventCustom* event) {

@@ -58,7 +58,8 @@ public:
   cocos2d::Vec2 getCharacterCoordinate(void) const { return _characterCoordinate; }
   void setCharacterCoordinate(cocos2d::Vec2 coordinate);
   
-  void setupCharacterInitialCoordinate();
+  void start();
+  
   void characterMovedTo(cocos2d::Vec2 coordinate);
   
   cocos2d::Vector<ActionDice*> getDockedDices();

@@ -48,7 +48,7 @@ bool Game::init() {
   
   this->setPlayer(Player::create());
   this->setLevel(0);
-  this->advanceLevel();
+  this->_setupActionDices();
   
   this->_setupEventHandlers();
   
@@ -121,7 +121,6 @@ void Game::setLevel(int level) {
   this->setTurn(InitialTurn::create());
   this->_setupAvaiableRooms();
   this->_setupDungeon();
-  this->_setupActionDices();
 }
 
 int Game::getDamageTaken() {
@@ -140,7 +139,8 @@ void Game::setDamageTaken(int damageTaken) {
 
 #pragma mark - Public Interface
 
-void Game::setupCharacterInitialCoordinate() {
+void Game::start() {
+  this->advanceLevel();
   this->setCharacterCoordinate(INITIAL_COORDINATE);
 }
 
