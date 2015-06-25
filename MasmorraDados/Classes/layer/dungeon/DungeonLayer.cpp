@@ -348,7 +348,7 @@ void DungeonLayer::_handleMonsterMoved(EventCustom* event) {
 }
 
 void DungeonLayer::_handleMonstersFinishedMoving(EventCustom* event) {
-  if (_modifiedRooms.size() > 0) {
+  if (!_modifiedRooms.empty()) {
     auto delay = 0.f;
     auto lastModifiedRoom = _modifiedRooms.at(_modifiedRooms.size() - 1);
     
@@ -372,6 +372,8 @@ void DungeonLayer::_handleMonstersFinishedMoving(EventCustom* event) {
             auto notififyLastRoomAdjusted = CallFunc::create([=]{
               this->_consumeMonsterRoomDatas();
               Game::getInstance()->finishCurrentTurn();
+    
+              _modifiedRooms.clear();
             });
             
             this->runAction(Sequence::create(delayAfterAdjust, notififyLastRoomAdjusted, NULL));
@@ -388,8 +390,6 @@ void DungeonLayer::_handleMonstersFinishedMoving(EventCustom* event) {
       delay += MOVE_DICE_DURATION + ADJUST_CAMERA_DURATION;
     }
     
-    _modifiedRooms.clear();
-    
     for (auto child : this->getChildren()) {
       child->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
     }
@@ -400,6 +400,9 @@ void DungeonLayer::_handleMonstersFinishedMoving(EventCustom* event) {
 }
 
 void DungeonLayer::_handleMonstersFinishedRising(EventCustom* event) {
-  // TODO: tem que esperar acabar a animação de
-  //this->_consumeMonsterRoomDatas();
+  if (_modifiedRooms.empty()) {
+    this->_consumeMonsterRoomDatas();
+    Game::getInstance()->finishCurrentTurn();
+  }
 }
+  
