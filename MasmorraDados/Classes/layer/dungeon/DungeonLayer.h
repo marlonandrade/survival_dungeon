@@ -42,6 +42,8 @@ public:
   CREATE_FUNC(DungeonLayer);
   virtual bool init();
   
+  void reset();
+  
   DungeonRoomSprite* getRoomSpriteForCharacterCoordinate();
   
 #pragma mark - CharacterMoveDelegate Methods

@@ -93,6 +93,10 @@
 		BF778C271AD8326C0009D168 /* ud in Resources */ = {isa = PBXBuildFile; fileRef = BF778C1F1AD8326C0009D168 /* ud */; };
 		BF7DB85F1AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */; };
 		BF7DB8601AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */; };
+		BF82BB7C1B3B6C36001FBBF6 /* HudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF82BB7A1B3B6C36001FBBF6 /* HudLayer.cpp */; };
+		BF82BB7D1B3B6C36001FBBF6 /* HudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF82BB7A1B3B6C36001FBBF6 /* HudLayer.cpp */; };
+		BF82BB801B3B716D001FBBF6 /* NodeUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF82BB7E1B3B716D001FBBF6 /* NodeUtil.cpp */; };
+		BF82BB811B3B716D001FBBF6 /* NodeUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF82BB7E1B3B716D001FBBF6 /* NodeUtil.cpp */; };
 		BF9F12CF1B20A54100C58035 /* DiceUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12CD1B20A54100C58035 /* DiceUtil.cpp */; };
 		BF9F12D01B20A54100C58035 /* DiceUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12CD1B20A54100C58035 /* DiceUtil.cpp */; };
 		BF9F12D31B20A81700C58035 /* DockableContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF9F12D11B20A81700C58035 /* DockableContainer.cpp */; };
@@ -292,6 +296,10 @@
 		BF778C1F1AD8326C0009D168 /* ud */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ud; sourceTree = "<group>"; };
 		BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterMoveData.cpp; sourceTree = "<group>"; };
 		BF7DB85E1AFBD0A200CD5C6E /* MonsterMoveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterMoveData.h; sourceTree = "<group>"; };
+		BF82BB7A1B3B6C36001FBBF6 /* HudLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HudLayer.cpp; sourceTree = "<group>"; };
+		BF82BB7B1B3B6C36001FBBF6 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
+		BF82BB7E1B3B716D001FBBF6 /* NodeUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeUtil.cpp; sourceTree = "<group>"; };
+		BF82BB7F1B3B716D001FBBF6 /* NodeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeUtil.h; sourceTree = "<group>"; };
 		BF9F12CD1B20A54100C58035 /* DiceUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiceUtil.cpp; sourceTree = "<group>"; };
 		BF9F12CE1B20A54100C58035 /* DiceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceUtil.h; sourceTree = "<group>"; };
 		BF9F12D11B20A81700C58035 /* DockableContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DockableContainer.cpp; sourceTree = "<group>"; };
@@ -548,6 +556,8 @@
 			children = (
 				BFE451491B1F67A400424C09 /* dungeon */,
 				BFE4513C1B1F605300424C09 /* player_turn */,
+				BF82BB7A1B3B6C36001FBBF6 /* HudLayer.cpp */,
+				BF82BB7B1B3B6C36001FBBF6 /* HudLayer.h */,
 				BF6304DF1B1E855000A4CD0D /* TurnChangeLayer.cpp */,
 				BF6304E01B1E855000A4CD0D /* TurnChangeLayer.h */,
 			);
@@ -591,6 +601,8 @@
 				BF9F12DE1B20CD2700C58035 /* OverlayUtil.h */,
 				BF0E300D1B08FDF7003AAFE5 /* PositionUtil.cpp */,
 				BF0E300E1B08FDF7003AAFE5 /* PositionUtil.h */,
+				BF82BB7E1B3B716D001FBBF6 /* NodeUtil.cpp */,
+				BF82BB7F1B3B716D001FBBF6 /* NodeUtil.h */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -940,6 +952,7 @@
 				BFC373951A9BFDDA00520751 /* DungeonRoom.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				BFC373991A9BFF7700520751 /* Character.cpp in Sources */,
+				BF82BB7C1B3B6C36001FBBF6 /* HudLayer.cpp in Sources */,
 				BF9F12F11B23A40C00C58035 /* ShieldDiceDragHandler.cpp in Sources */,
 				BF5B4B351A8F7616007636DE /* IntroScene.cpp in Sources */,
 				BF5B4B971A9214EC007636DE /* GameplayScene.cpp in Sources */,
@@ -965,6 +978,7 @@
 				BF7DB85F1AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */,
 				BF9F12F51B24836700C58035 /* MonsterDiceFace.cpp in Sources */,
 				BF74CA7C1ADC834A0062F242 /* DiceSprite.cpp in Sources */,
+				BF82BB801B3B716D001FBBF6 /* NodeUtil.cpp in Sources */,
 				BFBE57AD1AE0143400D93530 /* Shake.cpp in Sources */,
 				BF9F12FA1B24881700C58035 /* DamageTakenData.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
@@ -1013,6 +1027,7 @@
 				BFE451441B1F607800424C09 /* GameplayLayer.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				BFDFE26C1ADC2CAE00106124 /* ActionDiceStateSelected.cpp in Sources */,
+				BF82BB811B3B716D001FBBF6 /* NodeUtil.cpp in Sources */,
 				BFD7AA2C1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */,
 				BF5B4B361A8F7616007636DE /* IntroScene.cpp in Sources */,
 				BF5B4C1F1A955DA4007636DE /* Monster.cpp in Sources */,
@@ -1048,6 +1063,7 @@
 				BF3B21351B332E6600114445 /* Character.cpp in Sources */,
 				BF9F12E01B20CD2800C58035 /* OverlayUtil.cpp in Sources */,
 				BFD36EE21AF66921003701EC /* MinorMonsterDice.cpp in Sources */,
+				BF82BB7D1B3B6C36001FBBF6 /* HudLayer.cpp in Sources */,
 				BFD7AA321AEF0CCF0079C68E /* ActionDiceDragData.cpp in Sources */,
 				BFAA744D1A9D37E400E45DF8 /* MinorMonsterRoom.cpp in Sources */,
 				BF3EDB401AF92203002A2D7C /* MonsterRoomData.cpp in Sources */,

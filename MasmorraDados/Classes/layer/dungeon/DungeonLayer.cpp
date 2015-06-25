@@ -36,6 +36,23 @@ bool DungeonLayer::init() {
   
   this->setName(DUNGEON_LAYER_NAME);
   
+  auto characterSprite = CharacterDiceSprite::create();
+  characterSprite->setDelegate(this);
+  
+  auto character = Game::getInstance()->getPlayer()->getCharacter();
+  character->setSprite(characterSprite);
+  character->resetLife();
+  
+  this->reset();
+  this->_setupEventHandlers();
+  
+  return true;
+}
+
+void DungeonLayer::reset() {
+  _monsterRoomDatas.clear();
+  this->removeAllChildren();
+  
   auto initialRoom = Game::getInstance()->getDungeon()->getInitialRoom();
   auto initialCoordinate = INITIAL_COORDINATE;
   
@@ -44,19 +61,14 @@ bool DungeonLayer::init() {
   
   this->addChild(initialSprite, DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
   
-  auto characterSprite = CharacterDiceSprite::create();
-  characterSprite->setDelegate(this);
-  characterSprite->setPosition(PositionUtil::centerOfNode(initialSprite));
-  
   auto character = Game::getInstance()->getPlayer()->getCharacter();
-  character->setSprite(characterSprite);
-  character->resetLife();
   
+  auto characterSprite = character->getSprite();
+  characterSprite->retain();
+  characterSprite->removeFromParent();
+  characterSprite->setPosition(PositionUtil::centerOfNode(initialSprite));
   initialSprite->addChild(characterSprite);
-  
-  this->_setupEventHandlers();
-  
-  return true;
+  characterSprite->release();
 }
 
 #pragma mark - CharacterMoveDelegate Methods
@@ -66,8 +78,11 @@ bool DungeonLayer::canCharacterMove() {
 }
 
 void DungeonLayer::characterWillMove(CharacterDiceSprite* sprite) {
+  auto characterRoom = this->getRoomSpriteForCharacterCoordinate();
+  characterRoom->setLocalZOrder(DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
+  
   Vector<Node*> visibleNodes;
-  visibleNodes.pushBack(this->getRoomSpriteForCharacterCoordinate());
+  visibleNodes.pushBack(characterRoom);
   visibleNodes.pushBack(this->_getRoomSpritesForAdjacentCharacterCoordinate());
   OverlayUtil::addOverlay(visibleNodes, this, -this->getParent()->getPosition());
 }
@@ -107,29 +122,31 @@ void DungeonLayer::characterMovedToLocation(CharacterDiceSprite* sprite, Vec2 lo
   auto oldRoomSprite = (DungeonRoomSprite*) sprite->getParent();
   auto newRoomSprite = (DungeonRoomSprite*) this->getRoomSpriteForCharacterCoordinate();
   
-  auto oldPosition = oldRoomSprite->convertToWorldSpace(sprite->getPosition());
-  auto newPosition = newRoomSprite->convertToNodeSpace(oldPosition);
-  
-  sprite->retain();
-  sprite->removeFromParent();
-  newRoomSprite->addChild(sprite);
-  sprite->release();
-  
-  newRoomSprite->setLocalZOrder(DUNGEON_ROOM_WITH_CHAR_Z_ORDER + OVERLAY_Z_ORDER);
-  oldRoomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER + OVERLAY_Z_ORDER);
- 
-  sprite->setPosition(newPosition);
-  
-  oldRoomSprite->adjustChildren();
-  newRoomSprite->adjustChildren();
-  
-  auto delay = DelayTime::create(MOVE_DICE_DURATION);
-  auto restoreZOrder = CallFunc::create([=]{
-    newRoomSprite->setLocalZOrder(DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
-    oldRoomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
-  });
-  
-  this->runAction(Sequence::create(delay, restoreZOrder, NULL));
+  if (oldRoomSprite && newRoomSprite) {
+    auto oldPosition = oldRoomSprite->convertToWorldSpace(sprite->getPosition());
+    auto newPosition = newRoomSprite->convertToNodeSpace(oldPosition);
+    
+    sprite->retain();
+    sprite->removeFromParent();
+    newRoomSprite->addChild(sprite);
+    sprite->release();
+    
+    newRoomSprite->setLocalZOrder(DUNGEON_ROOM_WITH_CHAR_Z_ORDER + OVERLAY_Z_ORDER);
+    oldRoomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER + OVERLAY_Z_ORDER);
+   
+    sprite->setPosition(newPosition);
+    
+    oldRoomSprite->adjustChildren();
+    newRoomSprite->adjustChildren();
+    
+    auto delay = DelayTime::create(MOVE_DICE_DURATION);
+    auto restoreZOrder = CallFunc::create([=]{
+      newRoomSprite->setLocalZOrder(DUNGEON_ROOM_WITH_CHAR_Z_ORDER);
+      oldRoomSprite->setLocalZOrder(DUNGEON_ROOM_Z_ORDER);
+    });
+    
+    this->runAction(Sequence::create(delay, restoreZOrder, NULL));
+  }
 }
 
 void DungeonLayer::characterDidNotMove(CharacterDiceSprite* sprite) {

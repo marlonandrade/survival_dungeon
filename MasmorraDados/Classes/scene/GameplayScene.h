@@ -15,6 +15,7 @@
 #include "Turn.h"
 
 class DungeonLayer;
+class HudLayer;
 class PlayerTurnLayer;
 class TurnChangeLayer;
 
@@ -43,6 +44,7 @@ private:
   
   void _setupEventHandlers();
   
+  HudLayer* _getHudLayer();
   PlayerTurnLayer* _getPlayerTurnLayer();
   TurnChangeLayer* _getTurnChangeLayer();
   

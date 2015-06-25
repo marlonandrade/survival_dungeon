@@ -19,6 +19,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/event_data/MonsterRoomData.cpp \
 		   ../../Classes/event_data/RoomPlacementData.cpp \
 		   ../../Classes/event_data/RoomsPlacementsData.cpp \
+		   ../../Classes/layer/HudLayer.cpp \
 		   ../../Classes/layer/TurnChangeLayer.cpp \
 		   ../../Classes/layer/dungeon/BackgroundLayer.cpp \
 		   ../../Classes/layer/dungeon/DungeonLayer.cpp \
@@ -68,6 +69,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/util/DiceUtil.cpp \
 		   ../../Classes/util/FileUtil.cpp \
 		   ../../Classes/util/HighlightUtil.cpp \
+		   ../../Classes/util/NodeUtil.cpp \
 		   ../../Classes/util/OverlayUtil.cpp \
 		   ../../Classes/util/PositionUtil.cpp \
 		   ../../Classes/util/drag_handler/CommonDiceDragHandler.cpp \

@@ -12,6 +12,7 @@
 #include "NodeNames.h"
 
 #include "DungeonLayer.h"
+#include "HudLayer.h"
 #include "PlayerTurnLayer.h"
 #include "ScrollableDungeonLayer.h"
 #include "TurnChangeLayer.h"
@@ -19,6 +20,7 @@
 #include "DungeonTurn.h"
 #include "PlayerTurn.h"
 
+#include "NodeUtil.h"
 #include "PositionUtil.h"
 
 USING_NS_CC;
@@ -49,6 +51,7 @@ void GameplayScene::_setupChildren() {
   this->addChild(ScrollableDungeonLayer::create(), 0);
   this->addChild(PlayerTurnLayer::create(), 1);
   this->addChild(TurnChangeLayer::create(), 2);
+  this->addChild(HudLayer::create(), 3);
 }
 
 void GameplayScene::_setupEventHandlers() {
@@ -75,6 +78,10 @@ void GameplayScene::_setupEventHandlers() {
   );
 }
 
+HudLayer* GameplayScene::_getHudLayer() {
+  return (HudLayer*) this->getChildByName(HUD_LAYER_NAME);
+}
+
 PlayerTurnLayer* GameplayScene::_getPlayerTurnLayer() {
   return (PlayerTurnLayer*) this->getChildByName(PLAYER_TURN_LAYER);
 }
@@ -90,15 +97,11 @@ void GameplayScene::_handleActionDicesRolled(EventCustom* event) {
 }
 
 void GameplayScene::_handleLevelAdvanced(EventCustom* event) {
-  auto game = Game::getInstance();
+  this->_getHudLayer()->adjustLevel(Game::getInstance()->getLevel());
   
-  std::stringstream ss;
-  ss << "Andar ";
-  ss << game->getLevel();
-  
-  auto label = Label::createWithTTF(ss.str(), "fonts/DOWNCOME.TTF", 15);
-  label->setPosition(Vec2(62, this->getContentSize().height - 12));
-  this->addChild(label);
+  NodeUtil::stopAllActionsRecursive(this);
+  auto layer = this->getChildByName<ScrollableDungeonLayer*>(SCROLLABLE_LAYER_NAME);
+  layer->resetDungeonLayer();
 }
 
 void GameplayScene::_handleTurnHasStarted(EventCustom* event) {

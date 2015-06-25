@@ -30,4 +30,7 @@
 
 #define DOCK_CONTAINER_NODE_NAME      "DockContainerNodeName"
 
+#define HUD_LAYER_NAME                "HudLayer"
+#define HUD_LEVEL_LABEL_NAME          "HudLevelLabel"
+
 #endif /* defined(__MasmorraDados__NodeNames__) */

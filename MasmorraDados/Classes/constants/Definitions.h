@@ -63,7 +63,7 @@
 #define DUNGEON_ROOM_Z_ORDER           0
 #define GAME_OBJECTS_Z_ORDER           1
 #define ACTION_DICE_Z_ORDER            2
-#define DUNGEON_ROOM_WITH_CHAR_Z_ORDER 5
+#define DUNGEON_ROOM_WITH_CHAR_Z_ORDER 15
 #define OVERLAY_Z_ORDER                10
 #define DRAG_Z_ORDER_DELTA             50
 #define MAX_Z_ORDER                    999

@@ -17,6 +17,8 @@
 
 USING_NS_CC;
 
+#pragma mark - Public Interface
+
 bool ScrollableDungeonLayer::init() {
   if (!Layer::init()) {
     return false;
@@ -30,6 +32,13 @@ bool ScrollableDungeonLayer::init() {
   return true;
 }
 
+void ScrollableDungeonLayer::resetDungeonLayer() {
+  this->setPosition(Vec2::ZERO);
+  this->_getDungeonLayer()->reset();
+}
+
+#pragma mark - Private Interface
+
 void ScrollableDungeonLayer::_setupChildren() {
   this->addChild(BackgroundLayer::create(), -10);
   this->addChild(DungeonLayer::create(), 0);
@@ -42,6 +51,10 @@ void ScrollableDungeonLayer::_setupTouchListener() {
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   dispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+}
+
+DungeonLayer* ScrollableDungeonLayer::_getDungeonLayer() {
+  return this->getChildByName<DungeonLayer*>(DUNGEON_LAYER_NAME);
 }
 
 bool ScrollableDungeonLayer::_onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event) {

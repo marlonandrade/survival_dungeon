@@ -47,6 +47,7 @@ bool Game::init() {
   }
   
   this->setPlayer(Player::create());
+  this->setTurn(InitialTurn::create());
   this->setLevel(0);
   this->_setupActionDices();
   
@@ -67,6 +68,8 @@ void Game::advanceLevel() {
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();
   dispatcher->dispatchCustomEvent(EVT_LEVEL_ADVANCED);
+  
+  this->setCharacterCoordinate(INITIAL_COORDINATE);
 }
 
 bool Game::canCharacterMove() {
@@ -118,7 +121,6 @@ int Game::getLevel() {
 void Game::setLevel(int level) {
   _level = level;
   
-  this->setTurn(InitialTurn::create());
   this->_setupAvaiableRooms();
   this->_setupDungeon();
 }
@@ -141,12 +143,16 @@ void Game::setDamageTaken(int damageTaken) {
 
 void Game::start() {
   this->advanceLevel();
-  this->setCharacterCoordinate(INITIAL_COORDINATE);
 }
 
 void Game::characterMovedTo(Vec2 coordinate) {
   this->setCharacterCoordinate(coordinate);
   this->_dispatchDiceSpent();
+  
+  auto room = this->getDungeon()->getRoomForCoordinate(coordinate);
+  if (IS(room, DownstairsRoom)) {
+    this->advanceLevel();
+  }
 }
 
 Vector<ActionDice*> Game::getDockedDices() {
