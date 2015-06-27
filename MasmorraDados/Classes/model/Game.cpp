@@ -48,7 +48,9 @@ bool Game::init() {
   
   this->setPlayer(Player::create());
   this->setTurn(InitialTurn::create());
-  this->setLevel(0);
+  
+  this->_setupInitialState();
+  
   this->_setupActionDices();
   
   this->_setupEventHandlers();
@@ -123,6 +125,28 @@ void Game::setLevel(int level) {
   
   this->_setupAvaiableRooms();
   this->_setupDungeon();
+}
+
+int Game::getExperience() {
+  return _experience;
+}
+
+void Game::setExperience(int experience) {
+  _experience = experience;
+  
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->dispatchCustomEvent(EVT_EXPERIENCE_CHANGED);
+}
+
+int Game::getCoins() {
+  return _coins;
+}
+
+void Game::setCoins(int coins) {
+  _coins = coins;
+  
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  dispatcher->dispatchCustomEvent(EVT_COINS_CHANGED);
 }
 
 int Game::getDamageTaken() {
@@ -222,6 +246,12 @@ DungeonRoom* Game::getRoomForCharacterCoordinate() {
 }
 
 #pragma mark - Private Interface
+
+void Game::_setupInitialState() {
+  this->setLevel(0);
+  this->setExperience(INITIAL_EXPERIENCE);
+  this->setCoins(INITIAL_COINS);
+}
 
 void Game::_setupDungeon() {
   auto dungeon = Dungeon::create();

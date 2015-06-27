@@ -32,5 +32,7 @@
 
 #define HUD_LAYER_NAME                "HudLayer"
 #define HUD_LEVEL_LABEL_NAME          "HudLevelLabel"
+#define HUD_XP_LABEL_NAME             "HudXpLabel"
+#define HUD_COINS_LABEL_NAME          "HudCoinsLabel"
 
 #endif /* defined(__MasmorraDados__NodeNames__) */

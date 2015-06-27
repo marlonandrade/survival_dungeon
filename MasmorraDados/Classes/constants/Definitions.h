@@ -28,6 +28,11 @@
 
 #define DOCKABLE_HIDDEN_MARGIN      13
 
+#pragma mark - HUD
+
+#define HUD_FONT_NAME "fonts/DOWNCOME.TTF"
+#define HUD_FONT_SIZE 15
+
 #pragma mark - Game Mechanics
 
 #define MAX_ACTION_REROLLS 2
@@ -76,5 +81,16 @@
 #pragma mark - Helpers
 
 #define IS(object, class) dynamic_cast<class*>(object) > 0
+
+#pragma mark - Initial State
+
+#define INITIAL_EXPERIENCE 0
+#define INITIAL_COINS      0
+
+#pragma mark - Strings
+
+#define HUD_LEVEL_STRING "Andar"
+#define HUD_XP_STRING    "Experiência"
+#define HUD_COINS_STRING "Moedas"
 
 #endif /* defined(__MasmorraDados__Definitions__) */

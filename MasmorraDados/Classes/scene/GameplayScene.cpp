@@ -67,6 +67,16 @@ void GameplayScene::_setupEventHandlers() {
     dispatcher->addCustomEventListener(EVT_LEVEL_ADVANCED, levelAdvancedCallback)
   );
   
+  auto experienceChangedCallback = CC_CALLBACK_1(GameplayScene::_handleExperienceChanged, this);
+  this->setExperienceChangedListener(
+    dispatcher->addCustomEventListener(EVT_EXPERIENCE_CHANGED, experienceChangedCallback)
+  );
+  
+  auto coinsChangedCallback = CC_CALLBACK_1(GameplayScene::_handleCoinsChanged, this);
+  this->setCoinsChangedListener(
+    dispatcher->addCustomEventListener(EVT_COINS_CHANGED, coinsChangedCallback)
+  );
+  
   auto turnHasStartedCallback = CC_CALLBACK_1(GameplayScene::_handleTurnHasStarted, this);
   this->setTurnHasStartedListener(
     dispatcher->addCustomEventListener(EVT_TURN_HAS_STARTED, turnHasStartedCallback)
@@ -102,6 +112,14 @@ void GameplayScene::_handleLevelAdvanced(EventCustom* event) {
   NodeUtil::stopAllActionsRecursive(this);
   auto layer = this->getChildByName<ScrollableDungeonLayer*>(SCROLLABLE_LAYER_NAME);
   layer->resetDungeonLayer();
+}
+
+void GameplayScene::_handleExperienceChanged(EventCustom* event) {
+  this->_getHudLayer()->adjustLevel(Game::getInstance()->getExperience());
+}
+
+void GameplayScene::_handleCoinsChanged(EventCustom* event) {
+  this->_getHudLayer()->adjustLevel(Game::getInstance()->getCoins());
 }
 
 void GameplayScene::_handleTurnHasStarted(EventCustom* event) {

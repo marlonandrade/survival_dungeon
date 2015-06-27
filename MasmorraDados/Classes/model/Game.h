@@ -36,7 +36,10 @@ class Game : public GameObject {
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _actionDices, ActionDices);
   CC_SYNTHESIZE(bool, _freeBootUsed, FreeBootUsed);
   CC_PROPERTY(int, _damageTaken, DamageTaken);
+  
   CC_PROPERTY(int, _level, Level);
+  CC_PROPERTY(int, _experience, Experience);
+  CC_PROPERTY(int, _coins, Coins);
 protected:
   cocos2d::Vector<DungeonRoom*> _availableRooms;
   Turn* _turn;
@@ -75,6 +78,7 @@ public:
   DungeonRoom* getRoomForCharacterCoordinate();
   
 private:
+  void _setupInitialState();
   void _setupDungeon();
   void _setupAvaiableRooms();
   void _setupActionDices();

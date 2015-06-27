@@ -27,6 +27,12 @@ class GameplayScene : public cocos2d::Scene {
                        _levelAdvancedListener,
                        LevelAdvancedListener);
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _experienceChangedListener,
+                       ExperienceChangedListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _coinsChangedListener,
+                       CoinsChangedListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _turnHasStartedListener,
                        TurnHasStartedListener);
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
@@ -53,6 +59,8 @@ private:
 #pragma mark - Events
   void _handleActionDicesRolled(cocos2d::EventCustom* event);
   void _handleLevelAdvanced(cocos2d::EventCustom* event);
+  void _handleExperienceChanged(cocos2d::EventCustom* event);
+  void _handleCoinsChanged(cocos2d::EventCustom* event);
   void _handleTurnHasStarted(cocos2d::EventCustom* event);
   void _handleTurnHasEnded(cocos2d::EventCustom* event);
   
