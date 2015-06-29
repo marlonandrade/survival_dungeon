@@ -8,7 +8,11 @@
 
 #include "MonsterDice.h"
 
+#include "Definitions.h"
+
 #include "MonsterDiceFace.h"
+
+#include "Game.h"
 
 USING_NS_CC;
 
@@ -29,10 +33,21 @@ void MonsterDice::setHitPoints(int hitPoints) {
   
   auto sprite = this->getSprite();
   if (sprite) {
-    if (hitPoints < 1) {
-      log("mórreu");
+    int damageTaken = maxHitPoints - hitPoints;
+    if (damageTaken > 0) {
+      if (damageTaken < maxHitPoints) {
+        log("colocar sprite de dano");
+      } else {
+        log("mórreu");
+        
+        if (!this->getMeleeCombat()) {
+          log("remover o dano tomado por esse monstro");
+          auto game = Game::getInstance();
+          game->setDamageTaken(-face->getAttack());
+        }
+      }
     } else {
-      log("colocar sprite da dano no bichim");
+      log("remove sprite de dano");
     }
   }
 }
@@ -41,10 +56,14 @@ void MonsterDice::setHitPoints(int hitPoints) {
 
 void MonsterDice::takeDamage(int damage, CombatMode combatMode) {
   this->setHitPoints(this->getHitPoints() - damage);
+  
+  if (combatMode == CombatModeMelee) {
+    this->setMeleeCombat(true);
+  }
 }
 
 void MonsterDice::resetLife() {
   auto face = (MonsterDiceFace*) this->getSelectedFace();
   this->setHitPoints(face->getDefense());
-  this->setMeleeCombat(CombatModeMelee);
+  this->setMeleeCombat(false);
 }

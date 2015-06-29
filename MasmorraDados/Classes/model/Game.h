@@ -35,6 +35,7 @@ class Game : public GameObject {
   
   CC_SYNTHESIZE(cocos2d::Vector<ActionDice*>, _actionDices, ActionDices);
   CC_SYNTHESIZE(bool, _freeBootUsed, FreeBootUsed);
+  
   CC_PROPERTY(int, _damageTaken, DamageTaken);
   
   CC_PROPERTY(int, _level, Level);

@@ -23,6 +23,7 @@ public:
   CREATE_FUNC(PlayerTurn);
   virtual bool init();
   
+  void protectDamage(int damage);
   bool isActionDicesRolled();
   
   virtual void finish(Game* game);

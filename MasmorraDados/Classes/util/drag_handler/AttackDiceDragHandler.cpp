@@ -18,6 +18,7 @@
 #include "GameplayScene.h"
 
 #include "Game.h"
+#include "PlayerTurn.h"
 
 #include "DiceUtil.h"
 #include "HighlightUtil.h"
@@ -85,9 +86,6 @@ bool AttackDiceDragHandler::dragEnded(ActionDiceDragData* data,
   auto dungeonLayer = scene->getDungeonLayer();
   
   auto game = Game::getInstance();
-  
-  auto character = game->getPlayer()->getCharacter();
-  auto characterSprite = character->getSprite();
   auto characterCoordinate = game->getCharacterCoordinate();
   
   auto room = game->getDungeon()->getRoomForCoordinate(characterCoordinate);
@@ -105,7 +103,12 @@ bool AttackDiceDragHandler::dragEnded(ActionDiceDragData* data,
         monsterDice->takeDamage(1, CombatModeMelee);
       } else if (DiceUtil::isSwordAndShieldDice(dice)) {
         monsterDice->takeDamage(2, CombatModeMelee);
-        characterSprite->defendDamage(1);
+        
+        auto turn = game->getTurn();
+        if (IS(turn, PlayerTurn)) {
+          auto playerTurn = (PlayerTurn*) turn;
+          playerTurn->protectDamage(1);
+        }
       } else if (DiceUtil::isBowDice(dice)) {
         monsterDice->takeDamage(1, CombatModeRanged);
       }

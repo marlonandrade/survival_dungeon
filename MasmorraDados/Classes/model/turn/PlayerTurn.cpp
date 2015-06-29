@@ -33,11 +33,14 @@ bool PlayerTurn::init() {
   }
   
   this->_actionDicesRolled = false;
-  this->_damageProtected = 0;
-  Game::getInstance()->calculateDamageTaken();
+  this->setDamageProtected(0);
   this->_setupEventHandlers();
   
   return true;
+}
+
+void PlayerTurn::protectDamage(int damage) {
+  this->setDamageProtected(this->getDamageProtected() + damage);
 }
 
 bool PlayerTurn::isActionDicesRolled() {

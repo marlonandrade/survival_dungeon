@@ -73,10 +73,6 @@ void CharacterDiceSprite::takeDamage(int damage) {
   this->setDamageTaken(damage);
 }
 
-void CharacterDiceSprite::defendDamage(int damage) {
-  this->setDamageTaken(this->getDamageTaken() - damage);
-}
-
 #pragma mark - Private Interface
 
 void CharacterDiceSprite::_setupTouchListener() {

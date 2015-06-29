@@ -30,6 +30,7 @@ USING_NS_CC;
 
 #include "Dice.h"
 #include "Game.h"
+#include "PlayerTurn.h"
 
 #pragma mark - Public Interface;
 
@@ -137,7 +138,11 @@ bool ShieldDiceDragHandler::dragEnded(ActionDiceDragData* data,
     auto character = game->getPlayer()->getCharacter();
     auto characterSprite = character->getSprite();
     
-    characterSprite->defendDamage(1);
+    auto turn = game->getTurn();
+    if (IS(turn, PlayerTurn)) {
+      auto playerTurn = (PlayerTurn*) turn;
+      playerTurn->protectDamage(1);
+    }
     layer->dockActionDice(sprite);
     docked = true;
     

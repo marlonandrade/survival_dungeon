@@ -24,7 +24,6 @@ public:
   void setHitPoints(int hitPoints);
   void resetDamageTaken();
   void takeDamage(int damage);
-  void defendDamage(int damage);
   
 private:
   void _setupTouchListener();
