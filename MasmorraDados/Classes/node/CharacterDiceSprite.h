@@ -15,6 +15,7 @@
 
 class CharacterDiceSprite : public cocos2d::Sprite {
   CC_SYNTHESIZE(CharacterMoveDelegate*, _delegate, Delegate);
+  CC_PROPERTY(int, _damageTaken, DamageTaken);
   
 public:
   CREATE_FUNC(CharacterDiceSprite);
@@ -23,6 +24,7 @@ public:
   void setHitPoints(int hitPoints);
   void resetDamageTaken();
   void takeDamage(int damage);
+  void defendDamage(int damage);
   
 private:
   void _setupTouchListener();

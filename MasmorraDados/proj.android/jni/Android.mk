@@ -31,7 +31,6 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/Dungeon.cpp \
 		   ../../Classes/model/Game.cpp \
 		   ../../Classes/model/GameObject.cpp \
-		   ../../Classes/model/Monster.cpp \
 		   ../../Classes/model/Player.cpp \
 		   ../../Classes/model/Skill.cpp \
 		   ../../Classes/model/character/Character.cpp \

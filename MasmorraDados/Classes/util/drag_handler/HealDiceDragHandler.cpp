@@ -82,7 +82,6 @@ bool HealDiceDragHandler::dragEnded(ActionDiceDragData* data,
     
     auto dungeonRoom = dungeonLayer->getRoomSpriteForCharacterCoordinate();
     
-    auto character = game->getPlayer()->getCharacter();
     auto characterSprite = character->getSprite();
     
     auto rect = characterSprite->getBoundingBox();

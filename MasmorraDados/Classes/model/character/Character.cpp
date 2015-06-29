@@ -44,7 +44,6 @@ bool Character::init() {
     return false;
   }
   
-  this->setHitPoints(CHARACTER_MAX_HP);
   this->_setupEventHandlers();
   
   return true;
@@ -59,7 +58,7 @@ void Character::heal(int amount) {
 }
 
 void Character::resetLife() {
-  this->setHitPoints(CHARACTER_MAX_HP);
+  this->setHitPoints(CHARACTER_MAX_HP - 3);
 }
 
 bool Character::isLifeFull() {

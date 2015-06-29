@@ -16,6 +16,36 @@
 
 USING_NS_CC;
 
+#pragma mark - Getter
+
+int CharacterDiceSprite::getDamageTaken() {
+  return _damageTaken;
+}
+
+#pragma mark - Setter
+
+void CharacterDiceSprite::setDamageTaken(int damage) {
+  if (damage < 0) damage = 0;
+  
+  _damageTaken = damage;
+  
+  auto damageTakenSprite = this->getChildByName(DAMAGE_TAKEN_SPRITE_NAME);
+  if (damageTakenSprite) {
+    damageTakenSprite->removeFromParent();
+  }
+  
+  if (damage > 0) {
+    auto fileName = FileUtil::damageFileName(damage);
+    damageTakenSprite = Sprite::create(fileName);
+    damageTakenSprite->setName(DAMAGE_TAKEN_SPRITE_NAME);
+    
+    auto size = this->getContentSize() - Size(2, 2);
+    damageTakenSprite->setPosition(Vec2(size));
+    
+    this->addChild(damageTakenSprite);
+  }
+}
+
 #pragma mark - Public Interface
 
 bool CharacterDiceSprite::init() {
@@ -36,21 +66,15 @@ void CharacterDiceSprite::setHitPoints(int hitPoints) {
 }
 
 void CharacterDiceSprite::resetDamageTaken() {
-  auto damageTaken = this->getChildByName(DAMAGE_TAKEN_SPRITE_NAME);
-  if (damageTaken) {
-    damageTaken->removeFromParent();
-  }
+  this->setDamageTaken(0);
 }
 
 void CharacterDiceSprite::takeDamage(int damage) {
-  auto fileName = FileUtil::damageFileName(damage);
-  auto sprite = Sprite::create(fileName);
-  sprite->setName(DAMAGE_TAKEN_SPRITE_NAME);
-  
-  auto size = this->getContentSize() - Size(2, 2);
-  sprite->setPosition(Vec2(size));
-  
-  this->addChild(sprite);
+  this->setDamageTaken(damage);
+}
+
+void CharacterDiceSprite::defendDamage(int damage) {
+  this->setDamageTaken(this->getDamageTaken() - damage);
 }
 
 #pragma mark - Private Interface

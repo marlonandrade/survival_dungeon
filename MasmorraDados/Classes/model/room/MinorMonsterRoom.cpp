@@ -24,11 +24,12 @@ std::string MinorMonsterRoom::getImagePath() {
 }
 
 void MinorMonsterRoom::riseMonster() {
-  auto dice = MinorMonsterDice::create();
-  this->addMonsterDice(dice);
+  auto monsterDice = MinorMonsterDice::create();
+  monsterDice->resetLife();
+  this->addMonsterDice(monsterDice);
   
   auto data = MonsterRoomData::create();
-  data->setMonsterDice(dice);
+  data->setMonsterDice(monsterDice);
   data->setRoom(this);
   
   auto dispatcher = Director::getInstance()->getEventDispatcher();

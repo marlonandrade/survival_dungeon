@@ -78,12 +78,6 @@ void ShieldDiceDragHandler::dragMoved(ActionDiceDragData* data,
                                       DockableContainer* dockableContainer) {
   auto touch = data->getTouch();
   
-  auto game = Game::getInstance();
-  if (game->getDamageTaken() > 0) {
-    auto characterSprite = game->getPlayer()->getCharacter()->getSprite();
-    HighlightUtil::highlighNode(characterSprite, touch);
-  }
-  
   for (auto node : layer->getChildren()) {
     if (IS(node, ActionDiceSprite)) {
       auto diceSprite = (ActionDiceSprite*) node;
@@ -94,6 +88,13 @@ void ShieldDiceDragHandler::dragMoved(ActionDiceDragData* data,
       }
     }
   }
+  
+  auto game = Game::getInstance();
+  if (game->getDamageTaken() > 0) {
+    auto characterSprite = game->getPlayer()->getCharacter()->getSprite();
+    HighlightUtil::highlighNode(characterSprite, touch);
+  }
+  
 }
 
 bool ShieldDiceDragHandler::dragEnded(ActionDiceDragData* data,
@@ -135,6 +136,10 @@ bool ShieldDiceDragHandler::dragEnded(ActionDiceDragData* data,
     
     auto character = game->getPlayer()->getCharacter();
     auto characterSprite = character->getSprite();
+    
+    characterSprite->defendDamage(1);
+    layer->dockActionDice(sprite);
+    docked = true;
     
     characterSprite->setLocalZOrder(CHARACTER_DICE_Z_ORDER);
     characterSprite->setColor(Color3B::WHITE);

@@ -75,8 +75,6 @@
 		BF5B4BEC1A952E8D007636DE /* Dice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BE91A952E8D007636DE /* Dice.cpp */; };
 		BF5B4C001A953981007636DE /* ActionDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BFE1A953981007636DE /* ActionDice.cpp */; };
 		BF5B4C011A953981007636DE /* ActionDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4BFE1A953981007636DE /* ActionDice.cpp */; };
-		BF5B4C1E1A955DA4007636DE /* Monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4C1C1A955DA4007636DE /* Monster.cpp */; };
-		BF5B4C1F1A955DA4007636DE /* Monster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF5B4C1C1A955DA4007636DE /* Monster.cpp */; };
 		BF6304E11B1E855000A4CD0D /* TurnChangeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6304DF1B1E855000A4CD0D /* TurnChangeLayer.cpp */; };
 		BF6304E21B1E855000A4CD0D /* TurnChangeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6304DF1B1E855000A4CD0D /* TurnChangeLayer.cpp */; };
 		BF6D78DA1AE44973002D67C7 /* ActionDiceStateDisabled.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6D78D81AE44973002D67C7 /* ActionDiceStateDisabled.cpp */; };
@@ -284,8 +282,6 @@
 		BF5B4BEA1A952E8D007636DE /* Dice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dice.h; sourceTree = "<group>"; };
 		BF5B4BFE1A953981007636DE /* ActionDice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDice.cpp; sourceTree = "<group>"; };
 		BF5B4BFF1A953981007636DE /* ActionDice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDice.h; sourceTree = "<group>"; };
-		BF5B4C1C1A955DA4007636DE /* Monster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Monster.cpp; sourceTree = "<group>"; };
-		BF5B4C1D1A955DA4007636DE /* Monster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monster.h; sourceTree = "<group>"; };
 		BF6304DF1B1E855000A4CD0D /* TurnChangeLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TurnChangeLayer.cpp; sourceTree = "<group>"; };
 		BF6304E01B1E855000A4CD0D /* TurnChangeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurnChangeLayer.h; sourceTree = "<group>"; };
 		BF6D78D81AE44973002D67C7 /* ActionDiceStateDisabled.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDiceStateDisabled.cpp; sourceTree = "<group>"; };
@@ -624,8 +620,6 @@
 				BF5B4B7E1A90E77A007636DE /* Game.h */,
 				BF5B4BDA1A94BC6B007636DE /* GameObject.cpp */,
 				BF5B4BDB1A94BC6B007636DE /* GameObject.h */,
-				BF5B4C1C1A955DA4007636DE /* Monster.cpp */,
-				BF5B4C1D1A955DA4007636DE /* Monster.h */,
 				BF5B4BBE1A94BA2C007636DE /* Player.cpp */,
 				BF5B4BBF1A94BA2C007636DE /* Player.h */,
 				BF5B4BC61A94BA51007636DE /* Skill.cpp */,
@@ -980,7 +974,6 @@
 				BF0E30021AFE4F32003AAFE5 /* TreasureRoom.cpp in Sources */,
 				BF083B571B09059C00A6B39D /* RoomsPlacementsData.cpp in Sources */,
 				BF5B4BEB1A952E8D007636DE /* Dice.cpp in Sources */,
-				BF5B4C1E1A955DA4007636DE /* Monster.cpp in Sources */,
 				BF7DB85F1AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */,
 				BF9F12F51B24836700C58035 /* MonsterDiceFace.cpp in Sources */,
 				BF74CA7C1ADC834A0062F242 /* DiceSprite.cpp in Sources */,
@@ -1037,7 +1030,6 @@
 				BF82BB811B3B716D001FBBF6 /* NodeUtil.cpp in Sources */,
 				BFD7AA2C1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */,
 				BF5B4B361A8F7616007636DE /* IntroScene.cpp in Sources */,
-				BF5B4C1F1A955DA4007636DE /* Monster.cpp in Sources */,
 				BF5B4BC11A94BA2C007636DE /* Player.cpp in Sources */,
 				BFC5975B1AD43D19007C03A7 /* DungeonTurn.cpp in Sources */,
 				BF5B4BEC1A952E8D007636DE /* Dice.cpp in Sources */,
