@@ -8,6 +8,7 @@
 
 #include "Dice.h"
 
+#include "AttackDiceDragHandler.h"
 #include "CommonDiceDragHandler.h"
 #include "HealDiceDragHandler.h"
 #include "MagicDiceDragHandler.h"
@@ -26,6 +27,10 @@ CommonDiceDragHandler* DiceDragHandlerFactory::getHandler(Dice* dice) {
     dragHandler = ShieldDiceDragHandler::create();
   } else if (DiceUtil::isHealDice(dice)) {
     dragHandler = HealDiceDragHandler::create();
+  } else if (DiceUtil::isSwordDice(dice) ||
+             DiceUtil::isBowDice(dice) ||
+             DiceUtil::isSwordAndShieldDice(dice)) {
+    dragHandler = AttackDiceDragHandler::create();
   } else {
     dragHandler = CommonDiceDragHandler::create();
   }

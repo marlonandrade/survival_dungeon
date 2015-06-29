@@ -21,6 +21,7 @@ public:
   static bool isShieldDice(Dice* dice);
   static bool isBowDice(Dice* dice);
   static bool isHealDice(Dice* dice);
+  static bool isSwordAndShieldDice(Dice* dice);
   
 private:
   static bool _isWhatDice(Dice* dice, std::string imagePath);

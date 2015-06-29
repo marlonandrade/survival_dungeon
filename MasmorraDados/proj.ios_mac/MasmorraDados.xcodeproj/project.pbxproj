@@ -142,6 +142,8 @@
 		BFC5975D1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC597571AD43D19007C03A7 /* PlayerTurn.cpp */; };
 		BFCB45531B1B57030008427D /* DungeonRoomSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFCB45511B1B57030008427D /* DungeonRoomSprite.cpp */; };
 		BFCB45541B1B57030008427D /* DungeonRoomSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFCB45511B1B57030008427D /* DungeonRoomSprite.cpp */; };
+		BFCF34A41B3F2D2F00E41E27 /* AttackDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFCF34A21B3F2D2F00E41E27 /* AttackDiceDragHandler.cpp */; };
+		BFCF34A51B3F2D2F00E41E27 /* AttackDiceDragHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFCF34A21B3F2D2F00E41E27 /* AttackDiceDragHandler.cpp */; };
 		BFD36EE11AF66921003701EC /* MinorMonsterDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD36EDF1AF66921003701EC /* MinorMonsterDice.cpp */; };
 		BFD36EE21AF66921003701EC /* MinorMonsterDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD36EDF1AF66921003701EC /* MinorMonsterDice.cpp */; };
 		BFD36F151AF85107003701EC /* MajorMonsterDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFD36F131AF85107003701EC /* MajorMonsterDice.cpp */; };
@@ -348,6 +350,8 @@
 		BFC597591AD43D19007C03A7 /* Turn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Turn.h; sourceTree = "<group>"; };
 		BFCB45511B1B57030008427D /* DungeonRoomSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DungeonRoomSprite.cpp; sourceTree = "<group>"; };
 		BFCB45521B1B57030008427D /* DungeonRoomSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DungeonRoomSprite.h; sourceTree = "<group>"; };
+		BFCF34A21B3F2D2F00E41E27 /* AttackDiceDragHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttackDiceDragHandler.cpp; sourceTree = "<group>"; };
+		BFCF34A31B3F2D2F00E41E27 /* AttackDiceDragHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttackDiceDragHandler.h; sourceTree = "<group>"; };
 		BFD36EDB1AF54BBE003701EC /* Events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Events.h; sourceTree = "<group>"; };
 		BFD36EDC1AF54BBE003701EC /* Images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Images.h; sourceTree = "<group>"; };
 		BFD36EDD1AF54C0B003701EC /* NodeNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeNames.h; sourceTree = "<group>"; };
@@ -664,6 +668,8 @@
 		BF9F12E11B20D8C200C58035 /* drag_handler */ = {
 			isa = PBXGroup;
 			children = (
+				BFCF34A21B3F2D2F00E41E27 /* AttackDiceDragHandler.cpp */,
+				BFCF34A31B3F2D2F00E41E27 /* AttackDiceDragHandler.h */,
 				BF9F12EA1B21258B00C58035 /* CommonDiceDragHandler.cpp */,
 				BF9F12EB1B21258B00C58035 /* CommonDiceDragHandler.h */,
 				BF3B21291B33232700114445 /* DiceDragHandlerFactory.cpp */,
@@ -998,6 +1004,7 @@
 				BFD7AA2B1AED27430079C68E /* ActionDiceStateRolled.cpp in Sources */,
 				BFE451501B1F67BD00424C09 /* BackgroundLayer.cpp in Sources */,
 				BF3EDB3F1AF92203002A2D7C /* MonsterRoomData.cpp in Sources */,
+				BFCF34A41B3F2D2F00E41E27 /* AttackDiceDragHandler.cpp in Sources */,
 				BF0E30061AFE4F41003AAFE5 /* DownstairsRoom.cpp in Sources */,
 				BF5B4BC01A94BA2C007636DE /* Player.cpp in Sources */,
 				BF3B212B1B33232700114445 /* DiceDragHandlerFactory.cpp in Sources */,
@@ -1072,6 +1079,7 @@
 				BF9F12D81B20ADDB00C58035 /* FreeBootSprite.cpp in Sources */,
 				BF5B4C011A953981007636DE /* ActionDice.cpp in Sources */,
 				BF9F12E91B20F8FE00C58035 /* MagicDiceEffectLayer.cpp in Sources */,
+				BFCF34A51B3F2D2F00E41E27 /* AttackDiceDragHandler.cpp in Sources */,
 				BF5B4BCD1A94BA91007636DE /* Dungeon.cpp in Sources */,
 				BFD36F1A1AF8518A003701EC /* MonsterDice.cpp in Sources */,
 				BF08409B1A9CD84D003F0D76 /* CharacterDiceSprite.cpp in Sources */,

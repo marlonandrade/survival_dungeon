@@ -72,6 +72,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/util/NodeUtil.cpp \
 		   ../../Classes/util/OverlayUtil.cpp \
 		   ../../Classes/util/PositionUtil.cpp \
+		   ../../Classes/util/drag_handler/AttackDiceDragHandler.cpp \
 		   ../../Classes/util/drag_handler/CommonDiceDragHandler.cpp \
 		   ../../Classes/util/drag_handler/DiceDragHandlerFactory.cpp \
 		   ../../Classes/util/drag_handler/HealDiceDragHandler.cpp \
