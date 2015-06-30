@@ -14,7 +14,8 @@
 class FileUtil {
 public:
   static std::string characterFileName(int hitPoints);
-  static std::string damageFileName(int damage);
+  static std::string damageTakenFileName(int damage);
+  static std::string damageDealtFileName(int damage);
   static std::string fileNameForBaseImage(std::string baseName, int amount);
 };
 

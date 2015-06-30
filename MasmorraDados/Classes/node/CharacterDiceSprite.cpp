@@ -35,7 +35,7 @@ void CharacterDiceSprite::setDamageTaken(int damage) {
   }
   
   if (damage > 0) {
-    auto fileName = FileUtil::damageFileName(damage);
+    auto fileName = FileUtil::damageTakenFileName(damage);
     damageTakenSprite = Sprite::create(fileName);
     damageTakenSprite->setName(DAMAGE_TAKEN_SPRITE_NAME);
     

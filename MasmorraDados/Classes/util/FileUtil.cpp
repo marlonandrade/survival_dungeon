@@ -16,8 +16,12 @@ std::string FileUtil::characterFileName(int hitPoints) {
   return FileUtil::fileNameForBaseImage(IMG_DICE_CHAR, hitPoints);
 }
 
-std::string FileUtil::damageFileName(int damage) {
+std::string FileUtil::damageTakenFileName(int damage) {
   return FileUtil::fileNameForBaseImage(IMG_DAMAGE_TAKEN, damage);
+}
+
+std::string FileUtil::damageDealtFileName(int damage) {
+  return FileUtil::fileNameForBaseImage(IMG_DAMAGE_DEALT, damage);
 }
 
 std::string FileUtil::fileNameForBaseImage(std::string baseName, int amount) {
