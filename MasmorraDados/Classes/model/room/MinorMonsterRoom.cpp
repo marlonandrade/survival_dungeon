@@ -25,7 +25,6 @@ std::string MinorMonsterRoom::getImagePath() {
 
 void MinorMonsterRoom::riseMonster() {
   auto monsterDice = MinorMonsterDice::create();
-  monsterDice->resetLife();
   this->addMonsterDice(monsterDice);
   
   auto data = MonsterRoomData::create();

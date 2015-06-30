@@ -25,6 +25,8 @@ public:
   
   void takeDamage(int damage, CombatMode combatMode);
   void resetLife();
+  
+  void roll();
 };
 
 #endif /* defined(__MasmorraDados__MonsterDice__) */

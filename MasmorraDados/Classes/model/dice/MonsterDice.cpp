@@ -74,7 +74,6 @@ void MonsterDice::setHitPoints(int hitPoints) {
 #pragma mark - Public Interface
 
 void MonsterDice::takeDamage(int damage, CombatMode combatMode) {
-  log("hp: %d taken: %d damage", this->getHitPoints(), damage);
   this->setHitPoints(this->getHitPoints() - damage);
   
   if (combatMode == CombatModeMelee) {
@@ -86,4 +85,9 @@ void MonsterDice::resetLife() {
   auto face = (MonsterDiceFace*) this->getSelectedFace();
   this->setHitPoints(face->getDefense());
   this->setMeleeCombat(false);
+}
+
+void MonsterDice::roll() {
+  Dice::roll();
+  this->resetLife();
 }
