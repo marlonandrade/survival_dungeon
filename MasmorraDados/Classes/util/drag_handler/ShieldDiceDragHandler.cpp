@@ -119,7 +119,6 @@ bool ShieldDiceDragHandler::dragEnded(ActionDiceDragData* data,
           
           auto swordAndShield = DiceFace::create(IMG_DICE_ACTION_SWORD_AND_SHIELD);
           dice->setSelectedFace(swordAndShield, false);
-          layer->dockActionDice(sprite);
           
           docked = true;
           break;
@@ -140,7 +139,6 @@ bool ShieldDiceDragHandler::dragEnded(ActionDiceDragData* data,
         auto playerTurn = (PlayerTurn*) turn;
         playerTurn->protectDamage(1);
       }
-      layer->dockActionDice(sprite);
       docked = true;
     }
     
@@ -162,6 +160,10 @@ bool ShieldDiceDragHandler::dragEnded(ActionDiceDragData* data,
     characterSprite->removeFromParent();
     dungeonRoom->addChild(characterSprite);
     characterSprite->release();
+  }
+  
+  if (docked) {
+    layer->dockActionDice(sprite);
   }
   
   return docked;

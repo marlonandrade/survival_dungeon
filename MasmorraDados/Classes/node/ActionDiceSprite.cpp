@@ -52,8 +52,10 @@ void ActionDiceSprite::dockOnNode(Node* node) {
   this->release();
   
   auto position = PositionUtil::centerOfNode(node);
+  auto scale = ScaleTo::create(0.1, 0.58);
   auto move = MoveTo::create(0.1, position);
-  this->runAction(move);
+  this->runAction(Spawn::create(move, scale, NULL));
+  
   this->getDice()->setDocked(true);
 }
 

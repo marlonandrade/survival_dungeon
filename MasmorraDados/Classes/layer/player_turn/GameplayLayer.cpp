@@ -72,19 +72,22 @@ void GameplayLayer::resetDockableNodes() {
 }
 
 void GameplayLayer::dockActionDice(ActionDiceSprite *actionDiceSprite) {
-  auto dispatcher = Director::getInstance()->getEventDispatcher();
-  
-  actionDiceSprite->runAction(ScaleTo::create(0.1, 0.58));
+  Node* dockableNode;
   
   auto dockableNodes = this->_getDockableContainer()->getDockableNodes();
   dockableNodes.reverse();
   for (auto node : dockableNodes) {
     if (node->getChildren().size() == 0) {
-      actionDiceSprite->dockOnNode(node);
-      dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_SPENT, actionDiceSprite->getDice());
+      dockableNode = node;
       break;
     }
   }
+  
+  auto dispatcher = Director::getInstance()->getEventDispatcher();
+  
+  actionDiceSprite->dockOnNode(dockableNode);
+  dispatcher->dispatchCustomEvent(EVT_ACTION_DICE_SPENT,
+                                  actionDiceSprite->getDice());
 }
 
 #pragma mark - Private Interface

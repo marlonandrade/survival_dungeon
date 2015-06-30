@@ -365,7 +365,7 @@ void Game::_handleMonsterKilled(EventCustom* event) {
   
   auto diceFace = (MonsterDiceFace*) monsterDice->getSelectedFace();
   
-  this->setExperience(diceFace->getExperience());
+  this->setExperience(this->getExperience() + diceFace->getExperience());
 }
 
 void Game::_handleActionDiceSpent(EventCustom* event) {
