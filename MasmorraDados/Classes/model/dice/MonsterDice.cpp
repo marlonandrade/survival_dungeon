@@ -9,10 +9,13 @@
 #include "MonsterDice.h"
 
 #include "Definitions.h"
+#include "Events.h"
 #include "Images.h"
 #include "NodeNames.h"
 
 #include "MonsterDiceFace.h"
+
+#include "MonsterKilledData.h"
 
 #include "Game.h"
 
@@ -54,13 +57,21 @@ void MonsterDice::setHitPoints(int hitPoints) {
       sprite->addChild(damageDealtSprite);
       
       if (damage >= maxHitPoints) {
-        log("mórreu");
-        auto removeAnimation = Spawn::create(ScaleTo::create(0.3, 0),
-                                             RotateBy::create(0.3, 180),
-                                             NULL);
-        auto remove = RemoveSelf::create();
+        auto data = MonsterKilledData::create();
+        data->setMonsterDice(this);
         
-        sprite->runAction(Sequence::create(removeAnimation, remove, NULL));
+        auto dispatcher = Director::getInstance()->getEventDispatcher();
+        dispatcher->dispatchCustomEvent(EVT_MONSTER_KILLED, data);
+        
+        log("mórreu");
+        
+//        auto removeAnimation = Spawn::create(ScaleTo::create(0.3, 0),
+//                                             RotateBy::create(0.3, 180),
+//                                             NULL);
+//        auto remove = RemoveSelf::create();
+//        auto sequence = Sequence::create(removeAnimation, remove, NULL);
+//        
+//        sprite->runAction(sequence);
         
         if (!this->getMeleeCombat()) {
           auto game = Game::getInstance();

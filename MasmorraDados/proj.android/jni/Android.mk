@@ -15,6 +15,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/animation/Shake.cpp \
 		   ../../Classes/event_data/ActionDiceDragData.cpp \
 		   ../../Classes/event_data/DamageTakenData.cpp \
+		   ../../Classes/event_data/MonsterKilledData.cpp \
 		   ../../Classes/event_data/MonsterMoveData.cpp \
 		   ../../Classes/event_data/MonsterRoomData.cpp \
 		   ../../Classes/event_data/RoomPlacementData.cpp \

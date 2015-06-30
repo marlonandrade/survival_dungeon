@@ -36,6 +36,8 @@
 #define EVT_MONSTERS_FINISHED_MOVING  "monsters_finished_moving"  // no data
 #define EVT_MONSTERS_FINISHED_RISING  "monsters_finished_rising"  // no data
 
+#define EVT_MONSTER_KILLED            "monster_killed"            // data -> MonsterKilledData
+
 #define EVT_DAMAGE_TAKEN              "damage_taken"              // data -> DamageTakenData
 #define EVT_EXPERIENCE_CHANGED        "experience_changed"        // no data
 #define EVT_COINS_CHANGED             "coins_changed"             // no data
