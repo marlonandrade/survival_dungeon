@@ -19,7 +19,10 @@
 
 #include "Game.h"
 
+#include "DungeonRoomSprite.h"
+
 #include "FileUtil.h"
+#include "PositionUtil.h"
 
 USING_NS_CC;
 
@@ -63,18 +66,28 @@ void MonsterDice::setHitPoints(int hitPoints) {
         auto dispatcher = Director::getInstance()->getEventDispatcher();
         dispatcher->dispatchCustomEvent(EVT_MONSTER_KILLED, data);
         
-        log("mórreu");
+        auto game = Game::getInstance();
+        auto dungeon = game->getDungeon();
         
-//        auto removeAnimation = Spawn::create(ScaleTo::create(0.3, 0),
-//                                             RotateBy::create(0.3, 180),
-//                                             NULL);
-//        auto remove = RemoveSelf::create();
-//        auto sequence = Sequence::create(removeAnimation, remove, NULL);
-//        
-//        sprite->runAction(sequence);
+        auto dungeonRoomSprite = (DungeonRoomSprite*) sprite->getParent();
+        auto coordinate = PositionUtil::coordinateForPosition(dungeonRoomSprite->getPosition());
+        auto dungeonRoom = dungeon->getRoomForCoordinate(coordinate);
+        
+        auto removeAnimation = Spawn::create(ScaleTo::create(0.3, 0),
+                                             RotateBy::create(0.3, 180),
+                                             NULL);
+        auto cleanup = CallFunc::create([=]{
+          sprite->removeFromParent();
+          dungeonRoom->removeMonsterDice(this);
+          dungeonRoomSprite->adjustChildren();
+        });
+        
+        auto sequence = Sequence::create(removeAnimation,
+                                         cleanup, NULL);
+        
+        sprite->runAction(sequence);
         
         if (!this->getMeleeCombat()) {
-          auto game = Game::getInstance();
           game->setDamageTaken(-face->getAttack());
         }
       }

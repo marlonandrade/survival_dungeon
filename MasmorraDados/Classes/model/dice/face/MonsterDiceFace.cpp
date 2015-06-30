@@ -12,9 +12,12 @@ USING_NS_CC;
 
 #pragma mark - Public Interface
 
-MonsterDiceFace* MonsterDiceFace::create(std::string imagePath, int attack, int defense) {
+MonsterDiceFace* MonsterDiceFace::create(std::string imagePath,
+                                         int attack,
+                                         int defense,
+                                         int experience) {
   auto face = new (std::nothrow) MonsterDiceFace();
-  if (face && face->init(imagePath, attack, defense)) {
+  if (face && face->init(imagePath, attack, defense, experience)) {
     face->autorelease();
   } else {
     CC_SAFE_DELETE(face);
@@ -22,13 +25,17 @@ MonsterDiceFace* MonsterDiceFace::create(std::string imagePath, int attack, int 
   return face;
 }
 
-bool MonsterDiceFace::init(std::string imagePath, int attack, int defense ) {
+bool MonsterDiceFace::init(std::string imagePath,
+                           int attack,
+                           int defense,
+                           int experience) {
   if (!DiceFace::init(imagePath)) {
     return false;
   }
   
   this->setAttack(attack);
   this->setDefense(defense);
+  this->setExperience(experience);
   
   return true;
 }

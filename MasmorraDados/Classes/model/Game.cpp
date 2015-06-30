@@ -20,6 +20,7 @@
 #include "MonsterDiceFace.h"
 
 #include "DamageTakenData.h"
+#include "MonsterKilledData.h"
 
 #include "DungeonTurn.h"
 #include "InitialTurn.h"
@@ -311,6 +312,11 @@ void Game::_setupEventHandlers() {
     dispatcher->addCustomEventListener(EVT_ACTION_DICE_SPENT, diceSpentCallback)
   );
   
+  auto monsterKilledCallback = CC_CALLBACK_1(Game::_handleMonsterKilled, this);
+  this->setMonsterKilledListener(
+    dispatcher->addCustomEventListener(EVT_MONSTER_KILLED, monsterKilledCallback)
+  );
+  
   auto endPlayerTurnCallback = CC_CALLBACK_1(Game::_handleEndPlayerTurn, this);
   this->setEndPlayerTurnListener(
     dispatcher->addCustomEventListener(EVT_END_PLAYER_TURN, endPlayerTurnCallback)
@@ -351,6 +357,15 @@ void Game::_dispatchDiceSpent() {
 
 void Game::_handleActionFreeBootSpent(EventCustom* event) {
   this->setFreeBootUsed(true);
+}
+
+void Game::_handleMonsterKilled(EventCustom* event) {
+  auto data = (MonsterKilledData*) event->getUserData();
+  auto monsterDice = data->getMonsterDice();
+  
+  auto diceFace = (MonsterDiceFace*) monsterDice->getSelectedFace();
+  
+  this->setExperience(diceFace->getExperience());
 }
 
 void Game::_handleActionDiceSpent(EventCustom* event) {

@@ -115,11 +115,11 @@ void GameplayScene::_handleLevelAdvanced(EventCustom* event) {
 }
 
 void GameplayScene::_handleExperienceChanged(EventCustom* event) {
-  this->_getHudLayer()->adjustLevel(Game::getInstance()->getExperience());
+  this->_getHudLayer()->adjustXp(Game::getInstance()->getExperience());
 }
 
 void GameplayScene::_handleCoinsChanged(EventCustom* event) {
-  this->_getHudLayer()->adjustLevel(Game::getInstance()->getCoins());
+  this->_getHudLayer()->adjustCoins(Game::getInstance()->getCoins());
 }
 
 void GameplayScene::_handleTurnHasStarted(EventCustom* event) {

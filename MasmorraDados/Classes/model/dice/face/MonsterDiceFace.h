@@ -14,9 +14,16 @@
 class MonsterDiceFace : public DiceFace {
   CC_SYNTHESIZE(int, _attack, Attack);
   CC_SYNTHESIZE(int, _defense, Defense);
+  CC_SYNTHESIZE(int, _experience, Experience)
 public:
-  static MonsterDiceFace* create(std::string imagePath, int attack, int defense);
-  virtual bool init(std::string imagePath, int attack, int defense);
+  static MonsterDiceFace* create(std::string imagePath,
+                                 int attack,
+                                 int defense,
+                                 int experience);
+  virtual bool init(std::string imagePath,
+                    int attack,
+                    int defense,
+                    int experience);
 };
 
 #endif /* defined(__MasmorraDados__MonsterDiceFace__) */

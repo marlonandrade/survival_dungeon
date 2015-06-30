@@ -27,6 +27,9 @@ class Game : public GameObject {
                        _diceSpentListener,
                        DiceSpentListener);
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _monsterKilledListener,
+                       MonsterKilledListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _endPlayerTurnListener,
                        EndPlayerTurnListener);
   
@@ -91,6 +94,7 @@ private:
   
 #pragma mark - Event Handlers
   void _handleActionFreeBootSpent(cocos2d::EventCustom* event);
+  void _handleMonsterKilled(cocos2d::EventCustom* event);
   void _handleActionDiceSpent(cocos2d::EventCustom* event);
   void _handleEndPlayerTurn(cocos2d::EventCustom* event);
 };

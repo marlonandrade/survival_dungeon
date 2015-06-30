@@ -95,9 +95,23 @@ bool AttackDiceDragHandler::dragEnded(ActionDiceDragData* data,
     auto monsterSprite = monsterDice->getSprite();
     
     auto rect = monsterSprite->getBoundingBox();
-    if (rect.containsPoint(touch->getLocation())) {
+    auto colided = rect.containsPoint(touch->getLocation());
+    if (colided) {
       monsterSprite->setColor(Color3B::WHITE);
-      
+    }
+    
+    auto position = monsterSprite->getPosition() +
+      Vec2(TILE_DIMENSION / 2, TILE_DIMENSION / 2) -
+      roomSprite->getPosition() -
+      dungeonLayer->getParent()->getPosition();
+    monsterSprite->setPosition(position);
+    
+    monsterSprite->retain();
+    monsterSprite->removeFromParent();
+    roomSprite->addChild(monsterSprite);
+    monsterSprite->release();
+    
+    if (colided) {
       auto dice = diceSprite->getDice();
       if (DiceUtil::isSwordDice(dice)) {
         monsterDice->takeDamage(1, CombatModeMelee);
@@ -117,17 +131,6 @@ bool AttackDiceDragHandler::dragEnded(ActionDiceDragData* data,
       
       docked = true;
     }
-    
-    auto position = monsterSprite->getPosition() +
-      Vec2(TILE_DIMENSION / 2, TILE_DIMENSION / 2) -
-      roomSprite->getPosition() -
-      dungeonLayer->getParent()->getPosition();
-    monsterSprite->setPosition(position);
-    
-    monsterSprite->retain();
-    monsterSprite->removeFromParent();
-    roomSprite->addChild(monsterSprite);
-    monsterSprite->release();
   }
   
   return docked;

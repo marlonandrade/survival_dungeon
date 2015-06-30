@@ -130,21 +130,24 @@ bool ShieldDiceDragHandler::dragEnded(ActionDiceDragData* data,
   
   auto game = Game::getInstance();
   if (game->getDamageTaken() > 0) {
+    auto character = game->getPlayer()->getCharacter();
+    auto characterSprite = character->getSprite();
+    
+    auto rect = characterSprite->getBoundingBox();
+    if (rect.containsPoint(touch->getLocation())) {
+      auto turn = game->getTurn();
+      if (IS(turn, PlayerTurn)) {
+        auto playerTurn = (PlayerTurn*) turn;
+        playerTurn->protectDamage(1);
+      }
+      layer->dockActionDice(sprite);
+      docked = true;
+    }
+    
     auto scene = (GameplayScene*) layer->getScene();
     auto dungeonLayer = scene->getDungeonLayer();
     
     auto dungeonRoom = dungeonLayer->getRoomSpriteForCharacterCoordinate();
-    
-    auto character = game->getPlayer()->getCharacter();
-    auto characterSprite = character->getSprite();
-    
-    auto turn = game->getTurn();
-    if (IS(turn, PlayerTurn)) {
-      auto playerTurn = (PlayerTurn*) turn;
-      playerTurn->protectDamage(1);
-    }
-    layer->dockActionDice(sprite);
-    docked = true;
     
     characterSprite->setLocalZOrder(CHARACTER_DICE_Z_ORDER);
     characterSprite->setColor(Color3B::WHITE);
