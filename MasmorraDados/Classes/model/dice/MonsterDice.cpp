@@ -50,8 +50,7 @@ void MonsterDice::setHitPoints(int hitPoints) {
     
     int damage = maxHitPoints - hitPoints;
     if (damage > 0) {
-      auto fileName = FileUtil::damageDealtFileName(damage);
-      damageDealtSprite = Sprite::create(fileName);
+      damageDealtSprite = FileUtil::getInstance()->damageDealtSprite(damage);
       damageDealtSprite->setName(DAMAGE_DEALT_SPRITE_NAME);
       
       auto size = sprite->getContentSize() - Size(2, 2);

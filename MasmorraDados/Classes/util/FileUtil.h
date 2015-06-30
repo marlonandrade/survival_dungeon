@@ -9,14 +9,24 @@
 #ifndef __MasmorraDados__FileUtil__
 #define __MasmorraDados__FileUtil__
 
-#include "cocos2d.h"
+#include "GameObject.h"
 
-class FileUtil {
+typedef cocos2d::Map<int, cocos2d::Sprite*> SpriteMap;
+
+class FileUtil : public GameObject {
+  CC_SYNTHESIZE(SpriteMap, _damageDealtSprites, DamageDealtSprites);
+  CC_SYNTHESIZE(SpriteMap, _damageTakenSprites, DamageTakenSprites);
+  
 public:
-  static std::string characterFileName(int hitPoints);
-  static std::string damageTakenFileName(int damage);
-  static std::string damageDealtFileName(int damage);
-  static std::string fileNameForBaseImage(std::string baseName, int amount);
+  static FileUtil* getInstance();
+  
+  std::string characterFileName(int hitPoints);
+  std::string damageTakenFileName(int damage);
+  std::string damageDealtFileName(int damage);
+  std::string fileNameForBaseImage(std::string baseName, int amount);
+  
+  cocos2d::Sprite* damageTakenSprite(int damage);
+  cocos2d::Sprite* damageDealtSprite(int damage);
 };
 
 #endif /* defined(__MasmorraDados__FileUtil__) */

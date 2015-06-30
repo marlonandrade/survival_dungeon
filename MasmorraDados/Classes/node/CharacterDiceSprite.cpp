@@ -35,8 +35,7 @@ void CharacterDiceSprite::setDamageTaken(int damage) {
   }
   
   if (damage > 0) {
-    auto fileName = FileUtil::damageTakenFileName(damage);
-    damageTakenSprite = Sprite::create(fileName);
+    damageTakenSprite = FileUtil::getInstance()->damageTakenSprite(damage);
     damageTakenSprite->setName(DAMAGE_TAKEN_SPRITE_NAME);
     
     auto size = this->getContentSize() - Size(2, 2);
@@ -61,7 +60,7 @@ bool CharacterDiceSprite::init() {
 }
 
 void CharacterDiceSprite::setHitPoints(int hitPoints) {
-  auto imageName = FileUtil::characterFileName(hitPoints);
+  auto imageName = FileUtil::getInstance()->characterFileName(hitPoints);
   this->setTexture(imageName);
 }
 
