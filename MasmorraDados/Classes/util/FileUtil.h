@@ -11,11 +11,12 @@
 
 #include "GameObject.h"
 
-typedef cocos2d::Map<int, cocos2d::Sprite*> SpriteMap;
+typedef cocos2d::Map<std::string, cocos2d::Sprite*> SpriteMap;
 
 class FileUtil : public GameObject {
   CC_SYNTHESIZE(SpriteMap, _damageDealtSprites, DamageDealtSprites);
   CC_SYNTHESIZE(SpriteMap, _damageTakenSprites, DamageTakenSprites);
+  CC_SYNTHESIZE(SpriteMap, _monsterDiceSprites, MonsterDiceSprites);
   
 public:
   static FileUtil* getInstance();

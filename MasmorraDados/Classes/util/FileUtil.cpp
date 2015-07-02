@@ -48,22 +48,24 @@ std::string FileUtil::fileNameForBaseImage(std::string baseName, int amount) {
 }
 
 Sprite* FileUtil::damageTakenSprite(int damage) {
-  auto sprite = _damageTakenSprites.at(damage);
+  auto fileName = this->damageTakenFileName(damage);
+  auto sprite = _damageTakenSprites.at(fileName);
   
   if (!sprite) {
-    sprite = Sprite::create(this->damageTakenFileName(damage));
-    _damageTakenSprites.insert(damage, sprite);
+    sprite = Sprite::create(fileName);
+    _damageTakenSprites.insert(fileName, sprite);
   }
   
   return sprite;
 }
 
 Sprite* FileUtil::damageDealtSprite(int damage) {
-  auto sprite = _damageDealtSprites.at(damage);
+  auto fileName = this->damageDealtFileName(damage);
+  auto sprite = _damageDealtSprites.at(fileName);
   
   if (!sprite) {
-    sprite = Sprite::create(this->damageDealtFileName(damage));
-    _damageDealtSprites.insert(damage, sprite);
+    sprite = Sprite::create(fileName);
+    _damageDealtSprites.insert(fileName, sprite);
   }
   
   return sprite;
