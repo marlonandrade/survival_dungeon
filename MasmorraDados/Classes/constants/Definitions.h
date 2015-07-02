@@ -33,6 +33,11 @@
 #define HUD_FONT_NAME "fonts/DOWNCOME.TTF"
 #define HUD_FONT_SIZE 15
 
+#pragma mark - Game Over
+
+#define GAME_OVER_FONT_NAME "fonts/DOWNCOME.TTF"
+#define GAME_OVER_FONT_SIZE 50
+
 #pragma mark - Game Mechanics
 
 #define MAX_ACTION_REROLLS 2

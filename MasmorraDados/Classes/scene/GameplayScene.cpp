@@ -20,6 +20,8 @@
 #include "DungeonTurn.h"
 #include "PlayerTurn.h"
 
+#include "GameOverScene.h"
+
 #include "NodeUtil.h"
 #include "PositionUtil.h"
 
@@ -77,6 +79,11 @@ void GameplayScene::_setupEventHandlers() {
     dispatcher->addCustomEventListener(EVT_COINS_CHANGED, coinsChangedCallback)
   );
   
+  auto characterDiedCallback = CC_CALLBACK_1(GameplayScene::_handleCharacterDied, this);
+  this->setCharacterDiedListener(
+    dispatcher->addCustomEventListener(EVT_CHARACTER_DIED, characterDiedCallback)
+  );
+  
   auto turnHasStartedCallback = CC_CALLBACK_1(GameplayScene::_handleTurnHasStarted, this);
   this->setTurnHasStartedListener(
     dispatcher->addCustomEventListener(EVT_TURN_HAS_STARTED, turnHasStartedCallback)
@@ -120,6 +127,11 @@ void GameplayScene::_handleExperienceChanged(EventCustom* event) {
 
 void GameplayScene::_handleCoinsChanged(EventCustom* event) {
   this->_getHudLayer()->adjustCoins(Game::getInstance()->getCoins());
+}
+
+void GameplayScene::_handleCharacterDied(EventCustom* event) {
+  auto gameOverScene = GameOverScene::create();
+  Director::getInstance()->replaceScene(gameOverScene);
 }
 
 void GameplayScene::_handleTurnHasStarted(EventCustom* event) {

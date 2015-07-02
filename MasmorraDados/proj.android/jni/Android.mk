@@ -56,6 +56,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
 		   ../../Classes/model/turn/DungeonTurn.cpp \
 		   ../../Classes/model/turn/InitialTurn.cpp \
 		   ../../Classes/model/turn/PlayerTurn.cpp \
+		   ../../Classes/scene/GameOverScene.cpp \
 		   ../../Classes/scene/GameplayScene.cpp \
 		   ../../Classes/scene/IntroScene.cpp \
 		   ../../Classes/node/ActionDiceSprite.cpp \

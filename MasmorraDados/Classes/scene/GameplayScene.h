@@ -33,6 +33,9 @@ class GameplayScene : public cocos2d::Scene {
                        _coinsChangedListener,
                        CoinsChangedListener);
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
+                       _characterDiedListener,
+                       CharacterDiedListener);
+  CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
                        _turnHasStartedListener,
                        TurnHasStartedListener);
   CC_SYNTHESIZE_RETAIN(cocos2d::EventListenerCustom*,
@@ -61,6 +64,7 @@ private:
   void _handleLevelAdvanced(cocos2d::EventCustom* event);
   void _handleExperienceChanged(cocos2d::EventCustom* event);
   void _handleCoinsChanged(cocos2d::EventCustom* event);
+  void _handleCharacterDied(cocos2d::EventCustom* event);
   void _handleTurnHasStarted(cocos2d::EventCustom* event);
   void _handleTurnHasEnded(cocos2d::EventCustom* event);
   

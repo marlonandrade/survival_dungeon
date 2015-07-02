@@ -30,7 +30,8 @@ void Character::setHitPoints(int hitPoints) {
   auto sprite = this->getSprite();
   if (sprite) {
     if (_hitPoints < 1) {
-      log("DEAD! GAME OVER");
+      auto dispatcher = Director::getInstance()->getEventDispatcher();
+      dispatcher->dispatchCustomEvent(EVT_CHARACTER_DIED);
     } else {
       sprite->setHitPoints(_hitPoints);
     }

@@ -36,4 +36,6 @@
 #define HUD_XP_LABEL_NAME             "HudXpLabel"
 #define HUD_COINS_LABEL_NAME          "HudCoinsLabel"
 
+#define GAME_OVER_LABEL_NAME          "GameOverLabel"
+
 #endif /* defined(__MasmorraDados__NodeNames__) */

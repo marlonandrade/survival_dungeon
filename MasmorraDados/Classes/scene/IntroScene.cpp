@@ -41,7 +41,7 @@ bool IntroScene::init() {
   
   layer->addChild(introImage);
   
-  this->addChild(layer, 0);
+  this->addChild(layer);
   
   this->schedule(schedule_selector(IntroScene::loadResources));
   

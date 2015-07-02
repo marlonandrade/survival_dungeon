@@ -27,6 +27,8 @@
 #define EVT_ACTION_FREE_BOOT_SPENT    "action_free_boot_spent"    // ?
 #define EVT_ACTION_DICE_SPENT         "action_dice_spent"         // data -> ActionDice
 
+#define EVT_CHARACTER_DIED            "character_died"            // no data
+
 #define EVT_LAST_TILE_HAS_BEEN_PLACED "last_tile_has_been_placed" // data -> RoomPlacementData
 #define EVT_ROOMS_HAVE_BEEN_PLACED    "rooms_have_been_placed"    // data -> RoomsPlacementsData
 

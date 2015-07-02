@@ -93,6 +93,8 @@
 		BF778C271AD8326C0009D168 /* ud in Resources */ = {isa = PBXBuildFile; fileRef = BF778C1F1AD8326C0009D168 /* ud */; };
 		BF7DB85F1AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */; };
 		BF7DB8601AFBD0A200CD5C6E /* MonsterMoveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */; };
+		BF8201AF1B45A0AD00AD908F /* GameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8201AD1B45A0AD00AD908F /* GameOverScene.cpp */; };
+		BF8201B01B45A0AD00AD908F /* GameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8201AD1B45A0AD00AD908F /* GameOverScene.cpp */; };
 		BF82BB7C1B3B6C36001FBBF6 /* HudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF82BB7A1B3B6C36001FBBF6 /* HudLayer.cpp */; };
 		BF82BB7D1B3B6C36001FBBF6 /* HudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF82BB7A1B3B6C36001FBBF6 /* HudLayer.cpp */; };
 		BF82BB801B3B716D001FBBF6 /* NodeUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF82BB7E1B3B716D001FBBF6 /* NodeUtil.cpp */; };
@@ -298,6 +300,8 @@
 		BF778C1F1AD8326C0009D168 /* ud */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ud; sourceTree = "<group>"; };
 		BF7DB85D1AFBD0A200CD5C6E /* MonsterMoveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MonsterMoveData.cpp; sourceTree = "<group>"; };
 		BF7DB85E1AFBD0A200CD5C6E /* MonsterMoveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterMoveData.h; sourceTree = "<group>"; };
+		BF8201AD1B45A0AD00AD908F /* GameOverScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOverScene.cpp; sourceTree = "<group>"; };
+		BF8201AE1B45A0AD00AD908F /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		BF82BB7A1B3B6C36001FBBF6 /* HudLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HudLayer.cpp; sourceTree = "<group>"; };
 		BF82BB7B1B3B6C36001FBBF6 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
 		BF82BB7E1B3B716D001FBBF6 /* NodeUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeUtil.cpp; sourceTree = "<group>"; };
@@ -635,6 +639,8 @@
 		BF5B4B321A8F75FA007636DE /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				BF8201AD1B45A0AD00AD908F /* GameOverScene.cpp */,
+				BF8201AE1B45A0AD00AD908F /* GameOverScene.h */,
 				BF5B4B951A9214EC007636DE /* GameplayScene.cpp */,
 				BF5B4B961A9214EC007636DE /* GameplayScene.h */,
 				BF5B4B331A8F7616007636DE /* IntroScene.cpp */,
@@ -953,6 +959,7 @@
 			files = (
 				BF6304E11B1E855000A4CD0D /* TurnChangeLayer.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				BF8201AF1B45A0AD00AD908F /* GameOverScene.cpp in Sources */,
 				BFC5975C1AD43D19007C03A7 /* PlayerTurn.cpp in Sources */,
 				BF5B4C001A953981007636DE /* ActionDice.cpp in Sources */,
 				BFC373951A9BFDDA00520751 /* DungeonRoom.cpp in Sources */,
@@ -1032,6 +1039,7 @@
 				BF6D78DB1AE44973002D67C7 /* ActionDiceStateDisabled.cpp in Sources */,
 				BFCB45541B1B57030008427D /* DungeonRoomSprite.cpp in Sources */,
 				BFE451441B1F607800424C09 /* GameplayLayer.cpp in Sources */,
+				BF8201B01B45A0AD00AD908F /* GameOverScene.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				BFDFE26C1ADC2CAE00106124 /* ActionDiceStateSelected.cpp in Sources */,
 				BF82BB811B3B716D001FBBF6 /* NodeUtil.cpp in Sources */,
