@@ -298,7 +298,8 @@ void Game::_setupAvaiableRooms() {
   
   int numberOfTreasures = level * (level * TREASURE_COEFICIENT) + TREASURE_CONSTANT;
   for (int i = 0; i < numberOfTreasures; i++) {
-    rooms.pushBack(TreasureRoom::create());
+//    rooms.pushBack(TreasureRoom::create());
+    rooms.pushBack(RuneRoom::create());
   }
   
   rooms.pushBack(DownstairsRoom::create());
