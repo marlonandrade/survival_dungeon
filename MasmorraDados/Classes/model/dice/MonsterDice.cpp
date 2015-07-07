@@ -18,6 +18,7 @@
 #include "MonsterKilledData.h"
 
 #include "Game.h"
+#include "PlayerTurn.h"
 
 #include "DungeonRoomSprite.h"
 
@@ -79,16 +80,25 @@ void MonsterDice::setHitPoints(int hitPoints) {
           sprite->removeFromParent();
           dungeonRoom->removeMonsterDice(this);
           dungeonRoomSprite->adjustChildren();
+          
+          auto playerTurn = (PlayerTurn*) game->getTurn();
+          
+          if (!this->getMeleeCombat()) {
+            game->setDamageTaken(-face->getAttack());
+          }
+          
+          if (dungeonRoom->getMonsters().size() == 0) {
+            auto character = game->getPlayer()->getCharacter();
+            character->takeDamage(game->getDamageTaken());
+            game->setDamageTaken(0);
+            playerTurn->setDamageProtected(0);
+          }
         });
         
         auto sequence = Sequence::create(removeAnimation,
                                          cleanup, NULL);
         
         sprite->runAction(sequence);
-        
-        if (!this->getMeleeCombat()) {
-          game->setDamageTaken(-face->getAttack());
-        }
       }
     }
   }

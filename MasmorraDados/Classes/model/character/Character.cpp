@@ -59,7 +59,7 @@ void Character::heal(int amount) {
 }
 
 void Character::resetLife() {
-  this->setHitPoints(CHARACTER_MAX_HP - 3);
+  this->setHitPoints(CHARACTER_MAX_HP);
 }
 
 bool Character::isLifeFull() {
