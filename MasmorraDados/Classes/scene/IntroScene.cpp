@@ -19,7 +19,8 @@ bool IntroScene::init() {
     return false;
   }
   
-  srand(std::time(0));
+//  srand(std::time(0));
+  srand(0);
   
   auto layer = Layer::create();
   
