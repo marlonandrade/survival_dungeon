@@ -41,8 +41,12 @@ bool DungeonRoom::isExplorable() {
   return true;
 }
 
+bool DungeonRoom::isPlayerInRoom() {
+  return this->getDistanceToPlayer() == 0;
+}
+
 bool DungeonRoom::isEmpty() {
-  return _monsters.size() == 0;
+  return !this->isPlayerInRoom() && _monsters.size() == 0;
 }
 
 bool DungeonRoom::isFull() {

@@ -78,6 +78,9 @@ public:
   void finishCurrentTurn();
   void restoreFreeBoot();
   
+  void resolveCombat();
+  void removeDamageDealtToMonsters();
+  
   void calculateDamageTaken();
   DungeonRoom* getRoomForCharacterCoordinate();
   

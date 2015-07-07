@@ -16,6 +16,7 @@
 #include "Game.h"
 #include "InitialRoom.h"
 #include "MinorMonsterRoom.h"
+#include "MonsterDice.h"
 #include "MonsterMoveData.h"
 #include "RoomsPlacementsData.h"
 
@@ -103,6 +104,16 @@ DungeonRoom* Dungeon::getInitialRoom() {
 
 FarthestCoordinates Dungeon::getFarthestCoordinates() {
   return _farthestCoordinates;
+}
+
+void Dungeon::removeDamageDealtToMonsters() {
+  for (auto roomData : this->_rooms) {
+    auto room = std::get<1>(roomData);
+    
+    for (auto monster : room->getMonsters()) {
+      monster->resetLife();
+    }
+  }
 }
 
 void Dungeon::placeRoomsAdjacentTo(Vec2 coordinate) {

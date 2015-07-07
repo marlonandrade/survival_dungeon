@@ -226,6 +226,21 @@ void Game::restoreFreeBoot() {
   this->setFreeBootUsed(false);
 }
 
+void Game::resolveCombat() {
+  auto character = this->getPlayer()->getCharacter();
+  character->takeDamage(this->getDamageTaken());
+  this->setDamageTaken(0);
+  
+  if (this->isPlayerTurn()) {
+    auto playerTurn = (PlayerTurn*) this->getTurn();
+    playerTurn->setDamageProtected(0);
+  }
+}
+
+void Game::removeDamageDealtToMonsters() {
+  this->getDungeon()->removeDamageDealtToMonsters();
+}
+
 void Game::calculateDamageTaken() {
   auto room = this->getRoomForCharacterCoordinate();
   int damage = 0;
@@ -238,6 +253,8 @@ void Game::calculateDamageTaken() {
     auto playerTurn = (PlayerTurn*) this->getTurn();
     damage -= playerTurn->getDamageProtected();
   }
+  
+  if (damage < 0) damage = 0;
   
   this->setDamageTaken(damage);
 }

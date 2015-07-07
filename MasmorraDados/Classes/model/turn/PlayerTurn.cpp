@@ -48,6 +48,8 @@ bool PlayerTurn::isActionDicesRolled() {
 }
 
 void PlayerTurn::finish(Game *game) {
+  game->resolveCombat();
+  game->removeDamageDealtToMonsters();
   game->restoreFreeBoot();
   game->setTurn(DungeonTurn::create());
 }

@@ -28,6 +28,7 @@ public:
   virtual std::string getImagePath();
   virtual bool isExplorable();
   
+  bool isPlayerInRoom();
   bool isEmpty();
   bool isFull();
   

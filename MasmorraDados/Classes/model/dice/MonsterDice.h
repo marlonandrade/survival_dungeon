@@ -19,7 +19,7 @@ typedef enum {
 class MonsterDice : public Dice {
 public:
   CC_SYNTHESIZE(bool, _movedThisTurn, MovedThisTurn);
-  CC_SYNTHESIZE(bool, _meleeCombat, MeleeCombat);
+  CC_SYNTHESIZE(bool, _rangedCombat, RangedCombat);
   
   CC_PROPERTY(int, _hitPoints, HitPoints);
   

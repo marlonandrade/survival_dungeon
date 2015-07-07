@@ -161,11 +161,6 @@ void GameplayScene::_handleTurnHasEnded(EventCustom* event) {
   auto turn = (Turn*) event->getUserData();
   
   if (IS(turn, PlayerTurn)) {
-    auto game = Game::getInstance();
-    auto character = game->getPlayer()->getCharacter();
-    character->takeDamage(game->getDamageTaken());
-    game->setDamageTaken(0);
-    
     this->_getPlayerTurnLayer()->runAction(Hide::create());
   }
 }

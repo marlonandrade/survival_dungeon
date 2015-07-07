@@ -81,17 +81,13 @@ void MonsterDice::setHitPoints(int hitPoints) {
           dungeonRoom->removeMonsterDice(this);
           dungeonRoomSprite->adjustChildren();
           
-          auto playerTurn = (PlayerTurn*) game->getTurn();
-          
-          if (!this->getMeleeCombat()) {
-            game->setDamageTaken(-face->getAttack());
+          if (this->getRangedCombat()) {
+            auto damageTaken = game->getDamageTaken() - face->getAttack();
+            game->setDamageTaken(damageTaken);
           }
           
           if (dungeonRoom->getMonsters().size() == 0) {
-            auto character = game->getPlayer()->getCharacter();
-            character->takeDamage(game->getDamageTaken());
-            game->setDamageTaken(0);
-            playerTurn->setDamageProtected(0);
+            game->resolveCombat();
           }
         });
         
@@ -109,15 +105,14 @@ void MonsterDice::setHitPoints(int hitPoints) {
 void MonsterDice::takeDamage(int damage, CombatMode combatMode) {
   this->setHitPoints(this->getHitPoints() - damage);
   
-  if (combatMode == CombatModeMelee) {
-    this->setMeleeCombat(true);
-  }
+  auto rangedCombat = this->getRangedCombat() && combatMode == CombatModeRanged;
+  this->setRangedCombat(rangedCombat);
 }
 
 void MonsterDice::resetLife() {
   auto face = (MonsterDiceFace*) this->getSelectedFace();
   this->setHitPoints(face->getDefense());
-  this->setMeleeCombat(false);
+  this->setRangedCombat(true);
 }
 
 void MonsterDice::roll() {

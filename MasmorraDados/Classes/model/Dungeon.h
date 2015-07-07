@@ -47,6 +47,8 @@ public:
   DungeonRoom* getInitialRoom();
   FarthestCoordinates getFarthestCoordinates();
   
+  void removeDamageDealtToMonsters();
+  
   void placeRoomsAdjacentTo(cocos2d::Vec2 coordinate);
   void calculateRoomDistanceToPlayer(cocos2d::Vec2 playerCoordinate);
 private:
