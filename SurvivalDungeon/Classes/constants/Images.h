@@ -12,7 +12,9 @@
 #define IMG_BACKGROUND \
         "background.png"
 #define IMG_INTRO \
-        "intro.jpg"
+        "intro.png"
+#define IMG_MAIN \
+        "main.png"
 
 #define IMG_BUTTON_END_TURN_DISABLED \
         "button/end_turn/disabled.png"
