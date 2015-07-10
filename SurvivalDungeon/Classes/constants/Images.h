@@ -75,33 +75,33 @@
 
 #define IMG_DICE_MONSTER_MINOR_BLUR \
         "dice/monster/minor/blur.png"
-#define IMG_DICE_MONSTER_MINOR_GOBLIN \
-        "dice/monster/minor/goblin.png"
-#define IMG_DICE_MONSTER_MINOR_CULTISTA \
-        "dice/monster/minor/cultista.png"
-#define IMG_DICE_MONSTER_MINOR_ESQUELETO \
-        "dice/monster/minor/esqueleto.png"
-#define IMG_DICE_MONSTER_MINOR_ORC \
-        "dice/monster/minor/orc.png"
-#define IMG_DICE_MONSTER_MINOR_ARANHA \
-        "dice/monster/minor/aranha.png"
-#define IMG_DICE_MONSTER_MINOR_CARNICAL \
-        "dice/monster/minor/carnical.png"
+#define IMG_DICE_MONSTER_MINOR_RAT \
+        "dice/monster/minor/rat.png"
+#define IMG_DICE_MONSTER_MINOR_FROG \
+        "dice/monster/minor/frog.png"
+#define IMG_DICE_MONSTER_MINOR_BEE \
+        "dice/monster/minor/bee.png"
+#define IMG_DICE_MONSTER_MINOR_SCORPION \
+        "dice/monster/minor/scorpion.png"
+#define IMG_DICE_MONSTER_MINOR_SPIDER \
+        "dice/monster/minor/spider.png"
+#define IMG_DICE_MONSTER_MINOR_MAMMOTH \
+        "dice/monster/minor/mammoth.png"
 
 #define IMG_DICE_MONSTER_MAJOR_BLUR \
         "dice/monster/major/blur.png"
-#define IMG_DICE_MONSTER_MAJOR_OGRO \
-        "dice/monster/major/ogro.png"
-#define IMG_DICE_MONSTER_MAJOR_MORCEGO_GIGANTE \
-        "dice/monster/major/morcego_gigante.png"
-#define IMG_DICE_MONSTER_MAJOR_CUBO_GELATINOSO \
-        "dice/monster/major/cubo_gelatinoso.png"
-#define IMG_DICE_MONSTER_MAJOR_APARICAO \
-        "dice/monster/major/aparicao.png"
-#define IMG_DICE_MONSTER_MAJOR_OBSERVADOR_SOMBRIO \
-        "dice/monster/major/observador_sombrio.png"
-#define IMG_DICE_MONSTER_MAJOR_DRAGAO_JOVEM \
-        "dice/monster/major/dragao_jovem.png"
+#define IMG_DICE_MONSTER_MAJOR_RAT \
+        "dice/monster/major/rat.png"
+#define IMG_DICE_MONSTER_MAJOR_FROG \
+        "dice/monster/major/frog.png"
+#define IMG_DICE_MONSTER_MAJOR_BEE \
+        "dice/monster/major/bee.png"
+#define IMG_DICE_MONSTER_MAJOR_SCORPION \
+        "dice/monster/major/scorpion.png"
+#define IMG_DICE_MONSTER_MAJOR_SPIDER \
+        "dice/monster/major/spider.png"
+#define IMG_DICE_MONSTER_MAJOR_MAMMOTH \
+        "dice/monster/major/mammoth.png"
 
 #define IMG_ROOM_INITIAL \
         "room/initial.png"
