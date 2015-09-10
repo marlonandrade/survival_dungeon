@@ -11,7 +11,7 @@ This project was created as a term project for my Information Systems course at 
 1. Clone this project.
 2. Install cocos2d-x.
 3. Link or copy cocos2d-x to `./cocos2d`.
-4. Run on OSX, iOS or Android.
+4. Run: `cocos run -p {android,mac,ios}` or OSX/iOS can use the XCode project.
 
 * Last tested on OSX 10.10.5, XCode 6.4 or 7.0b5 and cocos2d-x 3.8.
 * To run on Android the NDK must be correctly configured. (Not tried Android Studio)
