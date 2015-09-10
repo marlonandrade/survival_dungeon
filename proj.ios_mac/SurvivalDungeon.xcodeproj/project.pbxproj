@@ -32,10 +32,10 @@
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
+		BF2C424A1BA2198E00E5C253 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF2C42481BA2198E00E5C253 /* Info.plist */; };
+		BF2C424B1BA2198E00E5C253 /* osx_assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF2C42491BA2198E00E5C253 /* osx_assets.xcassets */; };
 		BFE37F4F1BA203D8006BDF5E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFE37F4D1BA203D8006BDF5E /* Info.plist */; };
 		BFE37F501BA203D8006BDF5E /* ios_assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFE37F4E1BA203D8006BDF5E /* ios_assets.xcassets */; };
-		BFE37F531BA20418006BDF5E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFE37F511BA20418006BDF5E /* Info.plist */; };
-		BFE37F541BA20418006BDF5E /* osx_assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFE37F521BA20418006BDF5E /* osx_assets.xcassets */; };
 		BFE380E61BA205E9006BDF5E /* Shake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380421BA205E9006BDF5E /* Shake.cpp */; };
 		BFE380E71BA205E9006BDF5E /* Shake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380421BA205E9006BDF5E /* Shake.cpp */; };
 		BFE380E81BA205E9006BDF5E /* ActionDiceDragData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE3804D1BA205E9006BDF5E /* ActionDiceDragData.cpp */; };
@@ -252,10 +252,10 @@
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BF2C42481BA2198E00E5C253 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = mac/Info.plist; sourceTree = "<group>"; };
+		BF2C42491BA2198E00E5C253 /* osx_assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = osx_assets.xcassets; path = mac/osx_assets.xcassets; sourceTree = "<group>"; };
 		BFE37F4D1BA203D8006BDF5E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ios/Info.plist; sourceTree = SOURCE_ROOT; };
 		BFE37F4E1BA203D8006BDF5E /* ios_assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ios_assets.xcassets; path = ios/ios_assets.xcassets; sourceTree = SOURCE_ROOT; };
-		BFE37F511BA20418006BDF5E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../survival_dungeon/SurvivalDungeon/proj.ios_mac/mac/Info.plist; sourceTree = "<group>"; };
-		BFE37F521BA20418006BDF5E /* osx_assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = osx_assets.xcassets; path = ../../survival_dungeon/SurvivalDungeon/proj.ios_mac/mac/osx_assets.xcassets; sourceTree = "<group>"; };
 		BFE380421BA205E9006BDF5E /* Shake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shake.cpp; sourceTree = "<group>"; };
 		BFE380431BA205E9006BDF5E /* Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shake.h; sourceTree = "<group>"; };
 		BFE380451BA205E9006BDF5E /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
@@ -568,8 +568,8 @@
 			children = (
 				503AE10317EB98FF00D1A890 /* main.cpp */,
 				503AE10417EB98FF00D1A890 /* Prefix.pch */,
-				BFE37F511BA20418006BDF5E /* Info.plist */,
-				BFE37F521BA20418006BDF5E /* osx_assets.xcassets */,
+				BF2C42481BA2198E00E5C253 /* Info.plist */,
+				BF2C42491BA2198E00E5C253 /* osx_assets.xcassets */,
 			);
 			name = mac;
 			sourceTree = "<group>";
@@ -976,11 +976,11 @@
 			files = (
 				BFE3810D1BA205E9006BDF5E /* .!23297!.DS_Store in Resources */,
 				BFE3817F1BA2066F006BDF5E /* md in Resources */,
-				BFE37F541BA20418006BDF5E /* osx_assets.xcassets in Resources */,
+				BF2C424A1BA2198E00E5C253 /* Info.plist in Resources */,
 				BFE381291BA205E9006BDF5E /* .!23339!.DS_Store in Resources */,
 				BFE3817B1BA2066F006BDF5E /* fonts in Resources */,
+				BF2C424B1BA2198E00E5C253 /* osx_assets.xcassets in Resources */,
 				BFE381811BA2066F006BDF5E /* sd in Resources */,
-				BFE37F531BA20418006BDF5E /* Info.plist in Resources */,
 				BFE381831BA2066F006BDF5E /* ud in Resources */,
 				BFE3817D1BA2066F006BDF5E /* hd in Resources */,
 				BFE381531BA205E9006BDF5E /* .!23402!.DS_Store in Resources */,
@@ -1258,7 +1258,7 @@
 					"$(SRCROOT)/../cocos2d/cocos/platform/mac",
 					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/../../survival_dungeon/SurvivalDungeon/proj.ios_mac/mac/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/mac/Info.plist";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
@@ -1290,7 +1290,7 @@
 					"$(SRCROOT)/../cocos2d/cocos/platform/mac",
 					"$(SRCROOT)/../cocos2d/external/glfw3/include/mac",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/../../survival_dungeon/SurvivalDungeon/proj.ios_mac/mac/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/mac/Info.plist";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_MAC_BEGIN)",
