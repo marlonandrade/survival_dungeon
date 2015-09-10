@@ -72,8 +72,6 @@
 		BFE381071BA205E9006BDF5E /* TurnChangeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE3806E1BA205E9006BDF5E /* TurnChangeLayer.cpp */; };
 		BFE3810A1BA205E9006BDF5E /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380731BA205E9006BDF5E /* Character.cpp */; };
 		BFE3810B1BA205E9006BDF5E /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380731BA205E9006BDF5E /* Character.cpp */; };
-		BFE3810C1BA205E9006BDF5E /* .!23297!.DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = BFE380761BA205E9006BDF5E /* .!23297!.DS_Store */; };
-		BFE3810D1BA205E9006BDF5E /* .!23297!.DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = BFE380761BA205E9006BDF5E /* .!23297!.DS_Store */; };
 		BFE3810E1BA205E9006BDF5E /* ActionDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380771BA205E9006BDF5E /* ActionDice.cpp */; };
 		BFE3810F1BA205E9006BDF5E /* ActionDice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380771BA205E9006BDF5E /* ActionDice.cpp */; };
 		BFE381101BA205E9006BDF5E /* Dice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380791BA205E9006BDF5E /* Dice.cpp */; };
@@ -100,8 +98,6 @@
 		BFE381251BA205E9006BDF5E /* ActionDiceStateSpent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380901BA205E9006BDF5E /* ActionDiceStateSpent.cpp */; };
 		BFE381261BA205E9006BDF5E /* Dungeon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380921BA205E9006BDF5E /* Dungeon.cpp */; };
 		BFE381271BA205E9006BDF5E /* Dungeon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380921BA205E9006BDF5E /* Dungeon.cpp */; };
-		BFE381281BA205E9006BDF5E /* .!23339!.DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = BFE380951BA205E9006BDF5E /* .!23339!.DS_Store */; };
-		BFE381291BA205E9006BDF5E /* .!23339!.DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = BFE380951BA205E9006BDF5E /* .!23339!.DS_Store */; };
 		BFE3812A1BA205E9006BDF5E /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380961BA205E9006BDF5E /* Game.cpp */; };
 		BFE3812B1BA205E9006BDF5E /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380961BA205E9006BDF5E /* Game.cpp */; };
 		BFE3812C1BA205E9006BDF5E /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380981BA205E9006BDF5E /* GameObject.cpp */; };
@@ -142,8 +138,6 @@
 		BFE3814F1BA205E9006BDF5E /* EndTurnButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380BE1BA205E9006BDF5E /* EndTurnButton.cpp */; };
 		BFE381501BA205E9006BDF5E /* FreeBootSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380C01BA205E9006BDF5E /* FreeBootSprite.cpp */; };
 		BFE381511BA205E9006BDF5E /* FreeBootSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380C01BA205E9006BDF5E /* FreeBootSprite.cpp */; };
-		BFE381521BA205E9006BDF5E /* .!23402!.DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = BFE380C31BA205E9006BDF5E /* .!23402!.DS_Store */; };
-		BFE381531BA205E9006BDF5E /* .!23402!.DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = BFE380C31BA205E9006BDF5E /* .!23402!.DS_Store */; };
 		BFE381541BA205E9006BDF5E /* GameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380C41BA205E9006BDF5E /* GameOverScene.cpp */; };
 		BFE381551BA205E9006BDF5E /* GameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380C41BA205E9006BDF5E /* GameOverScene.cpp */; };
 		BFE381561BA205E9006BDF5E /* GameplayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFE380C61BA205E9006BDF5E /* GameplayScene.cpp */; };
@@ -298,7 +292,6 @@
 		BFE3806F1BA205E9006BDF5E /* TurnChangeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurnChangeLayer.h; sourceTree = "<group>"; };
 		BFE380731BA205E9006BDF5E /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
 		BFE380741BA205E9006BDF5E /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
-		BFE380761BA205E9006BDF5E /* .!23297!.DS_Store */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".!23297!.DS_Store"; sourceTree = "<group>"; };
 		BFE380771BA205E9006BDF5E /* ActionDice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionDice.cpp; sourceTree = "<group>"; };
 		BFE380781BA205E9006BDF5E /* ActionDice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDice.h; sourceTree = "<group>"; };
 		BFE380791BA205E9006BDF5E /* Dice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dice.cpp; sourceTree = "<group>"; };
@@ -326,7 +319,6 @@
 		BFE380911BA205E9006BDF5E /* ActionDiceStateSpent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDiceStateSpent.h; sourceTree = "<group>"; };
 		BFE380921BA205E9006BDF5E /* Dungeon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dungeon.cpp; sourceTree = "<group>"; };
 		BFE380931BA205E9006BDF5E /* Dungeon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dungeon.h; sourceTree = "<group>"; };
-		BFE380951BA205E9006BDF5E /* .!23339!.DS_Store */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".!23339!.DS_Store"; sourceTree = "<group>"; };
 		BFE380961BA205E9006BDF5E /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		BFE380971BA205E9006BDF5E /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		BFE380981BA205E9006BDF5E /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
@@ -368,7 +360,6 @@
 		BFE380BF1BA205E9006BDF5E /* EndTurnButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndTurnButton.h; sourceTree = "<group>"; };
 		BFE380C01BA205E9006BDF5E /* FreeBootSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreeBootSprite.cpp; sourceTree = "<group>"; };
 		BFE380C11BA205E9006BDF5E /* FreeBootSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeBootSprite.h; sourceTree = "<group>"; };
-		BFE380C31BA205E9006BDF5E /* .!23402!.DS_Store */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".!23402!.DS_Store"; sourceTree = "<group>"; };
 		BFE380C41BA205E9006BDF5E /* GameOverScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOverScene.cpp; sourceTree = "<group>"; };
 		BFE380C51BA205E9006BDF5E /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		BFE380C61BA205E9006BDF5E /* GameplayScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameplayScene.cpp; sourceTree = "<group>"; };
@@ -547,8 +538,6 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
-				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				BFE380411BA205E9006BDF5E /* animation */,
 				BFE380441BA205E9006BDF5E /* constants */,
 				BFE3804A1BA205E9006BDF5E /* delegate */,
@@ -558,6 +547,8 @@
 				BFE380B31BA205E9006BDF5E /* node */,
 				BFE380C21BA205E9006BDF5E /* scene */,
 				BFE380CA1BA205E9006BDF5E /* util */,
+				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
+				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -628,9 +619,9 @@
 			isa = PBXGroup;
 			children = (
 				BFE3805C1BA205E9006BDF5E /* dungeon */,
+				BFE380651BA205E9006BDF5E /* player_turn */,
 				BFE380631BA205E9006BDF5E /* HudLayer.cpp */,
 				BFE380641BA205E9006BDF5E /* HudLayer.h */,
-				BFE380651BA205E9006BDF5E /* player_turn */,
 				BFE3806E1BA205E9006BDF5E /* TurnChangeLayer.cpp */,
 				BFE3806F1BA205E9006BDF5E /* TurnChangeLayer.h */,
 			);
@@ -670,19 +661,18 @@
 			children = (
 				BFE380721BA205E9006BDF5E /* character */,
 				BFE380751BA205E9006BDF5E /* dice */,
+				BFE3809C1BA205E9006BDF5E /* room */,
+				BFE380AB1BA205E9006BDF5E /* turn */,
 				BFE380921BA205E9006BDF5E /* Dungeon.cpp */,
 				BFE380931BA205E9006BDF5E /* Dungeon.h */,
-				BFE380941BA205E9006BDF5E /* enum */,
 				BFE380961BA205E9006BDF5E /* Game.cpp */,
 				BFE380971BA205E9006BDF5E /* Game.h */,
 				BFE380981BA205E9006BDF5E /* GameObject.cpp */,
 				BFE380991BA205E9006BDF5E /* GameObject.h */,
 				BFE3809A1BA205E9006BDF5E /* Player.cpp */,
 				BFE3809B1BA205E9006BDF5E /* Player.h */,
-				BFE3809C1BA205E9006BDF5E /* room */,
 				BFE380A91BA205E9006BDF5E /* Skill.cpp */,
 				BFE380AA1BA205E9006BDF5E /* Skill.h */,
-				BFE380AB1BA205E9006BDF5E /* turn */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -699,20 +689,19 @@
 		BFE380751BA205E9006BDF5E /* dice */ = {
 			isa = PBXGroup;
 			children = (
-				BFE380761BA205E9006BDF5E /* .!23297!.DS_Store */,
+				BFE3807C1BA205E9006BDF5E /* face */,
+				BFE380871BA205E9006BDF5E /* state */,
 				BFE380771BA205E9006BDF5E /* ActionDice.cpp */,
 				BFE380781BA205E9006BDF5E /* ActionDice.h */,
 				BFE380791BA205E9006BDF5E /* Dice.cpp */,
 				BFE3807A1BA205E9006BDF5E /* Dice.h */,
 				BFE3807B1BA205E9006BDF5E /* DiceState.h */,
-				BFE3807C1BA205E9006BDF5E /* face */,
 				BFE380811BA205E9006BDF5E /* MajorMonsterDice.cpp */,
 				BFE380821BA205E9006BDF5E /* MajorMonsterDice.h */,
 				BFE380831BA205E9006BDF5E /* MinorMonsterDice.cpp */,
 				BFE380841BA205E9006BDF5E /* MinorMonsterDice.h */,
 				BFE380851BA205E9006BDF5E /* MonsterDice.cpp */,
 				BFE380861BA205E9006BDF5E /* MonsterDice.h */,
-				BFE380871BA205E9006BDF5E /* state */,
 			);
 			path = dice;
 			sourceTree = "<group>";
@@ -743,14 +732,6 @@
 				BFE380911BA205E9006BDF5E /* ActionDiceStateSpent.h */,
 			);
 			path = state;
-			sourceTree = "<group>";
-		};
-		BFE380941BA205E9006BDF5E /* enum */ = {
-			isa = PBXGroup;
-			children = (
-				BFE380951BA205E9006BDF5E /* .!23339!.DS_Store */,
-			);
-			path = enum;
 			sourceTree = "<group>";
 		};
 		BFE3809C1BA205E9006BDF5E /* room */ = {
@@ -810,7 +791,6 @@
 		BFE380C21BA205E9006BDF5E /* scene */ = {
 			isa = PBXGroup;
 			children = (
-				BFE380C31BA205E9006BDF5E /* .!23402!.DS_Store */,
 				BFE380C41BA205E9006BDF5E /* GameOverScene.cpp */,
 				BFE380C51BA205E9006BDF5E /* GameOverScene.h */,
 				BFE380C61BA205E9006BDF5E /* GameplayScene.cpp */,
@@ -824,11 +804,11 @@
 		BFE380CA1BA205E9006BDF5E /* util */ = {
 			isa = PBXGroup;
 			children = (
+				BFE380CF1BA205E9006BDF5E /* drag_handler */,
 				BFE380CB1BA205E9006BDF5E /* CoordinateUtil.cpp */,
 				BFE380CC1BA205E9006BDF5E /* CoordinateUtil.h */,
 				BFE380CD1BA205E9006BDF5E /* DiceUtil.cpp */,
 				BFE380CE1BA205E9006BDF5E /* DiceUtil.h */,
-				BFE380CF1BA205E9006BDF5E /* drag_handler */,
 				BFE380DC1BA205E9006BDF5E /* FileUtil.cpp */,
 				BFE380DD1BA205E9006BDF5E /* FileUtil.h */,
 				BFE380DE1BA205E9006BDF5E /* HighlightUtil.cpp */,
@@ -957,13 +937,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFE3810C1BA205E9006BDF5E /* .!23297!.DS_Store in Resources */,
 				BFE3817E1BA2066F006BDF5E /* md in Resources */,
-				BFE381281BA205E9006BDF5E /* .!23339!.DS_Store in Resources */,
 				BFE37F4F1BA203D8006BDF5E /* Info.plist in Resources */,
 				BFE3817A1BA2066F006BDF5E /* fonts in Resources */,
 				BFE381801BA2066F006BDF5E /* sd in Resources */,
-				BFE381521BA205E9006BDF5E /* .!23402!.DS_Store in Resources */,
 				BFE381821BA2066F006BDF5E /* ud in Resources */,
 				BFE3817C1BA2066F006BDF5E /* hd in Resources */,
 				BFE37F501BA203D8006BDF5E /* ios_assets.xcassets in Resources */,
@@ -974,16 +951,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFE3810D1BA205E9006BDF5E /* .!23297!.DS_Store in Resources */,
 				BFE3817F1BA2066F006BDF5E /* md in Resources */,
 				BF2C424A1BA2198E00E5C253 /* Info.plist in Resources */,
-				BFE381291BA205E9006BDF5E /* .!23339!.DS_Store in Resources */,
 				BFE3817B1BA2066F006BDF5E /* fonts in Resources */,
 				BF2C424B1BA2198E00E5C253 /* osx_assets.xcassets in Resources */,
 				BFE381811BA2066F006BDF5E /* sd in Resources */,
 				BFE381831BA2066F006BDF5E /* ud in Resources */,
 				BFE3817D1BA2066F006BDF5E /* hd in Resources */,
-				BFE381531BA205E9006BDF5E /* .!23402!.DS_Store in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

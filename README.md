@@ -6,6 +6,8 @@ It contains the main gameplay of a modified solo version.
 
 This project was created as a term project for my Information Systems course at [CES/JF](http://www.cesjf.br/).
 
+![OSX Screenshot](https://github.com/marlonandrade/survival_dungeon/raw/master/screenshots/osx_main.png)
+
 ## Setup
 
 1. Clone this project.
